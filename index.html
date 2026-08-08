@@ -16,7 +16,7 @@
       --text: #3f3a35;
       --kant: #e2d5c3;
       --ratt: #dfe8d8;
-      --skugga: rgba(80, 65, 50, 0.12);
+      --skugga: rgba(80,65,50,0.12);
     }
 
     * {
@@ -36,7 +36,7 @@
     }
 
     header {
-      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
       padding: 55px 20px 45px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
@@ -45,11 +45,11 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-size: clamp(2.4rem,6vw,4.4rem);
     }
 
     header p {
-      max-width: 800px;
+      max-width: 850px;
       margin: 12px auto 0;
       font-size: 1.15rem;
     }
@@ -107,45 +107,23 @@
       margin-top: 0;
     }
 
-    .today {
-      background: #f3eadf;
-      border-radius: 16px;
-      padding: 22px;
-      margin-top: 20px;
-    }
-
-    .today-question {
-      font-size: 1.35rem;
-      font-weight: bold;
-      color: var(--brun);
-      margin: 12px 0;
-    }
-
-    .strategy {
-      background: #fffaf2;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 18px;
-    }
-
     .section-title {
       text-align: center;
       margin: 45px 0 22px;
     }
 
     .section-title p {
-      max-width: 730px;
+      max-width: 760px;
       margin: auto;
     }
 
-    .subject-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      grid-template-columns: repeat(auto-fit,minmax(245px,1fr));
       gap: 18px;
     }
 
-    .subject-card {
+    .card {
       background: var(--kort);
       border: 1px solid var(--kant);
       border-radius: 18px;
@@ -154,23 +132,22 @@
       color: var(--text);
       box-shadow: 0 4px 12px var(--skugga);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
-      min-height: 190px;
+      min-height: 185px;
       display: flex;
       flex-direction: column;
     }
 
-    .subject-card:hover {
+    .card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 18px var(--skugga);
       background: #fffdf8;
     }
 
-    .subject-card h3 {
-      margin: 4px 0 8px;
-      font-size: 1.25rem;
+    .card h3 {
+      margin: 6px 0 8px;
     }
 
-    .subject-card p {
+    .card p {
       margin: 0;
     }
 
@@ -179,68 +156,31 @@
       margin-bottom: 4px;
     }
 
-    .special-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-    }
-
-    .special-card {
+    .special {
       background: #eee4d6;
-      border: 1px solid #d8c9b4;
-      border-radius: 18px;
-      padding: 24px;
-      text-align: center;
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.15s ease;
-    }
-
-    .special-card:hover {
-      transform: translateY(-3px);
-      background: #e7dac7;
-    }
-
-    .special-card .icon {
-      font-size: 3rem;
-    }
-
-    .special-card h3 {
-      margin: 8px 0;
-    }
-
-    .progress-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .progress-card {
-      background: var(--beige);
-      border-radius: 14px;
-      padding: 17px;
-      text-align: center;
-      font-weight: bold;
     }
 
     .teacher {
       background: #e7dfd1;
     }
 
-    .teacher a {
-      display: inline-block;
-      background: #d4c1a5;
-      color: var(--text);
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 11px;
-      font-weight: bold;
-      margin-top: 8px;
+    .teacher .card {
+      background: #f4ede3;
     }
 
-    .teacher a:hover {
-      background: #c9b394;
+    .start-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .start-card {
+      background: var(--beige);
+      border-radius: 14px;
+      padding: 17px;
+      text-align: center;
+      font-weight: bold;
     }
 
     footer {
@@ -250,7 +190,7 @@
       padding: 30px 20px;
     }
 
-    @media (max-width: 650px) {
+    @media(max-width:650px) {
       nav {
         position: static;
       }
@@ -274,384 +214,298 @@
 
 <header>
   <h1>➕ Matematik åk 3</h1>
-
   <p>
-    Lär dig, träna, spela, undersök och utmana dig själv i matematik.
+    Lär dig, träna, resonera, spela och utveckla din matematik.
   </p>
 </header>
 
 <nav>
   <a href="#omraden">📚 Matematikområden</a>
-  <a href="problemlosning.html">🧠 Problemlösning</a>
-  <a href="begrepp.html">💬 Begrepp</a>
-  <a href="spel.html">🎮 Spel</a>
-  <a href="kunskapskoll.html">✅ Kunskapskoll</a>
-  <a href="utmaningar.html">🌟 Utmaningar</a>
-  <a href="lararrum.html">👩‍🏫 Lärarrum</a>
+  <a href="#elevverktyg">🎒 Elevverktyg</a>
+  <a href="#traning">✅ Träning & bedömning</a>
+  <a href="#larare">👩‍🏫 Lärarverktyg</a>
 </nav>
 
 <main>
 
   <section class="box welcome">
-
-    <h2>👋 Välkommen till matematiken!</h2>
+    <h2>👋 Välkommen!</h2>
 
     <p>
-      Här kan du träna på det du arbetar med i årskurs 3.
-      Du kan läsa förklaringar, se exempel, lösa uppgifter,
-      spela matematikspel och utmana ditt tänkande.
+      På den här plattformen kan du arbeta med hela matematiken i åk 3.
+      Välj ett område, träna på din nivå, spela, lösa problem och förklara hur du tänker.
     </p>
 
-    <div class="today">
-      <h3>🧠 Dagens matte</h3>
-
-      <div class="today-question">
-        Jag tänker på ett tal.
-        Det är större än 40 men mindre än 50.
-        Det är jämnt och siffersumman är 10.
-        Vilket tal är det?
-      </div>
-
-      <p>
-        Förklara hur du kom fram till ditt svar.
-      </p>
+    <div class="start-grid">
+      <div class="start-card">🌱 Jag tränar</div>
+      <div class="start-card">🌿 Jag kan med stöd</div>
+      <div class="start-card">🌳 Jag kan själv</div>
+      <div class="start-card">⭐ Jag kan förklara</div>
     </div>
-
-    <div class="strategy">
-      <strong>💡 Kom ihåg:</strong>
-      Det viktigaste är inte alltid att vara snabb.
-      Försök förstå hur matematiken fungerar och förklara hur du tänker.
-    </div>
-
   </section>
 
 
   <div class="section-title" id="omraden">
     <h2>📚 Matematikområden</h2>
-
-    <p>
-      Välj det område du vill arbeta med.
-    </p>
+    <p>Välj det område du vill arbeta med.</p>
   </div>
 
+  <section class="grid">
 
-  <section class="subject-grid">
-
-    <a class="subject-card" href="taluppfattning.html">
+    <a class="card" href="taluppfattning.html">
       <div class="icon">🔢</div>
       <h3>Taluppfattning</h3>
-      <p>
-        Tal, positionssystem, tallinje, udda och jämna tal,
-        jämförelse och talmönster.
-      </p>
+      <p>Tal, platsvärde, jämförelse, mönster och rimlighet.</p>
     </a>
 
-
-    <a class="subject-card" href="addition.html">
+    <a class="card" href="addition.html">
       <div class="icon">➕</div>
       <h3>Addition</h3>
-      <p>
-        Strategier, huvudräkning, uppställning och problemlösning.
-      </p>
+      <p>Strategier, huvudräkning, uppställning och problemlösning.</p>
     </a>
 
-
-    <a class="subject-card" href="subtraktion.html">
+    <a class="card" href="subtraktion.html">
       <div class="icon">➖</div>
       <h3>Subtraktion</h3>
-      <p>
-        Ta bort, jämföra, skillnad, huvudräkning och skriftliga metoder.
-      </p>
+      <p>Skillnad, ta bort, jämföra och olika strategier.</p>
     </a>
 
-
-    <a class="subject-card" href="multiplikation.html">
+    <a class="card" href="multiplikation.html">
       <div class="icon">✖️</div>
       <h3>Multiplikation</h3>
-      <p>
-        Lika stora grupper, tabeller och olika strategier.
-      </p>
+      <p>Lika stora grupper, tabeller och samband.</p>
     </a>
 
-
-    <a class="subject-card" href="division.html">
+    <a class="card" href="division.html">
       <div class="icon">➗</div>
       <h3>Division</h3>
-      <p>
-        Dela lika, gruppera och se sambandet med multiplikation.
-      </p>
+      <p>Dela lika, gruppera och använda multiplikation.</p>
     </a>
 
-
-    <a class="subject-card" href="brak.html">
+    <a class="card" href="brak.html">
       <div class="icon">🍕</div>
       <h3>Bråk</h3>
-      <p>
-        Helhet, delar, hälften, tredjedelar och fjärdedelar.
-      </p>
+      <p>Helhet, delar, hälften, tredjedelar och fjärdedelar.</p>
     </a>
 
-
-    <a class="subject-card" href="algebra.html">
+    <a class="card" href="algebra.html">
       <div class="icon">⚖️</div>
       <h3>Algebra</h3>
-      <p>
-        Likhetstecken, obekanta tal, regler och mönster.
-      </p>
+      <p>Likhetstecken, obekanta tal och mönster.</p>
     </a>
 
-
-    <a class="subject-card" href="programmering.html">
+    <a class="card" href="programmering.html">
       <div class="icon">🤖</div>
       <h3>Programmering</h3>
-      <p>
-        Instruktioner, algoritmer, upprepningar och felsökning.
-      </p>
+      <p>Algoritmer, instruktioner, upprepning och felsökning.</p>
     </a>
 
-
-    <a class="subject-card" href="geometri.html">
+    <a class="card" href="geometri.html">
       <div class="icon">📐</div>
       <h3>Geometri</h3>
-      <p>
-        Former, hörn, sidor, geometriska kroppar och egenskaper.
-      </p>
+      <p>Former, sidor, hörn och geometriska kroppar.</p>
     </a>
 
-
-    <a class="subject-card" href="matning.html">
+    <a class="card" href="matning.html">
       <div class="icon">📏</div>
       <h3>Mätning</h3>
-      <p>
-        Längd, massa, volym, enheter och uppskattning.
-      </p>
+      <p>Längd, massa, volym och enheter.</p>
     </a>
 
-
-    <a class="subject-card" href="tid.html">
+    <a class="card" href="tid.html">
       <div class="icon">🕐</div>
       <h3>Tid</h3>
-      <p>
-        Klockan, timmar, minuter, tidsintervall och kalender.
-      </p>
+      <p>Klockan, tidsintervall och kalender.</p>
     </a>
 
-
-    <a class="subject-card" href="symmetri-skala.html">
+    <a class="card" href="symmetri-skala.html">
       <div class="icon">🪞</div>
       <h3>Symmetri och skala</h3>
-      <p>
-        Spegling, symmetrilinjer, förstoring och förminskning.
-      </p>
+      <p>Spegling, förstoring och förminskning.</p>
     </a>
 
-
-    <a class="subject-card" href="statistik.html">
+    <a class="card" href="statistik.html">
       <div class="icon">📊</div>
       <h3>Statistik</h3>
-      <p>
-        Samla data, läsa tabeller, bilddiagram och stapeldiagram.
-      </p>
+      <p>Tabeller, diagram och att tolka information.</p>
     </a>
 
-
-    <a class="subject-card" href="sannolikhet.html">
+    <a class="card" href="sannolikhet.html">
       <div class="icon">🎲</div>
       <h3>Sannolikhet</h3>
-      <p>
-        Säkert, möjligt, omöjligt, slump och enkla försök.
-      </p>
+      <p>Säkert, möjligt, omöjligt och enkla slumpförsök.</p>
     </a>
 
-
-    <a class="subject-card" href="samband.html">
+    <a class="card" href="samband.html">
       <div class="icon">🔗</div>
       <h3>Samband</h3>
-      <p>
-        Dubbelt, hälften och enkla proportionella samband.
-      </p>
+      <p>Dubbelt, hälften och enkla matematiska samband.</p>
     </a>
 
-
-    <a class="subject-card" href="problemlosning.html">
+    <a class="card" href="problemlosning.html">
       <div class="icon">🧠</div>
       <h3>Problemlösning</h3>
-      <p>
-        Strategier, flera steg, rimlighet och matematiska resonemang.
-      </p>
+      <p>Strategier, problemlösning och matematiska resonemang.</p>
     </a>
 
   </section>
 
 
-  <div class="section-title">
-    <h2>🚀 Träna på olika sätt</h2>
-
-    <p>
-      Här kan du välja mellan begreppsträning, spel,
-      kunskapskoll och matematiska utmaningar.
-    </p>
+  <div class="section-title" id="elevverktyg">
+    <h2>🎒 Elevverktyg</h2>
+    <p>Här får du hjälp att förstå, träna, prata och utveckla ditt matematiska tänkande.</p>
   </div>
 
+  <section class="grid special">
 
-  <section class="special-grid">
-
-    <a class="special-card" href="begrepp.html">
-      <div class="icon">💬</div>
-      <h3>Begreppsbanken</h3>
-      <p>
-        Träna viktiga matematikord och lär dig vad de betyder.
-      </p>
+    <a class="card" href="strategier.html">
+      <div class="icon">🧠</div>
+      <h3>Räknestrategier</h3>
+      <p>Olika sätt att tänka i de fyra räknesätten.</p>
     </a>
 
+    <a class="card" href="representationer.html">
+      <div class="icon">🧩</div>
+      <h3>Representationer</h3>
+      <p>Föremål, bild, tallinje, symboler och ord.</p>
+    </a>
 
-    <a class="special-card" href="spel.html">
+    <a class="card" href="matteprat.html">
+      <div class="icon">💬</div>
+      <h3>Matteprat</h3>
+      <p>Förklara, jämför, argumentera och resonera.</p>
+    </a>
+
+    <a class="card" href="felanalys.html">
+      <div class="icon">🕵️</div>
+      <h3>Felanalys</h3>
+      <p>Hitta fel och förklara varför de uppstår.</p>
+    </a>
+
+    <a class="card" href="begrepp.html">
+      <div class="icon">🗣️</div>
+      <h3>Begreppsbanken</h3>
+      <p>Träna viktiga matematikord.</p>
+    </a>
+
+    <a class="card" href="min-utveckling.html">
+      <div class="icon">🌱</div>
+      <h3>Min utveckling</h3>
+      <p>Följ vad du kan och vad du vill träna mer på.</p>
+    </a>
+
+    <a class="card" href="utmaningar.html">
+      <div class="icon">🌟</div>
+      <h3>Utmaningar</h3>
+      <p>Kluringar, logik, mönster och öppna problem.</p>
+    </a>
+
+  </section>
+
+
+  <div class="section-title" id="traning">
+    <h2>✅ Träning och uppföljning</h2>
+    <p>Öva, testa dina kunskaper och få återkoppling.</p>
+  </div>
+
+  <section class="grid">
+
+    <a class="card" href="spel.html">
       <div class="icon">🎮</div>
       <h3>Mattespel</h3>
-      <p>
-        Spela korta mattespel med slumpade uppgifter och poäng.
-      </p>
+      <p>Spela och träna med slumpade uppgifter.</p>
     </a>
 
+    <a class="card" href="ovningsbank.html">
+      <div class="icon">📚</div>
+      <h3>Övningsbank</h3>
+      <p>Välj område och nivå och få nya uppgifter.</p>
+    </a>
 
-    <a class="special-card" href="kunskapskoll.html">
+    <a class="card" href="dagensmatte.html">
+      <div class="icon">☀️</div>
+      <h3>Dagens matte</h3>
+      <p>Dagens tal, problem, begrepp och kluring.</p>
+    </a>
+
+    <a class="card" href="kunskapskoll.html">
       <div class="icon">✅</div>
       <h3>Kunskapskoll</h3>
-      <p>
-        Testa dina kunskaper inom flera matematikområden.
-      </p>
+      <p>Kolla vad du kan inom flera matematikområden.</p>
     </a>
 
+    <a class="card" href="diagnos.html">
+      <div class="icon">🔎</div>
+      <h3>Diagnos</h3>
+      <p>Se resultat område för område och vad du behöver träna.</p>
+    </a>
 
-    <a class="special-card" href="utmaningar.html">
-      <div class="icon">🌟</div>
-      <h3>Matematikutmaningar</h3>
-      <p>
-        Kluringar, logik, mönster och problem med flera lösningar.
-      </p>
+    <a class="card" href="exit-ticket.html">
+      <div class="icon">🚪</div>
+      <h3>Exit ticket</h3>
+      <p>Tre korta frågor som avslutning på lektionen.</p>
+    </a>
+
+    <a class="card" href="np-traning.html">
+      <div class="icon">📝</div>
+      <h3>Träna matematiska förmågor</h3>
+      <p>Räkna, problemlösa, använda begrepp och resonera.</p>
+    </a>
+
+  </section>
+
+
+  <div class="section-title" id="larare">
+    <h2>👩‍🏫 För lärare</h2>
+    <p>Planering, observation, anpassningar, stationsarbete och uppföljning.</p>
+  </div>
+
+  <section class="grid teacher">
+
+    <a class="card" href="lararrum.html">
+      <div class="icon">🏫</div>
+      <h3>Lärarrum</h3>
+      <p>Översikt, undervisningsidéer, bedömning och stöd.</p>
+    </a>
+
+    <a class="card" href="lararverktyg.html">
+      <div class="icon">🧰</div>
+      <h3>Lärarverktyg</h3>
+      <p>Observation, analys, missuppfattningar och snabbplanering.</p>
+    </a>
+
+    <a class="card" href="stationsarbete.html">
+      <div class="icon">🔄</div>
+      <h3>Stationsarbete</h3>
+      <p>Färdiga matematikstationer och grupporganisation.</p>
+    </a>
+
+    <a class="card" href="veckoplan.html">
+      <div class="icon">📅</div>
+      <h3>Veckoplan</h3>
+      <p>Planera mål, innehåll, grupper, stöd och uppföljning.</p>
     </a>
 
   </section>
 
 
   <section class="box" style="margin-top:40px;">
+    <h2>🧠 Så arbetar vi med matematik</h2>
 
-    <h2>🧠 Så kan du arbeta</h2>
-
-    <div class="progress-grid">
-
-      <div class="progress-card">
-        1️⃣ Läs och förstå
-      </div>
-
-      <div class="progress-card">
-        2️⃣ Titta på exemplet
-      </div>
-
-      <div class="progress-card">
-        3️⃣ Prova själv
-      </div>
-
-      <div class="progress-card">
-        4️⃣ Kontrollera
-      </div>
-
-      <div class="progress-card">
-        5️⃣ Förklara ditt tänkande
-      </div>
-
+    <div class="start-grid">
+      <div class="start-card">1️⃣ Förstå uppgiften</div>
+      <div class="start-card">2️⃣ Välj en strategi</div>
+      <div class="start-card">3️⃣ Lös och visa</div>
+      <div class="start-card">4️⃣ Förklara</div>
+      <div class="start-card">5️⃣ Kontrollera</div>
     </div>
-
-  </section>
-
-
-  <section class="box">
-
-    <h2>💬 Förklara matematiken</h2>
-
-    <p>
-      Försök använda matematikord när du berättar hur du tänker.
-    </p>
-
-    <div class="strategy">
-      Jag började med att...
-    </div>
-
-    <div class="strategy">
-      Jag valde den här metoden eftersom...
-    </div>
-
-    <div class="strategy">
-      Jag upptäckte att...
-    </div>
-
-    <div class="strategy">
-      Jag vet att svaret är rimligt eftersom...
-    </div>
-
-  </section>
-
-
-  <section class="box">
-
-    <h2>✅ Följ din utveckling</h2>
-
-    <p>
-      Fundera efter varje område på var du befinner dig.
-    </p>
-
-    <div class="progress-grid">
-
-      <div class="progress-card">
-        🌱 Jag tränar
-      </div>
-
-      <div class="progress-card">
-        🌿 Jag kan nästan
-      </div>
-
-      <div class="progress-card">
-        🌳 Jag kan själv
-      </div>
-
-      <div class="progress-card">
-        ⭐ Jag kan förklara
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="box teacher">
-
-    <h2>👩‍🏫 För lärare</h2>
-
-    <p>
-      I lärarrummet finns stöd för planering, undervisning,
-      bedömning, språkstöd, extra anpassningar och vanliga
-      matematiska missuppfattningar.
-    </p>
-
-    <a href="lararrum.html">
-      Öppna lärarrummet →
-    </a>
-
   </section>
 
 </main>
 
-
 <footer>
-
-  <p>
-    <strong>Matematik åk 3</strong>
-  </p>
-
-  <p>
-    Förstå • Träna • Resonera • Problemlösa • Utvecklas
-  </p>
-
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Förstå • Träna • Resonera • Problemlösa • Utvecklas</p>
 </footer>
 
 </body>
