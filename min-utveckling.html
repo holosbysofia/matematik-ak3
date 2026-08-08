@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Min utveckling – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 820px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .level-card {
+      background: var(--beige);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .area-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 22px;
+      margin: 18px 0;
+    }
+
+    .area-title {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .area-icon {
+      font-size: 2.4rem;
+    }
+
+    .area-title h3 {
+      margin: 0;
+    }
+
+    .goal-list {
+      margin: 10px 0 18px;
+      padding-left: 22px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 8px;
+    }
+
+    .choice-btn {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 11px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    .choice-btn:hover {
+      background: var(--beige2);
+    }
+
+    .choice-btn.active {
+      background: #d6c3a6;
+      outline: 3px solid #aa9576;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .summary-card {
+      background: #f3eadf;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .summary-number {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .reflection {
+      background: #eee4d6;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      padding: 12px;
+      border: 1px solid #cdbda7;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    .save-btn {
+      display: block;
+      margin: 24px auto 0;
+      width: 100%;
+      max-width: 420px;
+      background: #d6c3a6;
+      border: none;
+      padding: 13px;
+      border-radius: 11px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 12px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:750px) {
+      .choice-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:500px) {
+      .choice-grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌱 Min utveckling</h1>
+
+  <p>
+    Här kan du fundera över vad du redan kan och vad du vill träna mer på.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="diagnos.html">🔎 Diagnos</a>
+  <a href="ovningsbank.html">📚 Övningsbank</a>
+  <a href="strategier.html">🧠 Strategier</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🌿 Så använder du sidan</h2>
+
+    <p>
+      Läs målen i varje område och välj den ruta som bäst beskriver
+      hur det känns för dig just nu.
+    </p>
+
+    <div class="level-grid">
+
+      <div class="level-card">
+        🌱 Jag tränar
+      </div>
+
+      <div class="level-card">
+        🌿 Jag kan med stöd
+      </div>
+
+      <div class="level-card">
+        🌳 Jag kan själv
+      </div>
+
+      <div class="level-card">
+        ⭐ Jag kan förklara
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>📚 Mina matematikområden</h2>
+
+    <div id="areas"></div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>📊 Min översikt</h2>
+
+    <div class="summary-grid">
+
+      <div class="summary-card">
+        <div class="summary-number" id="trainingCount">0</div>
+        🌱 Jag tränar
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-number" id="supportCount">0</div>
+        🌿 Jag kan med stöd
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-number" id="aloneCount">0</div>
+        🌳 Jag kan själv
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-number" id="explainCount">0</div>
+        ⭐ Jag kan förklara
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>💬 Min reflektion</h2>
+
+    <div class="reflection">
+
+      <h3>Det här känner jag mig säker på:</h3>
+
+      <textarea id="secureText"
+        placeholder="Skriv eller berätta för läraren..."></textarea>
+
+    </div>
+
+
+    <div class="reflection">
+
+      <h3>Det här vill jag träna mer på:</h3>
+
+      <textarea id="practiceText"
+        placeholder="Skriv vad du vill utveckla..."></textarea>
+
+    </div>
+
+
+    <div class="reflection">
+
+      <h3>En strategi som hjälper mig är:</h3>
+
+      <textarea id="strategyText"
+        placeholder="Till exempel: dela upp tal, gå via tiotal, rita..."></textarea>
+
+    </div>
+
+
+    <div class="reflection">
+
+      <h3>Mitt nästa mål:</h3>
+
+      <textarea id="goalText"
+        placeholder="Mitt nästa matematikmål är..."></textarea>
+
+    </div>
+
+    <button class="save-btn" onclick="saveProgress()">
+      💾 Spara min utveckling
+    </button>
+
+    <div class="message" id="saveMessage"></div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Fundera • Träna • Utvecklas • Förklara</p>
+</footer>
+
+<script>
+
+  const mathAreas = [
+
+    {
+      id: "tal",
+      icon: "🔢",
+      title: "Taluppfattning",
+      goals: [
+        "Jag kan läsa och skriva tal.",
+        "Jag förstår hundratal, tiotal och ental.",
+        "Jag kan jämföra och ordna tal.",
+        "Jag kan upptäcka enkla talmönster."
+      ]
+    },
+
+    {
+      id: "addition",
+      icon: "➕",
+      title: "Addition",
+      goals: [
+        "Jag kan addera tal.",
+        "Jag kan använda olika strategier.",
+        "Jag kan förklara hur jag räknar.",
+        "Jag kan kontrollera om svaret är rimligt."
+      ]
+    },
+
+    {
+      id: "subtraktion",
+      icon: "➖",
+      title: "Subtraktion",
+      goals: [
+        "Jag kan subtrahera tal.",
+        "Jag kan räkna upp och ta bort.",
+        "Jag kan använda olika strategier.",
+        "Jag kan kontrollera med addition."
+      ]
+    },
+
+    {
+      id: "multiplikation",
+      icon: "✖️",
+      title: "Multiplikation",
+      goals: [
+        "Jag förstår lika stora grupper.",
+        "Jag kan använda multiplikationstabeller.",
+        "Jag kan använda samband mellan tabeller.",
+        "Jag kan lösa enkla textuppgifter."
+      ]
+    },
+
+    {
+      id: "division",
+      icon: "➗",
+      title: "Division",
+      goals: [
+        "Jag förstår vad det betyder att dela lika.",
+        "Jag kan gruppera föremål.",
+        "Jag ser sambandet mellan division och multiplikation.",
+        "Jag kan lösa enkla divisionsproblem."
+      ]
+    },
+
+    {
+      id: "brak",
+      icon: "🍕",
+      title: "Bråk",
+      goals: [
+        "Jag förstår att en helhet kan delas i lika delar.",
+        "Jag känner igen hälften, tredjedelar och fjärdedelar.",
+        "Jag kan jämföra enkla bråk.",
+        "Jag kan hitta en del av en mängd."
+      ]
+    },
+
+    {
+      id: "algebra",
+      icon: "⚖️",
+      title: "Algebra",
+      goals: [
+        "Jag förstår likhetstecknet.",
+        "Jag kan hitta ett tal som saknas.",
+        "Jag kan upptäcka regler och mönster.",
+        "Jag kan förklara hur jag vet."
+      ]
+    },
+
+    {
+      id: "geometri",
+      icon: "📐",
+      title: "Geometri",
+      goals: [
+        "Jag känner igen vanliga geometriska former.",
+        "Jag kan beskriva sidor och hörn.",
+        "Jag känner igen några geometriska kroppar.",
+        "Jag kan använda geometriska begrepp."
+      ]
+    },
+
+    {
+      id: "matning",
+      icon: "📏",
+      title: "Mätning",
+      goals: [
+        "Jag kan mäta längd.",
+        "Jag känner till cm och m.",
+        "Jag känner till g och kg.",
+        "Jag kan välja en rimlig enhet."
+      ]
+    },
+
+    {
+      id: "tid",
+      icon: "🕐",
+      title: "Tid",
+      goals: [
+        "Jag kan läsa av klockan.",
+        "Jag förstår hel, halv och kvart.",
+        "Jag kan räkna enkla tidsintervall.",
+        "Jag kan använda kalender."
+      ]
+    },
+
+    {
+      id: "statistik",
+      icon: "📊",
+      title: "Statistik",
+      goals: [
+        "Jag kan läsa enkla tabeller.",
+        "Jag kan läsa stapeldiagram.",
+        "Jag kan samla och sortera information.",
+        "Jag kan svara på frågor utifrån ett diagram."
+      ]
+    },
+
+    {
+      id: "sannolikhet",
+      icon: "🎲",
+      title: "Sannolikhet",
+      goals: [
+        "Jag förstår orden säkert, möjligt och omöjligt.",
+        "Jag kan jämföra enkla chanser.",
+        "Jag kan göra enkla slumpförsök.",
+        "Jag kan beskriva vad jag upptäcker."
+      ]
+    },
+
+    {
+      id: "problem",
+      icon: "🧠",
+      title: "Problemlösning",
+      goals: [
+        "Jag kan förstå vad frågan handlar om.",
+        "Jag kan välja en strategi.",
+        "Jag kan lösa problemet.",
+        "Jag kan förklara och kontrollera mitt svar."
+      ]
+    }
+
+  ];
+
+
+  const levels = [
+    {
+      value: 1,
+      label: "🌱 Jag tränar"
+    },
+    {
+      value: 2,
+      label: "🌿 Jag kan med stöd"
+    },
+    {
+      value: 3,
+      label: "🌳 Jag kan själv"
+    },
+    {
+      value: 4,
+      label: "⭐ Jag kan förklara"
+    }
+  ];
+
+
+  const progress = {};
+
+
+  function renderAreas() {
+
+    const container =
+      document.getElementById("areas");
+
+    container.innerHTML = "";
+
+
+    mathAreas.forEach(area => {
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "area-card";
+
+
+      const title =
+        document.createElement("div");
+
+      title.className =
+        "area-title";
+
+      title.innerHTML = `
+        <div class="area-icon">${area.icon}</div>
+        <h3>${area.title}</h3>
+      `;
+
+
+      const list =
+        document.createElement("ul");
+
+      list.className =
+        "goal-list";
+
+
+      area.goals.forEach(goal => {
+
+        const li =
+          document.createElement("li");
+
+        li.textContent = goal;
+
+        list.appendChild(li);
+
+      });
+
+
+      const choices =
+        document.createElement("div");
+
+      choices.className =
+        "choice-grid";
+
+
+      levels.forEach(level => {
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "choice-btn";
+
+        button.textContent =
+          level.label;
+
+        button.dataset.value =
+          level.value;
+
+        button.onclick =
+          function() {
+
+            chooseLevel(
+              area.id,
+              level.value,
+              choices,
+              button
+            );
+
+          };
+
+
+        choices.appendChild(button);
+
+      });
+
+
+      card.appendChild(title);
+      card.appendChild(list);
+      card.appendChild(choices);
+
+      container.appendChild(card);
+
+    });
+
+  }
+
+
+  function chooseLevel(
+    areaId,
+    value,
+    choices,
+    button
+  ) {
+
+    progress[areaId] =
+      value;
+
+
+    choices
+      .querySelectorAll(
+        ".choice-btn"
+      )
+      .forEach(btn => {
+
+        btn.classList.remove(
+          "active"
+        );
+
+      });
+
+
+    button.classList.add(
+      "active"
+    );
+
+
+    updateSummary();
+
+  }
+
+
+  function updateSummary() {
+
+    let training = 0;
+    let support = 0;
+    let alone = 0;
+    let explain = 0;
+
+
+    Object.values(progress)
+      .forEach(value => {
+
+        if (value === 1) training++;
+        if (value === 2) support++;
+        if (value === 3) alone++;
+        if (value === 4) explain++;
+
+      });
+
+
+    document.getElementById(
+      "trainingCount"
+    ).textContent =
+      training;
+
+
+    document.getElementById(
+      "supportCount"
+    ).textContent =
+      support;
+
+
+    document.getElementById(
+      "aloneCount"
+    ).textContent =
+      alone;
+
+
+    document.getElementById(
+      "explainCount"
+    ).textContent =
+      explain;
+
+  }
+
+
+  function saveProgress() {
+
+    const data = {
+
+      progress: progress,
+
+      secure:
+        document.getElementById(
+          "secureText"
+        ).value,
+
+      practice:
+        document.getElementById(
+          "practiceText"
+        ).value,
+
+      strategy:
+        document.getElementById(
+          "strategyText"
+        ).value,
+
+      goal:
+        document.getElementById(
+          "goalText"
+        ).value
+
+    };
+
+
+    localStorage.setItem(
+      "matematikAk3Progress",
+      JSON.stringify(data)
+    );
+
+
+    document.getElementById(
+      "saveMessage"
+    ).textContent =
+      "✅ Din utvecklingsöversikt är sparad på den här enheten.";
+
+  }
+
+
+  function loadProgress() {
+
+    const saved =
+      localStorage.getItem(
+        "matematikAk3Progress"
+      );
+
+
+    if (!saved) {
+      return;
+    }
+
+
+    const data =
+      JSON.parse(saved);
+
+
+    if (data.progress) {
+
+      Object.keys(
+        data.progress
+      ).forEach(key => {
+
+        progress[key] =
+          data.progress[key];
+
+      });
+
+    }
+
+
+    document.getElementById(
+      "secureText"
+    ).value =
+      data.secure || "";
+
+
+    document.getElementById(
+      "practiceText"
+    ).value =
+      data.practice || "";
+
+
+    document.getElementById(
+      "strategyText"
+    ).value =
+      data.strategy || "";
+
+
+    document.getElementById(
+      "goalText"
+    ).value =
+      data.goal || "";
+
+
+    mathAreas.forEach(
+      (area, index) => {
+
+        const value =
+          progress[area.id];
+
+        if (!value) {
+          return;
+        }
+
+
+        const cards =
+          document.querySelectorAll(
+            ".area-card"
+          );
+
+
+        const buttons =
+          cards[index]
+            .querySelectorAll(
+              ".choice-btn"
+            );
+
+
+        buttons.forEach(
+          button => {
+
+            if (
+              Number(
+                button.dataset.value
+              ) === value
+            ) {
+
+              button.classList.add(
+                "active"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    updateSummary();
+
+  }
+
+
+  renderAreas();
+  loadProgress();
+
+</script>
+
+</body>
+</html>
