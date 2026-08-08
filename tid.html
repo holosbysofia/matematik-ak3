@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tid – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .time-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .clock {
+      width: 170px;
+      height: 170px;
+      border: 6px solid #8a7b68;
+      border-radius: 50%;
+      margin: 20px auto;
+      position: relative;
+      background: #fffaf2;
+    }
+
+    .clock .center {
+      width: 12px;
+      height: 12px;
+      background: #6f6255;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+    }
+
+    .hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: left center;
+      background: #6f6255;
+      border-radius: 4px;
+    }
+
+    .hour-hand {
+      width: 48px;
+      height: 6px;
+      transform: translateY(-50%) rotate(-90deg);
+    }
+
+    .minute-hand {
+      width: 65px;
+      height: 4px;
+      transform: translateY(-50%) rotate(0deg);
+    }
+
+    .number {
+      position: absolute;
+      font-weight: bold;
+      color: #6f6255;
+    }
+
+    .n12 { top: 6px; left: 50%; transform: translateX(-50%); }
+    .n3 { right: 8px; top: 50%; transform: translateY(-50%); }
+    .n6 { bottom: 6px; left: 50%; transform: translateX(-50%); }
+    .n9 { left: 8px; top: 50%; transform: translateY(-50%); }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .calendar th,
+    .calendar td {
+      border: 1px solid #d8cab7;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .calendar th {
+      background: #e8dcc8;
+      color: var(--brun);
+    }
+
+    .calendar td {
+      background: #fffaf2;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🕐 Tid</h1>
+  <p>
+    Här tränar du på klockan, minuter, timmar, tidsintervall och kalender.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="matning.html">📏 Mätning</a>
+  <a href="#klockan">🕐 Klockan</a>
+  <a href="#digital">🔢 Digital tid</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#kalender">📅 Kalender</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>läsa hela timmar</li>
+      <li>läsa halva timmar</li>
+      <li>förstå kvart över och kvart i</li>
+      <li>läsa minuter</li>
+      <li>läsa analog och digital tid</li>
+      <li>beräkna enkla tidsintervall</li>
+      <li>använda kalender</li>
+      <li>förstå dagar, veckor och månader</li>
+    </ul>
+  </section>
+
+  <section class="box" id="klockan">
+    <h2>🕐 Den analoga klockan</h2>
+
+    <p>
+      Den analoga klockan har en kort visare och en lång visare.
+    </p>
+
+    <div class="time-grid">
+      <div class="time-card">
+        <h3>Korta visaren</h3>
+        <p>
+          Visar <strong>timmarna</strong>.
+        </p>
+      </div>
+
+      <div class="time-card">
+        <h3>Långa visaren</h3>
+        <p>
+          Visar <strong>minuterna</strong>.
+        </p>
+      </div>
+    </div>
+
+    <div class="clock">
+      <span class="number n12">12</span>
+      <span class="number n3">3</span>
+      <span class="number n6">6</span>
+      <span class="number n9">9</span>
+
+      <div class="hand hour-hand"></div>
+      <div class="hand minute-hand"></div>
+      <div class="center"></div>
+    </div>
+
+    <div class="example">
+      Klockan ovan visar <strong>3.00</strong>.
+      <br>
+      Den korta visaren pekar på 3 och den långa på 12.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>⏰ Hel timme</h2>
+
+    <p>
+      När minutvisaren pekar på 12 är det hel timme.
+    </p>
+
+    <div class="example">
+      8.00 = klockan åtta
+      <br>
+      12.00 = klockan tolv
+      <br>
+      15.00 = klockan tre på eftermiddagen
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌓 Halv</h2>
+
+    <p>
+      När minutvisaren pekar på 6 har det gått 30 minuter.
+    </p>
+
+    <div class="example">
+      <strong>08.30</strong> säger vi ofta som
+      <strong>halv nio</strong>.
+    </div>
+
+    <p>
+      Det betyder att det är en halvtimme kvar till nio.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>¼ Kvart över och kvart i</h2>
+
+    <div class="example">
+      <strong>08.15</strong> = kvart över åtta
+    </div>
+
+    <div class="example">
+      <strong>08.45</strong> = kvart i nio
+    </div>
+
+    <p>
+      En kvart är <strong>15 minuter</strong>.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>⏱️ Minuter</h2>
+
+    <div class="example">
+      1 timme = <strong>60 minuter</strong>
+    </div>
+
+    <div class="example">
+      30 minuter = <strong>en halvtimme</strong>
+    </div>
+
+    <div class="example">
+      15 minuter = <strong>en kvart</strong>
+    </div>
+  </section>
+
+  <section class="box" id="digital">
+    <h2>🔢 Digital tid</h2>
+
+    <p>
+      Digital tid skrivs med siffror.
+    </p>
+
+    <div class="time-grid">
+      <div class="time-card">
+        <h3>07.00</h3>
+        <p>Klockan sju på morgonen</p>
+      </div>
+
+      <div class="time-card">
+        <h3>13.00</h3>
+        <p>Klockan ett på eftermiddagen</p>
+      </div>
+
+      <div class="time-card">
+        <h3>18.30</h3>
+        <p>Halv sju på kvällen</p>
+      </div>
+    </div>
+
+    <div class="example">
+      Efter klockan 12 fortsätter den digitala klockan:
+      <br><br>
+      13.00 = 1 på eftermiddagen
+      <br>
+      14.00 = 2 på eftermiddagen
+      <br>
+      15.00 = 3 på eftermiddagen
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>⌛ Tidsintervall</h2>
+
+    <p>
+      Ett tidsintervall är tiden mellan två tidpunkter.
+    </p>
+
+    <div class="example">
+      Lektionen börjar 09.00 och slutar 10.00.
+      <br><br>
+      Då pågår lektionen i <strong>1 timme</strong>.
+    </div>
+
+    <div class="example">
+      Rasten börjar 10.00 och slutar 10.20.
+      <br><br>
+      Rasten pågår i <strong>20 minuter</strong>.
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Hur många minuter är en timme?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">30</button>
+        <button onclick="answer(this,true)">60</button>
+        <button onclick="answer(this,false)">100</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Hur många minuter är en kvart?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">15</button>
+        <button onclick="answer(this,false)">20</button>
+        <button onclick="answer(this,false)">30</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vad betyder 08.30?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Halv åtta</button>
+        <button onclick="answer(this,true)">Halv nio</button>
+        <button onclick="answer(this,false)">Kvart över åtta</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vad betyder 14.00?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Klockan fyra</button>
+        <button onclick="answer(this,true)">Klockan två på eftermiddagen</button>
+        <button onclick="answer(this,false)">Klockan tolv</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. En film börjar 18.00 och slutar 19.00. Hur lång är filmen?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">1 timme</button>
+        <button onclick="answer(this,false)">30 minuter</button>
+        <button onclick="answer(this,false)">2 timmar</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Hur många minuter är en halvtimme?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="kalender">
+    <h2>📅 Kalender</h2>
+
+    <p>
+      En kalender hjälper oss att hålla reda på dagar, veckor och månader.
+    </p>
+
+    <div class="example">
+      1 vecka = <strong>7 dagar</strong>
+    </div>
+
+    <div class="example">
+      1 år = <strong>12 månader</strong>
+    </div>
+
+    <table class="calendar">
+      <tr>
+        <th>Mån</th>
+        <th>Tis</th>
+        <th>Ons</th>
+        <th>Tors</th>
+        <th>Fre</th>
+        <th>Lör</th>
+        <th>Sön</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+
+      <tr>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+      </tr>
+
+      <tr>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+        <td>21</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Skoldagen</h3>
+
+      <p>
+        En lektion börjar 10.15.
+        Den slutar 11.00.
+      </p>
+
+      <p>
+        <strong>Hur lång är lektionen?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Minuter">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Du går hemifrån klockan 07.45.
+      </p>
+
+      <p>
+        Det tar 25 minuter att komma till skolan.
+      </p>
+
+      <p>
+        <strong>Vilken tid kommer du fram?</strong>
+      </p>
+
+      <p>
+        Försök förklara hur du räknade.
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Tidsdetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        En elev säger:
+      </p>
+
+      <p>
+        <strong>”Om klockan är 08.45 är det kvart över åtta.”</strong>
+      </p>
+
+      <p>
+        Har eleven rätt?
+      </p>
+
+      <p>
+        Förklara vad 08.45 betyder.
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>timme</strong> – 60 minuter</p>
+
+    <p><strong>minut</strong> – en del av en timme</p>
+
+    <p><strong>kvart</strong> – 15 minuter</p>
+
+    <p><strong>halvtimme</strong> – 30 minuter</p>
+
+    <p><strong>analog klocka</strong> – klocka med visare</p>
+
+    <p><strong>digital klocka</strong> – klocka som visar tiden med siffror</p>
+
+    <p><strong>tidsintervall</strong> – tiden mellan två tidpunkter</p>
+
+    <p><strong>kalender</strong> – visar dagar, veckor och månader</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Tid • Klockan • Minuter • Kalender • Problemlösning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 30) {
+      feedback.textContent = "✅ Rätt! En halvtimme är 30 minuter.";
+    } else {
+      feedback.textContent = "Försök igen. En timme är 60 minuter. Vad är hälften?";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 45) {
+      feedback.textContent = "✅ Rätt! Från 10.15 till 11.00 är det 45 minuter.";
+    } else {
+      feedback.textContent = "Försök igen. Räkna från 10.15 till 11.00.";
+    }
+  }
+</script>
+
+</body>
+</html>
