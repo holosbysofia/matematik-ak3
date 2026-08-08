@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kunskapskoll – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 42px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .intro,
+    .result-box,
+    .question-card {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .area {
+      display: inline-block;
+      background: var(--beige);
+      padding: 6px 11px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 13px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.selected {
+      outline: 3px solid #aa9679;
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      min-height: 25px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .check-btn,
+    .restart-btn {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 25px auto;
+      background: #d8c6aa;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.08rem;
+    }
+
+    .result-box {
+      display: none;
+      text-align: center;
+      background: #eee4d6;
+    }
+
+    .result-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .progress {
+      width: 100%;
+      height: 20px;
+      background: #e8dcc8;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #a99a83;
+      transition: width 0.4s ease;
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .level-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>✅ Kunskapskoll</h1>
+  <p>
+    Testa dina kunskaper i flera matematikområden.
+    Läs noga, välj svar och kontrollera resultatet när du är klar.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="taluppfattning.html">🔢 Tal</a>
+  <a href="problemlosning.html">🧠 Problemlösning</a>
+  <a href="begrepp.html">💬 Begrepp</a>
+  <a href="spel.html">🎮 Mattespel</a>
+</nav>
+
+<main>
+
+  <section class="intro">
+    <h2>🌿 Så gör du</h2>
+    <p>
+      Här finns 15 frågor från olika områden.
+      Välj ett svar på varje fråga.
+      När du är klar trycker du på <strong>Rätta kunskapskollen</strong>.
+    </p>
+  </section>
+
+  <div id="quiz"></div>
+
+  <button class="check-btn" onclick="checkQuiz()">
+    ✅ Rätta kunskapskollen
+  </button>
+
+  <section class="result-box" id="resultBox">
+    <h2>Ditt resultat</h2>
+
+    <div class="result-number">
+      <span id="score">0</span> / 15
+    </div>
+
+    <div class="progress">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <p id="resultText"></p>
+
+    <button class="restart-btn" onclick="restartQuiz()">
+      🔄 Gör kunskapskollen igen
+    </button>
+  </section>
+
+  <section class="intro">
+    <h2>🌟 Efter kunskapskollen</h2>
+
+    <div class="level-grid">
+      <div class="level-card">
+        🌱 Jag behöver träna mer
+      </div>
+
+      <div class="level-card">
+        🌿 Jag börjar förstå
+      </div>
+
+      <div class="level-card">
+        🌳 Jag kan mycket
+      </div>
+
+      <div class="level-card">
+        ⭐ Jag kan också förklara
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Kunskapskoll • Träna • Upptäcka • Utvecklas</p>
+</footer>
+
+<script>
+
+  const questions = [
+
+    {
+      area: "Taluppfattning",
+      question: "Vilket värde har siffran 5 i talet 352?",
+      answers: ["5", "50", "500"],
+      correct: 1
+    },
+
+    {
+      area: "Addition",
+      question: "Vad är 46 + 27?",
+      answers: ["63", "73", "83"],
+      correct: 1
+    },
+
+    {
+      area: "Subtraktion",
+      question: "Vad är 72 − 38?",
+      answers: ["34", "44", "36"],
+      correct: 0
+    },
+
+    {
+      area: "Multiplikation",
+      question: "Vad är 6 × 4?",
+      answers: ["20", "24", "28"],
+      correct: 1
+    },
+
+    {
+      area: "Division",
+      question: "Vad är 24 ÷ 6?",
+      answers: ["3", "4", "6"],
+      correct: 1
+    },
+
+    {
+      area: "Bråk",
+      question: "Vilket bråk betyder en av fyra lika stora delar?",
+      answers: ["1/2", "1/3", "1/4"],
+      correct: 2
+    },
+
+    {
+      area: "Algebra",
+      question: "Vilket tal saknas? □ + 8 = 17",
+      answers: ["7", "8", "9"],
+      correct: 2
+    },
+
+    {
+      area: "Geometri",
+      question: "Hur många sidor har en triangel?",
+      answers: ["3", "4", "5"],
+      correct: 0
+    },
+
+    {
+      area: "Mätning",
+      question: "Hur många centimeter är 1 meter?",
+      answers: ["10", "100", "1000"],
+      correct: 1
+    },
+
+    {
+      area: "Tid",
+      question: "Hur många minuter är en halvtimme?",
+      answers: ["15", "30", "60"],
+      correct: 1
+    },
+
+    {
+      area: "Statistik",
+      question: "Ett diagram visar 7 röster på äpple och 4 på päron. Hur stor är skillnaden?",
+      answers: ["2", "3", "11"],
+      correct: 1
+    },
+
+    {
+      area: "Sannolikhet",
+      question: "Kan du få talet 8 när du kastar en vanlig tärning?",
+      answers: ["Ja, det är möjligt", "Nej, det är omöjligt", "Det är säkert"],
+      correct: 1
+    },
+
+    {
+      area: "Samband",
+      question: "Vad är dubbelt 9?",
+      answers: ["11", "18", "27"],
+      correct: 1
+    },
+
+    {
+      area: "Problemlösning",
+      question: "Det finns 5 lådor med 4 bollar i varje. Hur många bollar finns sammanlagt?",
+      answers: ["9", "20", "25"],
+      correct: 1
+    },
+
+    {
+      area: "Begrepp",
+      question: "Vad kallas svaret i en addition?",
+      answers: ["Produkt", "Summa", "Kvot"],
+      correct: 1
+    }
+
+  ];
+
+  let selectedAnswers = new Array(questions.length).fill(null);
+
+  function shuffleAnswers(question, questionIndex) {
+
+    const original = question.answers.map((text, index) => ({
+      text,
+      isCorrect: index === question.correct
+    }));
+
+    for (let i = original.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [original[i], original[j]] = [original[j], original[i]];
+    }
+
+    return original;
+  }
+
+  function createQuiz() {
+
+    const quiz = document.getElementById("quiz");
+    quiz.innerHTML = "";
+
+    questions.forEach((q, index) => {
+
+      const card = document.createElement("section");
+      card.className = "question-card";
+
+      const area = document.createElement("div");
+      area.className = "area";
+      area.textContent = q.area;
+
+      const heading = document.createElement("h3");
+      heading.textContent = (index + 1) + ". " + q.question;
+
+      const answers = document.createElement("div");
+      answers.className = "answers";
+
+      const shuffled = shuffleAnswers(q, index);
+
+      shuffled.forEach(answerData => {
+
+        const button = document.createElement("button");
+
+        button.textContent = answerData.text;
+        button.dataset.correct = answerData.isCorrect;
+
+        button.onclick = function() {
+
+          const allButtons =
+            answers.querySelectorAll("button");
+
+          allButtons.forEach(btn =>
+            btn.classList.remove("selected")
+          );
+
+          button.classList.add("selected");
+
+          selectedAnswers[index] =
+            answerData.isCorrect;
+        };
+
+        answers.appendChild(button);
+      });
+
+      const feedback =
+        document.createElement("div");
+
+      feedback.className = "feedback";
+
+      card.appendChild(area);
+      card.appendChild(heading);
+      card.appendChild(answers);
+      card.appendChild(feedback);
+
+      quiz.appendChild(card);
+
+    });
+
+  }
+
+  function checkQuiz() {
+
+    let score = 0;
+
+    const cards =
+      document.querySelectorAll(".question-card");
+
+    cards.forEach((card, index) => {
+
+      const buttons =
+        card.querySelectorAll("button");
+
+      const feedback =
+        card.querySelector(".feedback");
+
+      buttons.forEach(button => {
+
+        button.classList.remove(
+          "correct",
+          "wrong"
+        );
+
+        if (
+          button.dataset.correct === "true"
+        ) {
+          button.classList.add("correct");
+        }
+
+        if (
+          button.classList.contains("selected") &&
+          button.dataset.correct === "false"
+        ) {
+          button.classList.add("wrong");
+        }
+
+      });
+
+      if (selectedAnswers[index] === true) {
+
+        score++;
+
+        feedback.textContent =
+          "✅ Rätt.";
+
+      } else if (selectedAnswers[index] === null) {
+
+        feedback.textContent =
+          "Du valde inget svar.";
+
+      } else {
+
+        feedback.textContent =
+          "Inte riktigt. Det rätta svaret är markerat.";
+
+      }
+
+    });
+
+    document.getElementById("score")
+      .textContent = score;
+
+    const percent =
+      Math.round(
+        (score / questions.length) * 100
+      );
+
+    document.getElementById("progressFill")
+      .style.width =
+      percent + "%";
+
+    const resultText =
+      document.getElementById("resultText");
+
+    if (score <= 5) {
+
+      resultText.textContent =
+        "Du har flera områden att fortsätta träna på. Gå tillbaka till sidorna och prova igen.";
+
+    } else if (score <= 9) {
+
+      resultText.textContent =
+        "Du kan redan mycket. Fortsätt träna på de frågor som var svåra.";
+
+    } else if (score <= 12) {
+
+      resultText.textContent =
+        "Bra resultat! Du visar god förståelse inom många matematikområden.";
+
+    } else {
+
+      resultText.textContent =
+        "Mycket starkt resultat! Försök nu också förklara hur du tänker och lösa svårare problem.";
+
+    }
+
+    document.getElementById("resultBox")
+      .style.display = "block";
+
+    document.getElementById("resultBox")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+  function restartQuiz() {
+
+    selectedAnswers =
+      new Array(
+        questions.length
+      ).fill(null);
+
+    document.getElementById("resultBox")
+      .style.display = "none";
+
+    createQuiz();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+  createQuiz();
+
+</script>
+
+</body>
+</html>
