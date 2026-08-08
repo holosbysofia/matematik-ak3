@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Föräldraguide – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .example {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .math {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+
+    .tip {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .good {
+      background: #e6eadf;
+    }
+
+    .avoid {
+      background: #eee0dc;
+    }
+
+    .concept-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    .concept-table th,
+    .concept-table td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .concept-table th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    .concept-table td {
+      background: #fffdf8;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .question {
+      background: #f3eadf;
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:700px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .concept-table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box {
+        padding: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>👨‍👩‍👧 Föräldraguide</h1>
+
+  <p>
+    Så kan du förstå barnets matematik och stötta hemma
+    utan att behöva vara matematiklärare.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#innehall">📚 Vad lär sig barnet?</a>
+  <a href="#strategier">🧠 Strategier</a>
+  <a href="#begrepp">💬 Begrepp</a>
+  <a href="#hjalpa">🌱 Hjälpa hemma</a>
+  <a href="hemtraning.html">🏠 Hemträning</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Matematik idag kan se annorlunda ut</h2>
+
+    <p>
+      Många vuxna lärde sig främst en bestämd metod för varje räknesätt.
+      I skolan idag får eleverna också träna på att förstå talen,
+      välja strategier, förklara sitt tänkande och använda matematiken i problem.
+    </p>
+
+    <p>
+      Det betyder inte att skriftliga metoder är oviktiga.
+      Målet är att eleven ska förstå <strong>varför</strong> en metod fungerar
+      och kunna välja ett sätt som passar uppgiften.
+    </p>
+  </section>
+
+
+  <section class="box" id="innehall">
+    <h2>📚 Vad arbetar elever i åk 3 med?</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🔢</div>
+        <h3>Taluppfattning</h3>
+        <p>
+          Förstå tal, positionssystem, jämföra tal, tallinje och talmönster.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">➕➖</div>
+        <h3>Addition och subtraktion</h3>
+        <p>
+          Huvudräkning, olika strategier, skriftliga metoder och problem.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✖️➗</div>
+        <h3>Multiplikation och division</h3>
+        <p>
+          Lika stora grupper, tabeller, delning och samband mellan räknesätten.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🍕</div>
+        <h3>Bråk</h3>
+        <p>
+          Delar av en helhet, till exempel hälften, tredjedelar och fjärdedelar.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📐</div>
+        <h3>Geometri</h3>
+        <p>
+          Former, egenskaper, symmetri och geometriska begrepp.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📏</div>
+        <h3>Mätning och tid</h3>
+        <p>
+          Längd, massa, volym, klocka och tidsintervall.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>Statistik</h3>
+        <p>
+          Läsa och skapa tabeller och diagram.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Problemlösning</h3>
+        <p>
+          Förstå situationen, välja strategi, lösa och förklara.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="strategier">
+    <h2>🧠 Varför räknar barnet på ett annat sätt?</h2>
+
+    <p>
+      Ett barn kan komma fram till rätt svar på flera olika sätt.
+      Det viktiga är att strategin bygger på matematiska samband.
+    </p>
+
+
+    <div class="example">
+      <h3>Exempel: 48 + 27</h3>
+
+      <p><strong>Strategi 1 – dela upp</strong></p>
+
+      <div class="math">
+        48 + 20 = 68
+        <br>
+        68 + 7 = 75
+      </div>
+
+      <p><strong>Strategi 2 – gå via 50</strong></p>
+
+      <div class="math">
+        48 + 2 = 50
+        <br>
+        25 är kvar
+        <br>
+        50 + 25 = 75
+      </div>
+
+      <p><strong>Strategi 3 – nära 30</strong></p>
+
+      <div class="math">
+        48 + 30 = 78
+        <br>
+        78 − 3 = 75
+      </div>
+
+      <div class="tip">
+        Alla tre strategier är matematiskt riktiga.
+      </div>
+    </div>
+
+
+    <div class="example">
+      <h3>Exempel: 72 − 38</h3>
+
+      <p>
+        Eleven kan räkna upp från 38:
+      </p>
+
+      <div class="math">
+        38 → 40 = 2
+        <br>
+        40 → 70 = 30
+        <br>
+        70 → 72 = 2
+        <br><br>
+        2 + 30 + 2 = 34
+      </div>
+
+      <p>
+        Det är ett annat sätt att tänka på subtraktion än att bara ”ta bort”.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✖️ Varför ska barnet förstå tabellerna?</h2>
+
+    <p>
+      Att kunna multiplikationstabeller är viktigt,
+      men tabellerna blir lättare att minnas när eleven förstår sambanden.
+    </p>
+
+    <div class="example">
+      <p>
+        Om barnet vet:
+      </p>
+
+      <div class="math">
+        5 × 6 = 30
+      </div>
+
+      <p>
+        kan barnet använda det för att tänka:
+      </p>
+
+      <div class="math">
+        6 × 6 = 30 + 6 = 36
+      </div>
+    </div>
+
+    <div class="example">
+      <p>
+        Om barnet vet:
+      </p>
+
+      <div class="math">
+        3 × 7 = 21
+      </div>
+
+      <p>
+        kan det hjälpa till att förstå:
+      </p>
+
+      <div class="math">
+        21 ÷ 3 = 7
+        <br>
+        21 ÷ 7 = 3
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🍕 Bråk – ett vanligt område där barn blir förvirrade</h2>
+
+    <p>
+      Barn kan tro att 1/8 är större än 1/4 eftersom 8 är större än 4.
+    </p>
+
+    <div class="tip">
+      Använd alltid samma helhet när ni jämför bråk.
+    </div>
+
+    <p>
+      Om samma pizza delas i fyra lika stora delar blir varje del större
+      än om pizzan delas i åtta lika stora delar.
+    </p>
+
+    <div class="math">
+      1/4 är större än 1/8
+    </div>
+  </section>
+
+
+  <section class="box" id="begrepp">
+    <h2>💬 Vanliga matematikord</h2>
+
+    <table class="concept-table">
+
+      <tr>
+        <th>Ord</th>
+        <th>Enkel förklaring</th>
+      </tr>
+
+      <tr>
+        <td><strong>summa</strong></td>
+        <td>svaret i en addition</td>
+      </tr>
+
+      <tr>
+        <td><strong>differens</strong></td>
+        <td>svaret i en subtraktion eller skillnaden mellan två tal</td>
+      </tr>
+
+      <tr>
+        <td><strong>produkt</strong></td>
+        <td>svaret i en multiplikation</td>
+      </tr>
+
+      <tr>
+        <td><strong>kvot</strong></td>
+        <td>svaret i en division</td>
+      </tr>
+
+      <tr>
+        <td><strong>ental</strong></td>
+        <td>siffran på entalsplatsen</td>
+      </tr>
+
+      <tr>
+        <td><strong>tiotal</strong></td>
+        <td>grupper om tio</td>
+      </tr>
+
+      <tr>
+        <td><strong>hundratal</strong></td>
+        <td>grupper om hundra</td>
+      </tr>
+
+      <tr>
+        <td><strong>hälften</strong></td>
+        <td>en av två lika stora delar</td>
+      </tr>
+
+      <tr>
+        <td><strong>symmetri</strong></td>
+        <td>när delar speglar varandra</td>
+      </tr>
+
+      <tr>
+        <td><strong>uppskatta</strong></td>
+        <td>göra en genomtänkt ungefärlig bedömning</td>
+      </tr>
+
+      <tr>
+        <td><strong>rimligt</strong></td>
+        <td>att ett svar verkar möjligt och passar situationen</td>
+      </tr>
+
+    </table>
+  </section>
+
+
+  <section class="box" id="hjalpa">
+    <h2>🌱 Så kan du hjälpa när barnet fastnar</h2>
+
+    <div class="grid">
+
+      <div class="card good">
+        <h3>✅ Fråga</h3>
+
+        <div class="question-list">
+          <div class="question">Vad vet du redan?</div>
+          <div class="question">Vad ska du ta reda på?</div>
+          <div class="question">Hur började du?</div>
+          <div class="question">Kan du rita?</div>
+          <div class="question">Kan du använda mindre tal först?</div>
+          <div class="question">Finns det ett annat sätt?</div>
+        </div>
+      </div>
+
+
+      <div class="card avoid">
+        <h3>⚠️ Försök undvika</h3>
+
+        <div class="question-list">
+          <div class="question">”Gör bara så här.”</div>
+          <div class="question">”Det där borde du kunna.”</div>
+          <div class="question">Att direkt säga svaret.</div>
+          <div class="question">Att göra uppgiften åt barnet.</div>
+          <div class="question">Att jämföra med andra barn.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🤔 När barnet räknar på ett sätt du inte känner igen</h2>
+
+    <p>
+      Börja inte med att rätta metoden.
+    </p>
+
+    <p>
+      Be istället barnet förklara:
+    </p>
+
+    <div class="question-list">
+      <div class="question">Kan du visa mig vad du gjorde först?</div>
+      <div class="question">Varför valde du att göra så?</div>
+      <div class="question">Vad betyder talen i din lösning?</div>
+      <div class="question">Hur vet du att svaret stämmer?</div>
+    </div>
+
+    <div class="tip">
+      Ibland upptäcker barnet själv ett fel när det får förklara sin lösning.
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🧠 Hjälp barnet att kontrollera istället för att fråga ”Är du säker?”</h2>
+
+    <p>
+      Prova mer konkreta frågor:
+    </p>
+
+    <div class="question-list">
+
+      <div class="question">
+        Kan du uppskatta ungefär vilket svar du borde få?
+      </div>
+
+      <div class="question">
+        Kan du använda motsatt räknesätt för att kontrollera?
+      </div>
+
+      <div class="question">
+        Kan du lösa uppgiften på ett annat sätt?
+      </div>
+
+      <div class="question">
+        Passar svaret till frågan?
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🏠 Matematik finns redan hemma</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🛒</div>
+        <h3>Handla</h3>
+        <p>Priser, pengar, växel och jämförelser.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🍳</div>
+        <h3>Laga mat</h3>
+        <p>Mått, mängder, dubbelt och hälften.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🕐</div>
+        <h3>Tid</h3>
+        <p>Hur länge är det kvar? När måste vi gå?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📏</div>
+        <h3>Mäta</h3>
+        <p>Uppskatta och mät möbler och föremål.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎲</div>
+        <h3>Spel</h3>
+        <p>Tärning, kortspel och enkla strategispel.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🍕</div>
+        <h3>Dela</h3>
+        <p>Hälften, fjärdedelar och lika stora delar.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🌟 Om barnet tycker matematik är lätt</h2>
+
+    <p>
+      Mer träning behöver inte betyda fler likadana uppgifter.
+    </p>
+
+    <p>
+      Fråga istället:
+    </p>
+
+    <div class="question-list">
+      <div class="question">Kan du lösa det på tre olika sätt?</div>
+      <div class="question">Kan du skapa en egen uppgift?</div>
+      <div class="question">Hur vet du att det alltid fungerar?</div>
+      <div class="question">Kan du hitta alla möjliga lösningar?</div>
+      <div class="question">Kan du förklara för någon annan?</div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>💛 Om barnet tycker matematik är svårt</h2>
+
+    <p>
+      Minska svårigheten i talen, men behåll den matematiska idén.
+    </p>
+
+    <div class="example">
+
+      <p>
+        Om:
+      </p>
+
+      <div class="math">
+        63 − 28
+      </div>
+
+      <p>
+        känns svårt, börja med:
+      </p>
+
+      <div class="math">
+        13 − 8
+      </div>
+
+      <p>
+        Använd gärna föremål, tallinje eller en bild.
+      </p>
+
+    </div>
+
+    <div class="tip">
+      Kort, regelbunden träning är ofta mer hjälpsam än ett långt pass när barnet redan är trött.
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Hjälp och träning på plattformen</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="hemtraning.html">
+        🏠 Hemträning
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Räknestrategier
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Visa matematik på olika sätt
+      </a>
+
+      <a class="link-card" href="begrepp.html">
+        💬 Begreppsbank
+      </a>
+
+      <a class="link-card" href="spel.html">
+        🎮 Mattespel
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧠 Problemlösning
+      </a>
+
+      <a class="link-card" href="min-utveckling.html">
+        🌱 Min utveckling
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Föräldraguide</strong></p>
+  <p>Fråga • Lyssna • Uppmuntra • Låt barnet tänka</p>
+</footer>
+
+</body>
+</html>
