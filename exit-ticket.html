@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exit ticket – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 800px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 950px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .area-btn {
+      background: var(--beige);
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .area-btn:hover {
+      background: var(--beige2);
+    }
+
+    .area-btn.active {
+      background: #d6c3a6;
+      outline: 3px solid #b49f81;
+    }
+
+    .question-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin: 18px 0;
+    }
+
+    .question-card h3 {
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.selected {
+      outline: 3px solid #a89171;
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      min-height: 24px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 25px auto 0;
+      background: #d6c3a6;
+      font-size: 1.1rem;
+    }
+
+    .result-box {
+      display: none;
+      text-align: center;
+      background: #eee4d6;
+    }
+
+    .score {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 12px 0;
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .reflection-card {
+      background: var(--beige);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .reflection-card.active {
+      background: #d6c3a6;
+      outline: 3px solid #b49f81;
+    }
+
+    .teacher-note {
+      background: #e7dfd1;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box {
+        padding: 19px;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚪 Exit ticket</h1>
+  <p>
+    Avsluta lektionen med tre korta frågor och en egen reflektion.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="dagensmatte.html">☀️ Dagens matte</a>
+  <a href="ovningsbank.html">📚 Övningsbank</a>
+  <a href="diagnos.html">🔎 Diagnos</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Så gör du</h2>
+    <p>
+      Välj det område du har arbetat med idag.
+      Du får tre frågor. När du är klar ser du direkt hur det gick.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>1. Välj område</h2>
+
+    <div class="area-grid">
+      <button class="area-btn" onclick="chooseArea('tal', this)">🔢 Taluppfattning</button>
+      <button class="area-btn" onclick="chooseArea('addsub', this)">➕➖ Addition & subtraktion</button>
+      <button class="area-btn" onclick="chooseArea('multdiv', this)">✖️➗ Multiplikation & division</button>
+      <button class="area-btn" onclick="chooseArea('brak', this)">🍕 Bråk</button>
+      <button class="area-btn" onclick="chooseArea('geometri', this)">📐 Geometri & mätning</button>
+      <button class="area-btn" onclick="chooseArea('problem', this)">🧠 Problemlösning</button>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>2. Svara på tre frågor</h2>
+
+    <div id="quizArea">
+      <p>Välj ett område ovan för att starta.</p>
+    </div>
+
+    <button class="submit-btn" onclick="checkTicket()">
+      ✅ Rätta min exit ticket
+    </button>
+  </section>
+
+  <section class="box result-box" id="resultBox">
+    <h2>📊 Ditt resultat</h2>
+
+    <div class="score">
+      <span id="scoreNumber">0</span> / 3
+    </div>
+
+    <p id="resultText"></p>
+  </section>
+
+  <section class="box">
+    <h2>3. Hur kändes det idag?</h2>
+
+    <div class="reflection-grid">
+      <div class="reflection-card" onclick="chooseReflection(this)">
+        🌱 Jag behöver mer hjälp
+      </div>
+
+      <div class="reflection-card" onclick="chooseReflection(this)">
+        🌿 Jag börjar förstå
+      </div>
+
+      <div class="reflection-card" onclick="chooseReflection(this)">
+        🌳 Jag kan själv
+      </div>
+
+      <div class="reflection-card" onclick="chooseReflection(this)">
+        ⭐ Jag kan förklara för någon annan
+      </div>
+    </div>
+  </section>
+
+  <section class="box teacher-note">
+    <h2>👩‍🏫 Till läraren</h2>
+
+    <p>
+      Exit ticketen är tänkt som snabb formativ återkoppling.
+      Resultatet visar bara elevens svar på just dessa tre frågor och ska inte användas som ensam bedömningsgrund.
+    </p>
+
+    <p>
+      Ett enkelt sätt att följa upp är att fråga:
+    </p>
+
+    <ul>
+      <li>Vilken fråga var lättast?</li>
+      <li>Vilken fråga var svårast?</li>
+      <li>Vilken strategi använde du?</li>
+      <li>Vad behöver vi träna vidare på nästa lektion?</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Tänk • Svara • Reflektera • Gå vidare</p>
+</footer>
+
+<script>
+
+  const questionBank = {
+
+    tal: [
+      {
+        text: "Vilket värde har siffran 6 i talet 364?",
+        answers: ["6", "60", "600"],
+        correct: "60"
+      },
+      {
+        text: "Vilket tal är störst?",
+        answers: ["407", "470", "417"],
+        correct: "470"
+      },
+      {
+        text: "Vilket tal kommer sedan? 220, 230, 240, ...",
+        answers: ["241", "250", "260"],
+        correct: "250"
+      },
+      {
+        text: "Vilket tal är 100 större än 356?",
+        answers: ["366", "456", "1356"],
+        correct: "456"
+      },
+      {
+        text: "Vilket tal är jämnt?",
+        answers: ["37", "52", "69"],
+        correct: "52"
+      }
+    ],
+
+    addsub: [
+      {
+        text: "Vad är 47 + 28?",
+        answers: ["65", "75", "85"],
+        correct: "75"
+      },
+      {
+        text: "Vad är 72 − 36?",
+        answers: ["36", "46", "38"],
+        correct: "36"
+      },
+      {
+        text: "Vilket svar är rimligast för 198 + 205?",
+        answers: ["Ungefär 40", "Ungefär 400", "Ungefär 900"],
+        correct: "Ungefär 400"
+      },
+      {
+        text: "Vad är 65 + 19?",
+        answers: ["74", "84", "94"],
+        correct: "84"
+      },
+      {
+        text: "Vad är 90 − 47?",
+        answers: ["43", "53", "47"],
+        correct: "43"
+      }
+    ],
+
+    multdiv: [
+      {
+        text: "Vad är 6 × 4?",
+        answers: ["10", "24", "28"],
+        correct: "24"
+      },
+      {
+        text: "Vad är 35 ÷ 5?",
+        answers: ["5", "6", "7"],
+        correct: "7"
+      },
+      {
+        text: "Vilken multiplikation hör ihop med 24 ÷ 6 = 4?",
+        answers: ["6 × 4 = 24", "6 + 4 = 10", "24 − 6 = 18"],
+        correct: "6 × 4 = 24"
+      },
+      {
+        text: "Vad är 8 × 5?",
+        answers: ["35", "40", "45"],
+        correct: "40"
+      },
+      {
+        text: "28 saker delas lika i 4 grupper. Hur många i varje grupp?",
+        answers: ["6", "7", "8"],
+        correct: "7"
+      }
+    ],
+
+    brak: [
+      {
+        text: "Vad är hälften av 16?",
+        answers: ["4", "8", "12"],
+        correct: "8"
+      },
+      {
+        text: "Vilket bråk betyder en av fyra lika stora delar?",
+        answers: ["1/2", "1/3", "1/4"],
+        correct: "1/4"
+      },
+      {
+        text: "Vilket är störst?",
+        answers: ["1/2", "1/4", "1/8"],
+        correct: "1/2"
+      },
+      {
+        text: "Vad är en fjärdedel av 20?",
+        answers: ["4", "5", "10"],
+        correct: "5"
+      },
+      {
+        text: "Vad är en tredjedel av 15?",
+        answers: ["3", "5", "6"],
+        correct: "5"
+      }
+    ],
+
+    geometri: [
+      {
+        text: "Vilken figur har tre sidor?",
+        answers: ["Kvadrat", "Triangel", "Cirkel"],
+        correct: "Triangel"
+      },
+      {
+        text: "Hur många centimeter är 1 meter?",
+        answers: ["10", "100", "1000"],
+        correct: "100"
+      },
+      {
+        text: "Vilken enhet passar bäst för längden på ett klassrum?",
+        answers: ["meter", "gram", "liter"],
+        correct: "meter"
+      },
+      {
+        text: "Vilken figur har fyra lika långa sidor och fyra hörn?",
+        answers: ["Kvadrat", "Triangel", "Cirkel"],
+        correct: "Kvadrat"
+      },
+      {
+        text: "Vilken enhet passar bäst för massan hos ett äpple?",
+        answers: ["gram", "meter", "liter"],
+        correct: "gram"
+      }
+    ],
+
+    problem: [
+      {
+        text: "Sara har 18 kulor och får 7 till. Hur många har hon?",
+        answers: ["11", "25", "27"],
+        correct: "25"
+      },
+      {
+        text: "24 kakor delas lika mellan 6 barn. Hur många får varje barn?",
+        answers: ["3", "4", "6"],
+        correct: "4"
+      },
+      {
+        text: "Det finns 5 påsar med 4 äpplen i varje. Hur många äpplen finns?",
+        answers: ["9", "20", "25"],
+        correct: "20"
+      },
+      {
+        text: "Lisa har 42 kr och handlar för 18 kr. Hur mycket har hon kvar?",
+        answers: ["24 kr", "30 kr", "60 kr"],
+        correct: "24 kr"
+      },
+      {
+        text: "Vilket räknesätt passar när 28 elever delas i grupper om 4?",
+        answers: ["Addition", "Multiplikation", "Division"],
+        correct: "Division"
+      }
+    ]
+  };
+
+
+  let currentQuestions = [];
+  let selectedAnswers = [null, null, null];
+
+
+  function shuffle(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+
+  function chooseArea(area, button) {
+
+    document.querySelectorAll(".area-btn").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const allQuestions = shuffle(questionBank[area]);
+
+    currentQuestions = allQuestions.slice(0, 3);
+
+    selectedAnswers = [null, null, null];
+
+    document.getElementById("resultBox").style.display = "none";
+
+    renderQuestions();
+  }
+
+
+  function renderQuestions() {
+
+    const quizArea = document.getElementById("quizArea");
+
+    quizArea.innerHTML = "";
+
+    currentQuestions.forEach((question, index) => {
+
+      const card = document.createElement("div");
+      card.className = "question-card";
+
+      const title = document.createElement("h3");
+      title.textContent = (index + 1) + ". " + question.text;
+
+      const answers = document.createElement("div");
+      answers.className = "answers";
+
+      const shuffledAnswers = shuffle(question.answers);
+
+      shuffledAnswers.forEach(answer => {
+
+        const button = document.createElement("button");
+
+        button.textContent = answer;
+        button.dataset.answer = answer;
+
+        button.onclick = function() {
+
+          const allButtons = answers.querySelectorAll("button");
+
+          allButtons.forEach(btn => {
+            btn.classList.remove("selected");
+          });
+
+          button.classList.add("selected");
+
+          selectedAnswers[index] = answer;
+        };
+
+        answers.appendChild(button);
+      });
+
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+
+      card.appendChild(title);
+      card.appendChild(answers);
+      card.appendChild(feedback);
+
+      quizArea.appendChild(card);
+    });
+  }
+
+
+  function checkTicket() {
+
+    if (currentQuestions.length === 0) {
+      alert("Välj först ett område.");
+      return;
+    }
+
+    let score = 0;
+
+    const cards = document.querySelectorAll(".question-card");
+
+    currentQuestions.forEach((question, index) => {
+
+      const card = cards[index];
+
+      const buttons = card.querySelectorAll("button");
+
+      const feedback = card.querySelector(".feedback");
+
+      buttons.forEach(button => {
+
+        button.classList.remove("correct", "wrong");
+
+        if (button.dataset.answer === question.correct) {
+          button.classList.add("correct");
+        }
+
+        if (
+          button.classList.contains("selected") &&
+          button.dataset.answer !== question.correct
+        ) {
+          button.classList.add("wrong");
+        }
+      });
+
+
+      if (selectedAnswers[index] === question.correct) {
+
+        score++;
+
+        feedback.textContent =
+          "✅ Rätt!";
+
+      } else if (selectedAnswers[index] === null) {
+
+        feedback.textContent =
+          "Du valde inget svar.";
+
+      } else {
+
+        feedback.textContent =
+          "Titta på det markerade rätta svaret och fundera på varför det stämmer.";
+      }
+    });
+
+
+    document.getElementById("scoreNumber").textContent = score;
+
+    const resultText = document.getElementById("resultText");
+
+    if (score === 3) {
+      resultText.textContent =
+        "🌟 Alla tre rätt! Försök nu förklara hur du tänkte.";
+    }
+
+    if (score === 2) {
+      resultText.textContent =
+        "🌿 Bra arbete. Titta en extra gång på frågan som blev svår.";
+    }
+
+    if (score === 1) {
+      resultText.textContent =
+        "🌱 Du har kommit igång. Det här området behöver lite mer träning.";
+    }
+
+    if (score === 0) {
+      resultText.textContent =
+        "🔄 Det här området behöver mer undervisning och träning. Det är precis därför vi gör exit tickets.";
+    }
+
+    document.getElementById("resultBox").style.display = "block";
+
+    document.getElementById("resultBox").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+
+  function chooseReflection(card) {
+
+    document.querySelectorAll(".reflection-card").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    card.classList.add("active");
+  }
+
+</script>
+
+</body>
+</html>
