@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Felanalys – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 820px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .step-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: #d8c6aa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .error-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .error-label {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .student-work {
+      background: #f3eadf;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 17px;
+      margin: 15px 0;
+      font-size: 1.15rem;
+    }
+
+    .thinking {
+      background: #eee4d6;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 12px 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      min-height: 25px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .sentence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .sentence {
+      background: #f3eadf;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .error-card {
+        padding: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🕵️ Felanalys</h1>
+
+  <p>
+    Här tränar du på att hitta matematiska fel, förklara varför de uppstår
+    och visa hur lösningen kan rättas.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="strategier.html">🧠 Strategier</a>
+  <a href="matteprat.html">💬 Matteprat</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#raknesatt">➕ Räknesätt</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#problem">🧩 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Fel hjälper oss att lära</h2>
+
+    <p>
+      När vi hittar ett fel kan vi lära oss mycket om matematiken.
+      Målet är inte bara att säga att något är fel.
+    </p>
+
+    <p>
+      Försök istället ta reda på <strong>varför</strong> felet uppstod.
+    </p>
+
+    <div class="step-grid">
+
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Läs</h3>
+        <p>Vad har eleven gjort?</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Hitta</h3>
+        <p>Var börjar felet?</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Förklara</h3>
+        <p>Varför blir det fel?</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>Rätta</h3>
+        <p>Visa en fungerande lösning.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Positionssystem</div>
+
+      <h3>Fel 1</h3>
+
+      <p>
+        Eleven ska beskriva talet <strong>472</strong>.
+      </p>
+
+      <div class="student-work">
+        4 hundratal + 7 ental + 2 tiotal
+      </div>
+
+      <p>
+        Vad har eleven blandat ihop?
+      </p>
+
+      <div class="answers">
+        <button onclick="checkAnswer(this,false)">
+          Eleven har räknat fel på hundratalen.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Eleven har bytt plats på tiotal och ental.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Talet 472 går inte att dela upp.
+        </button>
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        Rätt uppdelning är:
+        <strong>400 + 70 + 2</strong>.
+      </div>
+
+    </div>
+
+
+    <div class="error-card">
+
+      <div class="error-label">Storleksordning</div>
+
+      <h3>Fel 2</h3>
+
+      <div class="student-work">
+        399 är större än 405 eftersom 9 är större än 5.
+      </div>
+
+      <p>
+        Vad är problemet med elevens resonemang?
+      </p>
+
+      <div class="challenge">
+        Förklara varför man måste börja jämföra hundratalen.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="raknesatt">
+    <h2>➕➖ Addition och subtraktion</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Addition</div>
+
+      <h3>Fel 3</h3>
+
+      <div class="student-work">
+        38 + 27
+        <br><br>
+        30 + 20 = 50
+        <br>
+        8 + 7 = 15
+        <br>
+        Svar: 515
+      </div>
+
+      <p>
+        Vad har eleven gjort?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,true)">
+          Eleven har satt ihop 50 och 15 istället för att addera dem.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Eleven skulle ha multiplicerat.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          8 + 7 är fel.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        50 + 15 = <strong>65</strong>.
+      </div>
+
+    </div>
+
+
+    <div class="error-card">
+
+      <div class="error-label">Subtraktion</div>
+
+      <h3>Fel 4</h3>
+
+      <div class="student-work">
+        72 − 38 = 46
+      </div>
+
+      <p>
+        Hur kan vi snabbt upptäcka att svaret inte stämmer?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          Svaret måste vara större än 72.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Vi kan kontrollera genom att räkna 46 + 38.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Subtraktion går inte att kontrollera.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        Rätt svar är:
+        <strong>72 − 38 = 34</strong>.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>✖️ Multiplikation</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Lika stora grupper</div>
+
+      <h3>Fel 5</h3>
+
+      <p>
+        Det finns 6 lådor med 4 bollar i varje.
+      </p>
+
+      <div class="student-work">
+        6 + 4 = 10 bollar
+      </div>
+
+      <p>
+        Vad har eleven missat?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          Man ska alltid använda division när det finns lådor.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Det är 6 grupper med 4 bollar i varje.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Det finns egentligen 4 lådor.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        6 × 4 = <strong>24 bollar</strong>.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>➗ Division</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Dela lika</div>
+
+      <h3>Fel 6</h3>
+
+      <p>
+        20 kakor ska delas lika mellan 5 barn.
+      </p>
+
+      <div class="student-work">
+        20 ÷ 5 = 5
+      </div>
+
+      <p>
+        Stämmer lösningen?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          Ja, varje barn får 5.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Nej, varje barn får 4.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Nej, varje barn får 20.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        Kontroll:
+        <strong>5 × 4 = 20</strong>.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="brak">
+    <h2>🍕 Bråk</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Jämföra bråk</div>
+
+      <h3>Fel 7</h3>
+
+      <div class="student-work">
+        1/4 är större än 1/2 eftersom 4 är större än 2.
+      </div>
+
+      <p>
+        Vad har eleven missförstått?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,true)">
+          När samma helhet delas i fler lika delar blir varje del mindre.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          4 är egentligen mindre än 2.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Alla bråk är lika stora.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        Av samma helhet är
+        <strong>1/2 större än 1/4</strong>.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>⚖️ Algebra</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Likhetstecken</div>
+
+      <h3>Fel 8</h3>
+
+      <div class="student-work">
+        5 + 3 = 8 + 2
+      </div>
+
+      <p>
+        Eleven säger att detta är rätt eftersom 5 + 3 blir 8.
+      </p>
+
+      <p>
+        Vad behöver eleven förstå?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          Likhetstecknet betyder att man ska fortsätta räkna.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Båda sidor om likhetstecknet måste ha samma värde.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Likhetstecken används bara i addition.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        Vänster sida är 8.
+        Höger sida är 10.
+        <br>
+        Därför är likheten <strong>inte sann</strong>.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>📏 Mätning</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Enheter</div>
+
+      <h3>Fel 9</h3>
+
+      <div class="student-work">
+        Mitt klassrum är ungefär 8 centimeter långt.
+      </div>
+
+      <p>
+        Vad är troligen fel?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          Klassrum kan inte mätas.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Meter är en mer rimlig enhet.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Det ska vara kilogram.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>🕐 Tid</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Klockan</div>
+
+      <h3>Fel 10</h3>
+
+      <div class="student-work">
+        08.30 betyder halv åtta.
+      </div>
+
+      <p>
+        Vad är rätt?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          08.30 är halv åtta.
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          08.30 är halv nio.
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          08.30 är kvart över åtta.
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        08.30 ligger halvvägs mellan klockan åtta och klockan nio.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧩 Problemlösning</h2>
+
+    <div class="error-card">
+
+      <div class="error-label">Välja räknesätt</div>
+
+      <h3>Fel 11</h3>
+
+      <p>
+        28 elever ska delas i grupper med 4 elever i varje grupp.
+      </p>
+
+      <div class="student-work">
+        28 + 4 = 32 grupper
+      </div>
+
+      <p>
+        Vilket räknesätt passar bättre?
+      </p>
+
+      <div class="answers">
+
+        <button onclick="checkAnswer(this,false)">
+          Addition
+        </button>
+
+        <button onclick="checkAnswer(this,false)">
+          Subtraktion
+        </button>
+
+        <button onclick="checkAnswer(this,true)">
+          Division
+        </button>
+
+      </div>
+
+      <div class="feedback"></div>
+
+      <div class="thinking">
+        28 ÷ 4 = <strong>7 grupper</strong>.
+      </div>
+
+    </div>
+
+
+    <div class="error-card">
+
+      <div class="error-label">Rimlighet</div>
+
+      <h3>Fel 12</h3>
+
+      <div class="student-work">
+        198 + 204 = 42
+      </div>
+
+      <p>
+        Hur kan du veta direkt att svaret är orimligt?
+      </p>
+
+      <div class="challenge">
+        198 är ungefär 200.
+        <br>
+        204 är ungefär 200.
+        <br><br>
+        Svaret borde därför vara ungefär...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>🗣️ Förklara felet</h2>
+
+    <p>
+      Försök använda hela meningar när du analyserar en lösning.
+    </p>
+
+    <div class="sentence-grid">
+
+      <div class="sentence">
+        <strong>Jag ser att felet börjar när...</strong>
+      </div>
+
+      <div class="sentence">
+        <strong>Eleven verkar ha tänkt att...</strong>
+      </div>
+
+      <div class="sentence">
+        <strong>Det blir fel eftersom...</strong>
+      </div>
+
+      <div class="sentence">
+        <strong>Ett bättre sätt är att...</strong>
+      </div>
+
+      <div class="sentence">
+        <strong>Jag kan kontrollera genom att...</strong>
+      </div>
+
+      <div class="sentence">
+        <strong>Svaret är orimligt eftersom...</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>🌟 Skapa ett eget fel</h2>
+
+    <div class="challenge">
+
+      <p>
+        Välj en matematikuppgift.
+      </p>
+
+      <ol>
+        <li>Lös uppgiften rätt.</li>
+        <li>Skapa sedan en felaktig lösning.</li>
+        <li>Byt med en kamrat.</li>
+        <li>Låt kamraten hitta och förklara felet.</li>
+      </ol>
+
+      <p>
+        Försök göra felet så att det ser trovärdigt ut.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Jag kan analysera matematiska fel</h2>
+
+    <div class="self-check">
+
+      <div class="self-card">
+        🌱 Jag hittar ibland felet
+      </div>
+
+      <div class="self-card">
+        🌿 Jag kan visa var felet finns
+      </div>
+
+      <div class="self-card">
+        🌳 Jag kan förklara varför det blir fel
+      </div>
+
+      <div class="self-card">
+        ⭐ Jag kan rätta och visa en bättre strategi
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Upptäcka • Förklara • Rätta • Lära</p>
+</footer>
+
+<script>
+
+  function checkAnswer(button, correct) {
+
+    const card =
+      button.closest(".error-card");
+
+    const buttons =
+      card.querySelectorAll(".answers button");
+
+    const feedback =
+      card.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove(
+        "correct",
+        "wrong"
+      );
+    });
+
+    if (correct) {
+
+      button.classList.add("correct");
+
+      feedback.textContent =
+        "✅ Rätt! Försök också förklara med egna ord varför.";
+
+    } else {
+
+      button.classList.add("wrong");
+
+      feedback.textContent =
+        "Inte riktigt. Titta noga på elevens lösning och försök igen.";
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
