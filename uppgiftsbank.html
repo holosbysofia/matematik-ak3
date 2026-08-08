@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Uppgiftsbank – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .area-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin: 18px 0;
+    }
+
+    .area-card h3 {
+      margin-top: 0;
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .level-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 15px;
+    }
+
+    .level-card h4 {
+      margin-top: 0;
+    }
+
+    .level-card ul {
+      padding-left: 20px;
+    }
+
+    .level-card li {
+      margin-bottom: 7px;
+    }
+
+    .grund {
+      border-top: 5px solid #c9b99f;
+    }
+
+    .trana {
+      border-top: 5px solid #bfc4ab;
+    }
+
+    .resonera {
+      border-top: 5px solid #b9aa94;
+    }
+
+    .utmana {
+      border-top: 5px solid #a99b84;
+    }
+
+    .teacher-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .language-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .challenge-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .random-section {
+      text-align: center;
+    }
+
+    .random-task {
+      background: #f3eadf;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 18px 0;
+      font-size: 1.25rem;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      background: #d6c3a6;
+      color: var(--text);
+      border: none;
+      border-radius: 10px;
+      padding: 11px 17px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 4px;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 9px;
+      border: 1px solid #cdbfae;
+      background: #fffdf8;
+      color: var(--text);
+      font: inherit;
+      margin: 5px;
+    }
+
+    .copy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .copy-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+    }
+
+    .copy-card h4 {
+      margin-top: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:950px) {
+      .level-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .level-grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .area-card {
+        padding: 18px;
+      }
+    }
+
+    @media print {
+      nav,
+      button,
+      select,
+      footer,
+      .link-grid {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .area-card,
+      .level-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🗂️ Uppgiftsbank</h1>
+
+  <p>
+    Färdiga matematikuppgifter på flera nivåer – från grundläggande förståelse
+    till resonemang, problemlösning och utmaning.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#addition">➕ Addition</a>
+  <a href="#subtraktion">➖ Subtraktion</a>
+  <a href="#mult">✖️ Multiplikation</a>
+  <a href="#division">➗ Division</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#geometri">📐 Geometri</a>
+  <a href="#problem">🧠 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🌿 Fyra sätt att använda uppgifterna</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🌱</div>
+        <h3>Grund</h3>
+        <p>Bygg förståelse och arbeta med tydliga exempel.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌿</div>
+        <h3>Träna</h3>
+        <p>Befäst strategier och färdigheter.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Resonera</h3>
+        <p>Förklara, jämför och motivera.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⭐</div>
+        <h3>Utmana</h3>
+        <p>Öppna problem, flera lösningar och generalisering.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="tal">
+
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>Vilket tal kommer efter 299?</li>
+            <li>Vilket tal kommer före 500?</li>
+            <li>Hur många tiotal finns i 64?</li>
+            <li>Vad är 5:an värd i 352?</li>
+            <li>Skriv 247 med ord.</li>
+            <li>Skriv 300 + 40 + 6 som ett tal.</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>347 ___ 374</li>
+            <li>508 ___ 499</li>
+            <li>10 mer än 268.</li>
+            <li>100 mindre än 745.</li>
+            <li>Ordna 408, 480, 84 och 448.</li>
+            <li>Placera 650 ungefär på en tallinje 0–1000.</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Varför är 403 större än 398?</li>
+            <li>Kan två olika tal ha lika många tiotal?</li>
+            <li>Vilket tal ligger närmast 500: 487 eller 516? Förklara.</li>
+            <li>Ali säger att 507 och 57 nästan är samma tal. Vad skulle du säga?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Skapa det största talet med siffrorna 3, 5 och 8.</li>
+            <li>Skapa det minsta.</li>
+            <li>Hur många tresiffriga tal kan du skapa med 2, 4 och 7 om varje siffra används en gång?</li>
+            <li>Hitta tre tal mellan 450 och 500 vars siffersumma är 12.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="addition">
+
+    <h2>➕ Addition</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>6 + 7</li>
+            <li>8 + 5</li>
+            <li>20 + 30</li>
+            <li>34 + 5</li>
+            <li>42 + 10</li>
+            <li>25 + 20</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>38 + 27</li>
+            <li>46 + 35</li>
+            <li>59 + 24</li>
+            <li>125 + 43</li>
+            <li>238 + 151</li>
+            <li>199 + 25</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Lös 48 + 27 på två olika sätt.</li>
+            <li>Vilken strategi passar bäst för 99 + 36? Varför?</li>
+            <li>Är 47 + 38 närmare 70 eller 90? Förklara.</li>
+            <li>En elev skriver 38 + 27 = 515. Vad tror du eleven har gjort?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Två tal har summan 100. Hitta tio olika par.</li>
+            <li>Tre olika tal har summan 50. Hitta fem lösningar.</li>
+            <li>Skapa en addition med svaret 250.</li>
+            <li>Skapa en addition där båda termerna är tresiffriga och summan är mindre än 500.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="subtraktion">
+
+    <h2>➖ Subtraktion</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>12 − 5</li>
+            <li>17 − 8</li>
+            <li>30 − 10</li>
+            <li>45 − 5</li>
+            <li>60 − 20</li>
+            <li>52 − 2</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>63 − 28</li>
+            <li>72 − 38</li>
+            <li>91 − 46</li>
+            <li>150 − 25</li>
+            <li>302 − 81</li>
+            <li>500 − 175</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Lös 72 − 38 på två sätt.</li>
+            <li>När är det smart att räkna upp istället för bakåt?</li>
+            <li>Hur kan addition kontrollera 63 − 28?</li>
+            <li>Varför kan 52 − 19 inte bli 47?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Två tal har differensen 20. Hitta tio par.</li>
+            <li>Skapa tre subtraktioner med svaret 36.</li>
+            <li>Vilket tal saknas? ___ − 47 = 38.</li>
+            <li>Hitta två tresiffriga tal vars differens är exakt 125.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mult">
+
+    <h2>✖️ Multiplikation</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>2 × 4</li>
+            <li>5 × 3</li>
+            <li>10 × 6</li>
+            <li>3 grupper med 4 i varje.</li>
+            <li>Rita 4 × 2.</li>
+            <li>Skriv 5 + 5 + 5 som multiplikation.</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>3 × 7</li>
+            <li>4 × 8</li>
+            <li>6 × 5</li>
+            <li>7 × 4</li>
+            <li>8 × 3</li>
+            <li>9 × 5</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Hur hjälper 5 × 6 dig att lösa 6 × 6?</li>
+            <li>Varför får 4 × 7 och 7 × 4 samma produkt?</li>
+            <li>Visa 3 × 6 på tre olika sätt.</li>
+            <li>En elev säger 4 × 6 = 10. Förklara felet.</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Hitta alla multiplikationer med heltal som ger produkten 24.</li>
+            <li>Vilka produkter kan du göra med två faktorer mellan 2 och 6?</li>
+            <li>Skapa en berättelse till 6 × 4.</li>
+            <li>Om 4 × n = 36, vilket tal är n?</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="division">
+
+    <h2>➗ Division</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>10 ÷ 2</li>
+            <li>12 ÷ 3</li>
+            <li>20 ÷ 5</li>
+            <li>Dela 16 lika mellan 4.</li>
+            <li>Gör grupper om 3 av 12.</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>24 ÷ 4</li>
+            <li>35 ÷ 5</li>
+            <li>21 ÷ 3</li>
+            <li>32 ÷ 4</li>
+            <li>40 ÷ 5</li>
+            <li>18 ÷ 6</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Vad är skillnaden mellan ”24 delas i 4 grupper” och ”24 delas i grupper om 4”?</li>
+            <li>Hur kan 6 × 4 = 24 hjälpa dig med division?</li>
+            <li>Visa 20 ÷ 5 med en bild.</li>
+            <li>Kan samma tal höra ihop i både multiplikation och division?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>På vilka olika sätt kan 24 delas i lika stora grupper?</li>
+            <li>Skapa tre divisionsproblem med svaret 6.</li>
+            <li>Vilket tal saknas? ___ ÷ 4 = 7.</li>
+            <li>Hitta fyra tal som kan delas både med 2 och 4 utan rest.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="brak">
+
+    <h2>🍕 Bråk</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>Rita en halv.</li>
+            <li>Rita en fjärdedel.</li>
+            <li>Hitta hälften av 10.</li>
+            <li>Hitta hälften av 16.</li>
+            <li>Dela 12 föremål i två lika grupper.</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>Hitta 1/4 av 12.</li>
+            <li>Hitta 1/3 av 15.</li>
+            <li>Vilket är störst: 1/2 eller 1/4?</li>
+            <li>Hur många fjärdedelar behövs för en hel?</li>
+            <li>Hur många halvor behövs för två hela?</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Varför är 1/4 mindre än 1/2?</li>
+            <li>Kan 2/4 och 1/2 visa lika stor del? Förklara.</li>
+            <li>Varför måste delarna vara lika stora?</li>
+            <li>En elev säger att 1/8 är större än 1/4. Vad skulle du säga?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Rita tre olika bilder som visar 1/2.</li>
+            <li>Hur många olika sätt kan du visa 2/4?</li>
+            <li>Hitta ett antal där 1/2, 1/3 och 1/4 alla blir heltal.</li>
+            <li>Skapa ett eget bråkproblem.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="geometri">
+
+    <h2>📐 Geometri och mätning</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>Hur många sidor har en triangel?</li>
+            <li>Hur många hörn har en fyrhörning?</li>
+            <li>Rita en rektangel.</li>
+            <li>Vilken enhet passar en penna: cm eller m?</li>
+            <li>Vilken enhet passar en mjölkförpackning: dl eller l?</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>Rita två olika fyrhörningar.</li>
+            <li>Markera en symmetrilinje.</li>
+            <li>Hur många cm är 1 m?</li>
+            <li>Vilket är tyngst: 900 g eller 1 kg?</li>
+            <li>Hur många dl är 1 liter?</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Är alla kvadrater rektanglar? Resonera utifrån egenskaper.</li>
+            <li>Varför är 8 cm inte en rimlig längd för ett klassrum?</li>
+            <li>Kan en figur ha fler än en symmetrilinje?</li>
+            <li>Hur skulle du uppskatta längden på ett bord före mätning?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Bygg så många olika fyrhörningar du kan.</li>
+            <li>Rita en figur med exakt två symmetrilinjer.</li>
+            <li>Hitta tre saker som tillsammans väger ungefär 1 kg.</li>
+            <li>Designa en figur som består av minst fyra geometriska former.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>📊 Statistik och sannolikhet</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>Vilken kategori har flest?</li>
+            <li>Vilken kategori har minst?</li>
+            <li>Kasta ett mynt. Vilka två resultat kan du få?</li>
+            <li>Är det säkert, möjligt eller omöjligt att slå en 7:a med vanlig tärning?</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>Gör en frekvenstabell över klassens favoritfrukt.</li>
+            <li>Gör ett stapeldiagram.</li>
+            <li>Hur många fler valde äpple än päron?</li>
+            <li>Kasta en tärning 20 gånger och registrera resultatet.</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Kan vi veta exakt vad nästa tärningskast blir?</li>
+            <li>Varför kan ett resultat bli vanligare i 10 kast men inte nödvändigtvis alltid?</li>
+            <li>Vad kan du säga om ett diagram utan att räkna varje stapel?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Skapa en undersökning med minst fyra svarsalternativ.</li>
+            <li>Skapa tre frågor som kan besvaras med ditt diagram.</li>
+            <li>Designa en påse där röd är mer sannolik än blå.</li>
+            <li>Hur kan du ändra påsen så att färgerna blir lika sannolika?</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="problem">
+
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>Ella har 18 pärlor och får 7 till. Hur många har hon?</li>
+            <li>24 kakor delas lika mellan 6 barn. Hur många får varje?</li>
+            <li>Ali har 25 kronor och använder 8. Hur mycket har han kvar?</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>Mira har 28 pärlor, får 15 nya och använder sedan 9. Hur många återstår?</li>
+            <li>Det finns 6 lådor med 4 bollar i varje. Hur många bollar finns totalt?</li>
+            <li>32 elever delas i grupper om 4. Hur många grupper blir det?</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Vilken information behöver du i problemet?</li>
+            <li>Kan problemet lösas på två olika sätt?</li>
+            <li>Hur kan du kontrollera svaret?</li>
+            <li>Vilket svar verkar rimligt innan du räknar exakt?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Du har 30 kr. Pennor kostar 5 kr och sudd 3 kr. Hur kan du handla för exakt 30 kr?</li>
+            <li>Skapa ett tvåstegsproblem med svaret 24.</li>
+            <li>36 elever ska delas i lika stora grupper. Vilka gruppstorlekar är möjliga?</li>
+            <li>Skapa ett problem som kan lösas på minst två olika sätt.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>⚖️ Algebra och mönster</h2>
+
+    <div class="area-card">
+
+      <div class="level-grid">
+
+        <div class="level-card grund">
+          <h4>🌱 Grund</h4>
+          <ul>
+            <li>5 + ___ = 10</li>
+            <li>___ + 7 = 12</li>
+            <li>10 = 6 + ___</li>
+            <li>Fortsätt: 2, 4, 6, 8, ...</li>
+          </ul>
+        </div>
+
+        <div class="level-card trana">
+          <h4>🌿 Träna</h4>
+          <ul>
+            <li>17 + ___ = 25</li>
+            <li>___ − 8 = 15</li>
+            <li>4 × ___ = 20</li>
+            <li>Fortsätt: 5, 10, 15, 20, ...</li>
+          </ul>
+        </div>
+
+        <div class="level-card resonera">
+          <h4>💬 Resonera</h4>
+          <ul>
+            <li>Är 7 + 5 = 6 + 6 sant? Förklara.</li>
+            <li>Vad betyder = egentligen?</li>
+            <li>Vilken regel följer mönstret 3, 6, 9, 12?</li>
+          </ul>
+        </div>
+
+        <div class="level-card utmana">
+          <h4>⭐ Utmana</h4>
+          <ul>
+            <li>Skapa ett mönster där var femte term är 25.</li>
+            <li>Hitta tre olika uttryck som gör 24 = ___.</li>
+            <li>Skapa en ekvation där det saknade talet är 8.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box random-section">
+
+    <h2>🎲 Slumpa en uppgift</h2>
+
+    <p>
+      Välj område och nivå och låt sidan ge en snabb uppgift.
+    </p>
+
+    <select id="areaSelect">
+      <option value="tal">Taluppfattning</option>
+      <option value="addition">Addition</option>
+      <option value="subtraktion">Subtraktion</option>
+      <option value="multiplikation">Multiplikation</option>
+      <option value="division">Division</option>
+      <option value="brak">Bråk</option>
+      <option value="problem">Problemlösning</option>
+    </select>
+
+    <select id="levelSelect">
+      <option value="grund">Grund</option>
+      <option value="trana">Träna</option>
+      <option value="resonera">Resonera</option>
+      <option value="utmana">Utmana</option>
+    </select>
+
+    <br>
+
+    <button onclick="randomTask()">🎲 Ny uppgift</button>
+
+    <div class="random-task" id="randomTaskBox">
+      Välj område och nivå och tryck på knappen.
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>📄 Snabba kopieringsuppgifter</h2>
+
+    <div class="copy-grid">
+
+      <div class="copy-card">
+        <h4>🔢 Tal</h4>
+        <p>
+          1. 10 mer än 347 = _____
+          <br>
+          2. 100 mindre än 624 = _____
+          <br>
+          3. 506 = _____ + _____ + _____
+          <br>
+          4. 398 ___ 403
+        </p>
+      </div>
+
+      <div class="copy-card">
+        <h4>➕➖ Räkna</h4>
+        <p>
+          1. 38 + 27 = _____
+          <br>
+          2. 64 + 29 = _____
+          <br>
+          3. 72 − 38 = _____
+          <br>
+          4. 91 − 46 = _____
+        </p>
+      </div>
+
+      <div class="copy-card">
+        <h4>✖️➗ Tabeller</h4>
+        <p>
+          1. 4 × 6 = _____
+          <br>
+          2. 5 × 7 = _____
+          <br>
+          3. 24 ÷ 4 = _____
+          <br>
+          4. 35 ÷ 5 = _____
+        </p>
+      </div>
+
+      <div class="copy-card">
+        <h4>🍕 Bråk</h4>
+        <p>
+          1. Hälften av 18 = _____
+          <br>
+          2. 1/4 av 20 = _____
+          <br>
+          3. Störst: 1/2 eller 1/4?
+          <br>
+          4. Rita 3/4.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>👩‍🏫 Så kan uppgiftsbanken användas</h2>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <tr>
+          <th>Situation</th>
+          <th>Förslag</th>
+        </tr>
+
+        <tr>
+          <td>Lektionsstart</td>
+          <td>Välj en resonera-uppgift och låt eleverna tänka först och prata i par.</td>
+        </tr>
+
+        <tr>
+          <td>Genomgång</td>
+          <td>Använd grundnivån för att modellera den matematiska idén.</td>
+        </tr>
+
+        <tr>
+          <td>Eget arbete</td>
+          <td>Kombinera grund och träna.</td>
+        </tr>
+
+        <tr>
+          <td>Stationsarbete</td>
+          <td>Låt olika stationer arbeta på olika nivåer.</td>
+        </tr>
+
+        <tr>
+          <td>Extra stöd</td>
+          <td>Välj få uppgifter och kombinera med konkret material.</td>
+        </tr>
+
+        <tr>
+          <td>Snabba elever</td>
+          <td>Ge resonera eller utmana istället för fler likadana tal.</td>
+        </tr>
+
+        <tr>
+          <td>Exit ticket</td>
+          <td>Välj en uppgift där eleven också behöver förklara hur hen tänkte.</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <div class="language-box">
+      <strong>💬 Språkstöd:</strong>
+      Använd gärna meningsstarter som:
+      ”Jag började med...”, ”Jag valde... eftersom...”, ”Jag vet att svaret är rimligt eftersom...”.
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="minilektioner.html">
+        🎯 Minilektioner
+      </a>
+
+      <a class="link-card" href="lektionsstart.html">
+        ☀️ Lektionsstarter
+      </a>
+
+      <a class="link-card" href="lektionsavslut.html">
+        🌙 Lektionsavslut
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧩 Problemlösning
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Uppgiftsbank</strong></p>
+  <p>Grund • Träna • Resonera • Utmana</p>
+</footer>
+
+
+<script>
+  const taskBank = {
+
+    tal: {
+      grund: [
+        "Vad är siffran 6 värd i talet 364?",
+        "Vilket tal kommer efter 499?",
+        "Skriv 300 + 50 + 7 som ett tal.",
+        "Hur många tiotal finns i 82?",
+        "Vilket tal kommer före 700?"
+      ],
+
+      trana: [
+        "Vilket är störst: 398 eller 403?",
+        "Vad är 100 mindre än 645?",
+        "Vad är 10 mer än 279?",
+        "Ordna 408, 480, 84 och 448 från minst till störst.",
+        "Placera 750 ungefär på en tallinje från 0 till 1000."
+      ],
+
+      resonera: [
+        "Förklara varför 403 är större än 398.",
+        "Vilket ligger närmast 500: 487 eller 516? Förklara.",
+        "Varför är 507 inte samma tal som 57?",
+        "Kan två olika tal ha samma antal tiotal? Ge exempel."
+      ],
+
+      utmana: [
+        "Skapa det största tresiffriga talet med siffrorna 2, 5 och 8.",
+        "Hitta tre tal mellan 400 och 500 med siffersumman 10.",
+        "Hur många olika tresiffriga tal kan du skapa med 3, 6 och 9 om varje siffra används en gång?"
+      ]
+    },
+
+
+    addition: {
+      grund: [
+        "7 + 6 = ?",
+        "8 + 5 = ?",
+        "30 + 20 = ?",
+        "42 + 7 = ?",
+        "35 + 10 = ?"
+      ],
+
+      trana: [
+        "38 + 27 = ?",
+        "49 + 36 = ?",
+        "58 + 24 = ?",
+        "125 + 34 = ?",
+        "199 + 26 = ?"
+      ],
+
+      resonera: [
+        "Lös 48 + 27 på två olika sätt.",
+        "Vilken strategi passar bäst för 99 + 37? Förklara.",
+        "En elev säger 38 + 27 = 515. Vad tror du eleven har gjort?",
+        "Är 47 + 39 närmare 70 eller 90? Motivera."
+      ],
+
+      utmana: [
+        "Hitta fem talpar med summan 100.",
+        "Skapa tre olika additioner med svaret 250.",
+        "Tre olika tal har summan 60. Hitta så många lösningar du kan."
+      ]
+    },
+
+
+    subtraktion: {
+      grund: [
+        "13 − 5 = ?",
+        "17 − 9 = ?",
+        "40 − 10 = ?",
+        "56 − 6 = ?",
+        "70 − 20 = ?"
+      ],
+
+      trana: [
+        "63 − 28 = ?",
+        "72 − 38 = ?",
+        "91 − 46 = ?",
+        "150 − 27 = ?",
+        "300 − 85 = ?"
+      ],
+
+      resonera: [
+        "Lös 72 − 38 på två sätt.",
+        "Hur kan addition kontrollera 63 − 28?",
+        "När är det smart att räkna upp istället för bakåt?",
+        "Varför kan 62 − 19 inte bli 53?"
+      ],
+
+      utmana: [
+        "Hitta fem talpar med differensen 20.",
+        "Skapa tre subtraktioner med svaret 36.",
+        "Vilket tal saknas? ___ − 47 = 38."
+      ]
+    },
+
+
+    multiplikation: {
+      grund: [
+        "2 × 6 = ?",
+        "5 × 4 = ?",
+        "10 × 3 = ?",
+        "Visa 3 × 4 med en bild.",
+        "Skriv 5 + 5 + 5 som multiplikation."
+      ],
+
+      trana: [
+        "3 × 7 = ?",
+        "4 × 8 = ?",
+        "6 × 5 = ?",
+        "7 × 4 = ?",
+        "8 × 3 = ?"
+      ],
+
+      resonera: [
+        "Hur kan 5 × 6 hjälpa dig med 6 × 6?",
+        "Varför får 4 × 7 och 7 × 4 samma svar?",
+        "Visa 3 × 6 på tre olika sätt.",
+        "Vad betyder 4:an i uttrycket 4 × 6?"
+      ],
+
+      utmana: [
+        "Hitta alla heltalsfaktorer som ger produkten 24.",
+        "Skapa ett textproblem som kan lösas med 6 × 4.",
+        "Vilket tal saknas? 4 × ___ = 36."
+      ]
+    },
+
+
+    division: {
+      grund: [
+        "12 ÷ 3 = ?",
+        "20 ÷ 5 = ?",
+        "Dela 16 lika mellan 4 personer.",
+        "Gör grupper om 3 av 12 föremål."
+      ],
+
+      trana: [
+        "24 ÷ 4 = ?",
+        "35 ÷ 5 = ?",
+        "21 ÷ 3 = ?",
+        "32 ÷ 4 = ?",
+        "40 ÷ 5 = ?"
+      ],
+
+      resonera: [
+        "Hur kan 6 × 4 = 24 hjälpa dig med 24 ÷ 6?",
+        "Vad är skillnaden mellan att dela 24 i 4 grupper och grupper om 4?",
+        "Visa 20 ÷ 5 med en bild."
+      ],
+
+      utmana: [
+        "På vilka olika sätt kan 24 delas i lika stora heltalsgrupper?",
+        "Skapa tre divisionsuppgifter med svaret 6.",
+        "Vilket tal saknas? ___ ÷ 4 = 7."
+      ]
+    },
+
+
+    brak: {
+      grund: [
+        "Rita en halv.",
+        "Hitta hälften av 12.",
+        "Rita en fjärdedel.",
+        "Dela 8 föremål i två lika stora grupper."
+      ],
+
+      trana: [
+        "Hitta 1/4 av 20.",
+        "Hitta 1/3 av 15.",
+        "Vilket är störst: 1/2 eller 1/4?",
+        "Hur många fjärdedelar behövs för en hel?"
+      ],
+
+      resonera: [
+        "Varför är 1/2 större än 1/4 när helheten är lika stor?",
+        "Kan 2/4 och 1/2 visa samma mängd? Förklara.",
+        "Varför måste bråkdelarna vara lika stora?"
+      ],
+
+      utmana: [
+        "Rita tre olika figurer där exakt 1/2 är färgad.",
+        "Hitta ett antal där 1/2, 1/3 och 1/4 alla blir hela antal.",
+        "Skapa ett eget bråkproblem."
+      ]
+    },
+
+
+    problem: {
+      grund: [
+        "Ella har 18 pärlor och får 7 till. Hur många har hon nu?",
+        "24 kakor delas lika mellan 6 barn. Hur många får varje?",
+        "Ali har 25 kronor och använder 8. Hur mycket har han kvar?"
+      ],
+
+      trana: [
+        "Mira har 28 pärlor, får 15 nya och använder sedan 9. Hur många har hon kvar?",
+        "Det finns 6 lådor med 4 bollar i varje. Hur många bollar finns totalt?",
+        "32 elever delas i grupper om 4. Hur många grupper blir det?"
+      ],
+
+      resonera: [
+        "Vilken information behöver du för att lösa problemet?",
+        "Kan problemet lösas på två olika sätt? Visa.",
+        "Hur kan du kontrollera att ett svar är rimligt?",
+        "Vad gör du först när du läser ett matematikproblem?"
+      ],
+
+      utmana: [
+        "Du har 30 kr. Pennor kostar 5 kr och sudd 3 kr. På vilka sätt kan du handla för exakt 30 kr?",
+        "Skapa ett tvåstegsproblem där svaret blir 24.",
+        "36 elever ska delas i lika stora grupper. Vilka gruppstorlekar är möjliga?"
+      ]
+    }
+  };
+
+
+  function randomTask() {
+    const area = document.getElementById("areaSelect").value;
+    const level = document.getElementById("levelSelect").value;
+
+    const tasks = taskBank[area][level];
+
+    const task = tasks[Math.floor(Math.random() * tasks.length)];
+
+    document.getElementById("randomTaskBox").textContent = task;
+  }
+</script>
+
+</body>
+</html>
