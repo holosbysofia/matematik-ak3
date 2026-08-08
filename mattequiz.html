@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mattequiz – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2.2rem,6vw,4rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.3rem;
+      margin-bottom: 6px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cdbfae;
+      border-radius: 10px;
+      background: #fffdf8;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button:disabled {
+      opacity: 1;
+      cursor: default;
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .quiz-area {
+      display: none;
+    }
+
+    .quiz-area.show {
+      display: block;
+    }
+
+    .top-status {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .status-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .status-card strong {
+      display: block;
+      color: var(--brun);
+      font-size: 1.45rem;
+    }
+
+    .progress-wrap {
+      height: 23px;
+      background: #eee4d6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 24px;
+    }
+
+    .category {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 18px;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .question-number {
+      font-size: 0.92rem;
+      color: var(--brun);
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .question-text {
+      font-size: 1.35rem;
+      font-weight: bold;
+      margin: 8px 0 18px;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 10px;
+    }
+
+    .answer-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+      min-height: 55px;
+    }
+
+    .answer-btn.right {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-btn.wrong {
+      background: var(--fel);
+      border-color: #caa9a2;
+    }
+
+    .feedback {
+      min-height: 34px;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    .explanation {
+      display: none;
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .next-btn.show {
+      display: inline-block;
+    }
+
+    .result-box {
+      display: none;
+      text-align: center;
+      background: #e7eadf;
+      border: 3px solid #a7ad91;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-box h2 {
+      font-size: clamp(2rem,5vw,3.5rem);
+      margin-bottom: 8px;
+    }
+
+    .score-big {
+      font-size: 3.2rem;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .result-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 15px;
+    }
+
+    .review {
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .review-item {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+
+    .review-item.correct {
+      border-left: 6px solid #a7ad91;
+    }
+
+    .review-item.incorrect {
+      border-left: 6px solid #caa9a2;
+    }
+
+    .tip-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .question-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏆 Mattequiz</h1>
+
+  <p>
+    Tio slumpade frågor.
+    Välj nivå, blanda matematikområden och se hur många du klarar.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#start">🎮 Starta</a>
+  <a href="#quiz">❓ Quiz</a>
+  <a href="#mer">🔗 Mer matte</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🌿 Så fungerar quizet</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">1️⃣</div>
+        <h3>Välj nivå</h3>
+        <p>Grund, blandad eller utmaning.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">2️⃣</div>
+        <h3>10 frågor</h3>
+        <p>Frågorna slumpas från flera matematikområden.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">3️⃣</div>
+        <h3>Direkt återkoppling</h3>
+        <p>Du får veta om svaret är rätt och en kort förklaring.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">4️⃣</div>
+        <h3>Slutresultat</h3>
+        <p>Se vad du klarade och vilka frågor du kan träna vidare på.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="start">
+
+    <h2>🎮 Starta quiz</h2>
+
+    <div class="controls">
+
+      <div>
+        <label for="level">Svårighetsnivå</label>
+
+        <select id="level">
+          <option value="grund">🌱 Grund</option>
+          <option value="blandad" selected>🌿 Blandad</option>
+          <option value="utmaning">⭐ Utmaning</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="area">Frågor från</label>
+
+        <select id="area">
+          <option value="alla" selected>Alla områden</option>
+          <option value="tal">Taluppfattning</option>
+          <option value="raknesatt">Räknesätt</option>
+          <option value="brak">Bråk</option>
+          <option value="algebra">Algebra och mönster</option>
+          <option value="geometri">Geometri och mätning</option>
+          <option value="problem">Problemlösning</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="button-row">
+      <button onclick="startQuiz()">▶️ Starta quiz</button>
+    </div>
+
+    <div class="tip-box">
+      <strong>Tips:</strong>
+      Försök tänka ut svaret innan du tittar på alternativen.
+    </div>
+
+  </section>
+
+
+  <section class="box quiz-area" id="quiz">
+
+    <div class="top-status">
+
+      <div class="status-card">
+        Fråga
+        <strong id="questionStatus">1 / 10</strong>
+      </div>
+
+      <div class="status-card">
+        Poäng
+        <strong id="scoreStatus">0</strong>
+      </div>
+
+      <div class="status-card">
+        Rätt i rad
+        <strong id="streakStatus">0</strong>
+      </div>
+
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+
+    <div class="question-card">
+
+      <span class="category" id="categoryLabel">Taluppfattning</span>
+
+      <div class="question-number" id="questionNumber">
+        Fråga 1
+      </div>
+
+      <div class="question-text" id="questionText"></div>
+
+      <div class="answer-grid" id="answerGrid"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div class="explanation" id="explanation"></div>
+
+      <button class="next-btn" id="nextButton" onclick="nextQuestion()">
+        Nästa fråga ➡️
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="box result-box" id="resultBox">
+
+    <h2>🎉 Quizet är klart!</h2>
+
+    <div class="score-big" id="finalScore">
+      0 / 10
+    </div>
+
+    <p id="resultMessage"></p>
+
+    <div class="result-grid">
+
+      <div class="result-card">
+        <strong>✅ Rätt</strong>
+        <div id="rightTotal">0</div>
+      </div>
+
+      <div class="result-card">
+        <strong>🔄 Att träna vidare på</strong>
+        <div id="wrongTotal">0</div>
+      </div>
+
+      <div class="result-card">
+        <strong>🔥 Bästa svit</strong>
+        <div id="bestStreak">0</div>
+      </div>
+
+    </div>
+
+    <div class="review" id="review"></div>
+
+    <div class="button-row" style="justify-content:center;">
+      <button onclick="startQuiz()">🎲 Nytt quiz</button>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mer">
+
+    <h2>🔗 Träna vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="matteescape.html">
+        🔐 Matte Escape
+      </a>
+
+      <a class="link-card" href="mattedetektiven.html">
+        🕵️ Mattedetektiven
+      </a>
+
+      <a class="link-card" href="mattesafari.html">
+        🧭 Mattesafari
+      </a>
+
+      <a class="link-card" href="mattebingo.html">
+        🎯 Mattebingo
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="kunskapskoll.html">
+        ✅ Kunskapskoll
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Mattequiz</strong></p>
+  <p>Tänk • Svara • Förklara • Träna vidare</p>
+</footer>
+
+
+<script>
+
+const questionBank = [
+
+  /* =========================
+     GRUND
+     ========================= */
+
+  {
+    level: "grund",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vad är siffran 5 värd i talet 352?",
+    correct: "50",
+    wrong: ["5","500","52"],
+    explanation: "5:an står på tiotalsplatsen och är därför värd 50."
+  },
+
+  {
+    level: "grund",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vad är 10 mer än 46?",
+    correct: "56",
+    wrong: ["47","36","66"],
+    explanation: "46 + 10 = 56."
+  },
+
+  {
+    level: "grund",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vilket tal kommer före 300?",
+    correct: "299",
+    wrong: ["301","290","199"],
+    explanation: "Talet precis före 300 är 299."
+  },
+
+  {
+    level: "grund",
+    area: "raknesatt",
+    category: "➕ Addition",
+    question: "8 + 7 = ?",
+    correct: "15",
+    wrong: ["14","16","17"],
+    explanation: "Du kan gå via 10: 8 + 2 + 5 = 15."
+  },
+
+  {
+    level: "grund",
+    area: "raknesatt",
+    category: "➖ Subtraktion",
+    question: "17 − 8 = ?",
+    correct: "9",
+    wrong: ["8","10","25"],
+    explanation: "17 − 8 = 9."
+  },
+
+  {
+    level: "grund",
+    area: "raknesatt",
+    category: "✖️ Multiplikation",
+    question: "5 × 4 = ?",
+    correct: "20",
+    wrong: ["9","15","25"],
+    explanation: "Fyra grupper med fem i varje ger 20."
+  },
+
+  {
+    level: "grund",
+    area: "raknesatt",
+    category: "➗ Division",
+    question: "12 ÷ 3 = ?",
+    correct: "4",
+    wrong: ["3","5","9"],
+    explanation: "12 delat i 3 lika stora grupper ger 4 i varje."
+  },
+
+  {
+    level: "grund",
+    area: "brak",
+    category: "🍕 Bråk",
+    question: "Vad är hälften av 14?",
+    correct: "7",
+    wrong: ["6","8","12"],
+    explanation: "14 delat i två lika stora delar ger 7."
+  },
+
+  {
+    level: "grund",
+    area: "brak",
+    category: "🍕 Bråk",
+    question: "Hur många fjärdedelar behövs för en hel?",
+    correct: "4",
+    wrong: ["1","2","3"],
+    explanation: "Fyra fjärdedelar bildar en hel."
+  },
+
+  {
+    level: "grund",
+    area: "algebra",
+    category: "⚖️ Algebra",
+    question: "Vilket tal saknas? 6 + ___ = 10",
+    correct: "4",
+    wrong: ["3","5","16"],
+    explanation: "6 + 4 = 10."
+  },
+
+  {
+    level: "grund",
+    area: "algebra",
+    category: "🔁 Mönster",
+    question: "Vilket tal kommer sedan? 2, 4, 6, 8, ...",
+    correct: "10",
+    wrong: ["9","11","12"],
+    explanation: "Mönstret ökar med 2 varje gång."
+  },
+
+  {
+    level: "grund",
+    area: "geometri",
+    category: "📐 Geometri",
+    question: "Hur många hörn har en triangel?",
+    correct: "3",
+    wrong: ["2","4","5"],
+    explanation: "En triangel har tre hörn."
+  },
+
+  {
+    level: "grund",
+    area: "geometri",
+    category: "📏 Mätning",
+    question: "Hur många centimeter är 1 meter?",
+    correct: "100",
+    wrong: ["10","50","1000"],
+    explanation: "1 meter är 100 centimeter."
+  },
+
+  {
+    level: "grund",
+    area: "problem",
+    category: "🧠 Problemlösning",
+    question: "Sara har 16 pärlor och får 5 till. Hur många har hon nu?",
+    correct: "21",
+    wrong: ["11","20","22"],
+    explanation: "16 + 5 = 21."
+  },
+
+  {
+    level: "grund",
+    area: "problem",
+    category: "🧠 Problemlösning",
+    question: "20 kakor delas lika mellan 5 barn. Hur många får varje barn?",
+    correct: "4",
+    wrong: ["3","5","15"],
+    explanation: "20 ÷ 5 = 4."
+  },
+
+
+  /* =========================
+     BLANDAD
+     ========================= */
+
+  {
+    level: "blandad",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vad är siffran 7 värd i talet 472?",
+    correct: "70",
+    wrong: ["7","700","72"],
+    explanation: "7:an står på tiotalsplatsen och är värd 70."
+  },
+
+  {
+    level: "blandad",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vilket tal är störst?",
+    correct: "403",
+    wrong: ["398","393","340"],
+    explanation: "403 har fyra hundratal. De andra talen har tre."
+  },
+
+  {
+    level: "blandad",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vad är 100 mindre än 638?",
+    correct: "538",
+    wrong: ["628","438","738"],
+    explanation: "638 − 100 = 538."
+  },
+
+  {
+    level: "blandad",
+    area: "raknesatt",
+    category: "➕ Addition",
+    question: "48 + 27 = ?",
+    correct: "75",
+    wrong: ["65","74","85"],
+    explanation: "48 + 20 = 68 och 68 + 7 = 75."
+  },
+
+  {
+    level: "blandad",
+    area: "raknesatt",
+    category: "➕ Addition",
+    question: "59 + 24 = ?",
+    correct: "83",
+    wrong: ["73","82","93"],
+    explanation: "59 + 20 = 79 och 79 + 4 = 83."
+  },
+
+  {
+    level: "blandad",
+    area: "raknesatt",
+    category: "➖ Subtraktion",
+    question: "72 − 38 = ?",
+    correct: "34",
+    wrong: ["44","46","36"],
+    explanation: "Du kan räkna upp: 38 till 40 är 2, till 70 är 30 och till 72 är 2. Totalt 34."
+  },
+
+  {
+    level: "blandad",
+    area: "raknesatt",
+    category: "✖️ Multiplikation",
+    question: "4 × 6 = ?",
+    correct: "24",
+    wrong: ["10","20","28"],
+    explanation: "Fyra grupper med sex i varje ger 24."
+  },
+
+  {
+    level: "blandad",
+    area: "raknesatt",
+    category: "➗ Division",
+    question: "35 ÷ 5 = ?",
+    correct: "7",
+    wrong: ["5","6","8"],
+    explanation: "5 × 7 = 35, alltså 35 ÷ 5 = 7."
+  },
+
+  {
+    level: "blandad",
+    area: "brak",
+    category: "🍕 Bråk",
+    question: "Vilket är störst när helheten är lika stor?",
+    correct: "1/2",
+    wrong: ["1/4","1/8","De är lika"],
+    explanation: "När samma helhet delas i två delar blir varje del större än om den delas i fyra eller åtta."
+  },
+
+  {
+    level: "blandad",
+    area: "brak",
+    category: "🍕 Bråk",
+    question: "Vad är 1/4 av 20?",
+    correct: "5",
+    wrong: ["4","10","15"],
+    explanation: "20 delat i fyra lika stora delar ger 5."
+  },
+
+  {
+    level: "blandad",
+    area: "algebra",
+    category: "⚖️ Algebra",
+    question: "Vilket tal saknas? 8 + ___ = 13",
+    correct: "5",
+    wrong: ["4","6","21"],
+    explanation: "8 + 5 = 13."
+  },
+
+  {
+    level: "blandad",
+    area: "algebra",
+    category: "🔁 Mönster",
+    question: "Vilket tal kommer sedan? 5, 10, 15, 20, ...",
+    correct: "25",
+    wrong: ["22","24","30"],
+    explanation: "Mönstret ökar med 5."
+  },
+
+  {
+    level: "blandad",
+    area: "geometri",
+    category: "📐 Geometri",
+    question: "Hur många hörn har en rektangel?",
+    correct: "4",
+    wrong: ["2","3","5"],
+    explanation: "En rektangel har fyra hörn."
+  },
+
+  {
+    level: "blandad",
+    area: "geometri",
+    category: "⚖️ Mätning",
+    question: "Vilket är tyngst?",
+    correct: "1 kg",
+    wrong: ["900 g","750 g","500 g"],
+    explanation: "1 kg är 1000 g och är därför tyngre än 900 g."
+  },
+
+  {
+    level: "blandad",
+    area: "problem",
+    category: "🧠 Problemlösning",
+    question: "32 elever delas i grupper om 4. Hur många grupper blir det?",
+    correct: "8",
+    wrong: ["6","7","28"],
+    explanation: "32 ÷ 4 = 8."
+  },
+
+  {
+    level: "blandad",
+    area: "problem",
+    category: "🧠 Problemlösning",
+    question: "Mira har 28 pärlor, får 15 nya och använder 9. Hur många har hon kvar?",
+    correct: "34",
+    wrong: ["24","43","52"],
+    explanation: "28 + 15 = 43 och 43 − 9 = 34."
+  },
+
+
+  /* =========================
+     UTMANING
+     ========================= */
+
+  {
+    level: "utmaning",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vilket tal ligger närmast 500?",
+    correct: "487",
+    wrong: ["516","470","530"],
+    explanation: "487 ligger 13 från 500. 516 ligger 16 från 500."
+  },
+
+  {
+    level: "utmaning",
+    area: "tal",
+    category: "🔢 Taluppfattning",
+    question: "Vilket är det största talet du kan bilda med siffrorna 2, 5 och 8, om varje siffra används en gång?",
+    correct: "852",
+    wrong: ["825","582","528"],
+    explanation: "Den största siffran ska stå på hundratalsplatsen: 8, sedan 5 och sist 2."
+  },
+
+  {
+    level: "utmaning",
+    area: "raknesatt",
+    category: "➕ Addition",
+    question: "198 + 24 = ?",
+    correct: "222",
+    wrong: ["212","221","232"],
+    explanation: "198 + 2 = 200 och sedan återstår 22. 200 + 22 = 222."
+  },
+
+  {
+    level: "utmaning",
+    area: "raknesatt",
+    category: "➖ Subtraktion",
+    question: "150 − 76 = ?",
+    correct: "74",
+    wrong: ["64","76","84"],
+    explanation: "150 − 70 = 80 och 80 − 6 = 74."
+  },
+
+  {
+    level: "utmaning",
+    area: "raknesatt",
+    category: "✖️ Multiplikation",
+    question: "Om 5 × 7 = 35, vad blir 6 × 7?",
+    correct: "42",
+    wrong: ["36","40","48"],
+    explanation: "Lägg till en grupp med 7: 35 + 7 = 42."
+  },
+
+  {
+    level: "utmaning",
+    area: "raknesatt",
+    category: "➗ Division",
+    question: "Vilket tal saknas? ___ ÷ 4 = 7",
+    correct: "28",
+    wrong: ["11","21","32"],
+    explanation: "4 × 7 = 28."
+  },
+
+  {
+    level: "utmaning",
+    area: "brak",
+    category: "🍕 Bråk",
+    question: "Vilket är störst när helheten är lika stor?",
+    correct: "1/3",
+    wrong: ["1/4","1/6","1/8"],
+    explanation: "När täljaren är 1 blir delen större ju färre lika delar helheten delas i."
+  },
+
+  {
+    level: "utmaning",
+    area: "brak",
+    category: "🍕 Bråk",
+    question: "Vad är 1/3 av 18?",
+    correct: "6",
+    wrong: ["3","9","12"],
+    explanation: "18 ÷ 3 = 6."
+  },
+
+  {
+    level: "utmaning",
+    area: "algebra",
+    category: "⚖️ Algebra",
+    question: "Vilket tal saknas? 4 × ___ = 36",
+    correct: "9",
+    wrong: ["8","10","32"],
+    explanation: "4 × 9 = 36."
+  },
+
+  {
+    level: "utmaning",
+    area: "algebra",
+    category: "🔁 Mönster",
+    question: "Vilket tal kommer sedan? 7, 14, 21, 28, ...",
+    correct: "35",
+    wrong: ["32","34","42"],
+    explanation: "Mönstret ökar med 7 varje gång."
+  },
+
+  {
+    level: "utmaning",
+    area: "geometri",
+    category: "📐 Geometri",
+    question: "Vilken figur har alltid fyra lika långa sidor och fyra räta hörn?",
+    correct: "Kvadrat",
+    wrong: ["Triangel","Cirkel","Valfri rektangel"],
+    explanation: "En kvadrat har fyra lika långa sidor och fyra räta hörn."
+  },
+
+  {
+    level: "utmaning",
+    area: "geometri",
+    category: "🥛 Mätning",
+    question: "Hur många deciliter är 2 liter?",
+    correct: "20 dl",
+    wrong: ["2 dl","10 dl","200 dl"],
+    explanation: "1 liter är 10 dl. Därför är 2 liter 20 dl."
+  },
+
+  {
+    level: "utmaning",
+    area: "problem",
+    category: "🧠 Problemlösning",
+    question: "Leo har 35 kr, får 12 kr och använder 8 kr. Hur mycket har han kvar?",
+    correct: "39",
+    wrong: ["31","47","55"],
+    explanation: "35 + 12 = 47 och 47 − 8 = 39."
+  },
+
+  {
+    level: "utmaning",
+    area: "problem",
+    category: "🧠 Rimlighet",
+    question: "Vilket svar är rimligast för 203 + 97?",
+    correct: "300",
+    wrong: ["100","200","500"],
+    explanation: "203 är ungefär 200 och 97 är ungefär 100. 200 + 100 är ungefär 300."
+  },
+
+  {
+    level: "utmaning",
+    area: "problem",
+    category: "🧠 Problemlösning",
+    question: "48 elever delas i 8 lika stora grupper. Hur många elever blir det i varje grupp?",
+    correct: "6",
+    wrong: ["5","7","40"],
+    explanation: "48 ÷ 8 = 6."
+  }
+
+];
+
+
+let quizQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let streak = 0;
+let bestStreak = 0;
+let answered = false;
+let reviewData = [];
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+
+    const j = Math.floor(
+      Math.random() * (i + 1)
+    );
+
+    [copy[i], copy[j]] =
+      [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+
+function startQuiz() {
+
+  const level =
+    document.getElementById("level").value;
+
+  const area =
+    document.getElementById("area").value;
+
+
+  let pool =
+    questionBank.filter(
+      item => item.level === level
+    );
+
+
+  if (area !== "alla") {
+
+    pool =
+      pool.filter(
+        item => item.area === area
+      );
+  }
+
+
+  /*
+    Om ett enda område innehåller färre än 10 frågor
+    fyller vi på från samma nivå.
+  */
+
+  if (pool.length < 10) {
+
+    const extras =
+      questionBank.filter(
+        item =>
+          item.level === level &&
+          !pool.includes(item)
+      );
+
+    pool =
+      [...pool, ...shuffle(extras)];
+  }
+
+
+  quizQuestions =
+    shuffle(pool).slice(0,10);
+
+
+  currentIndex = 0;
+  score = 0;
+  streak = 0;
+  bestStreak = 0;
+  answered = false;
+  reviewData = [];
+
+
+  document.getElementById(
+    "scoreStatus"
+  ).textContent = "0";
+
+  document.getElementById(
+    "streakStatus"
+  ).textContent = "0";
+
+
+  document.getElementById(
+    "resultBox"
+  ).classList.remove("show");
+
+
+  document.getElementById(
+    "quiz"
+  ).classList.add("show");
+
+
+  showQuestion();
+
+
+  document.getElementById(
+    "quiz"
+  ).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+function showQuestion() {
+
+  answered = false;
+
+  const item =
+    quizQuestions[currentIndex];
+
+
+  document.getElementById(
+    "questionStatus"
+  ).textContent =
+    (currentIndex + 1) +
+    " / " +
+    quizQuestions.length;
+
+
+  document.getElementById(
+    "questionNumber"
+  ).textContent =
+    "Fråga " +
+    (currentIndex + 1);
+
+
+  document.getElementById(
+    "categoryLabel"
+  ).textContent =
+    item.category;
+
+
+  document.getElementById(
+    "questionText"
+  ).textContent =
+    item.question;
+
+
+  document.getElementById(
+    "feedback"
+  ).textContent = "";
+
+
+  const explanation =
+    document.getElementById(
+      "explanation"
+    );
+
+  explanation.classList.remove(
+    "show"
+  );
+
+  explanation.textContent = "";
+
+
+  document.getElementById(
+    "nextButton"
+  ).classList.remove("show");
+
+
+  const grid =
+    document.getElementById(
+      "answerGrid"
+    );
+
+  grid.innerHTML = "";
+
+
+  const alternatives =
+    shuffle([
+      item.correct,
+      ...item.wrong
+    ]);
+
+
+  alternatives.forEach(answer => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "answer-btn";
+
+    button.textContent =
+      answer;
+
+
+    button.addEventListener(
+      "click",
+      () => {
+        answerQuestion(
+          answer,
+          button
+        );
+      }
+    );
+
+
+    grid.appendChild(button);
+  });
+
+
+  const percent =
+    currentIndex /
+    quizQuestions.length *
+    100;
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    percent + "%";
+}
+
+
+function answerQuestion(
+  answer,
+  button
+) {
+
+  if (answered) return;
+
+  answered = true;
+
+
+  const item =
+    quizQuestions[currentIndex];
+
+
+  const buttons =
+    document.querySelectorAll(
+      "#answerGrid button"
+    );
+
+
+  buttons.forEach(btn => {
+
+    btn.disabled = true;
+
+    if (
+      btn.textContent ===
+      item.correct
+    ) {
+
+      btn.classList.add(
+        "right"
+      );
+    }
+  });
+
+
+  const isCorrect =
+    answer === item.correct;
+
+
+  if (isCorrect) {
+
+    score++;
+    streak++;
+
+    if (
+      streak >
+      bestStreak
+    ) {
+
+      bestStreak =
+        streak;
+    }
+
+
+    button.classList.add(
+      "right"
+    );
+
+
+    document.getElementById(
+      "feedback"
+    ).textContent =
+      "✅ Rätt!";
+
+
+  } else {
+
+    streak = 0;
+
+    button.classList.add(
+      "wrong"
+    );
+
+
+    document.getElementById(
+      "feedback"
+    ).textContent =
+      "Inte riktigt. Det rätta svaret är " +
+      item.correct +
+      ".";
+  }
+
+
+  document.getElementById(
+    "scoreStatus"
+  ).textContent =
+    score;
+
+
+  document.getElementById(
+    "streakStatus"
+  ).textContent =
+    streak;
+
+
+  const explanation =
+    document.getElementById(
+      "explanation"
+    );
+
+  explanation.innerHTML =
+    "<strong>Så kan du tänka:</strong><br>" +
+    item.explanation;
+
+  explanation.classList.add(
+    "show"
+  );
+
+
+  reviewData.push({
+    question: item.question,
+    correct: item.correct,
+    answer: answer,
+    isCorrect: isCorrect,
+    category: item.category
+  });
+
+
+  document.getElementById(
+    "nextButton"
+  ).classList.add("show");
+}
+
+
+function nextQuestion() {
+
+  currentIndex++;
+
+
+  if (
+    currentIndex >=
+    quizQuestions.length
+  ) {
+
+    finishQuiz();
+    return;
+  }
+
+
+  showQuestion();
+}
+
+
+function finishQuiz() {
+
+  document.getElementById(
+    "quiz"
+  ).classList.remove("show");
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    "100%";
+
+
+  const result =
+    document.getElementById(
+      "resultBox"
+    );
+
+
+  result.classList.add("show");
+
+
+  document.getElementById(
+    "finalScore"
+  ).textContent =
+    score +
+    " / " +
+    quizQuestions.length;
+
+
+  document.getElementById(
+    "rightTotal"
+  ).textContent =
+    score;
+
+
+  document.getElementById(
+    "wrongTotal"
+  ).textContent =
+    quizQuestions.length -
+    score;
+
+
+  document.getElementById(
+    "bestStreak"
+  ).textContent =
+    bestStreak;
+
+
+  let message = "";
+
+
+  if (score === 10) {
+
+    message =
+      "Fantastiskt! Alla frågor blev rätt. Försök gärna en svårare nivå eller förklara dina strategier för någon annan.";
+
+  } else if (score >= 8) {
+
+    message =
+      "Mycket starkt arbete. Du visar säkerhet i många av frågorna. Titta på de uppgifter som blev svårare och fundera på varför.";
+
+  } else if (score >= 5) {
+
+    message =
+      "Bra träning. Du klarade flera frågor och nu vet du också vilka delar som behöver mer övning.";
+
+  } else {
+
+    message =
+      "Quizet visar vad du kan träna vidare på. Välj gärna Grund nästa gång eller använd övningsbanken och strategisidan först.";
+  }
+
+
+  document.getElementById(
+    "resultMessage"
+  ).textContent =
+    message;
+
+
+  renderReview();
+
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+
+function renderReview() {
+
+  const review =
+    document.getElementById(
+      "review"
+    );
+
+  review.innerHTML =
+    "<h3>🔎 Titta tillbaka på frågorna</h3>";
+
+
+  reviewData.forEach(
+    (item,index) => {
+
+      const div =
+        document.createElement("div");
+
+      div.className =
+        "review-item " +
+        (
+          item.isCorrect
+            ? "correct"
+            : "incorrect"
+        );
+
+
+      div.innerHTML = `
+        <strong>
+          ${index + 1}. ${item.category}
+        </strong>
+
+        <br>
+
+        ${item.question}
+
+        <br><br>
+
+        Ditt svar:
+        <strong>${item.answer}</strong>
+
+        <br>
+
+        Rätt svar:
+        <strong>${item.correct}</strong>
+      `;
+
+
+      review.appendChild(div);
+    }
+  );
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    startQuiz();
+  }
+);
+
+</script>
+
+</body>
+</html>
