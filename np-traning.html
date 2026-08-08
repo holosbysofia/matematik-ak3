@@ -8,805 +8,1086 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      box-sizing:border-box;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.6;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2rem,5vw,3.6rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 820px;
-      margin: 12px auto 0;
-      font-size: 1.1rem;
+      max-width:850px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px 70px;
+      max-width:1000px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 15px var(--skugga);
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     .intro {
-      background: #eee4d6;
+      background:#eee4d6;
     }
 
     h2,
     h3 {
-      color: var(--brun);
+      color:var(--brun);
     }
 
     h2 {
-      margin-top: 0;
+      margin-top:0;
     }
 
-    .skill-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-      gap: 16px;
-      margin-top: 18px;
+    .progress-wrap {
+      margin-top:18px;
     }
 
-    .skill-card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
-      border-radius: 15px;
-      padding: 19px;
+    .progress {
+      height:12px;
+      background:#e5d8c5;
+      border-radius:999px;
+      overflow:hidden;
     }
 
-    .skill-card h3 {
-      margin-top: 0;
+    .progress-bar {
+      height:100%;
+      width:0%;
+      background:#b8aa91;
+      transition:width .25s ease;
     }
 
-    .icon {
-      font-size: 2.4rem;
-      margin-bottom: 6px;
+    .progress-text {
+      margin-top:7px;
+      font-weight:bold;
+      color:var(--brun);
     }
 
-    .task-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 21px;
-      margin: 18px 0;
+    .question {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:15px;
+      padding:20px;
+      margin-bottom:18px;
     }
 
-    .task-card h3 {
-      margin-top: 0;
+    .question h3 {
+      margin-top:0;
     }
 
-    .task-label {
-      display: inline-block;
-      background: var(--beige);
-      color: var(--brun);
-      padding: 5px 11px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+    .question-number {
+      display:inline-block;
+      background:#e8dcc8;
+      border-radius:999px;
+      padding:4px 9px;
+      margin-bottom:8px;
+      font-size:.88rem;
+      font-weight:bold;
     }
 
-    .math {
-      font-size: 1.7rem;
-      font-weight: bold;
-      color: var(--brun);
-      text-align: center;
-      background: #f3eadf;
-      border-radius: 13px;
-      padding: 18px;
-      margin: 14px 0;
+    .options {
+      display:grid;
+      gap:9px;
+      margin-top:14px;
     }
 
-    .answers {
-      display: grid;
-      gap: 9px;
-      margin-top: 12px;
+    .option {
+      display:flex;
+      align-items:center;
+      gap:9px;
+      background:#f3eadf;
+      border:1px solid #d8cab7;
+      border-radius:10px;
+      padding:11px;
+      cursor:pointer;
     }
 
-    button {
-      border: none;
-      background: var(--beige);
-      color: var(--text);
-      padding: 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
+    .option:hover {
+      background:#eee2d2;
     }
 
-    button:hover {
-      background: var(--beige2);
+    .option input {
+      transform:scale(1.15);
     }
 
-    button.correct {
-      background: var(--ratt);
+    .text-answer {
+      margin-top:14px;
     }
 
-    button.wrong {
-      background: var(--fel);
+    .text-answer input {
+      width:100%;
+      padding:11px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      font:inherit;
+      background:white;
+      color:var(--text);
     }
 
     .feedback {
-      min-height: 25px;
-      margin-top: 10px;
-      font-weight: bold;
+      display:none;
+      margin-top:13px;
+      padding:12px;
+      border-radius:10px;
     }
 
-    .strategy {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 14px;
+    .feedback.correct {
+      display:block;
+      background:var(--ratt);
+      border:1px solid #bcc9ae;
     }
 
-    .reasoning-box {
-      background: #f3eadf;
-      border-radius: 14px;
-      padding: 17px;
-      margin: 13px 0;
+    .feedback.wrong {
+      display:block;
+      background:var(--fel);
+      border:1px solid #d1b5af;
     }
 
-    .check-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-      gap: 12px;
-      margin-top: 18px;
+    button {
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
-    .check-card {
-      background: var(--beige);
-      padding: 16px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
+    button:hover {
+      background:var(--beige2);
     }
 
-    .teacher-note {
-      background: #e7dfd1;
+    .secondary {
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
+    }
+
+    .button-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .summary {
+      display:none;
+      background:#e7eadf;
+      border:1px solid #b9c0a8;
+      border-radius:15px;
+      padding:20px;
+      margin-top:20px;
+    }
+
+    .summary.show {
+      display:block;
+    }
+
+    .summary h2 {
+      margin-top:0;
+    }
+
+    .reflection {
+      margin-top:15px;
+      background:#fffaf2;
+      border:1px solid var(--kant);
+      border-radius:11px;
+      padding:14px;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 27px;
+      background:#d8c8b2;
+      color:#4d443c;
+      text-align:center;
+      padding:27px 20px;
     }
 
-    @media(max-width:650px) {
-      nav {
-        position: static;
-      }
+    @media(max-width:700px) {
 
       nav a {
-        display: block;
+        display:block;
       }
 
       main {
-        padding: 22px 12px 55px;
+        padding:20px 10px 50px;
       }
 
       .box,
-      .task-card {
-        padding: 19px;
+      .question {
+        padding:17px;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
+
   <h1>📝 NP-träning</h1>
 
   <p>
-    Träna på viktiga matematiska förmågor:
-    räkna, resonera, lösa problem, använda begrepp och visa hur du tänker.
+    Träna på uppgifter som liknar sådant du kan möta i matematikprov:
+    tal, räknesätt, problemlösning, geometri, tid, mätning och resonemang.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#huvudrakning">⚡ Huvudräkning</a>
-  <a href="#problemlosning">🧠 Problemlösning</a>
-  <a href="#begrepp">💬 Begrepp</a>
-  <a href="#geometri">📐 Geometri</a>
-  <a href="#resonemang">🗣️ Resonemang</a>
+  <a href="#traning">📝 Träning</a>
+  <a href="#resultat">🔎 Resultat</a>
 </nav>
+
 
 <main>
 
   <section class="box intro">
-    <h2>🌿 Vad tränar vi?</h2>
+
+    <h2>🌱 Så använder du träningen</h2>
 
     <p>
-      Här tränar du på flera olika typer av matematik.
-      Målet är inte bara att få rätt svar, utan också att förstå, förklara och välja en bra strategi.
+      Läs varje uppgift noga. Försök först själv och kontrollera sedan.
+      Om något blir fel får du en kort förklaring så att du kan tänka om.
     </p>
 
-    <div class="skill-grid">
+    <p>
+      Resultatet här är bara <strong>träning och återkoppling</strong>.
+      Det är inte ett formellt prov eller ett betyg.
+    </p>
 
-      <div class="skill-card">
-        <div class="icon">⚡</div>
-        <h3>Räkna</h3>
-        <p>Huvudräkning och skriftliga metoder.</p>
+
+    <div class="progress-wrap">
+
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
       </div>
 
-      <div class="skill-card">
-        <div class="icon">🧠</div>
-        <h3>Problemlösa</h3>
-        <p>Förstå text, välja räknesätt och kontrollera svaret.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="icon">💬</div>
-        <h3>Begrepp</h3>
-        <p>Förstå och använda matematiska ord.</p>
-      </div>
-
-      <div class="skill-card">
-        <div class="icon">🗣️</div>
-        <h3>Resonera</h3>
-        <p>Förklara hur och varför.</p>
+      <div class="progress-text" id="progressText">
+        0 av 10 uppgifter kontrollerade
       </div>
 
     </div>
+
   </section>
 
 
-  <section class="box" id="huvudrakning">
-    <h2>⚡ Huvudräkning</h2>
 
-    <div class="task-card">
-      <div class="task-label">Addition</div>
+  <section class="box" id="traning">
 
-      <div class="math">48 + 27 = ?</div>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">65</button>
-        <button onclick="answer(this,true)">75</button>
-        <button onclick="answer(this,false)">85</button>
-      </div>
-
-      <div class="feedback"></div>
-
-      <div class="strategy">
-        Fundera: Kan du gå via 50?
-      </div>
-    </div>
+    <h2>🧠 Uppgifter</h2>
 
 
-    <div class="task-card">
-      <div class="task-label">Subtraktion</div>
+    <!-- 1 -->
 
-      <div class="math">83 − 47 = ?</div>
+    <div class="question" data-id="q1">
 
-      <div class="answers">
-        <button onclick="answer(this,true)">36</button>
-        <button onclick="answer(this,false)">46</button>
-        <button onclick="answer(this,false)">34</button>
-      </div>
+      <div class="question-number">Uppgift 1</div>
 
-      <div class="feedback"></div>
-
-      <div class="strategy">
-        Kontrollera gärna med addition.
-      </div>
-    </div>
-
-
-    <div class="task-card">
-      <div class="task-label">Multiplikation</div>
-
-      <div class="math">6 × 7 = ?</div>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">36</button>
-        <button onclick="answer(this,false)">40</button>
-        <button onclick="answer(this,true)">42</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-
-    <div class="task-card">
-      <div class="task-label">Division</div>
-
-      <div class="math">32 ÷ 4 = ?</div>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">6</button>
-        <button onclick="answer(this,true)">8</button>
-        <button onclick="answer(this,false)">12</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🔢 Taluppfattning</h2>
-
-    <div class="task-card">
-      <h3>Vilket tal är störst?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">398</button>
-        <button onclick="answer(this,true)">403</button>
-        <button onclick="answer(this,false)">389</button>
-      </div>
-
-      <div class="feedback"></div>
-
-      <div class="strategy">
-        Börja med att jämföra hundratalen.
-      </div>
-    </div>
-
-
-    <div class="task-card">
-      <h3>Vilket värde har siffran 7 i talet 572?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">7</button>
-        <button onclick="answer(this,true)">70</button>
-        <button onclick="answer(this,false)">700</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-  </section>
-
-
-  <section class="box" id="problemlosning">
-    <h2>🧠 Problemlösning</h2>
-
-    <div class="task-card">
-      <h3>Problem 1</h3>
+      <h3>Taluppfattning</h3>
 
       <p>
-        En klass har 26 elever.
-        På morgonen kommer 3 nya elever från en annan klass och arbetar med gruppen.
+        Vilket tal är störst?
       </p>
 
-      <p>
-        Hur många elever är det då?
-      </p>
+      <div class="options">
 
-      <div class="answers">
-        <button onclick="answer(this,false)">23</button>
-        <button onclick="answer(this,true)">29</button>
-        <button onclick="answer(this,false)">32</button>
+        <label class="option">
+          <input type="radio" name="q1" value="398">
+          398
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q1" value="403">
+          403
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q1" value="390">
+          390
+        </label>
+
       </div>
 
-      <div class="feedback"></div>
-
-      <div class="strategy">
-        Vad händer med antalet elever – blir det fler eller färre?
+      <div class="button-row">
+        <button onclick="checkRadio('q1','403','feedback1')">
+          Kontrollera
+        </button>
       </div>
+
+      <div class="feedback" id="feedback1"></div>
+
     </div>
 
 
-    <div class="task-card">
-      <h3>Problem 2</h3>
+
+    <!-- 2 -->
+
+    <div class="question" data-id="q2">
+
+      <div class="question-number">Uppgift 2</div>
+
+      <h3>Addition</h3>
 
       <p>
-        24 pennor ska delas lika mellan 6 elever.
+        Vad är 48 + 27?
       </p>
 
-      <p>
-        Hur många pennor får varje elev?
-      </p>
+      <div class="options">
 
-      <div class="answers">
-        <button onclick="answer(this,false)">3</button>
-        <button onclick="answer(this,true)">4</button>
-        <button onclick="answer(this,false)">6</button>
+        <label class="option">
+          <input type="radio" name="q2" value="65">
+          65
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q2" value="75">
+          75
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q2" value="85">
+          85
+        </label>
+
       </div>
 
-      <div class="feedback"></div>
-
-      <div class="strategy">
-        Vilken multiplikation hör ihop med 24 ÷ 6?
+      <div class="button-row">
+        <button onclick="checkRadio('q2','75','feedback2')">
+          Kontrollera
+        </button>
       </div>
+
+      <div class="feedback" id="feedback2"></div>
+
     </div>
 
 
-    <div class="task-card">
-      <h3>Problem 3 – två steg</h3>
+
+    <!-- 3 -->
+
+    <div class="question" data-id="q3">
+
+      <div class="question-number">Uppgift 3</div>
+
+      <h3>Flera steg</h3>
 
       <p>
-        Nora har 35 pärlor.
-        Hon får 12 nya pärlor och använder sedan 8 pärlor.
+        Räkna:
+        <strong>35 + 12 − 8</strong>
       </p>
 
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q3" value="27">
+          27
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q3" value="39">
+          39
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q3" value="55">
+          55
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q3','39','feedback3')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback3"></div>
+
+    </div>
+
+
+
+    <!-- 4 -->
+
+    <div class="question" data-id="q4">
+
+      <div class="question-number">Uppgift 4</div>
+
+      <h3>Multiplikation</h3>
+
       <p>
+        Det finns 6 lådor med 4 pennor i varje låda.
+        Hur många pennor finns det sammanlagt?
+      </p>
+
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q4" value="10">
+          10
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q4" value="24">
+          24
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q4" value="20">
+          20
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q4','24','feedback4')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback4"></div>
+
+    </div>
+
+
+
+    <!-- 5 -->
+
+    <div class="question" data-id="q5">
+
+      <div class="question-number">Uppgift 5</div>
+
+      <h3>Division</h3>
+
+      <p>
+        24 kulor delas lika mellan 6 barn.
+        Hur många kulor får varje barn?
+      </p>
+
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q5" value="4">
+          4
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q5" value="6">
+          6
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q5" value="18">
+          18
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q5','4','feedback5')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback5"></div>
+
+    </div>
+
+
+
+    <!-- 6 -->
+
+    <div class="question" data-id="q6">
+
+      <div class="question-number">Uppgift 6</div>
+
+      <h3>Bråk</h3>
+
+      <p>
+        Vilket bråk är störst om helheterna är lika stora?
+      </p>
+
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q6" value="1/4">
+          1/4
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q6" value="1/2">
+          1/2
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q6" value="1/8">
+          1/8
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q6','1/2','feedback6')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback6"></div>
+
+    </div>
+
+
+
+    <!-- 7 -->
+
+    <div class="question" data-id="q7">
+
+      <div class="question-number">Uppgift 7</div>
+
+      <h3>Tid</h3>
+
+      <p>
+        En lektion börjar klockan 10.15 och slutar 10.55.
+        Hur länge pågår lektionen?
+      </p>
+
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q7" value="30">
+          30 minuter
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q7" value="40">
+          40 minuter
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q7" value="50">
+          50 minuter
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q7','40','feedback7')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback7"></div>
+
+    </div>
+
+
+
+    <!-- 8 -->
+
+    <div class="question" data-id="q8">
+
+      <div class="question-number">Uppgift 8</div>
+
+      <h3>Mätning</h3>
+
+      <p>
+        Vilken enhet passar bäst för längden på ett klassrum?
+      </p>
+
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q8" value="cm">
+          centimeter
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q8" value="m">
+          meter
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q8" value="mm">
+          millimeter
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q8','m','feedback8')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback8"></div>
+
+    </div>
+
+
+
+    <!-- 9 -->
+
+    <div class="question" data-id="q9">
+
+      <div class="question-number">Uppgift 9</div>
+
+      <h3>Geometri</h3>
+
+      <p>
+        Vilket påstående stämmer alltid för en kvadrat?
+      </p>
+
+      <div class="options">
+
+        <label class="option">
+          <input type="radio" name="q9" value="a">
+          Den måste stå med en sida nedåt.
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q9" value="b">
+          Den har fyra lika långa sidor.
+        </label>
+
+        <label class="option">
+          <input type="radio" name="q9" value="c">
+          Den har tre hörn.
+        </label>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkRadio('q9','b','feedback9')">
+          Kontrollera
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback9"></div>
+
+    </div>
+
+
+
+    <!-- 10 -->
+
+    <div class="question" data-id="q10">
+
+      <div class="question-number">Uppgift 10</div>
+
+      <h3>Problemlösning</h3>
+
+      <p>
+        Nora har 28 pärlor. Hon får 15 nya och använder sedan 9.
         Hur många pärlor har hon kvar?
       </p>
 
-      <div class="answers">
-        <button onclick="answer(this,false)">39</button>
-        <button onclick="answer(this,true)">39</button>
-        <button onclick="answer(this,false)">55</button>
+      <div class="text-answer">
+
+        <input
+          type="number"
+          id="q10input"
+          placeholder="Skriv ditt svar"
+        >
+
       </div>
 
-      <div class="feedback"></div>
+      <div class="button-row">
 
-      <div class="strategy">
-        Först behöver du lägga till. Sedan behöver du ta bort.
-      </div>
-    </div>
-  </section>
-
-
-  <section class="box" id="begrepp">
-    <h2>💬 Matematiska begrepp</h2>
-
-    <div class="task-card">
-      <h3>Vad betyder summa?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,true)">
-          Svaret i en addition
+        <button onclick="checkNumber('q10input',34,'feedback10','q10')">
+          Kontrollera
         </button>
 
-        <button onclick="answer(this,false)">
-          Svaret i en division
-        </button>
-
-        <button onclick="answer(this,false)">
-          Ett tal som alltid är större än 100
-        </button>
       </div>
 
-      <div class="feedback"></div>
+      <div class="feedback" id="feedback10"></div>
+
     </div>
 
 
-    <div class="task-card">
-      <h3>Vad betyder differens?</h3>
+    <div class="button-row">
 
-      <div class="answers">
-        <button onclick="answer(this,false)">
-          Svaret i multiplikation
-        </button>
+      <button class="secondary" onclick="resetTraining()">
+        ↺ Börja om
+      </button>
 
-        <button onclick="answer(this,true)">
-          Svaret i subtraktion
-        </button>
+    </div>
 
-        <button onclick="answer(this,false)">
-          Ett geometriskt mönster
-        </button>
+
+    <div class="summary" id="resultat">
+
+      <h2>🔎 Din träningsöversikt</h2>
+
+      <p id="summaryText"></p>
+
+      <div class="reflection">
+
+        <strong>Fundera vidare:</strong>
+
+        <p>
+          Vilken typ av uppgift kändes lättast?
+          Vilken vill du träna mer på?
+        </p>
+
       </div>
 
-      <div class="feedback"></div>
     </div>
 
-
-    <div class="task-card">
-      <h3>Vad betyder rimligt?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">
-          Att svaret alltid måste vara exakt 100
-        </button>
-
-        <button onclick="answer(this,true)">
-          Att svaret verkar möjligt och passar situationen
-        </button>
-
-        <button onclick="answer(this,false)">
-          Att man alltid använder division
-        </button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🍕 Bråk</h2>
-
-    <div class="task-card">
-      <h3>Vilket bråk är störst?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">1/4</button>
-        <button onclick="answer(this,true)">1/2</button>
-        <button onclick="answer(this,false)">1/8</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-
-    <div class="task-card">
-      <h3>Vad är en fjärdedel av 20?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">4</button>
-        <button onclick="answer(this,true)">5</button>
-        <button onclick="answer(this,false)">10</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-  </section>
-
-
-  <section class="box" id="geometri">
-    <h2>📐 Geometri och mätning</h2>
-
-    <div class="task-card">
-      <h3>Vilken figur har fyra lika långa sidor?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">Triangel</button>
-        <button onclick="answer(this,true)">Kvadrat</button>
-        <button onclick="answer(this,false)">Cirkel</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-
-    <div class="task-card">
-      <h3>Vilken enhet passar bäst för längden på ett klassrum?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,true)">meter</button>
-        <button onclick="answer(this,false)">gram</button>
-        <button onclick="answer(this,false)">liter</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-
-    <div class="task-card">
-      <h3>Hur många centimeter är 1 meter?</h3>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">10 cm</button>
-        <button onclick="answer(this,true)">100 cm</button>
-        <button onclick="answer(this,false)">1000 cm</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>📊 Läsa information</h2>
-
-    <div class="task-card">
-      <h3>En klass röstar på favoritfrukt</h3>
-
-      <p>
-        🍎 Äpple: 8 röster
-        <br>
-        🍌 Banan: 5 röster
-        <br>
-        🍐 Päron: 3 röster
-      </p>
-
-      <p>
-        Hur många fler röster fick äpple än päron?
-      </p>
-
-      <div class="answers">
-        <button onclick="answer(this,true)">5</button>
-        <button onclick="answer(this,false)">8</button>
-        <button onclick="answer(this,false)">11</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-  </section>
-
-
-  <section class="box" id="resonemang">
-    <h2>🗣️ Resonera och förklara</h2>
-
-    <div class="reasoning-box">
-      <h3>1. Hur vet du?</h3>
-
-      <p>
-        Vilket är störst: 398 eller 403?
-      </p>
-
-      <p>
-        Förklara utan att bara säga svaret.
-      </p>
-    </div>
-
-
-    <div class="reasoning-box">
-      <h3>2. Jämför strategier</h3>
-
-      <p>
-        Två elever räknar 49 + 28.
-      </p>
-
-      <p>
-        Elev A räknar:
-        <br>
-        49 + 20 + 8
-      </p>
-
-      <p>
-        Elev B räknar:
-        <br>
-        50 + 28 − 1
-      </p>
-
-      <p>
-        Vilken strategi föredrar du? Varför?
-      </p>
-    </div>
-
-
-    <div class="reasoning-box">
-      <h3>3. Hitta felet</h3>
-
-      <p>
-        En elev säger:
-      </p>
-
-      <p>
-        <strong>1/4 är större än 1/2 eftersom 4 är större än 2.</strong>
-      </p>
-
-      <p>
-        Förklara vad eleven har missförstått.
-      </p>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>✅ Min checklista</h2>
-
-    <div class="check-grid">
-      <div class="check-card">🌱 Jag läser hela uppgiften</div>
-      <div class="check-card">🌿 Jag väljer en strategi</div>
-      <div class="check-card">🌳 Jag visar hur jag tänker</div>
-      <div class="check-card">⭐ Jag kontrollerar mitt svar</div>
-    </div>
-  </section>
-
-
-  <section class="box teacher-note">
-    <h2>👩‍🏫 Till läraren</h2>
-
-    <p>
-      Sidan är avsedd som generell träning av matematiska förmågor inför arbete och bedömning i åk 3.
-      Uppgifterna är egenproducerade och är inte hämtade från nationella prov.
-    </p>
-
-    <p>
-      Använd gärna uppgifterna tillsammans med muntliga samtal där eleven får beskriva:
-    </p>
-
-    <ul>
-      <li>hur eleven började,</li>
-      <li>vilken strategi som användes,</li>
-      <li>varför strategin fungerar,</li>
-      <li>hur svaret kan kontrolleras.</li>
-    </ul>
   </section>
 
 </main>
 
+
 <footer>
-  <p><strong>Matematik åk 3</strong></p>
-  <p>Räkna • Förstå • Problemlösa • Resonera • Förklara</p>
+  <p><strong>Matematik åk 3 – NP-träning</strong></p>
+  <p>Läs • Tänk • Lös • Kontrollera • Lär vidare</p>
 </footer>
+
 
 <script>
 
-  function answer(button, correct) {
+const checkedQuestions = new Set();
+const correctQuestions = new Set();
 
-    const card =
-      button.closest(".task-card");
+const explanations = {
 
-    const buttons =
-      card.querySelectorAll(".answers button");
+  q1:
+    "403 är störst. Jämför först hundratalen: 403 har 4 hundratal medan 398 och 390 har 3 hundratal.",
 
-    const feedback =
-      card.querySelector(".feedback");
+  q2:
+    "48 + 27 = 75. Du kan till exempel räkna 48 + 20 = 68 och sedan 68 + 7 = 75.",
 
-    buttons.forEach(btn => {
-      btn.classList.remove("correct", "wrong");
+  q3:
+    "35 + 12 = 47 och 47 − 8 = 39. Rätt svar är alltså 39.",
+
+  q4:
+    "6 grupper med 4 i varje betyder 6 × 4 = 24.",
+
+  q5:
+    "24 delas lika mellan 6 barn: 24 ÷ 6 = 4.",
+
+  q6:
+    "När helheterna är lika stora är en halv större än en fjärdedel och en åttondel.",
+
+  q7:
+    "Från 10.15 till 10.55 går 40 minuter.",
+
+  q8:
+    "Ett klassrum mäts lämpligast i meter.",
+
+  q9:
+    "En kvadrat har alltid fyra lika långa sidor och fyra räta vinklar.",
+
+  q10:
+    "28 + 15 = 43. Sedan 43 − 9 = 34."
+
+};
+
+
+function checkRadio(name, correctValue, feedbackId) {
+
+  const selected =
+    document.querySelector(
+      'input[name="' + name + '"]:checked'
+    );
+
+  const feedback =
+    document.getElementById(feedbackId);
+
+
+  if (!selected) {
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.textContent =
+      "Välj ett svar först.";
+
+    return;
+  }
+
+
+  const isCorrect =
+    selected.value === correctValue;
+
+
+  registerResult(
+    name,
+    isCorrect
+  );
+
+
+  feedback.className =
+    "feedback " +
+    (isCorrect ? "correct" : "wrong");
+
+
+  feedback.innerHTML =
+    (isCorrect
+      ? "<strong>✓ Rätt!</strong><br>"
+      : "<strong>Inte riktigt.</strong><br>") +
+    explanations[name];
+
+}
+
+
+function checkNumber(inputId, correctValue, feedbackId, questionId) {
+
+  const input =
+    document.getElementById(inputId);
+
+  const feedback =
+    document.getElementById(feedbackId);
+
+  const raw =
+    input.value.trim();
+
+
+  if (raw === "") {
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.textContent =
+      "Skriv ett svar först.";
+
+    return;
+  }
+
+
+  const value =
+    Number(raw);
+
+  const isCorrect =
+    value === correctValue;
+
+
+  registerResult(
+    questionId,
+    isCorrect
+  );
+
+
+  feedback.className =
+    "feedback " +
+    (isCorrect ? "correct" : "wrong");
+
+
+  feedback.innerHTML =
+    (isCorrect
+      ? "<strong>✓ Rätt!</strong><br>"
+      : "<strong>Inte riktigt.</strong><br>") +
+    explanations[questionId];
+
+}
+
+
+function registerResult(id, correct) {
+
+  checkedQuestions.add(id);
+
+
+  if (correct) {
+    correctQuestions.add(id);
+  } else {
+    correctQuestions.delete(id);
+  }
+
+
+  updateProgress();
+
+}
+
+
+function updateProgress() {
+
+  const checked =
+    checkedQuestions.size;
+
+  const percent =
+    (checked / 10) * 100;
+
+
+  document
+    .getElementById("progressBar")
+    .style.width =
+    percent + "%";
+
+
+  document.getElementById("progressText").textContent =
+    checked +
+    " av 10 uppgifter kontrollerade";
+
+
+  if (checked === 10) {
+    showSummary();
+  }
+
+}
+
+
+function showSummary() {
+
+  const correct =
+    correctQuestions.size;
+
+  const summary =
+    document.getElementById("resultat");
+
+
+  let text = "";
+
+
+  if (correct >= 9) {
+
+    text =
+      "Du löste " +
+      correct +
+      " av 10 uppgifter rätt. Fortsätt utmana dig genom att förklara strategier och prova nya typer av problem.";
+
+  } else if (correct >= 7) {
+
+    text =
+      "Du löste " +
+      correct +
+      " av 10 uppgifter rätt. Du visar mycket som fungerar. Titta på återkopplingen på de uppgifter som var svårare och träna vidare där.";
+
+  } else if (correct >= 4) {
+
+    text =
+      "Du löste " +
+      correct +
+      " av 10 uppgifter rätt. Använd förklaringarna för att se vilka områden du vill repetera och prova sedan igen.";
+
+  } else {
+
+    text =
+      "Du löste " +
+      correct +
+      " av 10 uppgifter rätt. Börja med några områden i taget och använd material, bilder, tallinje eller lärarstöd när det hjälper.";
+
+  }
+
+
+  document.getElementById("summaryText").textContent =
+    text;
+
+
+  summary.classList.add("show");
+
+}
+
+
+function resetTraining() {
+
+  checkedQuestions.clear();
+  correctQuestions.clear();
+
+
+  document
+    .querySelectorAll('input[type="radio"]')
+    .forEach(input => {
+      input.checked = false;
     });
 
-    if (correct) {
 
-      button.classList.add("correct");
+  document.getElementById("q10input").value =
+    "";
 
-      feedback.textContent =
-        "✅ Rätt! Försök också förklara hur du vet.";
 
-    } else {
+  document
+    .querySelectorAll(".feedback")
+    .forEach(feedback => {
 
-      button.classList.add("wrong");
+      feedback.className =
+        "feedback";
 
-      feedback.textContent =
-        "Inte riktigt. Fundera en gång till och prova igen.";
-    }
-  }
+      feedback.innerHTML =
+        "";
+
+    });
+
+
+  document
+    .getElementById("resultat")
+    .classList.remove("show");
+
+
+  updateProgress();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+updateProgress();
 
 </script>
 
