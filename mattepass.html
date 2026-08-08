@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mattepass – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .builder {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    label {
+      display: block;
+      color: var(--brun);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: 1px solid #cdbfae;
+      background: #fffaf2;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .lesson {
+      display: none;
+    }
+
+    .lesson.visible {
+      display: block;
+    }
+
+    .lesson-title {
+      background: #eee4d6;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .lesson-title h2 {
+      margin-bottom: 5px;
+    }
+
+    .lesson-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.88rem;
+      font-weight: bold;
+    }
+
+    .phase {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 15px 0;
+    }
+
+    .phase-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .phase-number {
+      min-width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #cdbb9f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .phase h3 {
+      margin: 0;
+    }
+
+    .time {
+      display: inline-block;
+      background: #f3eadf;
+      border-radius: 18px;
+      padding: 4px 9px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-top: 3px;
+    }
+
+    .teacher-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .student-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .language-box {
+      background: #f3eadf;
+      border-left: 5px solid #c3b197;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .support-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .challenge-box {
+      background: #ede8dd;
+      border-left: 5px solid #9f947f;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .task-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      border: 1px solid #cdbfae;
+      border-radius: 10px;
+      background: #fffdf8;
+      color: var(--text);
+      padding: 12px;
+      font: inherit;
+      resize: vertical;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .builder,
+      .phase {
+        padding: 18px;
+      }
+    }
+
+    @media print {
+      nav,
+      .builder,
+      .button-row,
+      .link-grid,
+      footer {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .phase {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .lesson {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧮 Skapa ett mattepass</h1>
+
+  <p>
+    Välj matematikområde och lektionslängd.
+    Sidan bygger ett färdigt lektionsupplägg från start till exit ticket.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#bygg">🛠️ Skapa pass</a>
+  <a href="#lektion">📖 Lektion</a>
+  <a href="#analys">🔎 Efter lektionen</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Samma tydliga struktur</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">☀️</div>
+        <h3>1. Start</h3>
+        <p>Aktivera förkunskaper och väck en matematisk tanke.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👩‍🏫</div>
+        <h3>2. Modellera</h3>
+        <p>Läraren visar, tänker högt och kopplar till representationer.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧱</div>
+        <h3>3. Göra</h3>
+        <p>Eleverna arbetar med en konkret eller visuell aktivitet.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✏️</div>
+        <h3>4. Träna</h3>
+        <p>Eleverna befäster den matematiska idén.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>5. Prata</h3>
+        <p>Lösningar jämförs och motiveras.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚪</div>
+        <h3>6. Avsluta</h3>
+        <p>En kort kontroll visar nästa undervisningssteg.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="bygg">
+    <h2>🛠️ Skapa mattepass</h2>
+
+    <div class="builder">
+
+      <div class="controls">
+
+        <div>
+          <label for="area">Matematikområde</label>
+
+          <select id="area">
+            <option value="tal">Taluppfattning</option>
+            <option value="addition">Addition</option>
+            <option value="subtraktion">Subtraktion</option>
+            <option value="multiplikation">Multiplikation</option>
+            <option value="division">Division</option>
+            <option value="brak">Bråk</option>
+            <option value="geometri">Geometri och mätning</option>
+            <option value="problem">Problemlösning</option>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="length">Lektionslängd</label>
+
+          <select id="length">
+            <option value="40">40 minuter</option>
+            <option value="50" selected>50 minuter</option>
+            <option value="60">60 minuter</option>
+          </select>
+        </div>
+
+
+        <div>
+          <label for="group">Grupp</label>
+
+          <select id="group">
+            <option value="klass">Helklass</option>
+            <option value="liten">Liten grupp</option>
+            <option value="stod">Riktat stöd</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <div class="button-row">
+        <button onclick="buildLesson()">✨ Skapa mattepass</button>
+        <button class="secondary" onclick="window.print()">🖨️ Skriv ut</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box lesson" id="lektion">
+
+    <div class="lesson-title">
+      <h2 id="lessonTitle">Ditt mattepass</h2>
+
+      <p id="lessonGoal"></p>
+
+      <div class="lesson-meta">
+        <span class="tag" id="lessonTime"></span>
+        <span class="tag" id="lessonGroup"></span>
+        <span class="tag">Matematik åk 3</span>
+      </div>
+    </div>
+
+
+    <div class="phase">
+
+      <div class="phase-head">
+        <div class="phase-number">1</div>
+
+        <div>
+          <h3>☀️ Lektionsstart</h3>
+          <span class="time" id="time1"></span>
+        </div>
+      </div>
+
+      <div class="teacher-box" id="starter"></div>
+
+      <div class="language-box">
+        <strong>💬 Fråga:</strong>
+        Hur tänkte du? Kan någon tänka på ett annat sätt?
+      </div>
+
+    </div>
+
+
+    <div class="phase">
+
+      <div class="phase-head">
+        <div class="phase-number">2</div>
+
+        <div>
+          <h3>👩‍🏫 Minilektion</h3>
+          <span class="time" id="time2"></span>
+        </div>
+      </div>
+
+      <div class="teacher-box" id="model"></div>
+
+      <div class="language-box" id="language"></div>
+
+    </div>
+
+
+    <div class="phase">
+
+      <div class="phase-head">
+        <div class="phase-number">3</div>
+
+        <div>
+          <h3>🧱 Elevaktivitet</h3>
+          <span class="time" id="time3"></span>
+        </div>
+      </div>
+
+      <div class="student-box" id="activity"></div>
+
+      <div class="support-box" id="support"></div>
+
+      <div class="challenge-box" id="challenge"></div>
+
+    </div>
+
+
+    <div class="phase">
+
+      <div class="phase-head">
+        <div class="phase-number">4</div>
+
+        <div>
+          <h3>✏️ Träning</h3>
+          <span class="time" id="time4"></span>
+        </div>
+      </div>
+
+      <div class="task-grid" id="tasks"></div>
+
+    </div>
+
+
+    <div class="phase">
+
+      <div class="phase-head">
+        <div class="phase-number">5</div>
+
+        <div>
+          <h3>💬 Matteprat</h3>
+          <span class="time" id="time5"></span>
+        </div>
+      </div>
+
+      <div class="teacher-box" id="talk"></div>
+
+      <div class="language-box">
+        <strong>Meningsstarter:</strong>
+        <br>
+        Jag tänkte...
+        <br>
+        Jag håller med eftersom...
+        <br>
+        Min lösning skiljer sig genom att...
+      </div>
+
+    </div>
+
+
+    <div class="phase">
+
+      <div class="phase-head">
+        <div class="phase-number">6</div>
+
+        <div>
+          <h3>🚪 Exit ticket</h3>
+          <span class="time" id="time6"></span>
+        </div>
+      </div>
+
+      <div class="student-box" id="exit"></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="analys">
+
+    <h2>🔎 Efter lektionen</h2>
+
+    <p>
+      Använd några minuter direkt efter passet till att fånga vad undervisningen visade.
+    </p>
+
+    <ul class="checklist">
+      <li>Vilka elever visade säker förståelse?</li>
+      <li>Vilka behövde konkret eller visuellt stöd?</li>
+      <li>Vilken missuppfattning återkom?</li>
+      <li>Vilket matematikord behöver återkomma nästa gång?</li>
+      <li>Behöver någon elev intensivträning eller fördjupning?</li>
+    </ul>
+
+    <textarea placeholder="Kort läraranteckning efter passet..."></textarea>
+
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Bygg vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="lektionsstart.html">
+        ☀️ Lektionsstarter
+      </a>
+
+      <a class="link-card" href="minilektioner.html">
+        🎯 Minilektioner
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+      <a class="link-card" href="uppgiftsbank.html">
+        🗂️ Uppgiftsbank
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="lektionsavslut.html">
+        🌙 Lektionsavslut
+      </a>
+
+      <a class="link-card" href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a class="link-card" href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Mattepass</strong></p>
+  <p>Starta • Modellera • Göra • Träna • Resonera • Följa upp</p>
+</footer>
+
+
+<script>
+
+const lessonBank = {
+
+  tal: {
+    title: "Taluppfattning – platsvärde och talens storlek",
+
+    goal:
+      "Mål: Eleven ska kunna beskriva tresiffriga tal med hundratal, tiotal och ental samt jämföra tal.",
+
+    starter:
+      "<strong>Dagens tal: 364</strong><br><br>Fråga: Hur många hundratal, tiotal och ental? Vad är 10 mer? Vad är 100 mindre?",
+
+    model:
+      "<strong>Modellera 364.</strong><br><br>Visa 3 hundratal, 6 tiotal och 4 ental. Skriv sedan 364 = 300 + 60 + 4. Jämför därefter 364 och 346.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Siffran ___ står på ___platsen och är värd ___.",
+
+    activity:
+      "<strong>Bygg och jämför.</strong><br><br>Eleverna bygger 248, 482 och 508 med positionsmaterial eller ritar hundratal, tiotal och ental. Lägg talen i storleksordning.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Använd platsvärdestabell och arbeta med tvåsiffriga tal först vid behov.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Skapa det största och minsta tresiffriga talet med siffrorna 2, 5 och 8.",
+
+    tasks: [
+      "Vad är 7:an värd i 472?",
+      "Skriv 506 i utvecklad form.",
+      "398 ___ 403",
+      "Vad är 100 mindre än 725?"
+    ],
+
+    talk:
+      "<strong>Jämför 398 och 403.</strong><br><br>Be två elever förklara på olika sätt varför 403 är större.",
+
+    exit:
+      "<strong>Exit:</strong><br>1. Vad är 6:an värd i 364?<br>2. Vilket är störst: 489 eller 498?<br>3. Förklara hur du vet."
+  },
+
+
+  addition: {
+    title: "Addition – flexibla strategier",
+
+    goal:
+      "Mål: Eleven ska kunna använda och förklara en strategi för addition.",
+
+    starter:
+      "<strong>Hur skulle du räkna 49 + 26?</strong><br><br>Låt eleverna tänka själva och sedan prata i par.",
+
+    model:
+      "<strong>Modellera två strategier.</strong><br><br>49 + 26 = 50 + 26 − 1.<br><br>49 + 26 = 49 + 20 + 6.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Jag valde strategin ___ eftersom ___.",
+
+    activity:
+      "<strong>Strategijakt.</strong><br><br>Eleverna får uppgifterna 38 + 27, 59 + 24 och 46 + 35. De löser varje uppgift och väljer en strategi som passar.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Använd tallinje, tiobasmaterial och gå via närmaste tiotal.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Lös 99 + 48 på minst tre olika sätt och jämför metoderna.",
+
+    tasks: [
+      "38 + 27",
+      "46 + 35",
+      "59 + 24",
+      "125 + 43"
+    ],
+
+    talk:
+      "<strong>Jämför:</strong><br>47 + 28 = 47 + 20 + 8<br>och<br>47 + 28 = 47 + 3 + 25.<br><br>Vilken strategi tycker du är smidigast?",
+
+    exit:
+      "<strong>Exit:</strong><br>Räkna 48 + 27 och skriv en mening om hur du tänkte."
+  },
+
+
+  subtraktion: {
+    title: "Subtraktion – skillnad och strategier",
+
+    goal:
+      "Mål: Eleven ska förstå subtraktion som både ta bort och skillnad samt välja en fungerande strategi.",
+
+    starter:
+      "<strong>Hur stor är skillnaden mellan 38 och 42?</strong><br><br>Visa gärna på tallinje.",
+
+    model:
+      "<strong>Modellera 72 − 38.</strong><br><br>Räkna upp: 38 → 40 = 2, 40 → 70 = 30, 70 → 72 = 2. Totalt 34.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Skillnaden mellan ___ och ___ är ___.",
+
+    activity:
+      "<strong>Två strategier.</strong><br><br>Eleverna löser 63 − 28 och 81 − 47 på två sätt: räkna upp och valfri annan strategi.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Använd tallinje och mindre tal. Markera hopp tydligt.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Hitta fem talpar som har differensen 25.",
+
+    tasks: [
+      "52 − 17",
+      "63 − 28",
+      "72 − 38",
+      "91 − 46"
+    ],
+
+    talk:
+      "<strong>Diskutera:</strong><br>När är det smart att räkna upp istället för att räkna bakåt?",
+
+    exit:
+      "<strong>Exit:</strong><br>Räkna 72 − 38 och kontrollera svaret med addition."
+  },
+
+
+  multiplikation: {
+    title: "Multiplikation – lika stora grupper",
+
+    goal:
+      "Mål: Eleven ska förstå multiplikation som lika stora grupper och använda tabellsamband.",
+
+    starter:
+      "<strong>Vad ser du?</strong><br><br>Rita 4 grupper med 3 prickar i varje. Hur många prickar totalt?",
+
+    model:
+      "<strong>Modellera:</strong><br>3 + 3 + 3 + 3 = 12<br>4 × 3 = 12.<br><br>Visa även 3 × 4 och jämför.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Det finns ___ grupper med ___ i varje.",
+
+    activity:
+      "<strong>Bygg multiplikation.</strong><br><br>Eleverna använder markörer och bygger 3 × 5, 4 × 6 och 5 × 7. Varje modell kopplas till addition och multiplikation.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Börja med 2-, 5- och 10-grupper och låt eleven räkna varje grupp.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Om 5 × 7 = 35, hur kan det hjälpa med 6 × 7 och 4 × 7?",
+
+    tasks: [
+      "3 × 6",
+      "4 × 7",
+      "5 × 8",
+      "Om 5 × 6 = 30, vad blir 6 × 6?"
+    ],
+
+    talk:
+      "<strong>Matteprat:</strong><br>Varför blir 4 × 6 och 6 × 4 lika mycket trots att bilderna kan se olika ut?",
+
+    exit:
+      "<strong>Exit:</strong><br>Visa 4 × 6 med bild, addition och multiplikation."
+  },
+
+
+  division: {
+    title: "Division – dela lika och gruppera",
+
+    goal:
+      "Mål: Eleven ska förstå två sätt att tolka division och koppla division till multiplikation.",
+
+    starter:
+      "<strong>12 markörer ska delas mellan 3 elever.</strong><br><br>Hur många får varje elev?",
+
+    model:
+      "<strong>Visa två situationer.</strong><br><br>1. 12 delas i 3 grupper.<br>2. 12 delas i grupper om 3.<br><br>Diskutera vad frågan söker i varje situation.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Jag vet ___ totalt. Jag vet också ___. Jag ska ta reda på ___.",
+
+    activity:
+      "<strong>Dela och gruppera.</strong><br><br>Använd 24 markörer. Dela först i 6 grupper. Gör sedan grupper om 6. Jämför.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Använd konkret material och små antal. Säg vad varje grupp representerar.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> På vilka olika sätt kan 24 delas i lika stora heltalsgrupper?",
+
+    tasks: [
+      "20 ÷ 5",
+      "24 ÷ 6",
+      "35 ÷ 5",
+      "Om 4 × 6 = 24, vilka två divisionsuttryck hör ihop?"
+    ],
+
+    talk:
+      "<strong>Matteprat:</strong><br>Vad är skillnaden mellan '24 delas i 4 grupper' och '24 delas i grupper om 4'?",
+
+    exit:
+      "<strong>Exit:</strong><br>24 kakor delas lika mellan 6 barn. Hur många får varje? Förklara med multiplikation."
+  },
+
+
+  brak: {
+    title: "Bråk – lika stora delar",
+
+    goal:
+      "Mål: Eleven ska förstå bråk som lika stora delar av en helhet och kunna jämföra enkla bråk.",
+
+    starter:
+      "<strong>Vilket är störst: 1/2 eller 1/4?</strong><br><br>Rösta först. Förklara sedan.",
+
+    model:
+      "<strong>Modellera med två lika stora pappersremsor.</strong><br><br>Dela den ena i två lika delar och den andra i fyra.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Helheten är delad i ___ lika stora delar. En del är ___.",
+
+    activity:
+      "<strong>Bråkverkstad.</strong><br><br>Vik papper och visa 1/2, 1/4, 2/4 och 3/4. Jämför modellerna.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Använd alltid lika stora helheter när bråk jämförs.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Visa på tre olika sätt att 2/4 kan motsvara samma del av en lika stor helhet som 1/2.",
+
+    tasks: [
+      "Hitta 1/2 av 16.",
+      "Hitta 1/4 av 20.",
+      "Vilket är störst: 1/3 eller 1/4?",
+      "Hur många fjärdedelar behövs för en hel?"
+    ],
+
+    talk:
+      "<strong>Matteprat:</strong><br>Varför blir varje del mindre när samma helhet delas i fler lika stora delar?",
+
+    exit:
+      "<strong>Exit:</strong><br>Rita en helhet där 1/4 är markerad och skriv en mening som förklarar varför det är en fjärdedel."
+  },
+
+
+  geometri: {
+    title: "Geometri och mätning – egenskaper och enheter",
+
+    goal:
+      "Mål: Eleven ska kunna beskriva geometriska figurer med egenskaper och välja lämpliga måttenheter.",
+
+    starter:
+      "<strong>Beskriv en kvadrat utan att säga ordet kvadrat.</strong>",
+
+    model:
+      "<strong>Modellera hur en figur beskrivs.</strong><br><br>Antal sidor, hörn, sidornas längd och andra egenskaper.",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Figuren har ___ sidor och ___ hörn. Jag vet att det är en ___ eftersom ___.",
+
+    activity:
+      "<strong>Sortera figurer.</strong><br><br>Eleverna sorterar trianglar, kvadrater, rektanglar och andra fyrhörningar efter egenskaper.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Använd konkreta figurer och låt eleven känna, peka och räkna sidor och hörn.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Rita två olika fyrhörningar och beskriv vad de har gemensamt och vad som skiljer dem.",
+
+    tasks: [
+      "Hur många hörn har en triangel?",
+      "Vilken enhet passar en penna: cm eller m?",
+      "Vilket är tyngst: 900 g eller 1 kg?",
+      "Rita en figur med en symmetrilinje."
+    ],
+
+    talk:
+      "<strong>Matteprat:</strong><br>Kan en kvadrat också beskrivas som en rektangel? Resonera utifrån figurernas egenskaper.",
+
+    exit:
+      "<strong>Exit:</strong><br>Beskriv en rektangel med minst två matematiska egenskaper."
+  },
+
+
+  problem: {
+    title: "Problemlösning – förstå, planera och kontrollera",
+
+    goal:
+      "Mål: Eleven ska kunna förstå en problemsituation, välja strategi och kontrollera om svaret är rimligt.",
+
+    starter:
+      "<strong>Läs utan att räkna:</strong><br><br>Mira har 28 pärlor. Hon får 15 nya och använder sedan 9. Vad händer i berättelsen?",
+
+    model:
+      "<strong>Tänk högt.</strong><br><br>1. Vad vet jag?<br>2. Vad söker jag?<br>3. Vad händer först?<br>4. Vad händer sedan?<br>5. Hur kan jag visa situationen?",
+
+    language:
+      "<strong>💬 Språk:</strong><br>Först... Sedan... Jag behöver ta reda på... Jag väljer ___ eftersom...",
+
+    activity:
+      "<strong>Rita problemet.</strong><br><br>Eleverna löser ett tvåstegsproblem genom att först återberätta och rita, därefter skriva uträkning.",
+
+    support:
+      "<strong>🌱 Stöd:</strong> Läs problemet högt, förklara nödvändiga ord och använd en enkel händelsekedja.",
+
+    challenge:
+      "<strong>⭐ Utmaning:</strong> Skapa ett eget tvåstegsproblem där svaret blir 24.",
+
+    tasks: [
+      "18 kulor + 7 kulor. Hur många totalt?",
+      "24 kakor delas mellan 6 barn.",
+      "32 elever delas i grupper om 4.",
+      "Skapa en rimlighetskontroll för 48 + 27."
+    ],
+
+    talk:
+      "<strong>Matteprat:</strong><br>Kan två elever välja olika strategier och ändå båda ha rätt? Visa med ett exempel.",
+
+    exit:
+      "<strong>Exit:</strong><br>Skriv de tre första sakerna du bör göra när du möter ett nytt matematikproblem."
+  }
+};
+
+
+function getTimes(total) {
+
+  if (total === 40) {
+    return [5,7,8,10,5,5];
+  }
+
+  if (total === 60) {
+    return [7,10,13,15,8,7];
+  }
+
+  return [5,8,10,12,8,7];
+}
+
+
+function groupLabel(group) {
+
+  if (group === "liten") return "Liten grupp";
+  if (group === "stod") return "Riktat stöd";
+
+  return "Helklass";
+}
+
+
+function buildLesson() {
+
+  const area = document.getElementById("area").value;
+  const length = Number(document.getElementById("length").value);
+  const group = document.getElementById("group").value;
+
+  const lesson = lessonBank[area];
+  const times = getTimes(length);
+
+  document.getElementById("lessonTitle").textContent = lesson.title;
+  document.getElementById("lessonGoal").textContent = lesson.goal;
+  document.getElementById("lessonTime").textContent = length + " minuter";
+  document.getElementById("lessonGroup").textContent = groupLabel(group);
+
+  for (let i = 0; i < 6; i++) {
+    document.getElementById("time" + (i + 1)).textContent =
+      times[i] + " minuter";
+  }
+
+  document.getElementById("starter").innerHTML = lesson.starter;
+  document.getElementById("model").innerHTML = lesson.model;
+  document.getElementById("language").innerHTML = lesson.language;
+  document.getElementById("activity").innerHTML = lesson.activity;
+  document.getElementById("support").innerHTML = lesson.support;
+  document.getElementById("challenge").innerHTML = lesson.challenge;
+  document.getElementById("talk").innerHTML = lesson.talk;
+  document.getElementById("exit").innerHTML = lesson.exit;
+
+  const tasks = document.getElementById("tasks");
+  tasks.innerHTML = "";
+
+  lesson.tasks.forEach((task,index) => {
+
+    const div = document.createElement("div");
+    div.className = "task-card";
+
+    div.innerHTML =
+      "<strong>Uppgift " + (index + 1) + "</strong><br>" + task;
+
+    tasks.appendChild(div);
+  });
+
+  document.getElementById("lektion").classList.add("visible");
+
+  document.getElementById("lektion").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+document.addEventListener("DOMContentLoaded", buildLesson);
+
+</script>
+
+</body>
+</html>
