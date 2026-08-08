@@ -21,535 +21,410 @@
     }
 
     * {
-      box-sizing: border-box;
+      box-sizing:border-box;
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior:smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.5;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2.2rem,6vw,4rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 900px;
-      margin: 12px auto 0;
-      font-size: 1.08rem;
+      max-width:900px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px 8px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
+      position:sticky;
+      top:0;
+      z-index:20;
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      padding: 8px 10px;
-      margin: 3px;
-      border-radius: 9px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 30px 20px 70px;
+      max-width:1150px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 15px var(--skugga);
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     .intro {
-      background: #eee4d6;
+      background:#eee4d6;
     }
 
     h2,
-    h3,
-    h4 {
-      color: var(--brun);
+    h3 {
+      color:var(--brun);
     }
 
     h2 {
-      margin-top: 0;
+      margin-top:0;
     }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .info-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 14px;
-      padding: 17px;
-    }
-
-    .info-card .icon {
-      font-size: 2rem;
-      margin-bottom: 6px;
-    }
-
-    .info-card strong {
-      display: block;
-      color: var(--brun);
-      margin-bottom: 5px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      color: var(--brun);
-      margin-bottom: 5px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      border: 1px solid #cdbfae;
-      border-radius: 9px;
-      padding: 10px;
-      background: #fffdf8;
-      color: var(--text);
-      font: inherit;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    button {
-      border: none;
-      background: #d6c3a6;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: var(--beige2);
-    }
-
-    .secondary {
-      background: #ece3d5;
-      border: 1px solid #d1c0aa;
-    }
-
-    .danger {
-      background: #ead7d2;
-      border: 1px solid #cfaea7;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .week-header {
-      background: #eee4d6;
-      border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-
-    .week-top {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px;
-    }
-
-    .focus-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .day-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 20px;
-      margin: 16px 0;
-      box-shadow: 0 3px 9px var(--skugga);
-    }
-
-    .day-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      background: #f3eadf;
-      border-radius: 11px;
-      padding: 12px 14px;
-      margin-bottom: 15px;
-    }
-
-    .day-title h3 {
-      margin: 0;
-    }
-
-    .lesson-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 14px;
+    .top-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
     }
 
     .field {
-      margin-bottom: 13px;
+      margin-bottom:4px;
     }
 
     .full {
-      grid-column: 1 / -1;
+      grid-column:1 / -1;
     }
 
-    .support-row {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 14px;
+    label {
+      display:block;
+      color:var(--brun);
+      font-weight:bold;
+      margin-bottom:5px;
     }
 
-    .support-box {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 14px;
+    input,
+    textarea {
+      width:100%;
+      padding:10px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      background:white;
+      color:var(--text);
+      font:inherit;
     }
 
-    .challenge-box {
-      background: #e7eadf;
-      border-left: 5px solid #a7ad91;
-      border-radius: 10px;
-      padding: 14px;
+    textarea {
+      min-height:82px;
+      resize:vertical;
     }
 
-    .reflection-box {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
-      border-radius: 11px;
-      padding: 16px;
-      margin-top: 18px;
+    button {
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
-    .privacy-note {
-      background: #f3eadf;
-      border: 1px solid #d6c7b4;
-      border-radius: 11px;
-      padding: 14px;
-      margin-top: 17px;
+    button:hover {
+      background:var(--beige2);
+    }
+
+    .secondary {
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
+    }
+
+    .danger {
+      background:#ead7d2;
+      border:1px solid #cfaea7;
+    }
+
+    .button-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:17px;
     }
 
     .save-status {
-      margin-top: 10px;
-      min-height: 24px;
-      font-weight: bold;
-      color: var(--brun);
+      min-height:23px;
+      margin-top:10px;
+      font-weight:bold;
+      color:var(--brun);
     }
 
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
-      margin-top: 16px;
+    .day-card {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:17px;
+      padding:22px;
+      margin-bottom:22px;
+      box-shadow:0 4px 12px var(--skugga);
     }
 
-    .links a {
-      display: block;
-      text-decoration: none;
-      text-align: center;
-      color: var(--text);
-      background: #f3eadf;
-      border: 1px solid var(--kant);
-      border-radius: 12px;
-      padding: 15px;
-      font-weight: bold;
+    .day-head {
+      background:#eee4d6;
+      border-radius:12px;
+      padding:13px 15px;
+      margin-bottom:15px;
     }
 
-    .links a:hover {
-      background: var(--beige);
+    .day-head h2 {
+      margin:0;
+    }
+
+    .day-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:13px;
+    }
+
+    .mini-card {
+      background:#f3eadf;
+      border:1px solid #d8cab7;
+      border-radius:11px;
+      padding:13px;
+    }
+
+    .mini-card textarea {
+      background:#fffdf8;
+    }
+
+    .reflection {
+      background:#e7eadf;
+      border-left:5px solid #a7ad91;
+      border-radius:10px;
+      padding:14px;
+      margin-top:16px;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 28px 20px;
+      background:#d8c8b2;
+      color:#4d443c;
+      text-align:center;
+      padding:27px 20px;
     }
 
 
-    /* =====================================
-       A4-UTSKRIFT
-       ===================================== */
+    /* =========================
+       A4-UTSKRIFT – QA-RÄTTAD
+       ========================= */
 
     @page {
-      size: A4 portrait;
-      margin: 12mm 13mm 14mm 13mm;
+      size:A4 portrait;
+      margin:12mm 13mm 14mm 13mm;
     }
 
     @media print {
 
       html,
       body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #fff !important;
-        color: #000 !important;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 9.5pt;
-        line-height: 1.25;
+        margin:0 !important;
+        padding:0 !important;
+        background:white !important;
+        color:#000 !important;
+        font-size:9pt;
+        line-height:1.25;
       }
 
       header,
       nav,
       footer,
-      .intro,
       .screen-only,
       .button-row,
-      .privacy-note,
-      .save-status,
-      .links,
       button {
-        display: none !important;
+        display:none !important;
       }
 
       main {
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        width:auto !important;
+        max-width:none !important;
+        margin:0 !important;
+        padding:0 !important;
       }
 
       .box {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: white !important;
-        border: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
+        background:white !important;
+        border:none !important;
+        border-radius:0 !important;
+        box-shadow:none !important;
+        padding:0 !important;
+        margin:0 0 5mm !important;
       }
 
-      .week-header {
-        background: white !important;
-        border: 1px solid #777 !important;
-        border-radius: 0 !important;
-        padding: 4mm !important;
-        margin: 0 0 5mm !important;
-
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+      .intro {
+        display:none !important;
       }
 
-      .week-header::before {
-        content: "Veckoplan – Matematik åk 3";
-        display: block;
-        font-size: 18pt;
-        font-weight: bold;
-        margin-bottom: 4mm;
-      }
-
-      .week-top {
-        grid-template-columns: repeat(3,1fr) !important;
-        gap: 3mm !important;
-      }
-
-      .focus-grid {
-        grid-template-columns: repeat(2,1fr) !important;
-        gap: 3mm !important;
-        margin-top: 3mm !important;
-      }
-
-      label {
-        color: #000 !important;
-        font-size: 8.5pt;
-        margin-bottom: 1mm !important;
-      }
-
-      input,
-      textarea,
-      select {
-        border: 1px solid #888 !important;
-        border-radius: 0 !important;
-        background: white !important;
-        color: #000 !important;
-        padding: 2mm !important;
-        font-size: 9pt !important;
-        overflow: visible !important;
-      }
-
-      textarea {
-        resize: none !important;
-        min-height: 13mm !important;
-        height: auto !important;
-      }
-
-      .day-card {
-        background: white !important;
-        border: 1px solid #777 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        padding: 4mm !important;
-        margin: 0 0 5mm !important;
-
-        break-inside: avoid-page;
-        page-break-inside: avoid;
-      }
-
-      .day-title {
-        background: #eee !important;
-        border-radius: 0 !important;
-        padding: 2mm 3mm !important;
-        margin: 0 0 3mm !important;
-
-        break-inside: avoid-page;
-        page-break-inside: avoid;
-      }
-
-      .day-title h3 {
-        color: #000 !important;
-        font-size: 13pt !important;
-      }
-
-      .lesson-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2,1fr) !important;
-        gap: 3mm !important;
+      .top-grid {
+        display:grid !important;
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:3mm !important;
+        margin-bottom:5mm !important;
       }
 
       .field {
-        margin-bottom: 2mm !important;
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+        break-inside:avoid-page;
+        page-break-inside:avoid;
       }
 
-      .support-row {
-        display: grid !important;
-        grid-template-columns: repeat(2,1fr) !important;
-        gap: 3mm !important;
-        margin-top: 2mm !important;
+      label {
+        color:#000 !important;
+        font-size:8.4pt !important;
       }
 
-      .support-box,
-      .challenge-box {
-        background: white !important;
-        border: 1px solid #888 !important;
-        border-left: 2pt solid #666 !important;
-        border-radius: 0 !important;
-        padding: 3mm !important;
-
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+      input,
+      textarea {
+        border:1px solid #777 !important;
+        border-radius:0 !important;
+        background:white !important;
+        color:#000 !important;
+        padding:1.5mm !important;
+        font-size:8.5pt !important;
+        overflow:visible !important;
       }
 
-      .reflection-box {
-        background: white !important;
-        border: 1px solid #777 !important;
-        border-left: 2pt solid #666 !important;
-        border-radius: 0 !important;
-        padding: 4mm !important;
-        margin-top: 5mm !important;
+      /*
+        QA-FIX:
+        Hela .day-card hålls INTE längre ihop.
 
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+        Ett dagskort får vid behov fortsätta
+        på nästa sida, vilket är mycket bättre
+        än stora tomma ytor eller konstiga hopp.
+      */
+
+      .day-card {
+        background:white !important;
+        border:1px solid #777 !important;
+        border-radius:0 !important;
+        box-shadow:none !important;
+        padding:3mm !important;
+        margin:0 0 4mm !important;
+
+        break-inside:auto !important;
+        page-break-inside:auto !important;
+      }
+
+      .day-head {
+        background:white !important;
+        border-bottom:1px solid #777 !important;
+        border-radius:0 !important;
+        padding:0 0 2mm !important;
+        margin-bottom:2mm !important;
+
+        break-after:avoid-page;
+        page-break-after:avoid;
+      }
+
+      .day-head h2 {
+        color:#000 !important;
+        font-size:13pt !important;
+      }
+
+      .day-grid {
+        display:grid !important;
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:2.5mm !important;
+      }
+
+      /*
+        Bara de mindre delkorten hålls ihop.
+      */
+
+      .mini-card {
+        background:white !important;
+        border:1px solid #888 !important;
+        border-radius:0 !important;
+        padding:2.5mm !important;
+
+        break-inside:avoid-page;
+        page-break-inside:avoid;
+      }
+
+      .reflection {
+        background:white !important;
+        border:1px solid #777 !important;
+        border-left:2pt solid #555 !important;
+        border-radius:0 !important;
+        padding:3mm !important;
+        margin-top:3mm !important;
+
+        break-inside:auto;
+        page-break-inside:auto;
       }
 
       h1,
       h2,
-      h3,
-      h4 {
-        color: #000 !important;
-        break-after: avoid-page;
-        page-break-after: avoid;
+      h3 {
+        color:#000 !important;
+        break-after:avoid-page;
+        page-break-after:avoid;
       }
 
-      p {
-        orphans: 3;
-        widows: 3;
-      }
-
-      .monday,
-      .tuesday,
-      .wednesday,
-      .thursday,
-      .friday {
-        break-after: auto;
+      p,
+      li {
+        orphans:3;
+        widows:3;
       }
     }
 
 
-    @media(max-width:750px) {
+    @media(max-width:760px) {
 
       nav {
-        position: static;
+        position:static;
       }
 
       nav a {
-        display: block;
+        display:block;
       }
 
       main {
-        padding: 22px 12px 55px;
+        padding:20px 10px 50px;
       }
 
       .box,
       .day-card {
-        padding: 18px;
+        padding:17px;
       }
 
-      .week-top,
-      .focus-grid,
-      .lesson-grid,
-      .support-row {
-        grid-template-columns: 1fr;
+      .top-grid,
+      .day-grid {
+        grid-template-columns:1fr;
       }
 
       .full {
-        grid-column: auto;
+        grid-column:auto;
       }
     }
   </style>
@@ -563,9 +438,9 @@
   <h1>📅 Veckoplan</h1>
 
   <p>
-    Planera matematikundervisningen vecka för vecka med mål,
-    begrepp, aktiviteter, språkstöd, anpassningar,
-    utmaning och uppföljning.
+    Planera matematikveckan med mål, begrepp,
+    lektionsstarter, aktiviteter, matematikprat,
+    stöd, utmaning och avslut.
   </p>
 
 </header>
@@ -573,76 +448,83 @@
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#vecka">📅 Veckan</a>
+  <a href="#planering">📅 Planering</a>
   <a href="#mandag">Måndag</a>
   <a href="#tisdag">Tisdag</a>
   <a href="#onsdag">Onsdag</a>
   <a href="#torsdag">Torsdag</a>
   <a href="#fredag">Fredag</a>
-  <a href="#uppfoljning">🔎 Uppföljning</a>
 </nav>
 
 
 <main>
 
+  <section class="box intro screen-only">
 
-  <!-- INTRO -->
-
-  <section class="box intro">
-
-    <h2>🧭 Planera från mål till uppföljning</h2>
+    <h2>🧭 Planera en tydlig matematikvecka</h2>
 
     <p>
-      Veckoplanen hjälper dig att hålla ihop innehåll,
-      matematiskt språk, undervisningsaktivitet och elevbehov.
+      Veckoplanen är ett planeringsstöd. Anpassa innehåll,
+      tempo och stöd efter undervisningen och det du ser i elevernas arbete.
     </p>
 
+  </section>
 
-    <div class="info-grid">
 
-      <div class="info-card">
-        <div class="icon">🎯</div>
-        <strong>Mål</strong>
-        Vad ska eleverna utveckla förståelse för?
+
+  <section class="box" id="planering">
+
+    <h2>📋 Veckans planering</h2>
+
+    <div class="top-grid">
+
+      <div class="field">
+        <label for="week">Vecka</label>
+        <input id="week" type="text" placeholder="t.ex. 38">
       </div>
 
-      <div class="info-card">
-        <div class="icon">💬</div>
-        <strong>Språk</strong>
-        Vilka ord och sätt att uttrycka matematik behöver synliggöras?
+      <div class="field">
+        <label for="className">Klass / grupp</label>
+        <input id="className" type="text" placeholder="t.ex. 3A">
       </div>
 
-      <div class="info-card">
-        <div class="icon">🧱</div>
-        <strong>Representationer</strong>
-        Vilket material, vilka bilder och symboler ska användas?
+      <div class="field full">
+        <label for="area">Matematikområde</label>
+        <input id="area" type="text" placeholder="t.ex. Addition och subtraktion">
       </div>
 
-      <div class="info-card">
-        <div class="icon">🌱</div>
-        <strong>Stöd</strong>
-        Vilka elever behöver mer konkretisering, språkstöd eller repetition?
+      <div class="field full">
+        <label for="goal">Veckans mål</label>
+        <textarea id="goal"></textarea>
       </div>
 
-      <div class="info-card">
-        <div class="icon">⭐</div>
-        <strong>Utmaning</strong>
-        Hur kan uppgiften öppnas eller fördjupas?
+      <div class="field">
+        <label for="concepts">Viktiga begrepp</label>
+        <textarea id="concepts"></textarea>
       </div>
 
-      <div class="info-card">
-        <div class="icon">🔎</div>
-        <strong>Uppföljning</strong>
-        Vad visar att undervisningen gett önskad effekt?
+      <div class="field">
+        <label for="representations">Representationer</label>
+        <textarea id="representations" placeholder="material, bild, tallinje, symboler..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="language">Språkfokus</label>
+        <textarea id="language"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="assessment">Vad vill jag observera?</label>
+        <textarea id="assessment"></textarea>
       </div>
 
     </div>
 
 
-    <div class="button-row">
+    <div class="button-row screen-only">
 
-      <button onclick="savePlan()">
-        💾 Spara veckoplan
+      <button onclick="savePlan(true)">
+        💾 Spara
       </button>
 
       <button class="secondary" onclick="window.print()">
@@ -655,672 +537,55 @@
 
     </div>
 
-
-    <div class="save-status" id="saveStatus"></div>
-
-
-    <div class="privacy-note">
-
-      <strong>🔒 Om sparfunktionen:</strong>
-
-      Innehållet sparas endast lokalt i den webbläsare och på den enhet
-      där sidan används. Undvik att skriva känsliga personuppgifter eller
-      fullständiga elevnamn, särskilt på delade datorer.
-
-    </div>
+    <div class="save-status screen-only" id="saveStatus"></div>
 
   </section>
 
 
 
-  <!-- VECKA -->
+  <!-- MÅNDAG -->
 
-  <section class="box" id="vecka">
+  <section class="day-card" id="mandag">
 
-    <div class="week-header">
-
-      <div class="week-top">
-
-        <div>
-          <label for="week">Vecka</label>
-          <input id="week" type="text" placeholder="t.ex. 37">
-        </div>
-
-        <div>
-          <label for="className">Klass/grupp</label>
-          <input id="className" type="text" placeholder="t.ex. 3A">
-        </div>
-
-        <div>
-          <label for="area">Matematikområde</label>
-          <input id="area" type="text" placeholder="t.ex. Addition">
-        </div>
-
-      </div>
-
-
-      <div class="focus-grid">
-
-        <div>
-          <label for="weekGoal">Veckans matematiska mål</label>
-
-          <textarea
-            id="weekGoal"
-            placeholder="Efter veckan ska eleverna kunna..."
-          ></textarea>
-        </div>
-
-
-        <div>
-          <label for="concepts">Viktiga begrepp</label>
-
-          <textarea
-            id="concepts"
-            placeholder="t.ex. summa, term, strategi, tiotal..."
-          ></textarea>
-        </div>
-
-
-        <div>
-          <label for="representations">Representationer/material</label>
-
-          <textarea
-            id="representations"
-            placeholder="tallinje, tiobasmaterial, bild, symboler..."
-          ></textarea>
-        </div>
-
-
-        <div>
-          <label for="languageFocus">Språkfokus</label>
-
-          <textarea
-            id="languageFocus"
-            placeholder="meningsstarter, begrepp, frågor..."
-          ></textarea>
-        </div>
-
-      </div>
-
+    <div class="day-head">
+      <h2>☀️ Måndag</h2>
     </div>
 
+    <div class="day-grid">
 
-
-    <!-- MÅNDAG -->
-
-    <div class="day-card monday" id="mandag">
-
-      <div class="day-title">
-        <h3>☀️ Måndag</h3>
-        <strong>Start och synliggörande</strong>
+      <div class="mini-card">
+        <label for="monGoal">Dagens mål</label>
+        <textarea id="monGoal"></textarea>
       </div>
 
-
-      <div class="lesson-grid">
-
-        <div class="field">
-
-          <label for="monGoal">
-            Dagens mål
-          </label>
-
-          <textarea
-            id="monGoal"
-            placeholder="Vad ska eleverna förstå eller kunna?"
-          ></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="monStart">
-            Lektionsstart
-          </label>
-
-          <textarea
-            id="monStart"
-            placeholder="Dagens tal, bild, problem, samtalsfråga..."
-          ></textarea>
-
-        </div>
-
-
-        <div class="field full">
-
-          <label for="monActivity">
-            Huvudaktivitet
-          </label>
-
-          <textarea
-            id="monActivity"
-            placeholder="Vad gör läraren och eleverna?"
-          ></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="monTalk">
-            Matematikprat
-          </label>
-
-          <textarea
-            id="monTalk"
-            placeholder="Vilka frågor ska ställas?"
-          ></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="monExit">
-            Avslut / exit ticket
-          </label>
-
-          <textarea
-            id="monExit"
-            placeholder="Hur fångar jag elevernas förståelse?"
-          ></textarea>
-
-        </div>
-
+      <div class="mini-card">
+        <label for="monStart">Lektionsstart</label>
+        <textarea id="monStart"></textarea>
       </div>
 
-
-      <div class="support-row">
-
-        <div class="support-box">
-
-          <label for="monSupport">
-            🌱 Stöd
-          </label>
-
-          <textarea
-            id="monSupport"
-            placeholder="konkret material, språkstöd, mindre talområde..."
-          ></textarea>
-
-        </div>
-
-
-        <div class="challenge-box">
-
-          <label for="monChallenge">
-            ⭐ Utmaning
-          </label>
-
-          <textarea
-            id="monChallenge"
-            placeholder="öppen fråga, fler lösningar, generalisering..."
-          ></textarea>
-
-        </div>
-
+      <div class="mini-card">
+        <label for="monActivity">Huvudaktivitet</label>
+        <textarea id="monActivity"></textarea>
       </div>
 
-    </div>
-
-
-
-    <!-- TISDAG -->
-
-    <div class="day-card tuesday" id="tisdag">
-
-      <div class="day-title">
-        <h3>🌿 Tisdag</h3>
-        <strong>Strategier och träning</strong>
+      <div class="mini-card">
+        <label for="monTalk">Matematikprat</label>
+        <textarea id="monTalk"></textarea>
       </div>
 
-
-      <div class="lesson-grid">
-
-        <div class="field">
-
-          <label for="tueGoal">
-            Dagens mål
-          </label>
-
-          <textarea id="tueGoal"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="tueStart">
-            Lektionsstart
-          </label>
-
-          <textarea id="tueStart"></textarea>
-
-        </div>
-
-
-        <div class="field full">
-
-          <label for="tueActivity">
-            Huvudaktivitet
-          </label>
-
-          <textarea id="tueActivity"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="tueTalk">
-            Matematikprat
-          </label>
-
-          <textarea id="tueTalk"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="tueExit">
-            Avslut / exit ticket
-          </label>
-
-          <textarea id="tueExit"></textarea>
-
-        </div>
-
+      <div class="mini-card">
+        <label for="monSupport">Stöd</label>
+        <textarea id="monSupport"></textarea>
       </div>
 
-
-      <div class="support-row">
-
-        <div class="support-box">
-
-          <label for="tueSupport">
-            🌱 Stöd
-          </label>
-
-          <textarea id="tueSupport"></textarea>
-
-        </div>
-
-
-        <div class="challenge-box">
-
-          <label for="tueChallenge">
-            ⭐ Utmaning
-          </label>
-
-          <textarea id="tueChallenge"></textarea>
-
-        </div>
-
+      <div class="mini-card">
+        <label for="monChallenge">Utmaning</label>
+        <textarea id="monChallenge"></textarea>
       </div>
 
-    </div>
-
-
-
-    <!-- ONSDAG -->
-
-    <div class="day-card wednesday" id="onsdag">
-
-      <div class="day-title">
-        <h3>🧠 Onsdag</h3>
-        <strong>Fördjupa förståelsen</strong>
-      </div>
-
-
-      <div class="lesson-grid">
-
-        <div class="field">
-
-          <label for="wedGoal">
-            Dagens mål
-          </label>
-
-          <textarea id="wedGoal"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="wedStart">
-            Lektionsstart
-          </label>
-
-          <textarea id="wedStart"></textarea>
-
-        </div>
-
-
-        <div class="field full">
-
-          <label for="wedActivity">
-            Huvudaktivitet
-          </label>
-
-          <textarea id="wedActivity"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="wedTalk">
-            Matematikprat
-          </label>
-
-          <textarea id="wedTalk"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="wedExit">
-            Avslut / exit ticket
-          </label>
-
-          <textarea id="wedExit"></textarea>
-
-        </div>
-
-      </div>
-
-
-      <div class="support-row">
-
-        <div class="support-box">
-
-          <label for="wedSupport">
-            🌱 Stöd
-          </label>
-
-          <textarea id="wedSupport"></textarea>
-
-        </div>
-
-
-        <div class="challenge-box">
-
-          <label for="wedChallenge">
-            ⭐ Utmaning
-          </label>
-
-          <textarea id="wedChallenge"></textarea>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- TORSDAG -->
-
-    <div class="day-card thursday" id="torsdag">
-
-      <div class="day-title">
-        <h3>🧩 Torsdag</h3>
-        <strong>Problemlösning och resonemang</strong>
-      </div>
-
-
-      <div class="lesson-grid">
-
-        <div class="field">
-
-          <label for="thuGoal">
-            Dagens mål
-          </label>
-
-          <textarea id="thuGoal"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="thuStart">
-            Lektionsstart
-          </label>
-
-          <textarea id="thuStart"></textarea>
-
-        </div>
-
-
-        <div class="field full">
-
-          <label for="thuActivity">
-            Huvudaktivitet
-          </label>
-
-          <textarea id="thuActivity"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="thuTalk">
-            Matematikprat
-          </label>
-
-          <textarea id="thuTalk"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="thuExit">
-            Avslut / exit ticket
-          </label>
-
-          <textarea id="thuExit"></textarea>
-
-        </div>
-
-      </div>
-
-
-      <div class="support-row">
-
-        <div class="support-box">
-
-          <label for="thuSupport">
-            🌱 Stöd
-          </label>
-
-          <textarea id="thuSupport"></textarea>
-
-        </div>
-
-
-        <div class="challenge-box">
-
-          <label for="thuChallenge">
-            ⭐ Utmaning
-          </label>
-
-          <textarea id="thuChallenge"></textarea>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- FREDAG -->
-
-    <div class="day-card friday" id="fredag">
-
-      <div class="day-title">
-        <h3>🌟 Fredag</h3>
-        <strong>Sammanfatta och följa upp</strong>
-      </div>
-
-
-      <div class="lesson-grid">
-
-        <div class="field">
-
-          <label for="friGoal">
-            Dagens mål
-          </label>
-
-          <textarea id="friGoal"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="friStart">
-            Lektionsstart
-          </label>
-
-          <textarea id="friStart"></textarea>
-
-        </div>
-
-
-        <div class="field full">
-
-          <label for="friActivity">
-            Huvudaktivitet
-          </label>
-
-          <textarea id="friActivity"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="friTalk">
-            Matematikprat
-          </label>
-
-          <textarea id="friTalk"></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="friExit">
-            Avslut / exit ticket
-          </label>
-
-          <textarea id="friExit"></textarea>
-
-        </div>
-
-      </div>
-
-
-      <div class="support-row">
-
-        <div class="support-box">
-
-          <label for="friSupport">
-            🌱 Stöd
-          </label>
-
-          <textarea id="friSupport"></textarea>
-
-        </div>
-
-
-        <div class="challenge-box">
-
-          <label for="friChallenge">
-            ⭐ Utmaning
-          </label>
-
-          <textarea id="friChallenge"></textarea>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- UPPFÖLJNING -->
-
-    <div class="reflection-box" id="uppfoljning">
-
-      <h3>🔎 Veckans uppföljning</h3>
-
-
-      <div class="focus-grid">
-
-        <div>
-
-          <label for="whatWorked">
-            Vad fungerade bra?
-          </label>
-
-          <textarea
-            id="whatWorked"
-            placeholder="Vilka aktiviteter, representationer eller frågor gav effekt?"
-          ></textarea>
-
-        </div>
-
-
-        <div>
-
-          <label for="evidence">
-            Vad såg eller hörde jag?
-          </label>
-
-          <textarea
-            id="evidence"
-            placeholder="Elevlösningar, samtal, exit tickets, observationer..."
-          ></textarea>
-
-        </div>
-
-
-        <div>
-
-          <label for="needs">
-            Vad behöver eleverna mer av?
-          </label>
-
-          <textarea
-            id="needs"
-            placeholder="Vilka begrepp, strategier eller representationer?"
-          ></textarea>
-
-        </div>
-
-
-        <div>
-
-          <label for="nextWeek">
-            Nästa undervisningssteg
-          </label>
-
-          <textarea
-            id="nextWeek"
-            placeholder="Vad behöver planeras in nästa vecka?"
-          ></textarea>
-
-        </div>
-
+      <div class="mini-card full">
+        <label for="monExit">Avslut / exit ticket</label>
+        <textarea id="monExit"></textarea>
       </div>
 
     </div>
@@ -1329,45 +594,235 @@
 
 
 
-  <!-- DIGITALA LÄNKAR -->
+  <!-- TISDAG -->
 
-  <section class="box screen-only">
+  <section class="day-card" id="tisdag">
 
-    <h2>🔗 Planeringsstöd</h2>
+    <div class="day-head">
+      <h2>🌿 Tisdag</h2>
+    </div>
 
-    <div class="links">
+    <div class="day-grid">
 
-      <a href="arsplan.html">
-        🗓️ Årsplan
-      </a>
+      <div class="mini-card">
+        <label for="tueGoal">Dagens mål</label>
+        <textarea id="tueGoal"></textarea>
+      </div>
 
-      <a href="lektionsbank.html">
-        📚 Lektionsbank
-      </a>
+      <div class="mini-card">
+        <label for="tueStart">Lektionsstart</label>
+        <textarea id="tueStart"></textarea>
+      </div>
 
-      <a href="lektionsgenerator.html">
-        ✨ Lektionsgenerator
-      </a>
+      <div class="mini-card">
+        <label for="tueActivity">Huvudaktivitet</label>
+        <textarea id="tueActivity"></textarea>
+      </div>
 
-      <a href="mattepass.html">
-        🧮 Skapa mattepass
-      </a>
+      <div class="mini-card">
+        <label for="tueTalk">Matematikprat</label>
+        <textarea id="tueTalk"></textarea>
+      </div>
 
-      <a href="anpassningar.html">
-        🌱 Anpassningar
-      </a>
+      <div class="mini-card">
+        <label for="tueSupport">Stöd</label>
+        <textarea id="tueSupport"></textarea>
+      </div>
 
-      <a href="sprakstod.html">
-        💬 Språkstöd
-      </a>
+      <div class="mini-card">
+        <label for="tueChallenge">Utmaning</label>
+        <textarea id="tueChallenge"></textarea>
+      </div>
 
-      <a href="bedomning.html">
-        🔎 Bedömning
-      </a>
+      <div class="mini-card full">
+        <label for="tueExit">Avslut / exit ticket</label>
+        <textarea id="tueExit"></textarea>
+      </div>
 
-      <a href="missuppfattningar.html">
-        🕵️ Missuppfattningar
-      </a>
+    </div>
+
+  </section>
+
+
+
+  <!-- ONSDAG -->
+
+  <section class="day-card" id="onsdag">
+
+    <div class="day-head">
+      <h2>🧠 Onsdag</h2>
+    </div>
+
+    <div class="day-grid">
+
+      <div class="mini-card">
+        <label for="wedGoal">Dagens mål</label>
+        <textarea id="wedGoal"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="wedStart">Lektionsstart</label>
+        <textarea id="wedStart"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="wedActivity">Huvudaktivitet</label>
+        <textarea id="wedActivity"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="wedTalk">Matematikprat</label>
+        <textarea id="wedTalk"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="wedSupport">Stöd</label>
+        <textarea id="wedSupport"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="wedChallenge">Utmaning</label>
+        <textarea id="wedChallenge"></textarea>
+      </div>
+
+      <div class="mini-card full">
+        <label for="wedExit">Avslut / exit ticket</label>
+        <textarea id="wedExit"></textarea>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- TORSDAG -->
+
+  <section class="day-card" id="torsdag">
+
+    <div class="day-head">
+      <h2>💬 Torsdag</h2>
+    </div>
+
+    <div class="day-grid">
+
+      <div class="mini-card">
+        <label for="thuGoal">Dagens mål</label>
+        <textarea id="thuGoal"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="thuStart">Lektionsstart</label>
+        <textarea id="thuStart"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="thuActivity">Huvudaktivitet</label>
+        <textarea id="thuActivity"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="thuTalk">Matematikprat</label>
+        <textarea id="thuTalk"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="thuSupport">Stöd</label>
+        <textarea id="thuSupport"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="thuChallenge">Utmaning</label>
+        <textarea id="thuChallenge"></textarea>
+      </div>
+
+      <div class="mini-card full">
+        <label for="thuExit">Avslut / exit ticket</label>
+        <textarea id="thuExit"></textarea>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FREDAG -->
+
+  <section class="day-card" id="fredag">
+
+    <div class="day-head">
+      <h2>⭐ Fredag</h2>
+    </div>
+
+    <div class="day-grid">
+
+      <div class="mini-card">
+        <label for="friGoal">Dagens mål</label>
+        <textarea id="friGoal"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="friStart">Lektionsstart</label>
+        <textarea id="friStart"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="friActivity">Huvudaktivitet</label>
+        <textarea id="friActivity"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="friTalk">Matematikprat</label>
+        <textarea id="friTalk"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="friSupport">Stöd</label>
+        <textarea id="friSupport"></textarea>
+      </div>
+
+      <div class="mini-card">
+        <label for="friChallenge">Utmaning</label>
+        <textarea id="friChallenge"></textarea>
+      </div>
+
+      <div class="mini-card full">
+        <label for="friExit">Avslut / exit ticket</label>
+        <textarea id="friExit"></textarea>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="box">
+
+    <h2>🔎 Veckoreflektion</h2>
+
+    <div class="top-grid">
+
+      <div class="field">
+        <label for="worked">Vad fungerade bra?</label>
+        <textarea id="worked"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="needs">Vad behöver följas upp?</label>
+        <textarea id="needs"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="next">Nästa undervisningssteg</label>
+        <textarea id="next"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="students">Elever/grupper att observera vidare</label>
+        <textarea id="students"></textarea>
+      </div>
 
     </div>
 
@@ -1378,7 +833,7 @@
 
 <footer>
   <p><strong>Matematik åk 3 – Veckoplan</strong></p>
-  <p>Planera • Undervisa • Observera • Anpassa • Följ upp</p>
+  <p>Planera • Undervisa • Observera • Anpassa</p>
 </footer>
 
 
@@ -1388,78 +843,76 @@ const STORAGE_KEY =
   "matematikAk3Veckoplan";
 
 
-const fields = [
+const fieldIds = [
 
   "week",
   "className",
   "area",
-  "weekGoal",
+  "goal",
   "concepts",
   "representations",
-  "languageFocus",
+  "language",
+  "assessment",
 
   "monGoal",
   "monStart",
   "monActivity",
   "monTalk",
-  "monExit",
   "monSupport",
   "monChallenge",
+  "monExit",
 
   "tueGoal",
   "tueStart",
   "tueActivity",
   "tueTalk",
-  "tueExit",
   "tueSupport",
   "tueChallenge",
+  "tueExit",
 
   "wedGoal",
   "wedStart",
   "wedActivity",
   "wedTalk",
-  "wedExit",
   "wedSupport",
   "wedChallenge",
+  "wedExit",
 
   "thuGoal",
   "thuStart",
   "thuActivity",
   "thuTalk",
-  "thuExit",
   "thuSupport",
   "thuChallenge",
+  "thuExit",
 
   "friGoal",
   "friStart",
   "friActivity",
   "friTalk",
-  "friExit",
   "friSupport",
   "friChallenge",
+  "friExit",
 
-  "whatWorked",
-  "evidence",
+  "worked",
   "needs",
-  "nextWeek"
+  "next",
+  "students"
 
 ];
 
 
-function savePlan() {
+function savePlan(showMessage = false) {
 
   const data = {};
 
-
-  fields.forEach(id => {
+  fieldIds.forEach(id => {
 
     const element =
       document.getElementById(id);
 
-    if (element) {
-      data[id] =
-        element.value;
-    }
+    data[id] =
+      element ? element.value : "";
 
   });
 
@@ -1470,21 +923,20 @@ function savePlan() {
   );
 
 
-  const status =
-    document.getElementById(
-      "saveStatus"
-    );
+  if (showMessage) {
+
+    const status =
+      document.getElementById("saveStatus");
+
+    status.textContent =
+      "✓ Veckoplanen är sparad lokalt på den här enheten.";
 
 
-  status.textContent =
-    "✓ Veckoplanen är sparad på den här enheten.";
+    setTimeout(() => {
+      status.textContent = "";
+    },4000);
 
-
-  setTimeout(() => {
-
-    status.textContent = "";
-
-  }, 3500);
+  }
 
 }
 
@@ -1492,12 +944,11 @@ function savePlan() {
 function loadPlan() {
 
   const saved =
-    localStorage.getItem(
-      STORAGE_KEY
-    );
+    localStorage.getItem(STORAGE_KEY);
 
-
-  if (!saved) return;
+  if (!saved) {
+    return;
+  }
 
 
   try {
@@ -1506,20 +957,13 @@ function loadPlan() {
       JSON.parse(saved);
 
 
-    fields.forEach(id => {
+    fieldIds.forEach(id => {
 
       const element =
         document.getElementById(id);
 
-
-      if (
-        element &&
-        data[id] !== undefined
-      ) {
-
-        element.value =
-          data[id];
-
+      if (element && data[id] !== undefined) {
+        element.value = data[id];
       }
 
     });
@@ -1539,14 +983,15 @@ function clearPlan() {
 
   const ok =
     confirm(
-      "Vill du rensa hela veckoplanen? Detta går inte att ångra."
+      "Vill du rensa hela veckoplanen?"
     );
 
+  if (!ok) {
+    return;
+  }
 
-  if (!ok) return;
 
-
-  fields.forEach(id => {
+  fieldIds.forEach(id => {
 
     const element =
       document.getElementById(id);
@@ -1571,6 +1016,33 @@ function clearPlan() {
 }
 
 
+function activateAutoSave() {
+
+  fieldIds.forEach(id => {
+
+    const element =
+      document.getElementById(id);
+
+    if (!element) {
+      return;
+    }
+
+
+    element.addEventListener(
+      "input",
+      () => savePlan(false)
+    );
+
+  });
+
+}
+
+
+/*
+  Inför utskrift expanderas textfält
+  så att skriven text inte klipps bort.
+*/
+
 function expandTextareasForPrint() {
 
   document
@@ -1586,7 +1058,7 @@ function expandTextareasForPrint() {
       textarea.style.height =
         Math.max(
           textarea.scrollHeight,
-          55
+          45
         ) + "px";
 
     });
@@ -1622,7 +1094,12 @@ window.addEventListener(
 
 document.addEventListener(
   "DOMContentLoaded",
-  loadPlan
+  () => {
+
+    loadPlan();
+    activateAutoSave();
+
+  }
 );
 
 </script>
