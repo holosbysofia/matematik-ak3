@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kartläggning – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .student-data {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      color: var(--brun);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #cdbfae;
+      background: #fffdf8;
+      color: var(--text);
+      border-radius: 9px;
+      padding: 10px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .area-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin: 18px 0;
+    }
+
+    .area-card h3 {
+      margin-top: 0;
+    }
+
+    .task {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 12px 0;
+    }
+
+    .task-title {
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 6px;
+    }
+
+    .level-row {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .level-option {
+      position: relative;
+    }
+
+    .level-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .level-option label {
+      cursor: pointer;
+      background: #fffaf2;
+      border: 1px solid #d7c8b5;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      height: 100%;
+      margin: 0;
+      font-weight: normal;
+      color: var(--text);
+    }
+
+    .level-option input:checked + label {
+      background: var(--ratt);
+      border-color: #aab69f;
+      font-weight: bold;
+    }
+
+    .question-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+
+    .analysis-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 14px;
+    }
+
+    .next-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 14px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .summary-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 16px;
+    }
+
+    .summary-card strong {
+      color: var(--brun);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .danger {
+      background: #eadbd6;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .result-section {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    .result-section h3 {
+      margin-top: 0;
+    }
+
+    .score-pill {
+      display: inline-block;
+      background: var(--beige);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:760px) {
+      .level-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .area-card {
+        padding: 18px;
+      }
+    }
+
+    @media print {
+      nav,
+      .action-row,
+      .link-grid,
+      footer {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .area-card {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧭 Kartläggning i matematik</h1>
+
+  <p>
+    Ett praktiskt lärarverktyg för att synliggöra vad eleven redan kan,
+    var förståelsen bryts och vad undervisningen behöver fokusera på härnäst.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#elev">👤 Elev</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#raknesatt">➕ Räknesätt</a>
+  <a href="#sprak">💬 Språk</a>
+  <a href="#problem">🧠 Problem</a>
+  <a href="#sammanstallning">📊 Sammanställning</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Kartlägg förståelsen – inte bara rätt eller fel</h2>
+
+    <p>
+      Använd kartläggningen i samtal med eleven, under enskilt arbete
+      eller vid behov av fördjupad uppföljning.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">👀</div>
+        <h3>Observera</h3>
+        <p>Vad gör eleven spontant?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Fråga</h3>
+        <p>Hur förklarar eleven sitt tänkande?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>Variera</h3>
+        <p>Kan eleven visa samma idé på flera sätt?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">➡️</div>
+        <h3>Planera</h3>
+        <p>Vilket undervisningssteg behöver komma härnäst?</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="elev">
+    <h2>👤 Elevuppgifter</h2>
+
+    <div class="student-data">
+
+      <div>
+        <label for="studentName">Elev</label>
+        <input type="text" id="studentName" placeholder="Namn eller initialer">
+      </div>
+
+      <div>
+        <label for="date">Datum</label>
+        <input type="date" id="date">
+      </div>
+
+      <div>
+        <label for="teacher">Lärare</label>
+        <input type="text" id="teacher" placeholder="Lärarens namn">
+      </div>
+
+      <div>
+        <label for="reason">Anledning</label>
+        <select id="reason">
+          <option value="">Välj...</option>
+          <option>Terminsstart</option>
+          <option>Uppföljning</option>
+          <option>Misstänkt kunskapslucka</option>
+          <option>Planering av stöd</option>
+          <option>Planering av utmaning</option>
+          <option>Annat</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div style="margin-top:15px;">
+      <label for="background">Kort bakgrund / tidigare observationer</label>
+      <textarea id="background" placeholder="Exempel: Eleven räknar ofta från ett och blir osäker i textproblem..."></textarea>
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="area-card">
+      <h3>1. Positionssystem</h3>
+
+      <div class="question-box">
+        Fråga eleven: Vad betyder siffran 6 i talet 364?
+      </div>
+
+      <div class="task">
+        <div class="task-title">Bedömning</div>
+
+        <div class="level-row">
+          <div class="level-option">
+            <input type="radio" name="tal1" id="tal1a" value="0">
+            <label for="tal1a">Behöver mycket stöd</label>
+          </div>
+
+          <div class="level-option">
+            <input type="radio" name="tal1" id="tal1b" value="1">
+            <label for="tal1b">Kan med stöd</label>
+          </div>
+
+          <div class="level-option">
+            <input type="radio" name="tal1" id="tal1c" value="2">
+            <label for="tal1c">Kan själv</label>
+          </div>
+
+          <div class="level-option">
+            <input type="radio" name="tal1" id="tal1d" value="3">
+            <label for="tal1d">Kan förklara</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>2. Jämföra tal</h3>
+
+      <div class="question-box">
+        Vilket tal är störst: 398 eller 403? Hur vet du?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="tal2" id="tal2a" value="0">
+          <label for="tal2a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="tal2" id="tal2b" value="1">
+          <label for="tal2b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="tal2" id="tal2c" value="2">
+          <label for="tal2c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="tal2" id="tal2d" value="3">
+          <label for="tal2d">Kan förklara</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>3. Tallinje och uppskattning</h3>
+
+      <div class="question-box">
+        Placera ungefär 470 på en tallinje från 0 till 1000.
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="tal3" id="tal3a" value="0">
+          <label for="tal3a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="tal3" id="tal3b" value="1">
+          <label for="tal3b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="tal3" id="tal3c" value="2">
+          <label for="tal3c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="tal3" id="tal3d" value="3">
+          <label for="tal3d">Kan förklara</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <label for="talNotes">Anteckningar – taluppfattning</label>
+      <textarea id="talNotes" placeholder="Strategier, missuppfattningar, elevens egna ord..."></textarea>
+    </div>
+  </section>
+
+
+  <section class="box" id="raknesatt">
+    <h2>➕➖✖️➗ Räknesätt och strategier</h2>
+
+    <div class="area-card">
+      <h3>4. Addition</h3>
+
+      <div class="question-box">
+        Räkna 48 + 27. Visa hur du tänker.
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="rak1" id="rak1a" value="0">
+          <label for="rak1a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak1" id="rak1b" value="1">
+          <label for="rak1b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak1" id="rak1c" value="2">
+          <label for="rak1c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak1" id="rak1d" value="3">
+          <label for="rak1d">Kan jämföra strategier</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>5. Subtraktion</h3>
+
+      <div class="question-box">
+        Räkna 72 − 38. Hur kan du kontrollera svaret?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="rak2" id="rak2a" value="0">
+          <label for="rak2a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak2" id="rak2b" value="1">
+          <label for="rak2b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak2" id="rak2c" value="2">
+          <label for="rak2c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak2" id="rak2d" value="3">
+          <label for="rak2d">Kan förklara</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>6. Multiplikation</h3>
+
+      <div class="question-box">
+        Visa 4 × 6 med material, bild eller ord.
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="rak3" id="rak3a" value="0">
+          <label for="rak3a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak3" id="rak3b" value="1">
+          <label for="rak3b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak3" id="rak3c" value="2">
+          <label for="rak3c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak3" id="rak3d" value="3">
+          <label for="rak3d">Kan förklara samband</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>7. Division</h3>
+
+      <div class="question-box">
+        24 kakor delas lika mellan 6 barn. Hur många får varje barn?
+        Visa hur du vet.
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="rak4" id="rak4a" value="0">
+          <label for="rak4a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak4" id="rak4b" value="1">
+          <label for="rak4b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak4" id="rak4c" value="2">
+          <label for="rak4c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="rak4" id="rak4d" value="3">
+          <label for="rak4d">Kan koppla till multiplikation</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <label for="rakNotes">Anteckningar – räknesätt</label>
+      <textarea id="rakNotes" placeholder="Exempel: räknar från ett, använder tallinje, ser faktfamiljer..."></textarea>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🍕 Bråk och samband</h2>
+
+    <div class="area-card">
+      <h3>8. Del av helhet</h3>
+
+      <div class="question-box">
+        Visa en fjärdedel av en helhet.
+        Förklara vad som måste vara sant om delarna.
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="brak1" id="brak1a" value="0">
+          <label for="brak1a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="brak1" id="brak1b" value="1">
+          <label for="brak1b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="brak1" id="brak1c" value="2">
+          <label for="brak1c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="brak1" id="brak1d" value="3">
+          <label for="brak1d">Kan förklara</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>9. Jämföra enkla bråk</h3>
+
+      <div class="question-box">
+        Vilket är störst: 1/2 eller 1/4? Varför?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="brak2" id="brak2a" value="0">
+          <label for="brak2a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="brak2" id="brak2b" value="1">
+          <label for="brak2b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="brak2" id="brak2c" value="2">
+          <label for="brak2c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="brak2" id="brak2d" value="3">
+          <label for="brak2d">Kan förklara med modell</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="sprak">
+    <h2>💬 Matematiskt språk och begrepp</h2>
+
+    <div class="area-card">
+      <h3>10. Förklara ett begrepp</h3>
+
+      <div class="question-box">
+        Vad betyder ordet ”skillnad” i matematik?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="spr1" id="spr1a" value="0">
+          <label for="spr1a">Förstår inte begreppet</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="spr1" id="spr1b" value="1">
+          <label for="spr1b">Förstår med exempel</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="spr1" id="spr1c" value="2">
+          <label for="spr1c">Kan förklara själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="spr1" id="spr1d" value="3">
+          <label for="spr1d">Kan använda i nytt sammanhang</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>11. Beskriva en strategi</h3>
+
+      <div class="question-box">
+        Be eleven förklara en egen lösning med orden:
+        först, sedan, eftersom.
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="spr2" id="spr2a" value="0">
+          <label for="spr2a">Mycket svårt</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="spr2" id="spr2b" value="1">
+          <label for="spr2b">Behöver meningsstarter</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="spr2" id="spr2c" value="2">
+          <label for="spr2c">Kan förklara</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="spr2" id="spr2d" value="3">
+          <label for="spr2d">Kan resonera och jämföra</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <label for="languageNotes">Anteckningar – språk</label>
+      <textarea id="languageNotes" placeholder="Begrepp, förståelse av instruktioner, muntlig förmåga, behov av bildstöd..."></textarea>
+    </div>
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="area-card">
+      <h3>12. Ett steg</h3>
+
+      <div class="question-box">
+        Sam har 18 kulor och får 7 till.
+        Hur många har Sam nu?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="prob1" id="prob1a" value="0">
+          <label for="prob1a">Förstår inte situationen</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob1" id="prob1b" value="1">
+          <label for="prob1b">Kan med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob1" id="prob1c" value="2">
+          <label for="prob1c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob1" id="prob1d" value="3">
+          <label for="prob1d">Kan förklara och kontrollera</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>13. Två steg</h3>
+
+      <div class="question-box">
+        Mira har 28 pärlor.
+        Hon får 15 nya och använder sedan 9.
+        Hur många har hon kvar?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="prob2" id="prob2a" value="0">
+          <label for="prob2a">Behöver mycket stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob2" id="prob2b" value="1">
+          <label for="prob2b">Förstår med modell</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob2" id="prob2c" value="2">
+          <label for="prob2c">Kan själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob2" id="prob2d" value="3">
+          <label for="prob2d">Kan välja och motivera strategi</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="area-card">
+      <h3>14. Rimlighet</h3>
+
+      <div class="question-box">
+        En elev räknar 42 + 18 och får svaret 24.
+        Hur kan du veta att svaret inte är rimligt?
+      </div>
+
+      <div class="level-row">
+        <div class="level-option">
+          <input type="radio" name="prob3" id="prob3a" value="0">
+          <label for="prob3a">Ser inte problemet</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob3" id="prob3b" value="1">
+          <label for="prob3b">Förstår med stöd</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob3" id="prob3c" value="2">
+          <label for="prob3c">Kan resonera själv</label>
+        </div>
+
+        <div class="level-option">
+          <input type="radio" name="prob3" id="prob3d" value="3">
+          <label for="prob3d">Kan ge flera kontroller</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <label for="problemNotes">Anteckningar – problemlösning</label>
+      <textarea id="problemNotes" placeholder="Återberättar? Ritar? Väljer räknesätt? Kontrollerar rimlighet?..."></textarea>
+    </div>
+  </section>
+
+
+  <section class="box" id="sammanstallning">
+    <h2>📊 Sammanställning</h2>
+
+    <p>
+      När du gjort observationerna kan sidan skapa en enkel sammanställning.
+      Den är ett planeringsstöd – inte en betygsbedömning.
+    </p>
+
+    <div class="action-row">
+      <button onclick="analyse()">📊 Skapa sammanställning</button>
+      <button class="secondary" onclick="saveData()">💾 Spara lokalt</button>
+      <button class="secondary" onclick="window.print()">🖨️ Skriv ut</button>
+      <button class="danger" onclick="clearData()">🗑️ Rensa</button>
+    </div>
+
+    <div class="result" id="result">
+
+      <div class="summary-grid" id="summaryGrid"></div>
+
+      <div class="result-section">
+        <h3>🌱 Föreslagna undervisningsfokus</h3>
+        <div id="recommendations"></div>
+      </div>
+
+      <div class="result-section">
+        <h3>✍️ Samlad läraranteckning</h3>
+        <textarea id="finalNotes" placeholder="Sammanfatta styrkor, behov och planerat nästa steg..."></textarea>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Arbeta vidare efter kartläggningen</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a class="link-card" href="progression.html">
+        📈 Progression
+      </a>
+
+      <a class="link-card" href="missuppfattningar.html">
+        🕵️ Missuppfattningar
+      </a>
+
+      <a class="link-card" href="sprakstod.html">
+        💬 Språkstöd
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+      <a class="link-card" href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Kartläggning</strong></p>
+  <p>Observera • Förstå • Planera • Följa upp</p>
+</footer>
+
+<script>
+  const groups = {
+    "Taluppfattning": ["tal1","tal2","tal3"],
+    "Räknesätt": ["rak1","rak2","rak3","rak4"],
+    "Bråk": ["brak1","brak2"],
+    "Språk": ["spr1","spr2"],
+    "Problemlösning": ["prob1","prob2","prob3"]
+  };
+
+  function getValue(name) {
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return checked ? Number(checked.value) : null;
+  }
+
+  function analyse() {
+    const summaryGrid = document.getElementById("summaryGrid");
+    const recommendations = document.getElementById("recommendations");
+
+    summaryGrid.innerHTML = "";
+    recommendations.innerHTML = "";
+
+    let recommendationList = [];
+
+    Object.entries(groups).forEach(([area, items]) => {
+      const values = items.map(getValue).filter(v => v !== null);
+
+      let text = "Inte tillräckligt kartlagt";
+      let average = null;
+
+      if (values.length) {
+        average = values.reduce((a,b) => a + b, 0) / values.length;
+
+        if (average < 0.8) {
+          text = "Behöver tydlig grundläggande undervisning";
+        } else if (average < 1.6) {
+          text = "Förståelsen utvecklas – fortsatt stöd behövs";
+        } else if (average < 2.4) {
+          text = "Relativt självständig i bekanta situationer";
+        } else {
+          text = "Visar säker och förklarande förståelse";
+        }
+      }
+
+      const card = document.createElement("div");
+      card.className = "summary-card";
+
+      card.innerHTML = `
+        <strong>${area}</strong>
+        <br>
+        ${average === null ? "" : `<span class="score-pill">${average.toFixed(1)} / 3</span><br>`}
+        ${text}
+      `;
+
+      summaryGrid.appendChild(card);
+
+      if (average !== null && average < 1.6) {
+        recommendationList.push(makeRecommendation(area));
+      }
+    });
+
+    if (recommendationList.length === 0) {
+      recommendations.innerHTML = `
+        <div class="analysis-box">
+          Kartläggningen visar ingen tydlig låg nivå i de bedömda områdena.
+          Fortsätt med varierade uppgifter, resonemang och fördjupning,
+          och följ upp sådant som antecknats under kartläggningen.
+        </div>
+      `;
+    } else {
+      recommendationList.forEach(text => {
+        const box = document.createElement("div");
+        box.className = "next-box";
+        box.innerHTML = text;
+        recommendations.appendChild(box);
+      });
+    }
+
+    document.getElementById("result").classList.add("visible");
+    document.getElementById("result").scrollIntoView({behavior:"smooth"});
+  }
+
+  function makeRecommendation(area) {
+    const recs = {
+      "Taluppfattning":
+        "<strong>🔢 Taluppfattning:</strong> Arbeta med konkret positionsmaterial, tallinje, talbilder och jämförelse av tal innan större procedurträning.",
+
+      "Räknesätt":
+        "<strong>➕ Räknesätt:</strong> Fokusera på förståelse av räknesätten och ett fåtal stabila strategier. Använd konkret material och synliggör samband mellan räknesätten.",
+
+      "Bråk":
+        "<strong>🍕 Bråk:</strong> Gå tillbaka till lika stora helheter, konkret delning och visuella modeller innan symbolträning.",
+
+      "Språk":
+        "<strong>💬 Språk:</strong> Förbered centrala matematikord, använd bilder, muntligt parprat och meningsstarter. Kontrollera matematisk förståelse separat från språklig formulering när det behövs.",
+
+      "Problemlösning":
+        "<strong>🧠 Problemlösning:</strong> Arbeta systematiskt med att återberätta, rita situationen, identifiera frågan och välja strategi innan beräkningen."
+    };
+
+    return recs[area];
+  }
+
+  function collectData() {
+    const data = {
+      studentName: document.getElementById("studentName").value,
+      date: document.getElementById("date").value,
+      teacher: document.getElementById("teacher").value,
+      reason: document.getElementById("reason").value,
+      background: document.getElementById("background").value,
+      talNotes: document.getElementById("talNotes").value,
+      rakNotes: document.getElementById("rakNotes").value,
+      languageNotes: document.getElementById("languageNotes").value,
+      problemNotes: document.getElementById("problemNotes").value,
+      finalNotes: document.getElementById("finalNotes")?.value || "",
+      radios: {}
+    };
+
+    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+      data.radios[radio.name] = radio.value;
+    });
+
+    return data;
+  }
+
+  function saveData() {
+    localStorage.setItem(
+      "matematikAk3Kartlaggning",
+      JSON.stringify(collectData())
+    );
+
+    alert("Kartläggningen är sparad lokalt i den här webbläsaren.");
+  }
+
+  function loadData() {
+    const saved = localStorage.getItem("matematikAk3Kartlaggning");
+
+    if (!saved) return;
+
+    try {
+      const data = JSON.parse(saved);
+
+      document.getElementById("studentName").value = data.studentName || "";
+      document.getElementById("date").value = data.date || "";
+      document.getElementById("teacher").value = data.teacher || "";
+      document.getElementById("reason").value = data.reason || "";
+      document.getElementById("background").value = data.background || "";
+      document.getElementById("talNotes").value = data.talNotes || "";
+      document.getElementById("rakNotes").value = data.rakNotes || "";
+      document.getElementById("languageNotes").value = data.languageNotes || "";
+      document.getElementById("problemNotes").value = data.problemNotes || "";
+
+      if (data.radios) {
+        Object.entries(data.radios).forEach(([name,value]) => {
+          const radio = document.querySelector(
+            `input[name="${name}"][value="${value}"]`
+          );
+
+          if (radio) radio.checked = true;
+        });
+      }
+
+      if (data.finalNotes) {
+        analyse();
+        document.getElementById("finalNotes").value = data.finalNotes;
+      }
+
+    } catch(error) {
+      console.error("Kunde inte läsa sparad kartläggning.", error);
+    }
+  }
+
+  function clearData() {
+    const ok = confirm(
+      "Vill du rensa kartläggningen och den lokalt sparade informationen?"
+    );
+
+    if (!ok) return;
+
+    localStorage.removeItem("matematikAk3Kartlaggning");
+
+    document.querySelectorAll('input[type="text"], input[type="date"], textarea')
+      .forEach(el => el.value = "");
+
+    document.querySelectorAll('select')
+      .forEach(el => el.selectedIndex = 0);
+
+    document.querySelectorAll('input[type="radio"]')
+      .forEach(el => el.checked = false);
+
+    document.getElementById("summaryGrid").innerHTML = "";
+    document.getElementById("recommendations").innerHTML = "";
+    document.getElementById("result").classList.remove("visible");
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const dateField = document.getElementById("date");
+
+    if (!dateField.value) {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const day = String(today.getDate()).padStart(2, "0");
+      dateField.value = `${year}-${month}-${day}`;
+    }
+
+    loadData();
+  });
+</script>
+
+</body>
+</html>
