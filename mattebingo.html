@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mattebingo – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.3rem;
+      margin-bottom: 6px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: 1px solid #cdbfae;
+      background: #fffdf8;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 17px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .status {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .status-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .status-card strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--brun);
+    }
+
+    .bingo-board {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 8px;
+      max-width: 900px;
+      margin: 25px auto;
+    }
+
+    .bingo-cell {
+      min-height: 135px;
+      border: 2px solid #d5c6b2;
+      background: #fffdf8;
+      border-radius: 13px;
+      padding: 11px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .bingo-cell:hover {
+      transform: translateY(-2px);
+      background: #f8efe3;
+    }
+
+    .bingo-cell.completed {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .bingo-cell.active {
+      outline: 4px solid #d6c3a6;
+    }
+
+    .category {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--beige);
+      border-radius: 15px;
+      padding: 3px 8px;
+      font-size: 0.73rem;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .task {
+      font-size: 0.95rem;
+      margin: 9px 0;
+      font-weight: bold;
+    }
+
+    .done-mark {
+      font-size: 1.5rem;
+      text-align: right;
+      min-height: 30px;
+    }
+
+    .challenge-area {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin-top: 22px;
+    }
+
+    .challenge-area.hidden {
+      display: none;
+    }
+
+    .challenge-task {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 18px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 13px 0;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .answer-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+    }
+
+    .answer-btn.right {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-btn.wrong {
+      background: var(--fel);
+      border-color: #caa9a2;
+    }
+
+    .feedback {
+      margin-top: 12px;
+      min-height: 28px;
+      font-weight: bold;
+    }
+
+    .bingo-message {
+      display: none;
+      background: #e7eadf;
+      border: 3px solid #a7ad91;
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .bingo-message.show {
+      display: block;
+    }
+
+    .bingo-message h2 {
+      font-size: clamp(2.2rem,6vw,4rem);
+      margin-bottom: 6px;
+    }
+
+    .progress-wrap {
+      height: 22px;
+      background: #eee4d6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .teacher-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:850px) {
+      .bingo-board {
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box {
+        padding: 18px;
+      }
+
+      .bingo-board {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .bingo-cell {
+        min-height: 125px;
+      }
+    }
+
+    @media(max-width:430px) {
+      .bingo-board {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎯 Mattebingo</h1>
+
+  <p>
+    Lös uppgifter och fyll bingobrickan.
+    Kan du få fem i rad?
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#spel">🎮 Spela</a>
+  <a href="#regler">📋 Regler</a>
+  <a href="#resurser">🔗 Mer matte</a>
+</nav>
+
+<main>
+
+  <section class="box intro" id="regler">
+
+    <h2>🎲 Så spelar du</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">1️⃣</div>
+        <h3>Välj en ruta</h3>
+        <p>Tryck på valfri uppgift på bingobrickan.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">2️⃣</div>
+        <h3>Lös</h3>
+        <p>Välj rätt svar på uppgiften.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">3️⃣</div>
+        <h3>Markera</h3>
+        <p>Rätt svar gör rutan grön.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Få bingo</h3>
+        <p>Fem gröna rutor i rad, kolumn eller diagonal ger BINGO.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="spel">
+
+    <h2>🎮 Skapa din bingobricka</h2>
+
+    <div class="controls">
+
+      <div>
+        <label for="level">Nivå</label>
+
+        <select id="level">
+          <option value="grund">🌱 Grund</option>
+          <option value="blandad" selected>🌿 Blandad</option>
+          <option value="utmaning">⭐ Utmaning</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="gameMode">Mål</label>
+
+        <select id="gameMode">
+          <option value="line" selected>Fem i rad</option>
+          <option value="full">Hela brickan</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="button-row">
+      <button onclick="createBoard()">🎲 Ny bingobricka</button>
+      <button class="secondary" onclick="resetBoard()">🔄 Nollställ brickan</button>
+    </div>
+
+
+    <div class="status">
+
+      <div class="status-card">
+        Markerade
+        <strong id="doneCount">0</strong>
+      </div>
+
+      <div class="status-card">
+        Rätt svar
+        <strong id="correctCount">0</strong>
+      </div>
+
+      <div class="status-card">
+        Försök
+        <strong id="attemptCount">0</strong>
+      </div>
+
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+
+    <div class="bingo-board" id="board"></div>
+
+
+    <div class="challenge-area hidden" id="challengeArea">
+
+      <h2>🧠 Lös uppgiften</h2>
+
+      <div class="challenge-task" id="challengeTask"></div>
+
+      <div class="answer-grid" id="answerGrid"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+    </div>
+
+
+    <div class="bingo-message" id="bingoMessage">
+
+      <h2>🎉 BINGO!</h2>
+
+      <p>
+        Snyggt arbete! Du har fått fem matematikrutor i rad.
+      </p>
+
+      <button onclick="createBoard()">🎲 Spela igen</button>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>💬 Extra utmaning</h2>
+
+    <div class="teacher-box">
+      När du löst en ruta, försök förklara:
+      <br><br>
+      <strong>Hur tänkte jag?</strong>
+      <br>
+      <strong>Finns det ett annat sätt?</strong>
+      <br>
+      <strong>Hur kan jag kontrollera svaret?</strong>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="resurser">
+
+    <h2>🔗 Mer matematik</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="spel.html">
+        🎮 Fler mattespel
+      </a>
+
+      <a class="link-card" href="veckouppdrag.html">
+        📅 Veckouppdrag
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="dagensmatte.html">
+        ☀️ Dagens matte
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧩 Problemlösning
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+      <a class="link-card" href="begrepp.html">
+        💬 Begreppsbank
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  <p><strong>Matematik åk 3 – Mattebingo</strong></p>
+  <p>Lös • Tänk • Markera • BINGO!</p>
+</footer>
+
+
+<script>
+
+const taskBank = {
+
+  grund: [
+
+    {
+      category: "Tal",
+      question: "Vad är 10 mer än 34?",
+      correct: "44",
+      wrong: ["24","35","54"]
+    },
+
+    {
+      category: "Tal",
+      question: "Vad är 100 mindre än 425?",
+      correct: "325",
+      wrong: ["415","525","225"]
+    },
+
+    {
+      category: "Addition",
+      question: "27 + 12 = ?",
+      correct: "39",
+      wrong: ["38","49","29"]
+    },
+
+    {
+      category: "Addition",
+      question: "36 + 20 = ?",
+      correct: "56",
+      wrong: ["38","46","66"]
+    },
+
+    {
+      category: "Subtraktion",
+      question: "45 − 10 = ?",
+      correct: "35",
+      wrong: ["34","44","55"]
+    },
+
+    {
+      category: "Subtraktion",
+      question: "18 − 7 = ?",
+      correct: "11",
+      wrong: ["10","12","25"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "2 × 7 = ?",
+      correct: "14",
+      wrong: ["9","12","16"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "5 × 4 = ?",
+      correct: "20",
+      wrong: ["9","10","25"]
+    },
+
+    {
+      category: "Division",
+      question: "12 ÷ 3 = ?",
+      correct: "4",
+      wrong: ["3","5","9"]
+    },
+
+    {
+      category: "Division",
+      question: "20 ÷ 5 = ?",
+      correct: "4",
+      wrong: ["5","10","15"]
+    },
+
+    {
+      category: "Bråk",
+      question: "Hälften av 12 är...",
+      correct: "6",
+      wrong: ["4","5","8"]
+    },
+
+    {
+      category: "Bråk",
+      question: "Hur många halvor behövs för en hel?",
+      correct: "2",
+      wrong: ["1","3","4"]
+    },
+
+    {
+      category: "Geometri",
+      question: "Hur många sidor har en triangel?",
+      correct: "3",
+      wrong: ["2","4","5"]
+    },
+
+    {
+      category: "Mätning",
+      question: "Hur många centimeter är 1 meter?",
+      correct: "100",
+      wrong: ["10","50","1000"]
+    },
+
+    {
+      category: "Tid",
+      question: "Hur många minuter är en halvtimme?",
+      correct: "30",
+      wrong: ["15","20","60"]
+    },
+
+    {
+      category: "Problem",
+      question: "Anna har 15 kulor och får 6 till. Hur många har hon?",
+      correct: "21",
+      wrong: ["9","20","22"]
+    }
+
+  ],
+
+
+  blandad: [
+
+    {
+      category: "Tal",
+      question: "Vad är siffran 7 värd i 472?",
+      correct: "70",
+      wrong: ["7","700","72"]
+    },
+
+    {
+      category: "Tal",
+      question: "Vilket tal är störst?",
+      correct: "403",
+      wrong: ["398","393","340"]
+    },
+
+    {
+      category: "Tal",
+      question: "Vad är 100 mindre än 638?",
+      correct: "538",
+      wrong: ["628","438","738"]
+    },
+
+    {
+      category: "Addition",
+      question: "48 + 27 = ?",
+      correct: "75",
+      wrong: ["65","74","85"]
+    },
+
+    {
+      category: "Addition",
+      question: "59 + 24 = ?",
+      correct: "83",
+      wrong: ["73","82","93"]
+    },
+
+    {
+      category: "Addition",
+      question: "99 + 26 = ?",
+      correct: "125",
+      wrong: ["115","124","126"]
+    },
+
+    {
+      category: "Subtraktion",
+      question: "72 − 38 = ?",
+      correct: "34",
+      wrong: ["44","46","36"]
+    },
+
+    {
+      category: "Subtraktion",
+      question: "63 − 28 = ?",
+      correct: "35",
+      wrong: ["45","31","41"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "4 × 6 = ?",
+      correct: "24",
+      wrong: ["10","20","28"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "5 × 7 = ?",
+      correct: "35",
+      wrong: ["30","32","40"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "3 × 8 = ?",
+      correct: "24",
+      wrong: ["11","21","28"]
+    },
+
+    {
+      category: "Division",
+      question: "24 ÷ 6 = ?",
+      correct: "4",
+      wrong: ["3","5","6"]
+    },
+
+    {
+      category: "Division",
+      question: "35 ÷ 5 = ?",
+      correct: "7",
+      wrong: ["5","6","8"]
+    },
+
+    {
+      category: "Division",
+      question: "32 ÷ 4 = ?",
+      correct: "8",
+      wrong: ["6","7","9"]
+    },
+
+    {
+      category: "Bråk",
+      question: "Vilket är störst när helheten är lika stor?",
+      correct: "1/2",
+      wrong: ["1/4","De är lika","1/8"]
+    },
+
+    {
+      category: "Bråk",
+      question: "Vad är 1/4 av 20?",
+      correct: "5",
+      wrong: ["4","10","15"]
+    },
+
+    {
+      category: "Geometri",
+      question: "Hur många hörn har en rektangel?",
+      correct: "4",
+      wrong: ["2","3","5"]
+    },
+
+    {
+      category: "Mätning",
+      question: "Vilket är tyngst?",
+      correct: "1 kg",
+      wrong: ["900 g","500 g","750 g"]
+    },
+
+    {
+      category: "Tid",
+      question: "Hur många minuter är en kvart?",
+      correct: "15",
+      wrong: ["10","20","30"]
+    },
+
+    {
+      category: "Problem",
+      question: "24 kakor delas lika mellan 6 barn. Hur många får varje?",
+      correct: "4",
+      wrong: ["3","5","6"]
+    },
+
+    {
+      category: "Problem",
+      question: "7 lådor innehåller 4 bollar var. Hur många bollar finns?",
+      correct: "28",
+      wrong: ["11","24","32"]
+    },
+
+    {
+      category: "Algebra",
+      question: "8 + ___ = 13",
+      correct: "5",
+      wrong: ["4","6","21"]
+    },
+
+    {
+      category: "Algebra",
+      question: "Är 7 + 5 = 6 + 6 sant?",
+      correct: "Ja",
+      wrong: ["Nej","Bara ibland","Går inte att veta"]
+    },
+
+    {
+      category: "Sannolikhet",
+      question: "Kan du slå en 7:a med en vanlig sexsidig tärning?",
+      correct: "Nej",
+      wrong: ["Ja","Alltid","Varannan gång"]
+    },
+
+    {
+      category: "Begrepp",
+      question: "Vad kallas svaret i en addition?",
+      correct: "Summa",
+      wrong: ["Produkt","Kvot","Differens"]
+    }
+
+  ],
+
+
+  utmaning: [
+
+    {
+      category: "Tal",
+      question: "Vilket tal ligger närmast 500?",
+      correct: "487",
+      wrong: ["516","470","530"]
+    },
+
+    {
+      category: "Tal",
+      question: "Vilket är störst?",
+      correct: "590",
+      wrong: ["509","559","5090"]
+    },
+
+    {
+      category: "Addition",
+      question: "198 + 24 = ?",
+      correct: "222",
+      wrong: ["212","221","232"]
+    },
+
+    {
+      category: "Addition",
+      question: "Tre tal är 20, 15 och 25. Vad är summan?",
+      correct: "60",
+      wrong: ["50","55","65"]
+    },
+
+    {
+      category: "Subtraktion",
+      question: "150 − 76 = ?",
+      correct: "74",
+      wrong: ["84","76","64"]
+    },
+
+    {
+      category: "Subtraktion",
+      question: "Vilket tal saknas? ___ − 47 = 38",
+      correct: "85",
+      wrong: ["75","9","95"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "Om 5 × 7 = 35, vad är 6 × 7?",
+      correct: "42",
+      wrong: ["36","40","48"]
+    },
+
+    {
+      category: "Multiplikation",
+      question: "Vilket tal saknas? 4 × ___ = 36",
+      correct: "9",
+      wrong: ["8","10","32"]
+    },
+
+    {
+      category: "Division",
+      question: "Vilket tal saknas? ___ ÷ 4 = 7",
+      correct: "28",
+      wrong: ["11","21","32"]
+    },
+
+    {
+      category: "Division",
+      question: "36 elever delas i grupper om 6. Hur många grupper?",
+      correct: "6",
+      wrong: ["5","7","30"]
+    },
+
+    {
+      category: "Bråk",
+      question: "Vilket är störst när helheten är lika stor?",
+      correct: "1/3",
+      wrong: ["1/4","1/6","1/8"]
+    },
+
+    {
+      category: "Bråk",
+      question: "Vad är 1/3 av 18?",
+      correct: "6",
+      wrong: ["3","9","12"]
+    },
+
+    {
+      category: "Problem",
+      question: "Mira har 28 pärlor, får 15 och använder 9. Hur många kvar?",
+      correct: "34",
+      wrong: ["24","43","52"]
+    },
+
+    {
+      category: "Problem",
+      question: "Leo har 35 kr, får 12 och använder 8. Hur mycket kvar?",
+      correct: "39",
+      wrong: ["31","47","55"]
+    },
+
+    {
+      category: "Algebra",
+      question: "Vilket tal fortsätter mönstret 4, 8, 12, 16, ...?",
+      correct: "20",
+      wrong: ["18","22","24"]
+    },
+
+    {
+      category: "Algebra",
+      question: "12 = 7 + ___",
+      correct: "5",
+      wrong: ["4","6","19"]
+    },
+
+    {
+      category: "Geometri",
+      question: "Vilken figur har alltid fyra lika långa sidor och fyra räta hörn?",
+      correct: "Kvadrat",
+      wrong: ["Triangel","Cirkel","Valfri rektangel"]
+    },
+
+    {
+      category: "Mätning",
+      question: "Hur många deciliter är 2 liter?",
+      correct: "20 dl",
+      wrong: ["2 dl","10 dl","200 dl"]
+    },
+
+    {
+      category: "Rimlighet",
+      question: "Vilket svar är rimligast för 203 + 97?",
+      correct: "300",
+      wrong: ["100","200","500"]
+    },
+
+    {
+      category: "Begrepp",
+      question: "Vad kallas svaret i en division?",
+      correct: "Kvot",
+      wrong: ["Produkt","Summa","Differens"]
+    },
+
+    {
+      category: "Sannolikhet",
+      question: "En påse har 8 röda och 2 blå kulor. Vilken färg är mest sannolik?",
+      correct: "Röd",
+      wrong: ["Blå","Lika sannolika","Omöjligt att säga"]
+    },
+
+    {
+      category: "Tid",
+      question: "En film börjar 14:20 och slutar 15:00. Hur lång är filmen?",
+      correct: "40 min",
+      wrong: ["20 min","30 min","60 min"]
+    },
+
+    {
+      category: "Mönster",
+      question: "Vilket tal saknas? 5, 10, 15, ___, 25",
+      correct: "20",
+      wrong: ["18","22","30"]
+    },
+
+    {
+      category: "Problem",
+      question: "48 elever delas i 8 lika stora grupper. Hur många i varje?",
+      correct: "6",
+      wrong: ["5","7","40"]
+    },
+
+    {
+      category: "Rimlighet",
+      question: "Kan 72 − 38 bli 96?",
+      correct: "Nej",
+      wrong: ["Ja","Ibland","Om man avrundar"]
+    }
+
+  ]
+};
+
+
+let boardTasks = [];
+let completed = [];
+let activeIndex = null;
+
+let correctCount = 0;
+let attemptCount = 0;
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+
+function createBoard() {
+
+  const level = document.getElementById("level").value;
+
+  const bank = shuffle(taskBank[level]);
+
+  boardTasks = bank.slice(0,25);
+
+  completed = new Array(25).fill(false);
+
+  activeIndex = null;
+  correctCount = 0;
+  attemptCount = 0;
+
+  document.getElementById("correctCount").textContent = "0";
+  document.getElementById("attemptCount").textContent = "0";
+
+  document.getElementById("challengeArea").classList.add("hidden");
+  document.getElementById("bingoMessage").classList.remove("show");
+
+  renderBoard();
+  updateStatus();
+}
+
+
+function renderBoard() {
+
+  const board = document.getElementById("board");
+
+  board.innerHTML = "";
+
+  boardTasks.forEach((task,index) => {
+
+    const cell = document.createElement("div");
+
+    cell.className = "bingo-cell";
+
+    if (completed[index]) {
+      cell.classList.add("completed");
+    }
+
+    if (activeIndex === index) {
+      cell.classList.add("active");
+    }
+
+    const category = document.createElement("span");
+
+    category.className = "category";
+    category.textContent = task.category;
+
+
+    const question = document.createElement("div");
+
+    question.className = "task";
+    question.textContent = task.question;
+
+
+    const mark = document.createElement("div");
+
+    mark.className = "done-mark";
+
+    if (completed[index]) {
+      mark.textContent = "✓";
+    }
+
+
+    cell.appendChild(category);
+    cell.appendChild(question);
+    cell.appendChild(mark);
+
+
+    cell.addEventListener("click", () => {
+
+      if (!completed[index]) {
+        openTask(index);
+      }
+
+    });
+
+
+    board.appendChild(cell);
+  });
+}
+
+
+function openTask(index) {
+
+  activeIndex = index;
+
+  renderBoard();
+
+  const task = boardTasks[index];
+
+  document.getElementById("challengeArea").classList.remove("hidden");
+
+  document.getElementById("challengeTask").textContent =
+    task.question;
+
+  document.getElementById("feedback").textContent = "";
+
+  const answerGrid =
+    document.getElementById("answerGrid");
+
+  answerGrid.innerHTML = "";
+
+  const alternatives =
+    shuffle([task.correct, ...task.wrong]);
+
+
+  alternatives.forEach(answer => {
+
+    const button =
+      document.createElement("button");
+
+    button.className = "answer-btn";
+    button.textContent = answer;
+
+
+    button.addEventListener("click", () => {
+
+      answerTask(button, answer);
+
+    });
+
+
+    answerGrid.appendChild(button);
+  });
+
+
+  document.getElementById("challengeArea")
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+}
+
+
+function answerTask(button, answer) {
+
+  attemptCount++;
+
+  document.getElementById("attemptCount").textContent =
+    attemptCount;
+
+  const task = boardTasks[activeIndex];
+
+  const buttons =
+    document.querySelectorAll(".answer-btn");
+
+
+  if (answer === task.correct) {
+
+    correctCount++;
+
+    document.getElementById("correctCount").textContent =
+      correctCount;
+
+    button.classList.add("right");
+
+    document.getElementById("feedback").textContent =
+      "Rätt! Rutan är nu markerad.";
+
+    completed[activeIndex] = true;
+
+    buttons.forEach(btn => {
+      btn.disabled = true;
+    });
+
+    renderBoard();
+    updateStatus();
+
+    setTimeout(() => {
+
+      checkBingo();
+
+    },300);
+
+  } else {
+
+    button.classList.add("wrong");
+    button.disabled = true;
+
+    document.getElementById("feedback").textContent =
+      "Inte riktigt. Prova igen och fundera på vilken strategi som passar.";
+
+  }
+}
+
+
+function updateStatus() {
+
+  const count =
+    completed.filter(Boolean).length;
+
+  document.getElementById("doneCount").textContent =
+    count;
+
+  const percent =
+    count / 25 * 100;
+
+  document.getElementById("progressBar").style.width =
+    percent + "%";
+}
+
+
+function checkBingo() {
+
+  const mode =
+    document.getElementById("gameMode").value;
+
+
+  if (mode === "full") {
+
+    if (completed.every(Boolean)) {
+      showBingo();
+    }
+
+    return;
+  }
+
+
+  const lines = [];
+
+
+  for (let r = 0; r < 5; r++) {
+
+    lines.push([
+      r * 5,
+      r * 5 + 1,
+      r * 5 + 2,
+      r * 5 + 3,
+      r * 5 + 4
+    ]);
+  }
+
+
+  for (let c = 0; c < 5; c++) {
+
+    lines.push([
+      c,
+      c + 5,
+      c + 10,
+      c + 15,
+      c + 20
+    ]);
+  }
+
+
+  lines.push([0,6,12,18,24]);
+
+  lines.push([4,8,12,16,20]);
+
+
+  const bingo =
+    lines.some(line =>
+      line.every(index => completed[index])
+    );
+
+
+  if (bingo) {
+    showBingo();
+  }
+}
+
+
+function showBingo() {
+
+  document.getElementById("bingoMessage")
+    .classList.add("show");
+
+  document.getElementById("bingoMessage")
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+}
+
+
+function resetBoard() {
+
+  completed =
+    new Array(boardTasks.length).fill(false);
+
+  activeIndex = null;
+  correctCount = 0;
+  attemptCount = 0;
+
+  document.getElementById("correctCount").textContent =
+    "0";
+
+  document.getElementById("attemptCount").textContent =
+    "0";
+
+  document.getElementById("challengeArea")
+    .classList.add("hidden");
+
+  document.getElementById("bingoMessage")
+    .classList.remove("show");
+
+  renderBoard();
+  updateStatus();
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  createBoard
+);
+
+</script>
+
+</body>
+</html>
