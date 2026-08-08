@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Elevmaterial – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 820px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .material-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 17px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 5px;
+    }
+
+    .sheet {
+      background: white;
+      border: 1px solid #cfc2af;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 20px 0;
+    }
+
+    .sheet h3 {
+      margin-top: 0;
+      border-bottom: 2px solid #ded0ba;
+      padding-bottom: 8px;
+    }
+
+    .name-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .name-line {
+      flex: 1;
+      min-width: 220px;
+      border-bottom: 1px solid #555;
+      min-height: 30px;
+    }
+
+    .task {
+      margin: 15px 0;
+      padding-bottom: 10px;
+    }
+
+    .answer-line {
+      display: inline-block;
+      min-width: 90px;
+      border-bottom: 1px solid #555;
+      margin-left: 8px;
+    }
+
+    .long-line {
+      display: block;
+      border-bottom: 1px solid #777;
+      min-height: 34px;
+      margin: 8px 0;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 15px;
+    }
+
+    .calc {
+      background: #fffdf8;
+      border: 1px solid #ddd1c0;
+      border-radius: 9px;
+      padding: 13px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .table-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .table-task {
+      border: 1px solid #d3c5b2;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      background: #fffdf8;
+    }
+
+    .fraction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .fraction-card {
+      border: 1px solid #d5c7b4;
+      border-radius: 10px;
+      padding: 14px;
+      background: #fffdf8;
+    }
+
+    .fraction-shape {
+      display: grid;
+      height: 70px;
+      margin: 12px 0;
+      gap: 2px;
+    }
+
+    .two {
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .three {
+      grid-template-columns: repeat(3,1fr);
+    }
+
+    .four {
+      grid-template-columns: repeat(4,1fr);
+    }
+
+    .part {
+      border: 2px solid #9e8d76;
+      background: white;
+    }
+
+    .filled {
+      background: #d8c8b2;
+    }
+
+    .problem-box {
+      background: #fffdf8;
+      border: 1px solid #d9cbb8;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .concept-card {
+      border: 2px dashed #c9b99f;
+      background: #fffdf8;
+      border-radius: 10px;
+      padding: 15px;
+      min-height: 120px;
+    }
+
+    .concept-word {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 8px;
+    }
+
+    .log-row {
+      background: #fffdf8;
+      border: 1px solid #d7c9b6;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 12px 0;
+    }
+
+    .self-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .self-card {
+      background: #f3eadf;
+      border-radius: 10px;
+      padding: 13px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .print-row {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:700px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .calc-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .table-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .self-grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+    }
+
+    @media print {
+      nav,
+      header,
+      footer,
+      .intro,
+      .material-grid,
+      .print-row {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      main {
+        max-width: none;
+        padding: 0;
+      }
+
+      .box {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+
+      .sheet {
+        page-break-after: always;
+        border: none;
+        border-radius: 0;
+        padding: 15mm;
+        margin: 0;
+      }
+
+      .sheet:last-child {
+        page-break-after: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>✏️ Elevmaterial</h1>
+
+  <p>
+    Utskrivbara träningsblad, problemlösning, begrepp,
+    tabeller, bråk och matteloggbok.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#rakning">➕ Räkning</a>
+  <a href="#tabeller">✖️ Tabeller</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#problem">🧠 Problem</a>
+  <a href="#loggbok">📖 Loggbok</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Välj material</h2>
+
+    <p>
+      Skriv ut hela sidan eller välj bara de blad du behöver.
+    </p>
+
+    <div class="material-grid">
+
+      <div class="material-card">
+        <div class="icon">🔢</div>
+        <h3>Taluppfattning</h3>
+        <p>Platsvärde, jämförelse och talmönster.</p>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">➕</div>
+        <h3>Räknesätt</h3>
+        <p>Addition och subtraktion.</p>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">✖️</div>
+        <h3>Tabellträning</h3>
+        <p>2:an, 3:an, 4:an, 5:an och 10:an.</p>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">🍕</div>
+        <h3>Bråk</h3>
+        <p>Hälften, tredjedelar och fjärdedelar.</p>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">🧠</div>
+        <h3>Problemlösning</h3>
+        <p>Visa strategi och förklara.</p>
+      </div>
+
+      <div class="material-card">
+        <div class="icon">📖</div>
+        <h3>Matteloggbok</h3>
+        <p>Reflektion och eget nästa mål.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+
+    <div class="sheet" id="tal">
+
+      <h3>🔢 Träningsblad – Taluppfattning</h3>
+
+      <div class="name-row">
+        <div>Namn: <span class="name-line"></span></div>
+        <div>Datum: <span class="name-line"></span></div>
+      </div>
+
+      <div class="task">
+        <strong>1. Skriv talet i utvecklad form.</strong>
+      </div>
+
+      <p>364 = <span class="answer-line"></span> + <span class="answer-line"></span> + <span class="answer-line"></span></p>
+      <p>507 = <span class="answer-line"></span> + <span class="answer-line"></span> + <span class="answer-line"></span></p>
+      <p>829 = <span class="answer-line"></span> + <span class="answer-line"></span> + <span class="answer-line"></span></p>
+
+      <div class="task">
+        <strong>2. Vilket tal är störst? Ringa in.</strong>
+      </div>
+
+      <p>398 &nbsp;&nbsp;&nbsp; 403 &nbsp;&nbsp;&nbsp; 389</p>
+      <p>521 &nbsp;&nbsp;&nbsp; 512 &nbsp;&nbsp;&nbsp; 502</p>
+      <p>699 &nbsp;&nbsp;&nbsp; 709 &nbsp;&nbsp;&nbsp; 679</p>
+
+      <div class="task">
+        <strong>3. Skriv rätt tecken: &gt;, &lt; eller =</strong>
+      </div>
+
+      <p>349 ____ 394</p>
+      <p>560 ____ 506</p>
+      <p>408 ____ 408</p>
+      <p>275 ____ 257</p>
+
+      <div class="task">
+        <strong>4. Fortsätt talmönstret.</strong>
+      </div>
+
+      <p>120, 130, 140, ______, ______</p>
+      <p>245, 250, 255, ______, ______</p>
+      <p>600, 500, 400, ______, ______</p>
+
+      <div class="task">
+        <strong>5. Skriv ett tal som...</strong>
+      </div>
+
+      <p>är större än 450 men mindre än 500: __________</p>
+      <p>är jämnt och ligger mellan 300 och 320: __________</p>
+      <p>har 6 hundratal, 2 tiotal och 9 ental: __________</p>
+
+    </div>
+
+
+    <div class="sheet" id="rakning">
+
+      <h3>➕➖ Träningsblad – Addition och subtraktion</h3>
+
+      <div class="name-row">
+        <div>Namn: <span class="name-line"></span></div>
+        <div>Datum: <span class="name-line"></span></div>
+      </div>
+
+      <h4>1. Räkna.</h4>
+
+      <div class="calc-grid">
+        <div class="calc">24 + 15 = _____</div>
+        <div class="calc">38 + 27 = _____</div>
+        <div class="calc">46 + 39 = _____</div>
+        <div class="calc">72 − 21 = _____</div>
+        <div class="calc">83 − 47 = _____</div>
+        <div class="calc">90 − 56 = _____</div>
+        <div class="calc">125 + 43 = _____</div>
+        <div class="calc">206 + 81 = _____</div>
+        <div class="calc">340 − 120 = _____</div>
+      </div>
+
+      <h4>2. Visa hur du tänker.</h4>
+
+      <p><strong>48 + 27</strong></p>
+      <span class="long-line"></span>
+      <span class="long-line"></span>
+
+      <p><strong>72 − 38</strong></p>
+      <span class="long-line"></span>
+      <span class="long-line"></span>
+
+      <h4>3. Hitta felet.</h4>
+
+      <div class="problem-box">
+        En elev skriver:
+        <br><br>
+        <strong>38 + 27 = 515</strong>
+        <br><br>
+        Vad har eleven gjort för fel?
+        <span class="long-line"></span>
+        <span class="long-line"></span>
+      </div>
+
+    </div>
+
+
+    <div class="sheet" id="tabeller">
+
+      <h3>✖️➗ Tabellträning</h3>
+
+      <div class="name-row">
+        <div>Namn: <span class="name-line"></span></div>
+        <div>Datum: <span class="name-line"></span></div>
+      </div>
+
+      <h4>1. Multiplikation</h4>
+
+      <div class="table-grid">
+        <div class="table-task">2 × 6 = ____</div>
+        <div class="table-task">5 × 7 = ____</div>
+        <div class="table-task">10 × 4 = ____</div>
+        <div class="table-task">3 × 6 = ____</div>
+
+        <div class="table-task">4 × 5 = ____</div>
+        <div class="table-task">3 × 8 = ____</div>
+        <div class="table-task">4 × 7 = ____</div>
+        <div class="table-task">5 × 9 = ____</div>
+
+        <div class="table-task">2 × 9 = ____</div>
+        <div class="table-task">10 × 8 = ____</div>
+        <div class="table-task">3 × 7 = ____</div>
+        <div class="table-task">4 × 6 = ____</div>
+      </div>
+
+      <h4>2. Division</h4>
+
+      <div class="table-grid">
+        <div class="table-task">20 ÷ 5 = ____</div>
+        <div class="table-task">18 ÷ 3 = ____</div>
+        <div class="table-task">24 ÷ 4 = ____</div>
+        <div class="table-task">30 ÷ 5 = ____</div>
+
+        <div class="table-task">40 ÷ 10 = ____</div>
+        <div class="table-task">16 ÷ 2 = ____</div>
+        <div class="table-task">28 ÷ 4 = ____</div>
+        <div class="table-task">21 ÷ 3 = ____</div>
+      </div>
+
+      <h4>3. Samband</h4>
+
+      <p>Om 4 × 6 = 24, då är 24 ÷ 4 = ______</p>
+      <p>Om 5 × 7 = 35, då är 35 ÷ 5 = ______</p>
+      <p>Om 3 × 8 = 24, då är 24 ÷ 8 = ______</p>
+
+    </div>
+
+
+    <div class="sheet" id="brak">
+
+      <h3>🍕 Träningsblad – Bråk</h3>
+
+      <div class="name-row">
+        <div>Namn: <span class="name-line"></span></div>
+        <div>Datum: <span class="name-line"></span></div>
+      </div>
+
+      <h4>1. Vilket bråk är färgat?</h4>
+
+      <div class="fraction-grid">
+
+        <div class="fraction-card">
+          <div class="fraction-shape two">
+            <div class="part filled"></div>
+            <div class="part"></div>
+          </div>
+          Svar: __________
+        </div>
+
+        <div class="fraction-card">
+          <div class="fraction-shape four">
+            <div class="part filled"></div>
+            <div class="part"></div>
+            <div class="part"></div>
+            <div class="part"></div>
+          </div>
+          Svar: __________
+        </div>
+
+        <div class="fraction-card">
+          <div class="fraction-shape three">
+            <div class="part filled"></div>
+            <div class="part"></div>
+            <div class="part"></div>
+          </div>
+          Svar: __________
+        </div>
+
+      </div>
+
+      <h4>2. Räkna.</h4>
+
+      <p>Hälften av 18 = ______</p>
+      <p>Hälften av 30 = ______</p>
+      <p>En fjärdedel av 20 = ______</p>
+      <p>En fjärdedel av 16 = ______</p>
+      <p>En tredjedel av 15 = ______</p>
+      <p>En tredjedel av 24 = ______</p>
+
+      <h4>3. Jämför.</h4>
+
+      <p>Vilket är störst: 1/2 eller 1/4? __________</p>
+      <p>Förklara varför:</p>
+      <span class="long-line"></span>
+      <span class="long-line"></span>
+
+    </div>
+
+
+    <div class="sheet" id="problem">
+
+      <h3>🧠 Problemlösning</h3>
+
+      <div class="name-row">
+        <div>Namn: <span class="name-line"></span></div>
+        <div>Datum: <span class="name-line"></span></div>
+      </div>
+
+      <div class="problem-box">
+        <strong>Problem 1</strong>
+        <br><br>
+        Mira har 36 klistermärken.
+        Hon får 18 nya och ger sedan 9 till en kompis.
+        <br><br>
+        Hur många klistermärken har hon kvar?
+      </div>
+
+      <p><strong>Vad vet jag?</strong></p>
+      <span class="long-line"></span>
+
+      <p><strong>Vad ska jag ta reda på?</strong></p>
+      <span class="long-line"></span>
+
+      <p><strong>Min strategi:</strong></p>
+      <span class="long-line"></span>
+      <span class="long-line"></span>
+
+      <p><strong>Min uträkning:</strong></p>
+      <span class="long-line"></span>
+
+      <p><strong>Mitt svar:</strong></p>
+      <span class="long-line"></span>
+
+      <p><strong>Så kontrollerade jag:</strong></p>
+      <span class="long-line"></span>
+
+
+      <div class="problem-box">
+        <strong>Problem 2 – flera lösningar</strong>
+        <br><br>
+        Två tal har tillsammans summan 40.
+        <br><br>
+        Hitta minst sex olika lösningar.
+      </div>
+
+      <p>1. ______________________________</p>
+      <p>2. ______________________________</p>
+      <p>3. ______________________________</p>
+      <p>4. ______________________________</p>
+      <p>5. ______________________________</p>
+      <p>6. ______________________________</p>
+
+
+      <div class="problem-box">
+        <strong>Problem 3 – kluring</strong>
+        <br><br>
+        Jag är ett tvåsiffrigt tal.
+        Jag är större än 40 och mindre än 60.
+        Jag är jämn.
+        Mina siffror har summan 9.
+        <br><br>
+        Vilket tal är jag?
+      </div>
+
+      <p>Svar: __________</p>
+
+      <p>Så tänkte jag:</p>
+      <span class="long-line"></span>
+      <span class="long-line"></span>
+
+    </div>
+
+
+    <div class="sheet">
+
+      <h3>💬 Begreppskort</h3>
+
+      <p>
+        Klipp gärna ut korten. På baksidan kan eleven skriva en egen förklaring eller ett exempel.
+      </p>
+
+      <div class="concept-grid">
+
+        <div class="concept-card">
+          <div class="concept-word">Summa</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Differens</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Produkt</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Kvot</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Hälften</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Symmetri</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Uppskatta</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-word">Rimligt</div>
+          Min förklaring:
+          <span class="long-line"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="sheet" id="loggbok">
+
+      <h3>📖 Min matteloggbok</h3>
+
+      <div class="name-row">
+        <div>Namn: <span class="name-line"></span></div>
+        <div>Vecka: <span class="name-line"></span></div>
+      </div>
+
+      <div class="log-row">
+        <strong>Den här veckan har jag arbetat med:</strong>
+        <span class="long-line"></span>
+        <span class="long-line"></span>
+      </div>
+
+      <div class="log-row">
+        <strong>Det här har jag lärt mig:</strong>
+        <span class="long-line"></span>
+        <span class="long-line"></span>
+      </div>
+
+      <div class="log-row">
+        <strong>En strategi som hjälpte mig:</strong>
+        <span class="long-line"></span>
+        <span class="long-line"></span>
+      </div>
+
+      <div class="log-row">
+        <strong>Det här var svårt:</strong>
+        <span class="long-line"></span>
+        <span class="long-line"></span>
+      </div>
+
+      <div class="log-row">
+        <strong>Mitt nästa mål är:</strong>
+        <span class="long-line"></span>
+        <span class="long-line"></span>
+      </div>
+
+      <h4>Så känns matematiken just nu:</h4>
+
+      <div class="self-grid">
+
+        <div class="self-card">
+          ☐ 🌱 Jag tränar
+        </div>
+
+        <div class="self-card">
+          ☐ 🌿 Jag kan med stöd
+        </div>
+
+        <div class="self-card">
+          ☐ 🌳 Jag kan själv
+        </div>
+
+        <div class="self-card">
+          ☐ ⭐ Jag kan förklara
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="print-row">
+      <button onclick="window.print()">
+        🖨️ Skriv ut elevmaterial
+      </button>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Elevmaterial</strong></p>
+  <p>Träna • Tänka • Visa • Förklara • Reflektera</p>
+</footer>
+
+</body>
+</html>
