@@ -8,15 +8,16 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
@@ -32,12 +33,12 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     header {
       background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
+      padding: 46px 20px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
     }
@@ -45,23 +46,23 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2rem,5vw,3.7rem);
+      font-size: clamp(2.2rem,6vw,4rem);
     }
 
     header p {
       max-width: 900px;
       margin: 12px auto 0;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 14px;
+      padding: 14px 8px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
     }
 
     nav a {
@@ -69,9 +70,9 @@
       text-decoration: none;
       color: var(--brun);
       font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 3px;
+      border-radius: 9px;
     }
 
     nav a:hover {
@@ -79,7 +80,7 @@
     }
 
     main {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: auto;
       padding: 30px 20px 70px;
     }
@@ -98,7 +99,8 @@
     }
 
     h2,
-    h3 {
+    h3,
+    h4 {
       color: var(--brun);
     }
 
@@ -108,167 +110,224 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 14px;
       margin-top: 18px;
     }
 
     .card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
       border-radius: 14px;
-      padding: 18px;
+      padding: 17px;
     }
 
-    .card h3 {
-      margin-top: 0;
-    }
-
-    .icon {
-      font-size: 2.4rem;
+    .card .icon {
+      font-size: 2rem;
       margin-bottom: 6px;
     }
 
-    .adaptation-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 20px;
-      margin: 16px 0;
+    .card strong {
+      display: block;
+      color: var(--brun);
+      margin-bottom: 5px;
     }
 
-    .adaptation-card h3 {
+    .adapt-section {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 23px;
+      margin-bottom: 24px;
+    }
+
+    .adapt-section h2 {
+      margin-bottom: 7px;
+    }
+
+    .adapt-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .adapt-card {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .adapt-card h3 {
       margin-top: 0;
     }
 
-    .example {
-      background: #f3eadf;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 12px;
+    .adapt-card ul {
+      padding-left: 20px;
+      margin-bottom: 0;
     }
 
-    .language-box {
+    .adapt-card li {
+      margin: 6px 0;
+    }
+
+    .support-box {
       background: #eee4d6;
       border-left: 5px solid #bca98d;
       border-radius: 10px;
       padding: 14px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
 
-    .support-box {
+    .language-box {
+      background: #f3eadf;
+      border-left: 5px solid #c4b197;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .challenge-box {
       background: #e7eadf;
       border-left: 5px solid #a7ad91;
       border-radius: 10px;
       padding: 14px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
 
-    .challenge-box {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
+    .warning-box {
+      background: #eedbd7;
+      border-left: 5px solid #c6a39d;
       border-radius: 10px;
       padding: 14px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
 
-    .step-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .step-list li {
-      background: #f3eadf;
-      margin: 9px 0;
-      padding: 11px 13px;
-      border-radius: 10px;
-    }
-
-    .step-list li::before {
-      content: "✓ ";
-      font-weight: bold;
-      color: var(--brun);
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      min-width: 720px;
-    }
-
-    th,
-    td {
-      border: 1px solid #d8cab7;
-      padding: 11px;
-      vertical-align: top;
-      text-align: left;
-    }
-
-    th {
-      background: var(--beige);
-      color: var(--brun);
-    }
-
-    td {
+    .print-page {
       background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 25px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px var(--skugga);
     }
 
-    .sentence-grid {
+    .sheet-head {
+      border-bottom: 2px solid #cdbfae;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .sheet-head h2 {
+      margin: 0 0 5px;
+    }
+
+    .info-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 12px;
-      margin-top: 15px;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
     }
 
-    .sentence {
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #cdbfae;
+      border-radius: 8px;
+      padding: 9px;
+      background: white;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .check-item {
+      border: 1px solid #d5c6b2;
+      background: white;
+      border-radius: 9px;
+      padding: 11px;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .plan-card {
       background: #f3eadf;
-      padding: 14px;
+      border: 1px solid #d8cab7;
       border-radius: 11px;
-      font-weight: bold;
+      padding: 13px;
     }
 
-    .checklist {
-      list-style: none;
-      padding: 0;
+    .plan-card textarea {
+      min-height: 95px;
     }
 
-    .checklist li {
-      background: #f3eadf;
-      margin: 8px 0;
-      padding: 11px 13px;
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
       border-radius: 10px;
-    }
-
-    .checklist li::before {
-      content: "☐ ";
+      padding: 11px 16px;
+      font-size: 1rem;
       font-weight: bold;
+      cursor: pointer;
     }
 
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 18px;
     }
 
-    .link-card {
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .links a {
       display: block;
       text-decoration: none;
+      text-align: center;
       color: var(--text);
       background: #f3eadf;
       border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
+      border-radius: 12px;
+      padding: 15px;
       font-weight: bold;
     }
 
-    .link-card:hover {
+    .links a:hover {
       background: var(--beige);
     }
 
@@ -276,10 +335,161 @@
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 27px;
+      padding: 28px 20px;
     }
 
-    @media(max-width:650px) {
+
+    /* =====================================
+       A4-UTSKRIFT
+       ===================================== */
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 13mm 14mm 13mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.4pt;
+        line-height: 1.27;
+      }
+
+      header,
+      nav,
+      footer,
+      .intro,
+      .screen-only,
+      .button-row,
+      button,
+      .links {
+        display: none !important;
+      }
+
+      main {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .print-page {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .print-page:last-of-type {
+        break-after: auto;
+        page-break-after: auto;
+      }
+
+      .sheet-head {
+        margin: 0 0 4mm !important;
+        padding: 0 0 3mm !important;
+        border-bottom: 1.5pt solid #555 !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .sheet-head h2 {
+        color: #000 !important;
+        font-size: 16pt !important;
+        margin: 0 0 1mm !important;
+      }
+
+      .info-row {
+        grid-template-columns: 2fr 1fr 1fr !important;
+        gap: 3mm !important;
+        margin-top: 3mm !important;
+      }
+
+      label {
+        color: #000 !important;
+        font-size: 8.4pt !important;
+        margin-bottom: 1mm !important;
+      }
+
+      input,
+      textarea,
+      select {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 1.5mm !important;
+        font-size: 8.8pt !important;
+        overflow: visible !important;
+      }
+
+      textarea {
+        min-height: 14mm !important;
+        resize: none !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000 !important;
+        break-after: avoid-page;
+        page-break-after: avoid;
+      }
+
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .check-grid,
+      .plan-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .check-item,
+      .plan-card,
+      .support-box,
+      .language-box,
+      .challenge-box,
+      .warning-box {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .support-box,
+      .language-box,
+      .challenge-box,
+      .warning-box {
+        border-left: 2pt solid #666 !important;
+      }
+    }
+
+
+    @media(max-width:750px) {
+
       nav {
         position: static;
       }
@@ -293,617 +503,1056 @@
       }
 
       .box,
-      .adaptation-card {
+      .adapt-section,
+      .print-page {
         padding: 18px;
+      }
+
+      .adapt-grid,
+      .info-row,
+      .check-grid,
+      .plan-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
-  <h1>🌱 Anpassningar i matematik</h1>
+
+  <h1>🌱 Anpassningar</h1>
 
   <p>
-    Konkreta sätt att göra undervisningen mer tillgänglig utan att ta bort
-    den matematiska idén.
+    Stöd för att göra matematikundervisningen mer tillgänglig
+    utan att sänka den matematiska nivån eller ta bort möjligheten
+    att tänka, resonera och utvecklas.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
+  <a href="#principer">🧭 Principer</a>
   <a href="#sprak">💬 Språk</a>
   <a href="#visuellt">👀 Visuellt</a>
-  <a href="#konkret">🧱 Konkret</a>
-  <a href="#steg">🪜 Mindre steg</a>
-  <a href="#repetition">🔁 Repetition</a>
+  <a href="#struktur">🧠 Struktur</a>
+  <a href="#material">🧱 Material</a>
   <a href="#utmaning">⭐ Utmaning</a>
+  <a href="#plan">📝 Plan</a>
 </nav>
+
 
 <main>
 
+
+  <!-- INTRO -->
+
   <section class="box intro">
-    <h2>🌿 Grundprincip</h2>
+
+    <h2>🧭 Anpassa vägen – inte målet</h2>
 
     <p>
-      En anpassning ska hjälpa eleven att komma åt samma matematiska idé,
-      inte bara göra uppgiften enklare.
+      Elever kan behöva olika vägar in i samma matematiska idé.
+      En anpassning ska i första hand göra innehållet
+      <strong>begripligt, synligt och hanterbart</strong>.
+    </p>
+
+    <p>
+      Stöd kan till exempel handla om språk, visuellt stöd,
+      struktur, konkret material, mindre informationsmängd
+      eller extra tid för att tänka.
     </p>
 
     <div class="grid">
 
       <div class="card">
-        <div class="icon">💬</div>
-        <h3>Språk</h3>
-        <p>Förklara ord, använd bilder och ge meningsstarter.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">👀</div>
-        <h3>Visuellt</h3>
-        <p>Visa med modeller, tallinjer och tydliga steg.</p>
+        <div class="icon">🎯</div>
+        <strong>Behåll matematiken</strong>
+        Förenkla inte bort den matematiska idén.
       </div>
 
       <div class="card">
         <div class="icon">🧱</div>
-        <h3>Konkret</h3>
-        <p>Låt eleven bygga och flytta innan symboler används.</p>
+        <strong>Gör synligt</strong>
+        Visa med material, bild, tallinje och modeller.
       </div>
 
       <div class="card">
-        <div class="icon">🪜</div>
-        <h3>Mindre steg</h3>
-        <p>Minska komplexiteten men behåll idén.</p>
+        <div class="icon">💬</div>
+        <strong>Stöd språket</strong>
+        Förklara begrepp och ge meningsstarter.
       </div>
 
       <div class="card">
-        <div class="icon">🔁</div>
-        <h3>Repetition</h3>
-        <p>Korta återkommande övningar istället för stora omtag.</p>
+        <div class="icon">🧠</div>
+        <strong>Minska belastningen</strong>
+        Ge tydliga steg och en sak i taget.
       </div>
 
       <div class="card">
         <div class="icon">⭐</div>
-        <h3>Utmaning</h3>
-        <p>Öka djupet och resonemanget istället för mängden.</p>
+        <strong>Ge utmaning</strong>
+        Anpassning gäller också elever som behöver större djup.
+      </div>
+
+      <div class="card">
+        <div class="icon">🔎</div>
+        <strong>Följ upp</strong>
+        Kontrollera om stödet faktiskt hjälper eleven att förstå.
       </div>
 
     </div>
+
+    <div class="button-row">
+      <button onclick="window.print()">🖨️ Skriv ut anpassningsunderlagen</button>
+    </div>
+
   </section>
 
 
-  <section class="box" id="sprak">
-    <h2>💬 Språkstöd i matematik</h2>
 
-    <div class="adaptation-card">
-      <h3>1. Förbered viktiga ord före uppgiften</h3>
+  <!-- PRINCIPER -->
 
-      <p>
-        Välj hellre några få centrala begrepp än en lång ordlista.
-      </p>
+  <section class="adapt-section screen-only" id="principer">
 
-      <div class="example">
-        <strong>Exempel vid addition:</strong>
-        summa, term, tillsammans, öka, fler.
+    <h2>🧭 Fem frågor innan du väljer stöd</h2>
+
+    <div class="adapt-grid">
+
+      <div class="adapt-card">
+        <h3>1. Vad är den matematiska idén?</h3>
+        <p>
+          Vad behöver eleven egentligen förstå?
+        </p>
       </div>
 
-      <div class="language-box">
-        Koppla varje ord till ett exempel, en bild och en matematisk symbol.
+      <div class="adapt-card">
+        <h3>2. Var uppstår hindret?</h3>
+        <p>
+          Är det matematiken, språket, instruktionen, arbetsminnet eller representationen?
+        </p>
       </div>
-    </div>
 
-
-    <div class="adaptation-card">
-      <h3>2. Skilj mellan vardagsord och matematikord</h3>
-
-      <p>
-        Ett ord kan betyda olika saker i vardagsspråk och matematik.
-      </p>
-
-      <div class="example">
-        <strong>Skillnad</strong>
-        <br><br>
-        I vardagen: något är annorlunda.
-        <br>
-        I matematik: avståndet eller differensen mellan två tal.
+      <div class="adapt-card">
+        <h3>3. Vilket stöd kan minska hindret?</h3>
+        <p>
+          Välj ett stöd som gör matematiken mer tillgänglig.
+        </p>
       </div>
-    </div>
 
-
-    <div class="adaptation-card">
-      <h3>3. Ge meningsstarter</h3>
-
-      <div class="sentence-grid">
-        <div class="sentence">Jag började med att...</div>
-        <div class="sentence">Jag vet att...</div>
-        <div class="sentence">Först..., sedan...</div>
-        <div class="sentence">Jag valde strategin eftersom...</div>
-        <div class="sentence">Jag håller med eftersom...</div>
-        <div class="sentence">Mitt svar är rimligt eftersom...</div>
+      <div class="adapt-card">
+        <h3>4. Vad ska eleven fortfarande göra själv?</h3>
+        <p>
+          Stödet ska hjälpa elevens tänkande, inte ersätta det.
+        </p>
       </div>
+
+      <div class="adapt-card">
+        <h3>5. Hur följer jag upp?</h3>
+        <p>
+          Kontrollera om förståelsen blir mer självständig över tid.
+        </p>
+      </div>
+
     </div>
 
-
-    <div class="adaptation-card">
-      <h3>4. Läs problem i flera steg</h3>
-
-      <ul class="step-list">
-        <li>Läs hela problemet.</li>
-        <li>Återberätta med egna ord.</li>
-        <li>Markera vad vi vet.</li>
-        <li>Bestäm vad frågan är.</li>
-        <li>Välj strategi först därefter.</li>
-      </ul>
-    </div>
   </section>
 
 
-  <section class="box" id="visuellt">
+
+  <!-- SPRÅK -->
+
+  <section class="adapt-section screen-only" id="sprak">
+
+    <h2>💬 Språkliga anpassningar</h2>
+
+    <div class="adapt-grid">
+
+      <div class="adapt-card">
+        <h3>Förförstå begrepp</h3>
+
+        <ul>
+          <li>förklara viktiga ord före uppgiften</li>
+          <li>visa ordet tillsammans med bild eller exempel</li>
+          <li>jämför liknande begrepp</li>
+          <li>använd begreppen muntligt flera gånger</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Meningsstarter</h3>
+
+        <ul>
+          <li>Jag började med att...</li>
+          <li>Jag valde denna strategi eftersom...</li>
+          <li>Jag vet att svaret är rimligt eftersom...</li>
+          <li>Jag håller med eftersom...</li>
+          <li>Jag tänkte annorlunda genom att...</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Textproblem</h3>
+
+        <ul>
+          <li>läs problemet högt</li>
+          <li>markera frågan</li>
+          <li>återberätta utan siffror</li>
+          <li>rita situationen</li>
+          <li>förklara centrala ord</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Parprat före helklass</h3>
+
+        <ul>
+          <li>ge tänketid</li>
+          <li>låt eleven prova formuleringen med en kamrat</li>
+          <li>ge begreppslista</li>
+          <li>samla flera möjliga formuleringar</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="language-box">
+      <strong>Viktigt:</strong>
+      språkstöd betyder inte att matematiska begrepp ska tas bort.
+      Eleven behöver få tillgång till både vardagligt språk och det mer precisa matematiska språket.
+    </div>
+
+  </section>
+
+
+
+  <!-- VISUELLT -->
+
+  <section class="adapt-section screen-only" id="visuellt">
+
     <h2>👀 Visuellt stöd</h2>
 
-    <div class="adaptation-card">
-      <h3>Öppen tallinje</h3>
+    <div class="adapt-grid">
 
-      <p>
-        Tallinjen kan hjälpa eleven att se avstånd och dela upp beräkningar.
-      </p>
+      <div class="adapt-card">
+        <h3>Visa arbetsgången</h3>
 
-      <div class="example">
-        <strong>47 + 28</strong>
-        <br><br>
-        47 → 50 → 70 → 75
-        <br><br>
-        +3, +20, +5
-      </div>
-    </div>
-
-
-    <div class="adaptation-card">
-      <h3>Platsvärdestabell</h3>
-
-      <div class="example">
-        <table style="min-width:0;">
-          <tr>
-            <th>Hundratal</th>
-            <th>Tiotal</th>
-            <th>Ental</th>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>6</td>
-            <td>4</td>
-          </tr>
-        </table>
+        <ul>
+          <li>1. Läs</li>
+          <li>2. Markera</li>
+          <li>3. Visa</li>
+          <li>4. Räkna</li>
+          <li>5. Kontrollera</li>
+        </ul>
       </div>
 
-      <p>
-        Koppla alltid tabellen till:
-        <strong>364 = 300 + 60 + 4</strong>.
-      </p>
+      <div class="adapt-card">
+        <h3>Behåll stöd synligt</h3>
+
+        <ul>
+          <li>tallinje</li>
+          <li>positionsschema</li>
+          <li>multiplikationstabell vid behov</li>
+          <li>begreppskort</li>
+          <li>exempel på strategier</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Minska visuell belastning</h3>
+
+        <ul>
+          <li>färre uppgifter på sidan</li>
+          <li>mer luft mellan uppgifter</li>
+          <li>en tydlig uppgift i taget</li>
+          <li>undvik onödiga dekorationer</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Modellera</h3>
+
+        <ul>
+          <li>visa ett färdigt exempel</li>
+          <li>tänk högt</li>
+          <li>markera viktiga steg</li>
+          <li>jämför två lösningar</li>
+        </ul>
+      </div>
+
     </div>
 
-
-    <div class="adaptation-card">
-      <h3>En sak i taget på sidan</h3>
-
-      <p>
-        Om eleven tappar fokus kan mycket information på samma sida bli ett hinder.
-      </p>
-
-      <ul class="step-list">
-        <li>Markera aktuell uppgift.</li>
-        <li>Täck över övriga uppgifter tillfälligt.</li>
-        <li>Använd luft mellan raderna.</li>
-        <li>Ha tydlig start- och slutpunkt.</li>
-      </ul>
-    </div>
   </section>
 
 
-  <section class="box" id="konkret">
-    <h2>🧱 Konkret material</h2>
 
-    <div class="adaptation-card">
-      <h3>Taluppfattning</h3>
+  <!-- STRUKTUR -->
 
-      <p>
-        Använd basmaterial, multilink eller buntar med tiotal.
-      </p>
+  <section class="adapt-section screen-only" id="struktur">
 
-      <div class="support-box">
-        Be eleven först bygga talet och därefter rita och skriva det.
-      </div>
-    </div>
+    <h2>🧠 Struktur och arbetsminne</h2>
 
+    <div class="adapt-grid">
 
-    <div class="adaptation-card">
-      <h3>Addition och subtraktion</h3>
+      <div class="adapt-card">
+        <h3>Tydlig lektionsstruktur</h3>
 
-      <p>
-        Låt eleven flytta tiotal och ental innan skriftliga metoder introduceras.
-      </p>
-
-      <div class="example">
-        34 + 28
-        <br><br>
-        3 tiotal + 2 tiotal
-        <br>
-        4 ental + 8 ental
-      </div>
-    </div>
-
-
-    <div class="adaptation-card">
-      <h3>Multiplikation och division</h3>
-
-      <p>
-        Använd lika stora grupper.
-      </p>
-
-      <div class="example">
-        ● ● ● ●
-        <br>
-        ● ● ● ●
-        <br>
-        ● ● ● ●
-        <br><br>
-        3 × 4 = 12
-      </div>
-    </div>
-
-
-    <div class="adaptation-card">
-      <h3>Bråk</h3>
-
-      <p>
-        Vik papper, dela fruktbilder eller använd bråkcirklar.
-      </p>
-
-      <div class="language-box">
-        Viktigt: jämför alltid delar av lika stora helheter.
-      </div>
-    </div>
-  </section>
-
-
-  <section class="box" id="steg">
-    <h2>🪜 Minska uppgiften – inte tänkandet</h2>
-
-    <p>
-      Om en uppgift blir för svår kan talområdet minskas medan samma matematiska idé behålls.
-    </p>
-
-    <div class="table-wrap">
-      <table>
-        <tr>
-          <th>Ordinarie uppgift</th>
-          <th>Anpassad start</th>
-          <th>Samma idé</th>
-        </tr>
-
-        <tr>
-          <td>63 − 28</td>
-          <td>13 − 8</td>
-          <td>växling / gå via tiotal</td>
-        </tr>
-
-        <tr>
-          <td>48 + 27</td>
-          <td>18 + 7</td>
-          <td>komplettera till tiotal</td>
-        </tr>
-
-        <tr>
-          <td>24 ÷ 4</td>
-          <td>12 ÷ 3</td>
-          <td>dela lika</td>
-        </tr>
-
-        <tr>
-          <td>1/4 av 20</td>
-          <td>1/2 av 10</td>
-          <td>del av antal</td>
-        </tr>
-
-        <tr>
-          <td>Tvåstegsproblem</td>
-          <td>Ett steg först</td>
-          <td>förstå situationen och räknesättet</td>
-        </tr>
-      </table>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🧠 När eleven har svårt med problemlösning</h2>
-
-    <div class="adaptation-card">
-      <h3>Använd samma struktur varje gång</h3>
-
-      <ol class="step-list">
-        <li>Vad handlar problemet om?</li>
-        <li>Vad vet jag?</li>
-        <li>Vad behöver jag ta reda på?</li>
-        <li>Kan jag rita situationen?</li>
-        <li>Vilket räknesätt passar?</li>
-        <li>Är mitt svar rimligt?</li>
-      </ol>
-    </div>
-
-    <div class="adaptation-card">
-      <h3>Undvik att lära ut nyckelord som enda strategi</h3>
-
-      <p>
-        Ordet <strong>fler</strong> betyder till exempel inte automatiskt addition.
-      </p>
-
-      <div class="example">
-        Ali har 12 kulor.
-        Mira har 5 fler än Ali.
-        <br><br>
-        Här behöver eleven förstå relationen mellan mängderna.
-      </div>
-    </div>
-  </section>
-
-
-  <section class="box" id="repetition">
-    <h2>🔁 Repetition som faktiskt hjälper</h2>
-
-    <p>
-      Repetition behöver vara regelbunden och blandad.
-    </p>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>☀️ Dagens matte</h3>
-        <p>5–10 minuter med gamla och nya kunskaper.</p>
+        <ul>
+          <li>mål</li>
+          <li>kort modellering</li>
+          <li>gemensamt exempel</li>
+          <li>eget eller pararbete</li>
+          <li>avslut och återkoppling</li>
+        </ul>
       </div>
 
-      <div class="card">
-        <h3>⚡ Huvudräkning</h3>
-        <p>Korta strategifrågor flera gånger i veckan.</p>
+      <div class="adapt-card">
+        <h3>Dela upp uppgiften</h3>
+
+        <ul>
+          <li>visa ett steg i taget</li>
+          <li>täck över kommande steg</li>
+          <li>använd checklista</li>
+          <li>kontrollera efter varje del</li>
+        </ul>
       </div>
 
-      <div class="card">
-        <h3>🎮 Spel</h3>
-        <p>Automatisera sådant som redan är förstått.</p>
+      <div class="adapt-card">
+        <h3>Ge tänketid</h3>
+
+        <ul>
+          <li>ställ frågan</li>
+          <li>vänta</li>
+          <li>låt eleven skriva eller rita först</li>
+          <li>parprata före svar</li>
+        </ul>
       </div>
 
-      <div class="card">
-        <h3>💬 Matteprat</h3>
-        <p>Låt elever återkomma till tidigare strategier.</p>
+      <div class="adapt-card">
+        <h3>Minska samtidig information</h3>
+
+        <ul>
+          <li>kortare muntliga instruktioner</li>
+          <li>instruktion även skriftligt</li>
+          <li>en instruktion per steg</li>
+          <li>kontrollfråga: Vad ska du göra först?</li>
+        </ul>
       </div>
 
     </div>
 
     <div class="support-box">
-      Hellre 8 minuter tre gånger i veckan än ett långt repetitionspass var tredje vecka.
+      <strong>NPF-vänligt arbetssätt:</strong>
+      tydlighet, förutsägbarhet, begränsad informationsmängd och synliga arbetssteg
+      kan gynna många elever – inte bara elever med identifierade stödbehov.
     </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>🎯 Om eleven räknar mycket långsamt</h2>
 
-    <p>
-      Ta först reda på varför.
-    </p>
+  <!-- MATERIAL -->
 
-    <ul class="step-list">
-      <li>Räknar eleven fortfarande allt från ett?</li>
-      <li>Saknas tiokompisar eller dubblor?</li>
-      <li>Är positionssystemet osäkert?</li>
-      <li>Tar språkförståelsen mycket kraft?</li>
-      <li>Är själva metoden för komplicerad?</li>
-    </ul>
+  <section class="adapt-section screen-only" id="material">
 
-    <div class="language-box">
-      Träna den bakomliggande strategin, inte bara snabbheten.
+    <h2>🧱 Konkret material och representationer</h2>
+
+    <div class="adapt-grid">
+
+      <div class="adapt-card">
+        <h3>Taluppfattning</h3>
+
+        <ul>
+          <li>tiobasmaterial</li>
+          <li>positionsschema</li>
+          <li>tallinje</li>
+          <li>hundraruta</li>
+          <li>sifferkort</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Addition och subtraktion</h3>
+
+        <ul>
+          <li>tallinje</li>
+          <li>tiobasmaterial</li>
+          <li>pärlor eller räknemarkörer</li>
+          <li>del–helhet-modeller</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Multiplikation och division</h3>
+
+        <ul>
+          <li>lika stora grupper</li>
+          <li>rutnät</li>
+          <li>räknemarkörer</li>
+          <li>faktamiljer</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Bråk</h3>
+
+        <ul>
+          <li>bråkcirklar</li>
+          <li>pappersremsor</li>
+          <li>vikning</li>
+          <li>bildmodeller</li>
+        </ul>
+      </div>
+
     </div>
+
+    <div class="support-box">
+      <strong>Kom ihåg:</strong>
+      målet är inte att eleven alltid ska behöva konkret material.
+      Materialet ska hjälpa eleven att utveckla en mental bild av matematiken.
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>🧩 När eleven kan proceduren men inte förstår</h2>
 
-    <p>
-      Be eleven visa samma matematik på flera sätt.
-    </p>
+  <!-- UTMANING -->
 
-    <div class="grid">
+  <section class="adapt-section screen-only" id="utmaning">
 
-      <div class="card">
-        🧱 Med material
-      </div>
-
-      <div class="card">
-        🖼️ Med bild
-      </div>
-
-      <div class="card">
-        📏 På tallinje
-      </div>
-
-      <div class="card">
-        🔢 Med symboler
-      </div>
-
-      <div class="card">
-        💬 Med ord
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box" id="utmaning">
     <h2>⭐ Anpassning för elever som behöver större utmaning</h2>
 
-    <p>
-      Utmaning ska inte bara vara större tal eller fler uppgifter.
-    </p>
+    <div class="adapt-grid">
 
-    <div class="adaptation-card">
-      <h3>Fördjupa samma innehåll</h3>
+      <div class="adapt-card">
+        <h3>Öppna uppgiften</h3>
 
-      <div class="challenge-box">
-        Istället för 20 fler additioner:
-        <br><br>
-        ”Hitta tre olika sätt att lösa 48 + 27 och jämför strategierna.”
+        <ul>
+          <li>hitta flera lösningar</li>
+          <li>hitta alla möjliga lösningar</li>
+          <li>skapa ett eget exempel</li>
+          <li>förklara ett mönster</li>
+        </ul>
       </div>
+
+      <div class="adapt-card">
+        <h3>Öka djupet – inte bara talen</h3>
+
+        <ul>
+          <li>varför fungerar strategin?</li>
+          <li>när fungerar den inte?</li>
+          <li>jämför två metoder</li>
+          <li>generalisera</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Be eleven skapa</h3>
+
+        <ul>
+          <li>ett eget problem</li>
+          <li>ett felaktigt exempel</li>
+          <li>en regel</li>
+          <li>en förklaring till en yngre elev</li>
+        </ul>
+      </div>
+
+      <div class="adapt-card">
+        <h3>Förändra villkoren</h3>
+
+        <ul>
+          <li>Vad händer om...?</li>
+          <li>Kan svaret bli samma på ett annat sätt?</li>
+          <li>Vilket är största möjliga?</li>
+          <li>Vilket är minsta möjliga?</li>
+        </ul>
+      </div>
+
     </div>
 
-
-    <div class="adaptation-card">
-      <h3>Öppna uppgiften</h3>
-
-      <div class="challenge-box">
-        Två tal har summan 50.
-        <br><br>
-        Vilka tal kan det vara?
-        <br>
-        Hur vet du att du hittat alla möjligheter?
-      </div>
+    <div class="challenge-box">
+      <strong>Princip:</strong>
+      elever som räknar snabbt behöver inte automatiskt fler likadana uppgifter.
+      Ge i stället möjlighet till större matematiskt djup och resonemang.
     </div>
 
-
-    <div class="adaptation-card">
-      <h3>Generalisera</h3>
-
-      <div class="challenge-box">
-        Summan av två udda tal verkar bli jämn.
-        <br><br>
-        Är det alltid sant?
-        Undersök och förklara.
-      </div>
-    </div>
-
-
-    <div class="adaptation-card">
-      <h3>Skapa</h3>
-
-      <div class="challenge-box">
-        Skapa ett problem där svaret är 36 och där man måste använda två räknesätt.
-      </div>
-    </div>
   </section>
 
 
-  <section class="box">
-    <h2>👩‍🏫 Snabbguide – jag ser detta, vad kan jag prova?</h2>
 
-    <div class="table-wrap">
-      <table>
-        <tr>
-          <th>Jag ser...</th>
-          <th>Prova...</th>
-        </tr>
+  <!-- A4 1 CHECKLISTA -->
 
-        <tr>
-          <td>Eleven räknar allt från ett</td>
-          <td>talbilder, tiokompisar, dubbelt och del–helhet</td>
-        </tr>
+  <section class="print-page">
 
-        <tr>
-          <td>Eleven blandar ihop 326 och 362</td>
-          <td>positionsmaterial och platsvärdestabell</td>
-        </tr>
+    <div class="sheet-head">
 
-        <tr>
-          <td>Eleven kan räkna men inte förklara</td>
-          <td>meningsstarter, parprat och jämförelse av lösningar</td>
-        </tr>
+      <h2>🌱 Anpassningsunderlag 1 – Vad behöver eleven?</h2>
 
-        <tr>
-          <td>Eleven väljer alltid samma räknesätt i problem</td>
-          <td>rita situationen och prata om relationerna innan beräkning</td>
-        </tr>
+      <p>
+        Markera sådant som kan vara relevant att prova i undervisningen.
+      </p>
 
-        <tr>
-          <td>Eleven tappar bort sig i flera steg</td>
-          <td>en instruktion i taget och visuell checklista</td>
-        </tr>
+      <div class="info-row">
 
-        <tr>
-          <td>Eleven blir klar direkt</td>
-          <td>öppna problem, flera lösningar och argumentation</td>
-        </tr>
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
+        </div>
 
-        <tr>
-          <td>Eleven glömmer snabbt</td>
-          <td>utspridd repetition och återkommande korta frågor</td>
-        </tr>
-      </table>
+        <div>
+          <label>Datum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
     </div>
+
+
+    <h3>💬 Språk</h3>
+
+    <div class="check-grid">
+
+      <div class="check-item">☐ Förförstå viktiga begrepp</div>
+      <div class="check-item">☐ Bildstöd till begrepp</div>
+      <div class="check-item">☐ Meningsstarter</div>
+      <div class="check-item">☐ Parprat före helklass</div>
+      <div class="check-item">☐ Läsa textproblem högt</div>
+      <div class="check-item">☐ Återberätta problemet</div>
+
+    </div>
+
+
+    <h3>👀 Visuellt stöd</h3>
+
+    <div class="check-grid">
+
+      <div class="check-item">☐ Tallinje</div>
+      <div class="check-item">☐ Positionsschema</div>
+      <div class="check-item">☐ Modell eller bild</div>
+      <div class="check-item">☐ Färre uppgifter på sidan</div>
+      <div class="check-item">☐ Tydlig arbetsgång</div>
+      <div class="check-item">☐ Exempel synligt under arbetet</div>
+
+    </div>
+
+
+    <h3>🧠 Struktur</h3>
+
+    <div class="check-grid">
+
+      <div class="check-item">☐ En instruktion i taget</div>
+      <div class="check-item">☐ Skriftlig instruktion</div>
+      <div class="check-item">☐ Checklista</div>
+      <div class="check-item">☐ Extra tänketid</div>
+      <div class="check-item">☐ Kortare arbetsintervall</div>
+      <div class="check-item">☐ Tydlig start och avslut</div>
+
+    </div>
+
+
+    <h3>🧱 Matematiska representationer</h3>
+
+    <div class="check-grid">
+
+      <div class="check-item">☐ Konkret material</div>
+      <div class="check-item">☐ Rita eller modellera</div>
+      <div class="check-item">☐ Tallinje</div>
+      <div class="check-item">☐ Tabell eller schema</div>
+      <div class="check-item">☐ Växla mellan bild och symbol</div>
+      <div class="check-item">☐ Gemensam modellering först</div>
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>✅ Planera en tillgänglig matematiklektion</h2>
 
-    <ul class="checklist">
-      <li>Är målet tydligt?</li>
-      <li>Vet eleverna vilka matematikord de behöver?</li>
-      <li>Finns konkret eller visuellt stöd?</li>
-      <li>Kan uppgiften visas på flera sätt?</li>
-      <li>Kan eleven arbeta med mindre tal men samma idé?</li>
-      <li>Finns möjlighet att prata matematik?</li>
-      <li>Finns återkoppling under lektionen?</li>
-      <li>Finns en meningsfull utmaning?</li>
-    </ul>
+  <!-- A4 2 PLAN -->
+
+  <section class="print-page" id="plan">
+
+    <div class="sheet-head">
+
+      <h2>📝 Anpassningsunderlag 2 – Planera stödet</h2>
+
+      <p>
+        Utgå från vad eleven behöver för att komma åt den matematiska idén.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Datum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="plan-grid">
+
+      <div class="plan-card">
+
+        <label>
+          Vad är den matematiska idén?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Vad verkar skapa hinder?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Vilket stöd ska provas?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Vad ska eleven fortfarande göra själv?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Hur ska stödet introduceras?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Hur ska effekten följas upp?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>🌱 Mål:</strong>
+      stödet ska bidra till ökad förståelse och så långt som möjligt
+      ökad självständighet över tid.
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>🔗 Resurser i plattformen</h2>
 
-    <div class="link-grid">
+  <!-- A4 3 SPRÅKSTÖD -->
 
-      <a class="link-card" href="representationer.html">
-        🧩 Representationer
+  <section class="print-page">
+
+    <div class="sheet-head">
+
+      <h2>💬 Anpassningsunderlag 3 – Matematiskt språkstöd</h2>
+
+      <p>
+        Meningsstarter och frågor som kan ligga synliga under lektionen.
+      </p>
+
+    </div>
+
+
+    <div class="check-grid">
+
+      <div class="check-item">
+        <strong>Jag började med att...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Jag valde att...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Min strategi fungerar eftersom...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Jag vet att svaret är rimligt eftersom...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Jag håller med eftersom...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Jag tänkte på ett annat sätt...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Jag ser att...</strong>
+      </div>
+
+      <div class="check-item">
+        <strong>Jag upptäckte ett mönster...</strong>
+      </div>
+
+    </div>
+
+
+    <div class="language-box">
+
+      <strong>Frågor från läraren</strong>
+
+      <p>Hur tänkte du?</p>
+      <p>Kan du visa med en bild?</p>
+      <p>Kan du visa på ett annat sätt?</p>
+      <p>Vilket matematikord passar här?</p>
+      <p>Hur kan du kontrollera?</p>
+      <p>Vad händer om vi ändrar talet?</p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- A4 4 UTMANING -->
+
+  <section class="print-page">
+
+    <div class="sheet-head">
+
+      <h2>⭐ Anpassningsunderlag 4 – Fördjupa och utmana</h2>
+
+      <p>
+        Frågor som ökar det matematiska djupet utan att bara ge fler likadana uppgifter.
+      </p>
+
+    </div>
+
+
+    <div class="check-grid">
+
+      <div class="check-item">
+        Kan du hitta ett annat sätt?
+      </div>
+
+      <div class="check-item">
+        Kan du hitta alla lösningar?
+      </div>
+
+      <div class="check-item">
+        Hur vet du att du hittat alla?
+      </div>
+
+      <div class="check-item">
+        Kan du skapa en liknande uppgift?
+      </div>
+
+      <div class="check-item">
+        Kan du skapa ett exempel som inte fungerar?
+      </div>
+
+      <div class="check-item">
+        Vad händer om talen blir större?
+      </div>
+
+      <div class="check-item">
+        Kan du beskriva en regel?
+      </div>
+
+      <div class="check-item">
+        Kan du förklara varför regeln fungerar?
+      </div>
+
+      <div class="check-item">
+        Vilken strategi är mest effektiv här?
+      </div>
+
+      <div class="check-item">
+        När skulle du välja en annan strategi?
+      </div>
+
+    </div>
+
+
+    <div class="challenge-box">
+
+      <strong>Utmaning ska ge djup:</strong>
+      låt elever undersöka samband, generalisera, argumentera och skapa egna exempel.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- A4 5 UPPFÖLJNING -->
+
+  <section class="print-page">
+
+    <div class="sheet-head">
+
+      <h2>🔎 Anpassningsunderlag 5 – Följ upp stödet</h2>
+
+      <p>
+        Använd efter några lektioner eller efter en kort riktad insats.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Datum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="plan-grid">
+
+      <div class="plan-card">
+
+        <label>
+          Vilket stöd användes?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Vad blev lättare för eleven?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Vad är fortfarande svårt?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Kan stödet minskas?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Behöver stödet förändras?
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <label>
+          Nästa undervisningssteg
+        </label>
+
+        <textarea></textarea>
+
+      </div>
+
+    </div>
+
+
+    <div class="warning-box">
+
+      <strong>Undvik:</strong>
+      att låta ett stöd fortsätta automatiskt utan att kontrollera
+      om eleven fortfarande behöver det eller om ett annat stöd skulle fungera bättre.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- DIGITALA LÄNKAR -->
+
+  <section class="box screen-only">
+
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="links">
+
+      <a href="kartlaggning.html">
+        🧭 Kartläggning
       </a>
 
-      <a class="link-card" href="strategier.html">
+      <a href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a href="missuppfattningar.html">
+        🕵️ Missuppfattningar
+      </a>
+
+      <a href="interventioner.html">
+        🎯 Interventioner
+      </a>
+
+      <a href="intensivtraning.html">
+        ⚡ Intensivträning
+      </a>
+
+      <a href="sprakstod.html">
+        💬 Språkstöd
+      </a>
+
+      <a href="representationer.html">
+        🧱 Representationer
+      </a>
+
+      <a href="strategier.html">
         🧠 Strategier
       </a>
 
-      <a class="link-card" href="matteprat.html">
-        💬 Matteprat
-      </a>
-
-      <a class="link-card" href="matteverkstad.html">
-        🧱 Matteverkstad
-      </a>
-
-      <a class="link-card" href="ovningsbank.html">
-        📚 Övningsbank
-      </a>
-
-      <a class="link-card" href="utmaningar.html">
-        ⭐ Utmaningar
-      </a>
-
-      <a class="link-card" href="lararverktyg.html">
-        🧰 Lärarverktyg
-      </a>
-
-      <a class="link-card" href="lektionsbank.html">
-        📚 Lektionsbank
-      </a>
-
     </div>
+
   </section>
 
 </main>
 
+
 <footer>
   <p><strong>Matematik åk 3 – Anpassningar</strong></p>
-  <p>Tillgänglighet • Förståelse • Delaktighet • Utmaning</p>
+  <p>Synliggör • Stöd • Utmana • Följ upp</p>
 </footer>
+
+
+<script>
+
+function expandTextareasForPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.dataset.oldHeight =
+        textarea.style.height;
+
+      textarea.style.height =
+        "auto";
+
+      textarea.style.height =
+        Math.max(
+          textarea.scrollHeight,
+          55
+        ) + "px";
+
+    });
+
+}
+
+
+function restoreTextareasAfterPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.style.height =
+        textarea.dataset.oldHeight || "";
+
+    });
+
+}
+
+
+window.addEventListener(
+  "beforeprint",
+  expandTextareasForPrint
+);
+
+
+window.addEventListener(
+  "afterprint",
+  restoreTextareasAfterPrint
+);
+
+</script>
 
 </body>
 </html>
