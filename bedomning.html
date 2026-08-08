@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bedömning – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .assessment-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .assessment-card h3 {
+      margin-top: 0;
+    }
+
+    .observe {
+      background: #f3eadf;
+      border-radius: 11px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .question-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 11px 0;
+    }
+
+    .student-example {
+      background: #fffdf8;
+      border: 1px solid #d8cab7;
+      border-radius: 13px;
+      padding: 17px;
+      margin: 14px 0;
+    }
+
+    .student-work {
+      background: #f3eadf;
+      border-radius: 11px;
+      padding: 15px;
+      font-size: 1.08rem;
+      margin: 10px 0;
+    }
+
+    .analysis {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .next-step {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .self-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .self-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .exit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .exit-card {
+      background: #fffdf8;
+      border: 2px dashed #c6b49a;
+      border-radius: 13px;
+      padding: 16px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .assessment-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔎 Bedömning i matematik</h1>
+
+  <p>
+    Formativ bedömning som hjälper läraren att se vad eleven förstår,
+    hur eleven tänker och vilket undervisningssteg som behöver komma härnäst.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#observera">👀 Observera</a>
+  <a href="#elevexempel">✍️ Elevexempel</a>
+  <a href="#exit">🚪 Exit tickets</a>
+  <a href="#sjalv">🌱 Självbedömning</a>
+  <a href="#nasta">➡️ Nästa steg</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Vad vill vi få syn på?</h2>
+
+    <p>
+      Bedömning i matematik handlar inte bara om hur många rätt eleven får.
+      Vi behöver också se hur eleven förstår begrepp, väljer strategier,
+      använder representationer och förklarar sina lösningar.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🔢</div>
+        <h3>Begrepp</h3>
+        <p>Förstår eleven vad talen och symbolerna betyder?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Strategier</h3>
+        <p>Hur väljer och använder eleven metoder?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>Representationer</h3>
+        <p>Kan eleven visa samma matematik på flera sätt?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Resonemang</h3>
+        <p>Kan eleven förklara varför en lösning fungerar?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Problemlösning</h3>
+        <p>Kan eleven förstå situationen och välja relevant strategi?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✅</div>
+        <h3>Kontroll</h3>
+        <p>Kan eleven avgöra om svaret verkar rimligt?</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="observera">
+    <h2>👀 Observation under lektionen</h2>
+
+    <p>
+      Välj gärna bara ett eller två fokusområden per lektion.
+      Då blir observationerna mer användbara.
+    </p>
+
+    <div class="assessment-card">
+      <h3>Taluppfattning</h3>
+
+      <div class="observe">
+        Observera om eleven:
+        <ul>
+          <li>förstår platsvärde,</li>
+          <li>kan jämföra tal,</li>
+          <li>kan placera tal ungefärligt på tallinje,</li>
+          <li>kan resonera om rimlighet.</li>
+        </ul>
+      </div>
+
+      <div class="question-box">
+        Fråga: Hur vet du att 403 är större än 398?
+      </div>
+    </div>
+
+
+    <div class="assessment-card">
+      <h3>Addition och subtraktion</h3>
+
+      <div class="observe">
+        Observera om eleven:
+        <ul>
+          <li>använder flexibla strategier,</li>
+          <li>delar upp tal på ett funktionellt sätt,</li>
+          <li>ser samband mellan addition och subtraktion,</li>
+          <li>kan kontrollera resultat.</li>
+        </ul>
+      </div>
+
+      <div class="question-box">
+        Fråga: Kan du lösa 48 + 27 på ett annat sätt?
+      </div>
+    </div>
+
+
+    <div class="assessment-card">
+      <h3>Multiplikation och division</h3>
+
+      <div class="observe">
+        Observera om eleven:
+        <ul>
+          <li>förstår lika stora grupper,</li>
+          <li>använder tabellsamband,</li>
+          <li>ser sambandet mellan multiplikation och division,</li>
+          <li>kan beskriva vad faktorerna betyder i situationen.</li>
+        </ul>
+      </div>
+
+      <div class="question-box">
+        Fråga: Om 5 × 6 = 30, vad mer vet du då?
+      </div>
+    </div>
+
+
+    <div class="assessment-card">
+      <h3>Problemlösning</h3>
+
+      <div class="observe">
+        Observera om eleven:
+        <ul>
+          <li>förstår frågan,</li>
+          <li>identifierar relevant information,</li>
+          <li>väljer strategi,</li>
+          <li>kan förklara och kontrollera lösningen.</li>
+        </ul>
+      </div>
+
+      <div class="question-box">
+        Fråga: Vad i problemet gjorde att du valde just den strategin?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📊 Fyra nivåer för undervisningsanalys</h2>
+
+    <p>
+      Dessa är inte betygsnivåer. De hjälper bara läraren att planera nästa undervisningssteg.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+
+        <tr>
+          <th>Vad visar eleven?</th>
+          <th>Tolkning</th>
+          <th>Nästa undervisningssteg</th>
+        </tr>
+
+        <tr>
+          <td>
+            Eleven kommer inte igång eller gissar utan strategi.
+          </td>
+          <td>
+            Den grundläggande idén behöver göras tydligare.
+          </td>
+          <td>
+            Konkret material, mindre tal, tydlig modellering och gemensamt språk.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Eleven kan lösa med mycket stöd.
+          </td>
+          <td>
+            Förståelsen börjar utvecklas men är ännu inte stabil.
+          </td>
+          <td>
+            Fortsatt guidning, flera representationer och kort repetition.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Eleven löser självständigt i bekanta situationer.
+          </td>
+          <td>
+            Strategin fungerar och kan användas självständigt.
+          </td>
+          <td>
+            Variera uppgifter och låt eleven jämföra strategier.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Eleven kan förklara, generalisera och använda kunskapen i nya situationer.
+          </td>
+          <td>
+            Förståelsen är djupare och flexibel.
+          </td>
+          <td>
+            Öppna problem, argumentation och nya sammanhang.
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </section>
+
+
+  <section class="box" id="elevexempel">
+    <h2>✍️ Analysera elevlösningar</h2>
+
+    <div class="student-example">
+
+      <h3>Elevexempel 1 – Addition</h3>
+
+      <div class="student-work">
+        48 + 27
+        <br><br>
+        48 + 20 = 68
+        <br>
+        68 + 7 = 75
+      </div>
+
+      <div class="analysis">
+        <strong>Vad ser vi?</strong>
+        <br>
+        Eleven delar upp den andra termen i tiotal och ental och genomför beräkningen korrekt.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong>
+        <br>
+        Be eleven jämföra med strategin 48 + 30 − 3.
+      </div>
+
+    </div>
+
+
+    <div class="student-example">
+
+      <h3>Elevexempel 2 – Addition</h3>
+
+      <div class="student-work">
+        38 + 27 = 515
+      </div>
+
+      <div class="analysis">
+        <strong>Vad kan felet visa?</strong>
+        <br>
+        Eleven kan ha räknat 3 + 2 och 8 + 7 separat och sedan skrivit svaren bredvid varandra.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong>
+        <br>
+        Gå tillbaka till tiotal och ental med konkret material och koppla sedan till symbolerna.
+      </div>
+
+    </div>
+
+
+    <div class="student-example">
+
+      <h3>Elevexempel 3 – Bråk</h3>
+
+      <div class="student-work">
+        1/4 är större än 1/2 eftersom 4 är större än 2.
+      </div>
+
+      <div class="analysis">
+        <strong>Vad ser vi?</strong>
+        <br>
+        Eleven jämför nämnarna som vanliga heltal istället för att tolka hur många lika delar helheten är delad i.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong>
+        <br>
+        Jämför lika stora pappersmodeller delade i två respektive fyra lika delar.
+      </div>
+
+    </div>
+
+
+    <div class="student-example">
+
+      <h3>Elevexempel 4 – Problemlösning</h3>
+
+      <div class="student-work">
+        24 kakor delas lika mellan 6 barn.
+        <br><br>
+        Eleven räknar 24 − 6 = 18.
+      </div>
+
+      <div class="analysis">
+        <strong>Vad kan felet visa?</strong>
+        <br>
+        Eleven ser ordet ”delas” men har inte förstått situationens gruppstruktur.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong>
+        <br>
+        Dela 24 konkreta föremål mellan 6 grupper och låt eleven beskriva vad som händer.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="exit">
+    <h2>🚪 Snabba exit tickets</h2>
+
+    <p>
+      En exit ticket behöver inte innehålla många frågor.
+      En enda genomtänkt fråga kan ge mycket information.
+    </p>
+
+    <div class="exit-grid">
+
+      <div class="exit-card">
+        <h3>🔢 Taluppfattning</h3>
+        <p>
+          I talet 472, vad är siffran 7 värd?
+        </p>
+        <p>
+          Förklara hur du vet.
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>➕ Addition</h3>
+        <p>
+          Lös 39 + 28.
+        </p>
+        <p>
+          Visa hur du tänkte.
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>➖ Subtraktion</h3>
+        <p>
+          Vad är skillnaden mellan 63 och 28?
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>✖️ Multiplikation</h3>
+        <p>
+          Rita en bild som visar 4 × 6.
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>➗ Division</h3>
+        <p>
+          Om 5 × 7 = 35, skriv ett divisionsuttryck som hör ihop.
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>🍕 Bråk</h3>
+        <p>
+          Vilket är störst: 1/2 eller 1/4?
+        </p>
+        <p>
+          Förklara.
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>📐 Geometri</h3>
+        <p>
+          Hur vet du att en figur är en fyrhörning?
+        </p>
+      </div>
+
+      <div class="exit-card">
+        <h3>🧠 Problemlösning</h3>
+        <p>
+          Vilken strategi använde du idag och varför?
+        </p>
+      </div>
+
+    </div>
+
+    <p>
+      Du kan också använda den självrättande sidan:
+      <a href="exit-ticket.html"><strong>Öppna Exit ticket →</strong></a>
+    </p>
+  </section>
+
+
+  <section class="box" id="sjalv">
+    <h2>🌱 Elevens självbedömning</h2>
+
+    <p>
+      Självbedömning fungerar bäst när eleven bedömer något konkret,
+      till exempel en strategi eller ett område som nyligen undervisats.
+    </p>
+
+    <div class="self-grid">
+
+      <div class="self-card">
+        🌱
+        <br>
+        Jag behöver hjälp för att komma igång
+      </div>
+
+      <div class="self-card">
+        🌿
+        <br>
+        Jag kan med stöd
+      </div>
+
+      <div class="self-card">
+        🌳
+        <br>
+        Jag kan göra själv
+      </div>
+
+      <div class="self-card">
+        ⭐
+        <br>
+        Jag kan förklara för någon annan
+      </div>
+
+    </div>
+
+    <div class="question-box">
+      Vad kan du idag som du inte kunde tidigare?
+    </div>
+
+    <div class="question-box">
+      Vilken strategi fungerar bäst för dig?
+    </div>
+
+    <div class="question-box">
+      Vad vill du träna mer på?
+    </div>
+
+    <div class="question-box">
+      Vad blir ditt nästa mål?
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>💬 Muntlig bedömning</h2>
+
+    <p>
+      Vissa elever visar mer av sin matematiska förståelse muntligt än i skrift.
+    </p>
+
+    <p>
+      Använd frågor som:
+    </p>
+
+    <div class="question-box">
+      Hur började du?
+    </div>
+
+    <div class="question-box">
+      Varför fungerar det sättet?
+    </div>
+
+    <div class="question-box">
+      Kan du visa samma sak med en bild?
+    </div>
+
+    <div class="question-box">
+      Finns det ett annat sätt?
+    </div>
+
+    <div class="question-box">
+      Hur kan du kontrollera?
+    </div>
+
+    <div class="question-box">
+      Vad händer om vi ändrar talet?
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🧩 Bedöm flera representationer</h2>
+
+    <p>
+      En elev som verkligen förstår en matematisk idé kan ofta koppla ihop flera sätt att visa den.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🧱</div>
+        <h3>Material</h3>
+        <p>Kan eleven bygga situationen?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🖼️</div>
+        <h3>Bild</h3>
+        <p>Kan eleven rita en modell?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📏</div>
+        <h3>Tallinje</h3>
+        <p>Kan eleven visa förflyttningen?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔢</div>
+        <h3>Symboler</h3>
+        <p>Kan eleven skriva ett korrekt uttryck?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Ord</h3>
+        <p>Kan eleven förklara vad uttrycket betyder?</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="nasta">
+    <h2>➡️ Från bedömning till nästa steg</h2>
+
+    <div class="table-wrap">
+      <table>
+
+        <tr>
+          <th>Jag ser att eleven...</th>
+          <th>Nästa undervisningssteg</th>
+        </tr>
+
+        <tr>
+          <td>inte förstår själva begreppet</td>
+          <td>gå tillbaka till konkret material, bild och muntlig modellering</td>
+        </tr>
+
+        <tr>
+          <td>förstår men gör många beräkningsfel</td>
+          <td>arbeta med strategins steg och kort kontrollerad träning</td>
+        </tr>
+
+        <tr>
+          <td>kan lösa men inte förklara</td>
+          <td>matteprat, meningsstarter och jämförelse av elevlösningar</td>
+        </tr>
+
+        <tr>
+          <td>kan en metod men inte växla strategi</td>
+          <td>visa samma uppgift med flera strategier och representationer</td>
+        </tr>
+
+        <tr>
+          <td>kan i övningsbok men inte i textproblem</td>
+          <td>arbeta med situationer och modellering innan uträkningen</td>
+        </tr>
+
+        <tr>
+          <td>kan lösa och förklara säkert</td>
+          <td>öppna problem, generalisering och större krav på argumentation</td>
+        </tr>
+
+      </table>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Före jag drar en slutsats</h2>
+
+    <ul class="checklist">
+      <li>Har eleven fått möta uppgiften mer än en gång?</li>
+      <li>Har jag sett både muntliga och skriftliga lösningar?</li>
+      <li>Kan språk eller läsförståelse påverka resultatet?</li>
+      <li>Har eleven fått möjlighet att använda konkret eller visuellt stöd?</li>
+      <li>Visar eleven samma svårighet i flera situationer?</li>
+      <li>Vad kan eleven redan som jag kan bygga vidare på?</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Bedömningsverktyg i plattformen</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="diagnos.html">
+        🔎 Diagnos
+      </a>
+
+      <a class="link-card" href="kunskapskoll.html">
+        ✅ Kunskapskoll
+      </a>
+
+      <a class="link-card" href="exit-ticket.html">
+        🚪 Exit ticket
+      </a>
+
+      <a class="link-card" href="min-utveckling.html">
+        🌱 Min utveckling
+      </a>
+
+      <a class="link-card" href="felanalys.html">
+        🕵️ Felanalys
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="lararverktyg.html">
+        🧰 Lärarverktyg
+      </a>
+
+      <a class="link-card" href="anpassningar.html">
+        🌿 Anpassningar
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Bedömning</strong></p>
+  <p>Synliggör • Analysera • Anpassa • Följa upp</p>
+</footer>
+
+</body>
+</html>
