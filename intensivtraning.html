@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Intensivträning – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .pass-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .pass-card h3 {
+      margin-top: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 13px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-weight: bold;
+      font-size: 0.86rem;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .step {
+      background: #f3eadf;
+      border-radius: 11px;
+      padding: 13px;
+      text-align: center;
+    }
+
+    .teacher {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .student {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .challenge {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .check {
+      background: #f3eadf;
+      border: 2px dashed #c6b49a;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .answer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .answer-row button {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .answer-row button:hover {
+      background: var(--beige);
+    }
+
+    .right {
+      background: var(--ratt) !important;
+    }
+
+    .wrong {
+      background: var(--fel) !important;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 26px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:850px) {
+      .step-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .pass-card {
+        padding: 18px;
+      }
+
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚡ Intensivträning</h1>
+
+  <p>
+    Korta matematikpass på 10–15 minuter som kan användas flera gånger i veckan
+    för att bygga stabil förståelse och säkrare strategier.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#addition">➕ Addition</a>
+  <a href="#subtraktion">➖ Subtraktion</a>
+  <a href="#multiplikation">✖️ Multiplikation</a>
+  <a href="#division">➗ Division</a>
+  <a href="#problem">🧠 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Samma struktur varje gång</h2>
+
+    <p>
+      Intensivträning fungerar bäst när eleven känner igen arbetssättet.
+      Därför följer passen samma enkla struktur.
+    </p>
+
+    <div class="step-grid">
+
+      <div class="step">
+        <strong>1. Minns</strong>
+        <br>
+        2–3 min
+      </div>
+
+      <div class="step">
+        <strong>2. Förstå</strong>
+        <br>
+        3 min
+      </div>
+
+      <div class="step">
+        <strong>3. Träna</strong>
+        <br>
+        5–7 min
+      </div>
+
+      <div class="step">
+        <strong>4. Visa</strong>
+        <br>
+        2 min
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="pass-card">
+      <h3>Tal 1 – Tiotal och ental</h3>
+
+      <div class="meta">
+        <span class="tag">10 minuter</span>
+        <span class="tag">Grundnivå</span>
+      </div>
+
+      <div class="teacher">
+        <strong>Läraren säger:</strong>
+        <br>
+        ”Bygg talet 36. Hur många tiotal? Hur många ental?”
+      </div>
+
+      <div class="student">
+        <strong>Eleven gör:</strong>
+        <br>
+        Bygger 36, 42, 58 och 71 med material eller ritar tiotal och ental.
+      </div>
+
+      <div class="check">
+        <strong>Snabb kontroll:</strong>
+        <br>
+        Vad är siffran 5 värd i talet 58?
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Tal 2 – Hundratal, tiotal och ental</h3>
+
+      <div class="meta">
+        <span class="tag">12 minuter</span>
+        <span class="tag">Positionssystem</span>
+      </div>
+
+      <div class="teacher">
+        Visa talet <strong>364</strong>.
+        <br><br>
+        Fråga: ”Vad är 3:an värd? Vad är 6:an värd? Vad är 4:an värd?”
+      </div>
+
+      <div class="student">
+        Eleven skriver:
+        <br><br>
+        364 = 300 + 60 + 4
+      </div>
+
+      <div class="challenge">
+        <strong>⭐ Utmaning:</strong>
+        <br>
+        Skriv ett tal med 5 hundratal, 0 tiotal och 8 ental.
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Tal 3 – 10 mer och 10 mindre</h3>
+
+      <div class="student">
+        Fyll i:
+
+        <ul>
+          <li>34 → 10 mer = ___</li>
+          <li>68 → 10 mindre = ___</li>
+          <li>125 → 10 mer = ___</li>
+          <li>392 → 10 mindre = ___</li>
+        </ul>
+      </div>
+
+      <div class="teacher">
+        Fråga:
+        <br>
+        ”Vilken sifferposition förändras? Vad händer med de andra?”
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Tal 4 – Vilket tal är störst?</h3>
+
+      <div class="student">
+        Jämför:
+
+        <ul>
+          <li>398 ___ 403</li>
+          <li>275 ___ 257</li>
+          <li>509 ___ 590</li>
+          <li>699 ___ 701</li>
+        </ul>
+      </div>
+
+      <div class="check">
+        Eleven ska inte bara välja rätt tecken utan också förklara
+        vilken plats hen jämförde först.
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="addition">
+    <h2>➕ Addition</h2>
+
+    <div class="pass-card">
+      <h3>Addition 1 – Tiokompisar</h3>
+
+      <div class="meta">
+        <span class="tag">10 minuter</span>
+        <span class="tag">Automatisering</span>
+      </div>
+
+      <div class="student">
+        Säg svaret:
+
+        <ul>
+          <li>7 + ___ = 10</li>
+          <li>6 + ___ = 10</li>
+          <li>8 + ___ = 10</li>
+          <li>3 + ___ = 10</li>
+          <li>9 + ___ = 10</li>
+        </ul>
+      </div>
+
+      <div class="teacher">
+        Koppla sedan:
+        <br><br>
+        17 + 3
+        <br>
+        27 + 3
+        <br>
+        47 + 3
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Addition 2 – Gå via 10</h3>
+
+      <div class="teacher">
+        Modellera:
+        <br><br>
+        8 + 7
+        <br>
+        8 + 2 + 5
+        <br>
+        10 + 5 = 15
+      </div>
+
+      <div class="student">
+        Lös:
+
+        <ul>
+          <li>9 + 6</li>
+          <li>8 + 5</li>
+          <li>7 + 6</li>
+          <li>9 + 4</li>
+        </ul>
+      </div>
+
+      <div class="check">
+        Fråga:
+        <br>
+        ”Hur mycket behövde första talet för att komma till 10?”
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Addition 3 – Dubbelt och nästan dubbelt</h3>
+
+      <div class="student">
+        Först:
+
+        <ul>
+          <li>6 + 6</li>
+          <li>7 + 7</li>
+          <li>8 + 8</li>
+        </ul>
+
+        Sedan:
+
+        <ul>
+          <li>6 + 7</li>
+          <li>7 + 8</li>
+          <li>8 + 9</li>
+        </ul>
+      </div>
+
+      <div class="teacher">
+        Fråga:
+        <br>
+        ”Hur kan det första svaret hjälpa dig med nästa?”
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Addition 4 – Dela upp tal</h3>
+
+      <div class="teacher">
+        Modellera:
+        <br><br>
+        46 + 27
+        <br>
+        46 + 20 + 7
+      </div>
+
+      <div class="student">
+        Lös på samma sätt:
+
+        <ul>
+          <li>35 + 24</li>
+          <li>52 + 36</li>
+          <li>47 + 25</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Addition 5 – Välj strategi</h3>
+
+      <div class="student">
+        Vilken strategi skulle du använda?
+
+        <ul>
+          <li>49 + 21</li>
+          <li>38 + 38</li>
+          <li>198 + 24</li>
+        </ul>
+      </div>
+
+      <div class="challenge">
+        Här är målet inte bara svaret.
+        Eleven ska kunna motivera varför strategin passar talen.
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="subtraktion">
+    <h2>➖ Subtraktion</h2>
+
+    <div class="pass-card">
+      <h3>Subtraktion 1 – Skillnaden</h3>
+
+      <div class="teacher">
+        Rita en tallinje från 8 till 13.
+        <br><br>
+        Fråga:
+        ”Hur långt är det mellan talen?”
+      </div>
+
+      <div class="student">
+        Gör samma med:
+
+        <ul>
+          <li>9 och 15</li>
+          <li>17 och 24</li>
+          <li>28 och 35</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Subtraktion 2 – Gå via tiotal</h3>
+
+      <div class="teacher">
+        Modellera:
+        <br><br>
+        32 − 7
+        <br>
+        32 − 2 − 5
+        <br>
+        30 − 5 = 25
+      </div>
+
+      <div class="student">
+        Lös:
+
+        <ul>
+          <li>41 − 6</li>
+          <li>53 − 8</li>
+          <li>62 − 7</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Subtraktion 3 – Räkna upp</h3>
+
+      <div class="teacher">
+        Fråga:
+        <br>
+        ”Hur långt är det från 38 till 72?”
+      </div>
+
+      <div class="student">
+        Exempel:
+
+        <p>
+          38 → 40 = +2
+          <br>
+          40 → 70 = +30
+          <br>
+          70 → 72 = +2
+          <br><br>
+          Skillnaden är 34.
+        </p>
+      </div>
+
+      <div class="challenge">
+        Prova samma strategi på 47 och 81.
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Subtraktion 4 – Kontrollera med addition</h3>
+
+      <div class="student">
+        Lös:
+        <br><br>
+        63 − 28
+      </div>
+
+      <div class="check">
+        Kontrollera:
+        <br><br>
+        svar + 28 = 63?
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="multiplikation">
+    <h2>✖️ Multiplikation</h2>
+
+    <div class="pass-card">
+      <h3>Multiplikation 1 – Bygg grupper</h3>
+
+      <div class="teacher">
+        Säg:
+        <br>
+        ”Bygg 3 grupper med 4 i varje.”
+      </div>
+
+      <div class="student">
+        Skriv sedan:
+
+        <p>
+          4 + 4 + 4 = 12
+          <br>
+          3 × 4 = 12
+        </p>
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Multiplikation 2 – 2:ans, 5:ans och 10:ans samband</h3>
+
+      <div class="student">
+        Räkna:
+
+        <ul>
+          <li>2 × 7</li>
+          <li>5 × 6</li>
+          <li>10 × 4</li>
+          <li>2 × 9</li>
+          <li>5 × 8</li>
+        </ul>
+      </div>
+
+      <div class="teacher">
+        Fråga:
+        <br>
+        ”Vilka mönster ser du?”
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Multiplikation 3 – Använd det du redan vet</h3>
+
+      <div class="teacher">
+        Om:
+        <br><br>
+        5 × 6 = 30
+        <br><br>
+        vad blir då:
+        <br>
+        6 × 6?
+      </div>
+
+      <div class="student">
+        Förklara:
+        <br>
+        ”Jag lägger till en grupp med 6.”
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Multiplikation 4 – Dubbla</h3>
+
+      <div class="teacher">
+        Om:
+        <br>
+        2 × 7 = 14
+        <br><br>
+        vad blir:
+        <br>
+        4 × 7?
+      </div>
+
+      <div class="student">
+        Koppla:
+        <br>
+        14 + 14 = 28
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="division">
+    <h2>➗ Division</h2>
+
+    <div class="pass-card">
+      <h3>Division 1 – Dela lika</h3>
+
+      <div class="teacher">
+        Ge eleven 12 markörer.
+        <br><br>
+        ”Dela dem lika mellan 3 personer.”
+      </div>
+
+      <div class="student">
+        Skriv:
+        <br><br>
+        12 ÷ 3 = 4
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Division 2 – Hur många grupper?</h3>
+
+      <div class="teacher">
+        Du har 20 markörer.
+        <br>
+        Gör grupper med 5 i varje.
+      </div>
+
+      <div class="student">
+        Hur många grupper blev det?
+        <br><br>
+        20 ÷ 5 = ___
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Division 3 – Faktfamiljen</h3>
+
+      <div class="student">
+        Fyll i:
+
+        <p>
+          4 × 6 = 24
+          <br>
+          6 × 4 = 24
+          <br>
+          24 ÷ 4 = ___
+          <br>
+          24 ÷ 6 = ___
+        </p>
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Division 4 – Tänk multiplikation</h3>
+
+      <div class="teacher">
+        35 ÷ 5 = ?
+        <br><br>
+        Fråga:
+        ”Vad gånger 5 blir 35?”
+      </div>
+
+      <div class="student">
+        Säg hela sambandet:
+        <br><br>
+        5 × 7 = 35
+        <br>
+        alltså
+        <br>
+        35 ÷ 5 = 7.
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>🍕 Bråk</h2>
+
+    <div class="pass-card">
+      <h3>Bråk 1 – Hälften</h3>
+
+      <div class="student">
+        Hitta hälften av:
+
+        <ul>
+          <li>8</li>
+          <li>12</li>
+          <li>18</li>
+          <li>20</li>
+        </ul>
+      </div>
+
+      <div class="teacher">
+        Låt eleven visa med två lika stora grupper.
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Bråk 2 – Fjärdedelar</h3>
+
+      <div class="teacher">
+        Vik ett papper i fyra lika stora delar.
+      </div>
+
+      <div class="student">
+        Färga:
+        <br><br>
+        1/4
+        <br>
+        sedan 2/4.
+      </div>
+
+      <div class="challenge">
+        Vad upptäcker du när du jämför 2/4 och 1/2?
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="pass-card">
+      <h3>Problem 1 – Rita först</h3>
+
+      <div class="teacher">
+        Läs:
+        <br><br>
+        ”Leo har 17 kulor och får 8 till.
+        Hur många har han nu?”
+      </div>
+
+      <div class="student">
+        Innan eleven räknar ska hen:
+        <ol>
+          <li>återberätta problemet,</li>
+          <li>rita situationen,</li>
+          <li>skriva en uträkning.</li>
+        </ol>
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Problem 2 – Vilket räknesätt?</h3>
+
+      <div class="student">
+        Bestäm vilket räknesätt som passar:
+
+        <p>
+          1. 24 kakor delas mellan 6 barn.
+          <br><br>
+          2. Mira har 17 kronor och får 8 kronor.
+          <br><br>
+          3. Ali har 23 kulor och Sara har 15.
+          Hur många fler har Ali?
+        </p>
+      </div>
+
+      <div class="teacher">
+        Eleven ska förklara situationen, inte bara säga räknesättet.
+      </div>
+    </div>
+
+
+    <div class="pass-card">
+      <h3>Problem 3 – Rimligt eller orimligt?</h3>
+
+      <div class="student">
+
+        <p>
+          48 + 27 = 65
+        </p>
+
+        <p>
+          39 − 12 = 51
+        </p>
+
+        <p>
+          6 × 5 = 30
+        </p>
+
+        <p>
+          20 ÷ 4 = 8
+        </p>
+
+        Bestäm vilka svar som kan vara rimliga.
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>🎯 Snabbtest – välj rätt svar</h2>
+
+    <div class="pass-card">
+
+      <h3>48 + 27 = ?</h3>
+
+      <div class="answer-row" id="answers1"></div>
+      <div class="feedback" id="feedback1"></div>
+
+    </div>
+
+
+    <div class="pass-card">
+
+      <h3>24 ÷ 6 = ?</h3>
+
+      <div class="answer-row" id="answers2"></div>
+      <div class="feedback" id="feedback2"></div>
+
+    </div>
+
+
+    <div class="pass-card">
+
+      <h3>Vilket är störst?</h3>
+
+      <div class="answer-row" id="answers3"></div>
+      <div class="feedback" id="feedback3"></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>📅 Exempel på veckoupplägg</h2>
+
+    <div class="table-wrap">
+
+      <table>
+        <tr>
+          <th>Dag</th>
+          <th>Pass</th>
+          <th>Fokus</th>
+        </tr>
+
+        <tr>
+          <td>Måndag</td>
+          <td>Tal 1</td>
+          <td>Tiotal och ental</td>
+        </tr>
+
+        <tr>
+          <td>Tisdag</td>
+          <td>Tal 2</td>
+          <td>Positionssystem</td>
+        </tr>
+
+        <tr>
+          <td>Onsdag</td>
+          <td>Addition 1</td>
+          <td>Tiokompisar</td>
+        </tr>
+
+        <tr>
+          <td>Torsdag</td>
+          <td>Addition 2</td>
+          <td>Gå via 10</td>
+        </tr>
+
+        <tr>
+          <td>Fredag</td>
+          <td>Repetition</td>
+          <td>2–3 uppgifter från veckan</td>
+        </tr>
+
+      </table>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔎 När går eleven vidare?</h2>
+
+    <ul class="checklist">
+      <li>Eleven förstår uppgiften utan omfattande förklaring.</li>
+      <li>Eleven använder den tränade strategin själv.</li>
+      <li>Eleven gör färre systematiska fel.</li>
+      <li>Eleven kan förklara hur hen tänker.</li>
+      <li>Eleven kan använda kunskapen i en ny uppgift.</li>
+      <li>Eleven kan kontrollera om svaret är rimligt.</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="kartlaggning.html">
+        🧭 Kartläggning
+      </a>
+
+      <a class="link-card" href="interventioner.html">
+        🎯 Interventioner
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="sprakstod.html">
+        💬 Språkstöd
+      </a>
+
+      <a class="link-card" href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a class="link-card" href="progression.html">
+        📈 Progression
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Intensivträning</strong></p>
+  <p>Kort • Tydligt • Återkommande • Uppföljt</p>
+</footer>
+
+
+<script>
+  function shuffle(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+  function createQuestion(containerId, feedbackId, alternatives, correct) {
+    const container = document.getElementById(containerId);
+    const feedback = document.getElementById(feedbackId);
+
+    container.innerHTML = "";
+    feedback.textContent = "";
+
+    shuffle(alternatives).forEach(answer => {
+      const button = document.createElement("button");
+      button.textContent = answer;
+
+      button.addEventListener("click", () => {
+        container.querySelectorAll("button").forEach(btn => {
+          btn.classList.remove("right", "wrong");
+          btn.disabled = true;
+
+          if (btn.textContent === String(correct)) {
+            btn.classList.add("right");
+          }
+        });
+
+        if (String(answer) === String(correct)) {
+          button.classList.add("right");
+          feedback.textContent = "Rätt! Bra.";
+        } else {
+          button.classList.add("wrong");
+          feedback.textContent = "Inte riktigt. Titta på det gröna svaret och fundera på strategin.";
+        }
+      });
+
+      container.appendChild(button);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    createQuestion(
+      "answers1",
+      "feedback1",
+      ["65","75","85","715"],
+      "75"
+    );
+
+    createQuestion(
+      "answers2",
+      "feedback2",
+      ["3","4","5","6"],
+      "4"
+    );
+
+    createQuestion(
+      "answers3",
+      "feedback3",
+      ["398","403","Lika stora"],
+      "403"
+    );
+
+  });
+</script>
+
+</body>
+</html>
