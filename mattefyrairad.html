@@ -4,562 +4,418 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Matte Fyra i rad – Matematik åk 3</title>
+  <title>Matte fyra i rad – Matematik åk 3</title>
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
-      --spelare1: #d8c5a6;
-      --spelare2: #b9c1ad;
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      box-sizing:border-box;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.55;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2.2rem,6vw,4rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 900px;
-      margin: 12px auto 0;
-      font-size: 1.1rem;
+      max-width:860px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1120px;
-      margin: auto;
-      padding: 30px 20px 70px;
+      max-width:1100px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 15px var(--skugga);
-    }
-
-    .intro {
-      background: #eee4d6;
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     h2,
     h3 {
-      color: var(--brun);
+      color:var(--brun);
     }
 
     h2 {
-      margin-top: 0;
+      margin-top:0;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .icon {
-      font-size: 2.3rem;
-      margin-bottom: 6px;
-    }
-
-    .setup-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 14px;
-      margin-top: 15px;
+    .settings {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
 
     label {
-      display: block;
-      font-weight: bold;
-      color: var(--brun);
-      margin-bottom: 5px;
+      display:block;
+      color:var(--brun);
+      font-weight:bold;
+      margin-bottom:5px;
     }
 
     input,
     select {
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #cdbfae;
-      border-radius: 10px;
-      background: #fffdf8;
-      color: var(--text);
-      font: inherit;
+      width:100%;
+      padding:10px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      background:white;
+      color:var(--text);
+      font:inherit;
     }
 
     button {
-      border: none;
-      background: #d6c3a6;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
     button:hover {
-      background: var(--beige2);
-    }
-
-    button:disabled {
-      opacity: 1;
-      cursor: default;
+      background:var(--beige2);
     }
 
     .secondary {
-      background: #ece3d5;
-      border: 1px solid #d1c0aa;
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
     }
 
     .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:17px;
     }
 
-    .game-area {
-      display: none;
+    .game {
+      display:none;
     }
 
-    .game-area.show {
-      display: block;
+    .game.active {
+      display:block;
     }
 
-    .players {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 18px;
+    .scoreboard {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:20px;
     }
 
-    .player {
-      background: #f3eadf;
-      border: 3px solid transparent;
-      border-radius: 15px;
-      padding: 17px;
-      text-align: center;
-      transition: 0.2s ease;
+    .player-card {
+      background:#fffdf8;
+      border:2px solid var(--kant);
+      border-radius:15px;
+      padding:17px;
+      text-align:center;
+      transition:.2s;
     }
 
-    .player.active {
-      border-color: #a8967c;
-      transform: translateY(-2px);
-    }
-
-    .player1.active {
-      background: #eee2d0;
-    }
-
-    .player2.active {
-      background: #e5eadf;
+    .player-card.active {
+      background:#eee4d6;
+      border-color:#b9a58a;
+      transform:translateY(-2px);
     }
 
     .player-name {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--brun);
+      font-weight:bold;
+      color:var(--brun);
+      font-size:1.15rem;
     }
 
-    .marker-preview {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      margin: 10px auto 4px;
-      border: 2px solid rgba(70,60,50,0.15);
-    }
-
-    .marker1 {
-      background: var(--spelare1);
-    }
-
-    .marker2 {
-      background: var(--spelare2);
-    }
-
-    .status-box {
-      background: #eee4d6;
-      border-radius: 13px;
-      padding: 15px;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .status-box strong {
-      color: var(--brun);
-      font-size: 1.2rem;
+    .player-piece {
+      font-size:2rem;
+      margin-top:5px;
     }
 
     .question-box {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 21px;
-      margin-bottom: 22px;
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:16px;
+      padding:21px;
+      margin-bottom:20px;
+      box-shadow:0 4px 12px var(--skugga);
     }
 
-    .category {
-      display: inline-block;
-      background: var(--beige);
-      color: var(--brun);
-      border-radius: 18px;
-      padding: 5px 10px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      margin-bottom: 10px;
+    .turn {
+      display:inline-block;
+      background:#e8dcc8;
+      color:var(--brun);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:bold;
+      margin-bottom:10px;
     }
 
     .question-text {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin: 8px 0 16px;
+      font-size:1.35rem;
+      font-weight:bold;
+      margin:10px 0 14px;
     }
 
-    .answer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
-      gap: 9px;
-    }
-
-    .answer-btn {
-      background: #fffaf2;
-      border: 1px solid #cdbfae;
-      min-height: 54px;
-    }
-
-    .answer-btn.right {
-      background: var(--ratt);
-      border-color: #aab69f;
-    }
-
-    .answer-btn.wrong {
-      background: var(--fel);
-      border-color: #caa9a2;
+    .answer-row {
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:center;
     }
 
     .feedback {
-      min-height: 29px;
-      margin-top: 12px;
-      font-weight: bold;
+      display:none;
+      padding:12px;
+      border-radius:10px;
+      margin-top:12px;
     }
 
-    .place-message {
-      display: none;
-      background: #e7eadf;
-      border-left: 5px solid #a7ad91;
-      border-radius: 10px;
-      padding: 13px;
-      margin-top: 12px;
+    .feedback.correct {
+      display:block;
+      background:var(--ratt);
+      border:1px solid #bcc9ae;
     }
 
-    .place-message.show {
-      display: block;
+    .feedback.wrong {
+      display:block;
+      background:var(--fel);
+      border:1px solid #d1b5af;
+    }
+
+    .board-scroll {
+      width:100%;
+      overflow-x:auto;
+      padding-bottom:8px;
     }
 
     .board-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      overflow-x: auto;
+      min-width:610px;
     }
 
     .column-buttons {
-      display: grid;
-      grid-template-columns: repeat(7,1fr);
-      gap: 7px;
-      margin-bottom: 7px;
-      min-width: 560px;
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:7px;
+      margin-bottom:8px;
     }
 
-    .column-btn {
-      padding: 9px 4px;
-      background: #e8dcc8;
-      border: 1px solid #ccbca7;
-      font-size: 0.92rem;
+    .column-button {
+      padding:9px 4px;
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
     }
 
-    .column-btn.ready {
-      background: #d9e1d1;
-      border-color: #a7ad91;
-    }
-
-    .column-btn:disabled {
-      background: #eee8de;
-      color: #a69c8e;
+    .column-button:disabled {
+      cursor:not-allowed;
+      opacity:.45;
     }
 
     .board {
-      display: grid;
-      grid-template-columns: repeat(7,1fr);
-      gap: 7px;
-      background: #ddd0bd;
-      padding: 10px;
-      border-radius: 18px;
-      min-width: 560px;
-      border: 1px solid #c8b79f;
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      grid-template-rows:repeat(6,78px);
+      gap:7px;
+      background:#d8c8b2;
+      border:1px solid #b9a58a;
+      border-radius:15px;
+      padding:10px;
     }
 
     .cell {
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      background: #fffaf2;
-      border: 2px solid #c9b9a4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      background:#fffaf2;
+      border:2px solid #cbb89e;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2.2rem;
+      font-weight:bold;
+      position:relative;
     }
 
     .cell.p1 {
-      background: var(--spelare1);
+      background:#dfe8d8;
+      border-color:#9dae8e;
     }
 
     .cell.p2 {
-      background: var(--spelare2);
+      background:#eedbd7;
+      border-color:#c9a49d;
     }
 
     .cell.win {
-      outline: 4px solid #81735f;
-      outline-offset: -4px;
+      outline:4px solid #8f805e;
+      outline-offset:-4px;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      background: #f3eadf;
-      border-radius: 11px;
-      padding: 13px;
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.4rem;
-      color: var(--brun);
+    .status {
+      margin-top:15px;
+      background:#f3eadf;
+      border:1px solid var(--kant);
+      border-radius:11px;
+      padding:13px;
+      font-weight:bold;
+      min-height:52px;
     }
 
     .result {
-      display: none;
-      background: #e7eadf;
-      border: 3px solid #a7ad91;
-      border-radius: 18px;
-      padding: 28px;
-      text-align: center;
-      margin-top: 22px;
+      display:none;
+      background:#e7eadf;
+      border:1px solid #b9c0a8;
+      border-radius:16px;
+      padding:22px;
+      margin-top:20px;
+      text-align:center;
     }
 
     .result.show {
-      display: block;
+      display:block;
     }
 
-    .result h2 {
-      font-size: clamp(2rem,5vw,3.5rem);
-      margin-bottom: 8px;
+    .rules {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:12px;
     }
 
-    .teacher-box {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
-      border-radius: 10px;
-      padding: 14px;
-      margin-top: 14px;
-    }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .link-card {
-      display: block;
-      text-decoration: none;
-      color: var(--text);
-      background: #f3eadf;
-      border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .link-card:hover {
-      background: var(--beige);
+    .rule {
+      background:#f3eadf;
+      border:1px solid var(--kant);
+      border-radius:12px;
+      padding:14px;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 27px;
+      background:#d8c8b2;
+      color:#4d443c;
+      text-align:center;
+      padding:27px 20px;
     }
 
-    @media(max-width:650px) {
-      nav {
-        position: static;
-      }
+    @media(max-width:760px) {
 
       nav a {
-        display: block;
+        display:block;
       }
 
       main {
-        padding: 22px 12px 55px;
+        padding:20px 10px 50px;
       }
 
       .box,
       .question-box {
-        padding: 18px;
+        padding:17px;
       }
 
-      .players {
-        grid-template-columns: 1fr;
+      .settings,
+      .scoreboard,
+      .answer-row {
+        grid-template-columns:1fr;
+      }
+
+      .board {
+        grid-template-rows:repeat(6,70px);
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
-  <h1>🔵 Matte Fyra i rad</h1>
+
+  <h1>🔵 Matte fyra i rad</h1>
 
   <p>
-    Lös en matteuppgift, välj en kolumn och placera din markör.
-    Först till fyra i rad vinner!
+    Två spelare turas om att lösa matematik.
+    Rätt svar ger rätt att lägga en bricka.
+    Först med fyra i rad vinner.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#start">⚙️ Start</a>
+  <a href="#installningar">⚙️ Starta</a>
   <a href="#spel">🎮 Spela</a>
-  <a href="#mer">🔗 Fler spel</a>
 </nav>
+
 
 <main>
 
-  <section class="box intro">
+  <section class="box" id="installningar">
 
-    <h2>🎯 Så spelar ni</h2>
+    <h2>⚙️ Starta spelet</h2>
 
-    <div class="grid">
-
-      <div class="card">
-        <div class="icon">1️⃣</div>
-        <h3>Lös frågan</h3>
-        <p>Spelaren som har turen får en matematikuppgift.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">2️⃣</div>
-        <h3>Svara rätt</h3>
-        <p>Rätt svar gör det möjligt att lägga en markör.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">3️⃣</div>
-        <h3>Välj kolumn</h3>
-        <p>Markören faller till den lägsta lediga platsen i kolumnen.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🏆</div>
-        <h3>Fyra i rad</h3>
-        <p>Fyra markörer vågrätt, lodrätt eller diagonalt vinner.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="box" id="start">
-
-    <h2>⚙️ Ställ in spelet</h2>
-
-    <div class="setup-grid">
+    <div class="settings">
 
       <div>
-        <label for="name1">Spelare 1</label>
-        <input type="text" id="name1" value="Spelare 1">
+        <label for="player1">Spelare 1</label>
+        <input id="player1" type="text" value="Spelare 1">
       </div>
 
       <div>
-        <label for="name2">Spelare 2</label>
-        <input type="text" id="name2" value="Spelare 2">
+        <label for="player2">Spelare 2</label>
+        <input id="player2" type="text" value="Spelare 2">
       </div>
 
       <div>
@@ -567,172 +423,150 @@
 
         <select id="level">
           <option value="grund">🌱 Grund</option>
-          <option value="blandad" selected>🌿 Blandad</option>
+          <option value="blandad" selected>🧠 Blandad</option>
           <option value="utmaning">⭐ Utmaning</option>
         </select>
       </div>
 
     </div>
 
-    <div class="button-row">
-      <button onclick="startGame()">▶️ Starta nytt spel</button>
-    </div>
 
-    <div class="teacher-box">
-      <strong>💬 Klassrumsregel:</strong>
-      be gärna spelaren förklara sin strategi innan markören får placeras.
-      Då tränar spelet både färdighet och resonemang.
+    <div class="button-row">
+
+      <button onclick="startGame()">
+        ▶️ Starta nytt spel
+      </button>
+
     </div>
 
   </section>
 
 
-  <section class="box game-area" id="spel">
 
-    <div class="players">
+  <section class="game box" id="spel">
 
-      <div class="player player1" id="player0">
+    <div class="scoreboard">
+
+      <div class="player-card" id="playerCard0">
         <div class="player-name" id="playerName0">Spelare 1</div>
-        <div class="marker-preview marker1"></div>
-        <div id="playerTurn0"></div>
+        <div class="player-piece">●</div>
       </div>
 
-      <div class="player player2" id="player1">
+      <div class="player-card" id="playerCard1">
         <div class="player-name" id="playerName1">Spelare 2</div>
-        <div class="marker-preview marker2"></div>
-        <div id="playerTurn1"></div>
+        <div class="player-piece">●</div>
       </div>
 
     </div>
 
 
-    <div class="status-box">
-      <strong id="turnText">Spelare 1 börjar.</strong>
-      <br>
-      <span id="instructionText">Lös frågan för att få lägga en markör.</span>
-    </div>
+    <div class="question-box">
 
+      <div class="turn" id="turnText">
+        Spelare 1:s tur
+      </div>
 
-    <div class="question-box" id="questionBox">
+      <div class="question-text" id="questionText"></div>
 
-      <span class="category" id="category"></span>
+      <div class="answer-row">
 
-      <div class="question-text" id="question"></div>
+        <input
+          type="number"
+          id="answerInput"
+          placeholder="Skriv svaret"
+          inputmode="numeric"
+        >
 
-      <div class="answer-grid" id="answers"></div>
+        <button id="checkButton" onclick="checkAnswer()">
+          Kontrollera
+        </button>
+
+      </div>
+
 
       <div class="feedback" id="feedback"></div>
 
-      <div class="place-message" id="placeMessage">
-        ✅ Rätt! Välj nu vilken kolumn du vill lägga din markör i.
+
+      <div class="button-row">
+
+        <button
+          class="secondary"
+          id="nextTurnButton"
+          onclick="passTurn()"
+          style="display:none;"
+        >
+          Nästa tur
+        </button>
+
       </div>
 
     </div>
 
 
-    <div class="board-wrap">
+    <div class="board-scroll">
 
-      <div class="column-buttons" id="columnButtons"></div>
+      <div class="board-wrap">
 
-      <div class="board" id="board"></div>
+        <div class="column-buttons" id="columnButtons"></div>
 
-    </div>
+        <div
+          class="board"
+          id="board"
+          role="grid"
+          aria-label="Fyra i rad-spelplan med 7 kolumner och 6 rader"
+        ></div>
 
-
-    <div class="stats">
-
-      <div class="stat">
-        Rätt svar
-        <strong id="correctCount">0</strong>
-      </div>
-
-      <div class="stat">
-        Försök
-        <strong id="attemptCount">0</strong>
-      </div>
-
-      <div class="stat">
-        Markörer lagda
-        <strong id="moveCount">0</strong>
       </div>
 
     </div>
 
 
-    <div class="button-row">
-      <button class="secondary" onclick="startGame()">🔄 Nytt spel</button>
+    <div class="status" id="status">
+      Svara rätt för att få lägga en bricka.
     </div>
 
 
-    <div class="result" id="resultBox"></div>
+    <div class="result" id="result">
+
+      <h2>🎉 Spelet är slut</h2>
+
+      <p id="resultText"></p>
+
+      <button onclick="startGame()">
+        🔄 Spela igen
+      </button>
+
+    </div>
 
   </section>
+
 
 
   <section class="box">
 
-    <h2>🧠 Strategi i spelet</h2>
+    <h2>📘 Så spelar ni</h2>
 
-    <div class="grid">
+    <div class="rules">
 
-      <div class="card">
-        <h3>🔍 Titta på motståndaren</h3>
-        <p>Behöver du blockera en rad innan du bygger din egen?</p>
+      <div class="rule">
+        <strong>1. Lös uppgiften</strong>
+        <p>Den spelare som har tur får en matematikfråga.</p>
       </div>
 
-      <div class="card">
-        <h3>↗️ Tänk diagonalt</h3>
-        <p>Fyra i rad kan också gå snett.</p>
+      <div class="rule">
+        <strong>2. Rätt svar</strong>
+        <p>Spelaren får välja en kolumn och lägga en bricka.</p>
       </div>
 
-      <div class="card">
-        <h3>🧮 Förklara matematiken</h3>
-        <p>Hur räknade du ut svaret på frågan?</p>
+      <div class="rule">
+        <strong>3. Fel svar</strong>
+        <p>Ingen bricka läggs. Rätt svar visas och turen går sedan vidare.</p>
       </div>
 
-      <div class="card">
-        <h3>✅ Kontrollera</h3>
-        <p>Kan du använda ett annat räknesätt för att kontrollera svaret?</p>
+      <div class="rule">
+        <strong>4. Fyra i rad</strong>
+        <p>Fyra brickor vågrätt, lodrätt eller diagonalt vinner.</p>
       </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="box" id="mer">
-
-    <h2>🔗 Fler spel</h2>
-
-    <div class="link-grid">
-
-      <a class="link-card" href="mattetavling.html">
-        🏁 Mattetävling
-      </a>
-
-      <a class="link-card" href="mattequiz.html">
-        🏆 Mattequiz
-      </a>
-
-      <a class="link-card" href="matteescape.html">
-        🔐 Matte Escape
-      </a>
-
-      <a class="link-card" href="mattedetektiven.html">
-        🕵️ Mattedetektiven
-      </a>
-
-      <a class="link-card" href="mattesafari.html">
-        🧭 Mattesafari
-      </a>
-
-      <a class="link-card" href="mattebingo.html">
-        🎯 Mattebingo
-      </a>
-
-      <a class="link-card" href="spel.html">
-        🎮 Fler mattespel
-      </a>
 
     </div>
 
@@ -742,404 +576,94 @@
 
 
 <footer>
-  <p><strong>Matematik åk 3 – Matte Fyra i rad</strong></p>
-  <p>Räkna • Placera • Planera • Fyra i rad</p>
+  <p><strong>Matematik åk 3 – Matte fyra i rad</strong></p>
+  <p>Räkna • Turas om • Planera • Fyra i rad</p>
 </footer>
 
 
 <script>
 
-const ROWS = 6;
-const COLS = 7;
-
-let board = [];
-let currentPlayer = 1;
-let canPlace = false;
-let gameOver = false;
-
-let players = ["Spelare 1", "Spelare 2"];
-
-let correctCount = 0;
-let attemptCount = 0;
-let moveCount = 0;
-
-let currentQuestion = null;
-let lastQuestionText = "";
-
-
-const questionBank = {
+const banks = {
 
   grund: [
 
-    {
-      category: "🔢 Tal",
-      q: "Vad är 10 mer än 47?",
-      correct: "57",
-      wrong: ["48","37","67"]
-    },
-
-    {
-      category: "🔢 Tal",
-      q: "Vad är siffran 4 värd i 243?",
-      correct: "40",
-      wrong: ["4","400","43"]
-    },
-
-    {
-      category: "➕ Addition",
-      q: "8 + 6 = ?",
-      correct: "14",
-      wrong: ["12","13","15"]
-    },
-
-    {
-      category: "➕ Addition",
-      q: "27 + 12 = ?",
-      correct: "39",
-      wrong: ["38","29","49"]
-    },
-
-    {
-      category: "➖ Subtraktion",
-      q: "17 − 8 = ?",
-      correct: "9",
-      wrong: ["8","10","25"]
-    },
-
-    {
-      category: "➖ Subtraktion",
-      q: "45 − 10 = ?",
-      correct: "35",
-      wrong: ["34","44","55"]
-    },
-
-    {
-      category: "✖️ Multiplikation",
-      q: "5 × 4 = ?",
-      correct: "20",
-      wrong: ["9","15","25"]
-    },
-
-    {
-      category: "✖️ Multiplikation",
-      q: "2 × 7 = ?",
-      correct: "14",
-      wrong: ["9","12","16"]
-    },
-
-    {
-      category: "➗ Division",
-      q: "12 ÷ 3 = ?",
-      correct: "4",
-      wrong: ["3","5","9"]
-    },
-
-    {
-      category: "➗ Division",
-      q: "20 ÷ 5 = ?",
-      correct: "4",
-      wrong: ["5","10","15"]
-    },
-
-    {
-      category: "🍕 Bråk",
-      q: "Vad är hälften av 14?",
-      correct: "7",
-      wrong: ["6","8","12"]
-    },
-
-    {
-      category: "🍕 Bråk",
-      q: "Hur många fjärdedelar behövs för en hel?",
-      correct: "4",
-      wrong: ["1","2","3"]
-    },
-
-    {
-      category: "⚖️ Algebra",
-      q: "6 + ___ = 10",
-      correct: "4",
-      wrong: ["3","5","16"]
-    },
-
-    {
-      category: "📐 Geometri",
-      q: "Hur många hörn har en triangel?",
-      correct: "3",
-      wrong: ["2","4","5"]
-    },
-
-    {
-      category: "📏 Mätning",
-      q: "Hur många centimeter är 1 meter?",
-      correct: "100",
-      wrong: ["10","50","1000"]
-    },
-
-    {
-      category: "🧠 Problem",
-      q: "Sara har 16 pärlor och får 5 till. Hur många har hon nu?",
-      correct: "21",
-      wrong: ["11","20","22"]
-    }
+    { q:"8 + 7", a:15, e:"8 + 7 = 15." },
+    { q:"17 − 9", a:8, e:"17 − 9 = 8." },
+    { q:"5 × 4", a:20, e:"5 × 4 = 20." },
+    { q:"18 ÷ 3", a:6, e:"18 ÷ 3 = 6." },
+    { q:"26 + 13", a:39, e:"26 + 13 = 39." },
+    { q:"50 − 18", a:32, e:"50 − 18 = 32." },
+    { q:"3 × 7", a:21, e:"3 × 7 = 21." },
+    { q:"24 ÷ 4", a:6, e:"24 ÷ 4 = 6." },
+    { q:"35 + 12", a:47, e:"35 + 12 = 47." },
+    { q:"42 − 8", a:34, e:"42 − 8 = 34." },
+    { q:"6 × 5", a:30, e:"6 × 5 = 30." },
+    { q:"35 ÷ 5", a:7, e:"35 ÷ 5 = 7." },
+    { q:"19 + 8", a:27, e:"19 + 8 = 27." },
+    { q:"64 − 22", a:42, e:"64 − 22 = 42." },
+    { q:"4 × 8", a:32, e:"4 × 8 = 32." },
+    { q:"40 ÷ 5", a:8, e:"40 ÷ 5 = 8." }
 
   ],
 
 
   blandad: [
 
-    {
-      category: "🔢 Tal",
-      q: "Vad är siffran 7 värd i 472?",
-      correct: "70",
-      wrong: ["7","700","72"]
-    },
-
-    {
-      category: "🔢 Tal",
-      q: "Vilket tal är störst?",
-      correct: "403",
-      wrong: ["398","393","340"]
-    },
-
-    {
-      category: "🔢 Tal",
-      q: "Vad är 100 mindre än 638?",
-      correct: "538",
-      wrong: ["628","438","738"]
-    },
-
-    {
-      category: "➕ Addition",
-      q: "48 + 27 = ?",
-      correct: "75",
-      wrong: ["65","74","85"]
-    },
-
-    {
-      category: "➕ Addition",
-      q: "59 + 24 = ?",
-      correct: "83",
-      wrong: ["73","82","93"]
-    },
-
-    {
-      category: "➖ Subtraktion",
-      q: "72 − 38 = ?",
-      correct: "34",
-      wrong: ["44","46","36"]
-    },
-
-    {
-      category: "➖ Subtraktion",
-      q: "63 − 28 = ?",
-      correct: "35",
-      wrong: ["31","41","45"]
-    },
-
-    {
-      category: "✖️ Multiplikation",
-      q: "4 × 7 = ?",
-      correct: "28",
-      wrong: ["11","24","32"]
-    },
-
-    {
-      category: "✖️ Multiplikation",
-      q: "5 × 8 = ?",
-      correct: "40",
-      wrong: ["13","35","45"]
-    },
-
-    {
-      category: "➗ Division",
-      q: "24 ÷ 6 = ?",
-      correct: "4",
-      wrong: ["3","5","6"]
-    },
-
-    {
-      category: "➗ Division",
-      q: "35 ÷ 5 = ?",
-      correct: "7",
-      wrong: ["5","6","8"]
-    },
-
-    {
-      category: "🍕 Bråk",
-      q: "Vad är 1/4 av 20?",
-      correct: "5",
-      wrong: ["4","10","15"]
-    },
-
-    {
-      category: "🍕 Bråk",
-      q: "Vilket är störst när helheten är lika stor?",
-      correct: "1/2",
-      wrong: ["1/4","1/8","De är lika"]
-    },
-
-    {
-      category: "⚖️ Algebra",
-      q: "8 + ___ = 13",
-      correct: "5",
-      wrong: ["4","6","21"]
-    },
-
-    {
-      category: "🔁 Mönster",
-      q: "Vilket tal kommer sedan? 5, 10, 15, 20, ...",
-      correct: "25",
-      wrong: ["22","24","30"]
-    },
-
-    {
-      category: "📐 Geometri",
-      q: "Hur många hörn har en rektangel?",
-      correct: "4",
-      wrong: ["2","3","5"]
-    },
-
-    {
-      category: "⚖️ Mätning",
-      q: "Vilket är tyngst?",
-      correct: "1 kg",
-      wrong: ["900 g","750 g","500 g"]
-    },
-
-    {
-      category: "⏰ Tid",
-      q: "Hur många minuter är en kvart?",
-      correct: "15",
-      wrong: ["10","20","30"]
-    },
-
-    {
-      category: "🧠 Problem",
-      q: "32 elever delas i grupper om 4. Hur många grupper?",
-      correct: "8",
-      wrong: ["6","7","28"]
-    },
-
-    {
-      category: "🧠 Problem",
-      q: "Mira har 28 pärlor, får 15 nya och använder 9. Hur många har hon kvar?",
-      correct: "34",
-      wrong: ["24","43","52"]
-    }
+    { q:"48 + 27", a:75, e:"48 + 27 = 75." },
+    { q:"72 − 38", a:34, e:"72 − 38 = 34." },
+    { q:"7 × 6", a:42, e:"7 × 6 = 42." },
+    { q:"54 ÷ 6", a:9, e:"54 ÷ 6 = 9." },
+    { q:"39 + 46", a:85, e:"39 + 46 = 85." },
+    { q:"81 − 56", a:25, e:"81 − 56 = 25." },
+    { q:"8 × 7", a:56, e:"8 × 7 = 56." },
+    { q:"63 ÷ 7", a:9, e:"63 ÷ 7 = 9." },
+    { q:"67 + 28", a:95, e:"67 + 28 = 95." },
+    { q:"93 − 47", a:46, e:"93 − 47 = 46." },
+    { q:"6 × 8", a:48, e:"6 × 8 = 48." },
+    { q:"56 ÷ 7", a:8, e:"56 ÷ 7 = 8." },
+    { q:"99 + 17", a:116, e:"99 + 17 = 116." },
+    { q:"120 − 47", a:73, e:"120 − 47 = 73." },
+    { q:"9 × 5", a:45, e:"9 × 5 = 45." },
+    { q:"72 ÷ 8", a:9, e:"72 ÷ 8 = 9." },
+    { q:"86 + 49", a:135, e:"86 + 49 = 135." },
+    { q:"150 − 68", a:82, e:"150 − 68 = 82." }
 
   ],
 
 
   utmaning: [
 
-    {
-      category: "🔢 Tal",
-      q: "Vilket tal ligger närmast 500?",
-      correct: "487",
-      wrong: ["516","470","530"]
-    },
-
-    {
-      category: "🔢 Tal",
-      q: "Vilket är största talet du kan bilda med 2, 5 och 8?",
-      correct: "852",
-      wrong: ["825","582","528"]
-    },
-
-    {
-      category: "➕ Addition",
-      q: "198 + 24 = ?",
-      correct: "222",
-      wrong: ["212","221","232"]
-    },
-
-    {
-      category: "➖ Subtraktion",
-      q: "150 − 76 = ?",
-      correct: "74",
-      wrong: ["64","76","84"]
-    },
-
-    {
-      category: "✖️ Multiplikation",
-      q: "Om 5 × 7 = 35, vad blir 6 × 7?",
-      correct: "42",
-      wrong: ["36","40","48"]
-    },
-
-    {
-      category: "✖️ Multiplikation",
-      q: "Vilket tal saknas? 4 × ___ = 36",
-      correct: "9",
-      wrong: ["8","10","32"]
-    },
-
-    {
-      category: "➗ Division",
-      q: "Vilket tal saknas? ___ ÷ 4 = 7",
-      correct: "28",
-      wrong: ["11","21","32"]
-    },
-
-    {
-      category: "🍕 Bråk",
-      q: "Vad är 1/3 av 18?",
-      correct: "6",
-      wrong: ["3","9","12"]
-    },
-
-    {
-      category: "🍕 Bråk",
-      q: "Vilket är störst när helheten är lika stor?",
-      correct: "1/3",
-      wrong: ["1/4","1/6","1/8"]
-    },
-
-    {
-      category: "🔁 Mönster",
-      q: "Vilket tal kommer sedan? 7, 14, 21, 28, ...",
-      correct: "35",
-      wrong: ["32","34","42"]
-    },
-
-    {
-      category: "🥛 Mätning",
-      q: "Hur många deciliter är 2 liter?",
-      correct: "20 dl",
-      wrong: ["2 dl","10 dl","200 dl"]
-    },
-
-    {
-      category: "⏰ Tid",
-      q: "En film börjar 14:20 och slutar 15:00. Hur lång är filmen?",
-      correct: "40 min",
-      wrong: ["20 min","30 min","60 min"]
-    },
-
-    {
-      category: "🧠 Problem",
-      q: "Leo har 35 kr, får 12 kr och använder 8 kr. Hur mycket har han kvar?",
-      correct: "39",
-      wrong: ["31","47","55"]
-    },
-
-    {
-      category: "🧠 Rimlighet",
-      q: "Vilket svar är rimligast för 203 + 97?",
-      correct: "300",
-      wrong: ["100","200","500"]
-    },
-
-    {
-      category: "🧠 Problem",
-      q: "48 elever delas i 8 lika stora grupper. Hur många i varje grupp?",
-      correct: "6",
-      wrong: ["5","7","40"]
-    }
+    { q:"125 + 78", a:203, e:"125 + 78 = 203." },
+    { q:"204 − 87", a:117, e:"204 − 87 = 117." },
+    { q:"12 × 6", a:72, e:"12 × 6 = 72." },
+    { q:"96 ÷ 8", a:12, e:"96 ÷ 8 = 12." },
+    { q:"175 + 49", a:224, e:"175 + 49 = 224." },
+    { q:"300 − 126", a:174, e:"300 − 126 = 174." },
+    { q:"15 × 4", a:60, e:"15 × 4 = 60." },
+    { q:"144 ÷ 12", a:12, e:"144 ÷ 12 = 12." },
+    { q:"238 + 67", a:305, e:"238 + 67 = 305." },
+    { q:"400 − 175", a:225, e:"400 − 175 = 225." },
+    { q:"18 × 5", a:90, e:"18 × 5 = 90." },
+    { q:"108 ÷ 9", a:12, e:"108 ÷ 9 = 12." },
+    { q:"319 + 76", a:395, e:"319 + 76 = 395." },
+    { q:"450 − 197", a:253, e:"450 − 197 = 253." },
+    { q:"16 × 6", a:96, e:"16 × 6 = 96." },
+    { q:"156 ÷ 12", a:13, e:"156 ÷ 12 = 13." },
+    { q:"287 + 145", a:432, e:"287 + 145 = 432." },
+    { q:"600 − 348", a:252, e:"600 − 348 = 252." }
 
   ]
+
 };
+
+
+let board = [];
+let currentPlayer = 0;
+let playerNames = ["Spelare 1","Spelare 2"];
+let currentQuestion = null;
+let questionQueue = [];
+let canPlace = false;
+let gameOver = false;
 
 
 function shuffle(array) {
@@ -1153,8 +677,9 @@ function shuffle(array) {
         Math.random() * (i + 1)
       );
 
-    [copy[i], copy[j]] =
-      [copy[j], copy[i]];
+    [copy[i],copy[j]] =
+      [copy[j],copy[i]];
+
   }
 
   return copy;
@@ -1163,579 +688,621 @@ function shuffle(array) {
 
 function startGame() {
 
-  let name1 =
-    document.getElementById("name1")
-      .value.trim();
+  playerNames = [
 
-  let name2 =
-    document.getElementById("name2")
-      .value.trim();
+    document
+      .getElementById("player1")
+      .value
+      .trim() || "Spelare 1",
+
+    document
+      .getElementById("player2")
+      .value
+      .trim() || "Spelare 2"
+
+  ];
 
 
-  if (!name1) name1 = "Spelare 1";
-  if (!name2) name2 = "Spelare 2";
-
-
-  players = [name1, name2];
-
-  currentPlayer =
-    Math.random() < 0.5 ? 1 : 2;
-
+  currentPlayer = 0;
   canPlace = false;
   gameOver = false;
-
-  correctCount = 0;
-  attemptCount = 0;
-  moveCount = 0;
-
-  lastQuestionText = "";
 
 
   board =
     Array.from(
-      { length: ROWS },
-      () => Array(COLS).fill(0)
+      { length:6 },
+      () => Array(7).fill(0)
     );
+
+
+  const level =
+    document.getElementById("level").value;
+
+
+  /*
+    QA-FIX:
+    frågorna läggs i en blandad kö.
+
+    När kön tar slut blandas hela banken
+    igen. Den första frågan i nya kön
+    får inte vara samma som föregående fråga.
+  */
+
+  questionQueue =
+    shuffle(banks[level]);
 
 
   document.getElementById(
     "playerName0"
   ).textContent =
-    players[0];
+    playerNames[0];
 
 
   document.getElementById(
     "playerName1"
   ).textContent =
-    players[1];
+    playerNames[1];
 
 
-  document.getElementById(
-    "correctCount"
-  ).textContent =
-    "0";
+  document
+    .getElementById("result")
+    .classList.remove("show");
 
 
-  document.getElementById(
-    "attemptCount"
-  ).textContent =
-    "0";
+  document
+    .getElementById("spel")
+    .classList.add("active");
 
 
-  document.getElementById(
-    "moveCount"
-  ).textContent =
-    "0";
+  renderBoard();
+  renderColumnButtons();
+  updatePlayerHighlight();
 
-
-  const result =
-    document.getElementById(
-      "resultBox"
-    );
-
-  result.className =
-    "result";
-
-  result.innerHTML = "";
-
-
-  document.getElementById(
-    "spel"
-  ).classList.add("show");
-
-
-  createBoard();
-  createColumnButtons();
-  updatePlayerDisplay();
   newQuestion();
 
 
   document.getElementById(
-    "spel"
-  ).scrollIntoView({
-    behavior: "smooth"
-  });
+    "status"
+  ).textContent =
+    "Svara rätt för att få lägga en bricka.";
+
 }
 
 
-function createBoard() {
-
-  const boardElement =
-    document.getElementById(
-      "board"
-    );
-
-  boardElement.innerHTML = "";
-
-
-  for (let row = 0; row < ROWS; row++) {
-
-    for (let col = 0; col < COLS; col++) {
-
-      const cell =
-        document.createElement("div");
-
-      cell.className = "cell";
-
-      cell.dataset.row = row;
-      cell.dataset.col = col;
-
-      boardElement.appendChild(cell);
-    }
-  }
-
-
-  renderBoard();
-}
-
-
-function renderBoard(winningCells = []) {
-
-  const cells =
-    document.querySelectorAll(
-      ".cell"
-    );
-
-
-  cells.forEach(cell => {
-
-    const row =
-      Number(cell.dataset.row);
-
-    const col =
-      Number(cell.dataset.col);
-
-    const value =
-      board[row][col];
-
-
-    cell.className = "cell";
-
-
-    if (value === 1) {
-      cell.classList.add("p1");
-    }
-
-    if (value === 2) {
-      cell.classList.add("p2");
-    }
-
-
-    if (
-      winningCells.some(
-        pos =>
-          pos[0] === row &&
-          pos[1] === col
-      )
-    ) {
-      cell.classList.add("win");
-    }
-  });
-}
-
-
-function createColumnButtons() {
-
-  const container =
-    document.getElementById(
-      "columnButtons"
-    );
-
-  container.innerHTML = "";
-
-
-  for (let col = 0; col < COLS; col++) {
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "column-btn";
-
-    button.textContent =
-      "↓ " + (col + 1);
-
-
-    button.addEventListener(
-      "click",
-      () => placeMarker(col)
-    );
-
-
-    container.appendChild(
-      button
-    );
-  }
-
-
-  updateColumnButtons();
-}
-
-
-function updateColumnButtons() {
-
-  const buttons =
-    document.querySelectorAll(
-      ".column-btn"
-    );
-
-
-  buttons.forEach(
-    (button,col) => {
-
-      const full =
-        board[0][col] !== 0;
-
-
-      button.classList.toggle(
-        "ready",
-        canPlace &&
-        !full &&
-        !gameOver
-      );
-
-
-      button.disabled =
-        !canPlace ||
-        full ||
-        gameOver;
-    }
-  );
-}
-
-
-function getRandomQuestion() {
+function refillQuestionQueue() {
 
   const level =
-    document.getElementById(
-      "level"
-    ).value;
+    document.getElementById("level").value;
 
 
-  const bank =
-    questionBank[level];
+  let nextQueue =
+    shuffle(banks[level]);
 
 
-  let question;
+  if (
+    currentQuestion &&
+    nextQueue.length > 1 &&
+    nextQueue[0].q === currentQuestion.q
+  ) {
+
+    [nextQueue[0],nextQueue[1]] =
+      [nextQueue[1],nextQueue[0]];
+
+  }
 
 
-  do {
+  questionQueue =
+    nextQueue;
 
-    question =
-      bank[
-        Math.floor(
-          Math.random() *
-          bank.length
-        )
-      ];
-
-  } while (
-    bank.length > 1 &&
-    question.q === lastQuestionText
-  );
-
-
-  lastQuestionText =
-    question.q;
-
-  return question;
 }
 
 
 function newQuestion() {
 
-  if (gameOver) return;
+  if (gameOver) {
+    return;
+  }
+
+
+  if (questionQueue.length === 0) {
+    refillQuestionQueue();
+  }
+
+
+  currentQuestion =
+    questionQueue.shift();
 
 
   canPlace = false;
 
-  updateColumnButtons();
-
 
   document.getElementById(
-    "placeMessage"
-  ).classList.remove(
-    "show"
-  );
-
-
-  document.getElementById(
-    "feedback"
-  ).textContent = "";
-
-
-  currentQuestion =
-    getRandomQuestion();
-
-
-  document.getElementById(
-    "category"
+    "turnText"
   ).textContent =
-    currentQuestion.category;
+    playerNames[currentPlayer] +
+    ":s tur";
 
 
   document.getElementById(
-    "question"
+    "questionText"
   ).textContent =
     currentQuestion.q;
 
 
-  const answers =
-    document.getElementById(
-      "answers"
-    );
-
-  answers.innerHTML = "";
-
-
-  const alternatives =
-    shuffle([
-      currentQuestion.correct,
-      ...currentQuestion.wrong
-    ]);
-
-
-  alternatives.forEach(answer => {
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "answer-btn";
-
-    button.textContent =
-      answer;
-
-
-    button.addEventListener(
-      "click",
-      () => {
-        checkAnswer(
-          answer,
-          button
-        );
-      }
-    );
-
-
-    answers.appendChild(
-      button
-    );
-  });
+  document.getElementById(
+    "answerInput"
+  ).value = "";
 
 
   document.getElementById(
-    "instructionText"
-  ).textContent =
-    "Lös frågan för att få lägga en markör.";
+    "answerInput"
+  ).disabled = false;
 
 
-  updatePlayerDisplay();
+  document.getElementById(
+    "checkButton"
+  ).disabled = false;
+
+
+  document.getElementById(
+    "nextTurnButton"
+  ).style.display =
+    "none";
+
+
+  const feedback =
+    document.getElementById("feedback");
+
+  feedback.className =
+    "feedback";
+
+  feedback.innerHTML =
+    "";
+
+
+  renderColumnButtons();
+
+
+  setTimeout(() => {
+
+    document
+      .getElementById("answerInput")
+      .focus();
+
+  },50);
+
 }
 
 
-function checkAnswer(
-  answer,
-  button
-) {
+function checkAnswer() {
 
   if (
     gameOver ||
-    canPlace
-  ) return;
-
-
-  attemptCount++;
-
-
-  document.getElementById(
-    "attemptCount"
-  ).textContent =
-    attemptCount;
-
-
-  if (
-    answer ===
-    currentQuestion.correct
+    canPlace ||
+    !currentQuestion
   ) {
+    return;
+  }
 
-    correctCount++;
 
-
+  const input =
     document.getElementById(
-      "correctCount"
-    ).textContent =
-      correctCount;
+      "answerInput"
+    );
 
-
-    button.classList.add(
-      "right"
+  const feedback =
+    document.getElementById(
+      "feedback"
     );
 
 
-    document.getElementById(
-      "feedback"
-    ).textContent =
-      "✅ Rätt! Nu får du lägga din markör.";
+  const raw =
+    input.value.trim();
 
 
-    document.getElementById(
-      "answers"
-    )
-      .querySelectorAll("button")
-      .forEach(btn => {
+  if (raw === "") {
 
-        btn.disabled = true;
+    feedback.className =
+      "feedback wrong";
 
-        if (
-          btn.textContent ===
-          currentQuestion.correct
-        ) {
-          btn.classList.add(
-            "right"
-          );
-        }
-      });
+    feedback.innerHTML =
+      "<strong>Skriv ett svar först.</strong>";
 
+    return;
+  }
+
+
+  const answer =
+    Number(raw);
+
+
+  if (!Number.isFinite(answer)) {
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.innerHTML =
+      "<strong>Skriv ett giltigt tal.</strong>";
+
+    return;
+  }
+
+
+  if (answer === currentQuestion.a) {
 
     canPlace = true;
 
 
-    document.getElementById(
-      "placeMessage"
-    ).classList.add(
-      "show"
-    );
+    feedback.className =
+      "feedback correct";
+
+
+    feedback.innerHTML =
+      "<strong>✓ Rätt!</strong><br>" +
+      currentQuestion.e +
+      "<br>Välj nu en kolumn där du vill lägga din bricka.";
 
 
     document.getElementById(
-      "instructionText"
+      "answerInput"
+    ).disabled = true;
+
+
+    document.getElementById(
+      "checkButton"
+    ).disabled = true;
+
+
+    document.getElementById(
+      "status"
     ).textContent =
-      "Välj en kolumn på spelplanen.";
+      playerNames[currentPlayer] +
+      " får lägga en bricka.";
 
 
-    updateColumnButtons();
-
+    renderColumnButtons();
 
   } else {
 
-    button.classList.add(
-      "wrong"
-    );
+    /*
+      QA-FIX:
+      fel svar ger INTE ett nytt försök
+      på samma tur.
 
-    button.disabled = true;
+      Rätt svar visas.
+      Ingen bricka läggs.
+      Spelaren måste trycka "Nästa tur".
+    */
+
+    canPlace = false;
+
+
+    feedback.className =
+      "feedback wrong";
+
+
+    feedback.innerHTML =
+      "<strong>Inte riktigt.</strong><br>" +
+      currentQuestion.e +
+      "<br>Rätt svar är <strong>" +
+      currentQuestion.a +
+      "</strong>.<br>Ingen bricka läggs den här turen.";
 
 
     document.getElementById(
-      "feedback"
+      "answerInput"
+    ).disabled = true;
+
+
+    document.getElementById(
+      "checkButton"
+    ).disabled = true;
+
+
+    document.getElementById(
+      "nextTurnButton"
+    ).style.display =
+      "inline-block";
+
+
+    document.getElementById(
+      "status"
     ).textContent =
-      "Inte riktigt. Prova ett annat svar.";
+      "Ingen bricka läggs. Turen går vidare.";
+
+
+    renderColumnButtons();
+
   }
+
 }
 
 
-function placeMarker(col) {
+function passTurn() {
 
-  if (
-    !canPlace ||
-    gameOver
-  ) return;
-
-
-  let placedRow = -1;
-
-
-  for (
-    let row = ROWS - 1;
-    row >= 0;
-    row--
-  ) {
-
-    if (
-      board[row][col] === 0
-    ) {
-
-      board[row][col] =
-        currentPlayer;
-
-      placedRow = row;
-
-      break;
-    }
-  }
-
-
-  if (placedRow === -1) {
-    return;
-  }
-
-
-  moveCount++;
-
-
-  document.getElementById(
-    "moveCount"
-  ).textContent =
-    moveCount;
-
-
-  canPlace = false;
-
-
-  const winningCells =
-    findWinningLine(
-      placedRow,
-      col,
-      currentPlayer
-    );
-
-
-  if (
-    winningCells.length >= 4
-  ) {
-
-    gameOver = true;
-
-    renderBoard(
-      winningCells
-    );
-
-    updateColumnButtons();
-
-    finishGame(
-      currentPlayer
-    );
-
-    return;
-  }
-
-
-  renderBoard();
-
-
-  if (boardIsFull()) {
-
-    gameOver = true;
-
-    updateColumnButtons();
-
-    finishGame(0);
-
+  if (gameOver) {
     return;
   }
 
 
   currentPlayer =
-    currentPlayer === 1
-      ? 2
-      : 1;
+    currentPlayer === 0
+      ? 1
+      : 0;
 
 
+  updatePlayerHighlight();
   newQuestion();
+
 }
 
 
-function findWinningLine(
+function renderColumnButtons() {
+
+  const area =
+    document.getElementById(
+      "columnButtons"
+    );
+
+  area.innerHTML = "";
+
+
+  for (let col = 0; col < 7; col++) {
+
+    const button =
+      document.createElement("button");
+
+    button.type =
+      "button";
+
+    button.className =
+      "column-button";
+
+    button.textContent =
+      "↓ " + (col + 1);
+
+
+    const full =
+      board[0][col] !== 0;
+
+
+    button.disabled =
+      !canPlace ||
+      gameOver ||
+      full;
+
+
+    button.setAttribute(
+      "aria-label",
+      full
+        ? "Kolumn " +
+          (col + 1) +
+          " är full"
+        : "Lägg bricka i kolumn " +
+          (col + 1)
+    );
+
+
+    button.onclick =
+      function() {
+        placePiece(col);
+      };
+
+
+    area.appendChild(button);
+
+  }
+
+}
+
+
+function placePiece(col) {
+
+  if (
+    !canPlace ||
+    gameOver
+  ) {
+    return;
+  }
+
+
+  let row = -1;
+
+
+  for (let r = 5; r >= 0; r--) {
+
+    if (board[r][col] === 0) {
+
+      row = r;
+      break;
+
+    }
+
+  }
+
+
+  if (row === -1) {
+    return;
+  }
+
+
+  board[row][col] =
+    currentPlayer + 1;
+
+
+  canPlace = false;
+
+
+  renderBoard();
+  renderColumnButtons();
+
+
+  const winCells =
+    getWinningCells(
+      row,
+      col,
+      currentPlayer + 1
+    );
+
+
+  if (winCells.length >= 4) {
+
+    gameOver = true;
+
+    highlightWin(winCells);
+
+    finishGame(
+      playerNames[currentPlayer] +
+      " fick fyra i rad och vann!"
+    );
+
+    return;
+
+  }
+
+
+  if (boardFull()) {
+
+    gameOver = true;
+
+    finishGame(
+      "Spelplanen är full. Det blev oavgjort!"
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "status"
+  ).textContent =
+    playerNames[currentPlayer] +
+    " lade en bricka. Nästa spelares tur.";
+
+
+  currentPlayer =
+    currentPlayer === 0
+      ? 1
+      : 0;
+
+
+  updatePlayerHighlight();
+
+  newQuestion();
+
+}
+
+
+function renderBoard() {
+
+  const area =
+    document.getElementById("board");
+
+  area.innerHTML = "";
+
+
+  for (let row = 0; row < 6; row++) {
+
+    for (let col = 0; col < 7; col++) {
+
+      const cell =
+        document.createElement("div");
+
+      const owner =
+        board[row][col];
+
+
+      cell.className =
+        "cell";
+
+
+      if (owner === 1) {
+        cell.classList.add("p1");
+      }
+
+      if (owner === 2) {
+        cell.classList.add("p2");
+      }
+
+
+      cell.dataset.row =
+        row;
+
+      cell.dataset.col =
+        col;
+
+
+      cell.setAttribute(
+        "role",
+        "gridcell"
+      );
+
+
+      /*
+        QA-FIX:
+        tydlig etikett för varje ruta.
+      */
+
+      let label =
+        "Rad " +
+        (row + 1) +
+        ", kolumn " +
+        (col + 1) +
+        ", tom";
+
+
+      if (owner === 1) {
+
+        label =
+          "Rad " +
+          (row + 1) +
+          ", kolumn " +
+          (col + 1) +
+          ", bricka för " +
+          playerNames[0];
+
+      }
+
+
+      if (owner === 2) {
+
+        label =
+          "Rad " +
+          (row + 1) +
+          ", kolumn " +
+          (col + 1) +
+          ", bricka för " +
+          playerNames[1];
+
+      }
+
+
+      cell.setAttribute(
+        "aria-label",
+        label
+      );
+
+
+      if (owner === 1) {
+        cell.textContent = "●";
+      }
+
+      if (owner === 2) {
+        cell.textContent = "●";
+      }
+
+
+      area.appendChild(cell);
+
+    }
+
+  }
+
+}
+
+
+function getWinningCells(
   row,
   col,
   player
@@ -1749,194 +1316,173 @@ function findWinningLine(
   ];
 
 
-  for (
-    const [dr,dc]
-    of directions
-  ) {
+  for (const [dr,dc] of directions) {
 
-    let line =
-      [[row,col]];
+    const cells = [
+      [row,col]
+    ];
 
 
-    let r =
-      row + dr;
-
-    let c =
-      col + dc;
+    let r = row + dr;
+    let c = col + dc;
 
 
     while (
-      inside(r,c) &&
+      r >= 0 &&
+      r < 6 &&
+      c >= 0 &&
+      c < 7 &&
       board[r][c] === player
     ) {
 
-      line.push([r,c]);
+      cells.push([r,c]);
 
       r += dr;
       c += dc;
+
     }
 
 
-    r =
-      row - dr;
-
-    c =
-      col - dc;
+    r = row - dr;
+    c = col - dc;
 
 
     while (
-      inside(r,c) &&
+      r >= 0 &&
+      r < 6 &&
+      c >= 0 &&
+      c < 7 &&
       board[r][c] === player
     ) {
 
-      line.unshift([r,c]);
+      cells.unshift([r,c]);
 
       r -= dr;
       c -= dc;
+
     }
 
 
-    if (
-      line.length >= 4
-    ) {
-      return line;
+    if (cells.length >= 4) {
+      return cells;
     }
+
   }
 
 
   return [];
+
 }
 
 
-function inside(row,col) {
+function highlightWin(cells) {
 
-  return (
-    row >= 0 &&
-    row < ROWS &&
-    col >= 0 &&
-    col < COLS
-  );
-}
+  cells.forEach(([row,col]) => {
 
-
-function boardIsFull() {
-
-  return board[0]
-    .every(value => value !== 0);
-}
-
-
-function updatePlayerDisplay() {
-
-  for (
-    let i = 0;
-    i < 2;
-    i++
-  ) {
-
-    const playerBox =
-      document.getElementById(
-        "player" + i
+    const cell =
+      document.querySelector(
+        '.cell[data-row="' +
+        row +
+        '"][data-col="' +
+        col +
+        '"]'
       );
 
 
-    const turnText =
-      document.getElementById(
-        "playerTurn" + i
-      );
-
-
-    if (
-      i ===
-      currentPlayer - 1
-    ) {
-
-      playerBox.classList.add(
-        "active"
-      );
-
-      turnText.textContent =
-        "🎯 Din tur";
-
-    } else {
-
-      playerBox.classList.remove(
-        "active"
-      );
-
-      turnText.textContent = "";
+    if (cell) {
+      cell.classList.add("win");
     }
-  }
+
+  });
+
+}
+
+
+function boardFull() {
+
+  return board[0].every(
+    value => value !== 0
+  );
+
+}
+
+
+function finishGame(text) {
+
+  document.getElementById(
+    "resultText"
+  ).textContent =
+    text;
+
+
+  document
+    .getElementById("result")
+    .classList.add("show");
 
 
   document.getElementById(
-    "turnText"
+    "status"
   ).textContent =
-    players[currentPlayer - 1] +
-    " har turen.";
+    text;
+
+
+  document.getElementById(
+    "answerInput"
+  ).disabled = true;
+
+
+  document.getElementById(
+    "checkButton"
+  ).disabled = true;
+
+
+  document.getElementById(
+    "nextTurnButton"
+  ).style.display =
+    "none";
+
+
+  renderColumnButtons();
+
 }
 
 
-function finishGame(winner) {
+function updatePlayerHighlight() {
 
-  const result =
-    document.getElementById(
-      "resultBox"
+  document
+    .getElementById("playerCard0")
+    .classList.toggle(
+      "active",
+      currentPlayer === 0
     );
 
 
-  result.classList.add(
-    "show"
-  );
+  document
+    .getElementById("playerCard1")
+    .classList.toggle(
+      "active",
+      currentPlayer === 1
+    );
 
-
-  if (winner === 0) {
-
-    result.innerHTML = `
-      <h2>🤝 Oavgjort!</h2>
-
-      <p>
-        Spelplanen är full och ingen fick fyra i rad.
-      </p>
-
-      <button onclick="startGame()">
-        🔄 Spela igen
-      </button>
-    `;
-
-  } else {
-
-    result.innerHTML = `
-      <h2>🏆 FYRA I RAD!</h2>
-
-      <p>
-        <strong>${players[winner - 1]}</strong>
-        vinner spelet!
-      </p>
-
-      <p>
-        Rätt besvarade mattefrågor:
-        <strong>${correctCount}</strong>
-      </p>
-
-      <button onclick="startGame()">
-        🔄 Returmatch
-      </button>
-    `;
-  }
-
-
-  document.getElementById(
-    "instructionText"
-  ).textContent =
-    "Spelet är avslutat.";
-
-
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
 }
+
+
+document
+  .getElementById("answerInput")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        checkAnswer();
+
+      }
+
+    }
+  );
 
 </script>
 
