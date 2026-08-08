@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utmaningar – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 42px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 780px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .challenge-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .challenge-card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 8px;
+    }
+
+    .problem {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .hint {
+      display: none;
+      background: #eee4d6;
+      border-left: 4px solid #bca98d;
+      padding: 13px;
+      border-radius: 9px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 11px;
+      border: 1px solid #cdbda7;
+      border-radius: 9px;
+      font-size: 1rem;
+      width: 150px;
+    }
+
+    .feedback {
+      min-height: 26px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .logic-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    .logic-table th,
+    .logic-table td {
+      border: 1px solid #d8cab7;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .logic-table th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    .logic-table td {
+      background: #fffdf8;
+    }
+
+    .open-box {
+      background: #eee4d6;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 15px;
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .level-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .input-row {
+        flex-direction: column;
+      }
+
+      input,
+      .input-row button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌟 Matematikutmaningar</h1>
+  <p>
+    Här finns kluringar för dig som vill tänka längre, prova flera strategier
+    och hitta mer än en lösning.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="problemlosning.html">🧠 Problemlösning</a>
+  <a href="#logik">🕵️ Logik</a>
+  <a href="#monster">🔢 Mönster</a>
+  <a href="#oppna">💡 Öppna problem</a>
+  <a href="#systematiskt">🔍 Systematiskt</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🎯 När en uppgift är en riktig utmaning</h2>
+
+    <p>
+      Här är det inte alltid viktigast att vara snabb.
+      Det viktiga är att prova, upptäcka samband och kunna förklara hur du tänker.
+    </p>
+
+    <p>
+      I flera uppgifter kan det finnas mer än en lösning.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🧰 Strategier</h2>
+
+    <div class="challenge-grid">
+
+      <div class="challenge-card">
+        <div class="icon">🎨</div>
+        <h3>Rita</h3>
+        <p>Gör en bild av problemet.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="icon">📊</div>
+        <h3>Gör en tabell</h3>
+        <p>Ordna dina försök så att du ser ett mönster.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="icon">🔍</div>
+        <h3>Prova systematiskt</h3>
+        <p>Testa möjligheterna i en bestämd ordning.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="icon">↩️</div>
+        <h3>Arbeta baklänges</h3>
+        <p>Börja med det du vet på slutet.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box" id="logik">
+    <h2>🕵️ Logikkluringar</h2>
+
+    <div class="problem">
+      <h3>1. Djuren</h3>
+
+      <p>
+        Tre barn har varsitt djur: en katt, en hund och en kanin.
+      </p>
+
+      <p>
+        Barnen heter Ali, Mira och Leo.
+      </p>
+
+      <ul>
+        <li>Ali har inte hunden.</li>
+        <li>Mira har katten.</li>
+        <li>Leo har inte katten.</li>
+      </ul>
+
+      <p><strong>Vilket djur har Ali?</strong></p>
+
+      <button onclick="toggleHint('hint1')">Visa ledtråd</button>
+
+      <div class="hint" id="hint1">
+        Börja med det du vet säkert: Mira har katten.
+      </div>
+    </div>
+
+    <div class="problem">
+      <h3>2. Talet</h3>
+
+      <p>
+        Jag tänker på ett tal.
+      </p>
+
+      <ul>
+        <li>Talet är större än 30.</li>
+        <li>Talet är mindre än 40.</li>
+        <li>Talet är jämnt.</li>
+        <li>Siffersumman är 9.</li>
+      </ul>
+
+      <p><strong>Vilket tal tänker jag på?</strong></p>
+
+      <div class="input-row">
+        <input type="number" id="logicAnswer" placeholder="Svar">
+        <button onclick="checkLogic()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="logicFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box" id="monster">
+    <h2>🔢 Mönster</h2>
+
+    <div class="problem">
+      <h3>3. Fortsätt talmönstret</h3>
+
+      <p>
+        3, 6, 12, 24, ...
+      </p>
+
+      <p><strong>Vilket tal kommer sedan?</strong></p>
+
+      <div class="input-row">
+        <input type="number" id="patternAnswer" placeholder="Svar">
+        <button onclick="checkPattern()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="patternFeedback"></div>
+
+      <button onclick="toggleHint('hint3')">Visa ledtråd</button>
+
+      <div class="hint" id="hint3">
+        Jämför varje tal med talet före.
+      </div>
+    </div>
+
+    <div class="problem">
+      <h3>4. Hitta regeln</h3>
+
+      <table class="logic-table">
+        <tr>
+          <th>In</th>
+          <th>Ut</th>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>6</td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>9</td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td>12</td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td>?</td>
+        </tr>
+      </table>
+
+      <p>
+        Vilken regel används? Vad ska stå i sista rutan?
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="systematiskt">
+    <h2>🔍 Prova systematiskt</h2>
+
+    <div class="problem">
+      <h3>5. Tresiffriga tal</h3>
+
+      <p>
+        Du har siffrorna:
+        <strong>1, 3 och 7</strong>.
+      </p>
+
+      <p>
+        Varje siffra får användas en gång.
+      </p>
+
+      <p>
+        Hur många olika tresiffriga tal kan du skapa?
+      </p>
+
+      <button onclick="toggleHint('hint5')">Visa ledtråd</button>
+
+      <div class="hint" id="hint5">
+        Börja med alla tal som har 1 som hundratal.
+        Fortsätt sedan med 3 och därefter 7.
+      </div>
+    </div>
+
+    <div class="problem">
+      <h3>6. Ben på gården</h3>
+
+      <p>
+        På en gård finns bara hönor och kaniner.
+      </p>
+
+      <p>
+        Det finns sammanlagt 6 djur och 18 ben.
+      </p>
+
+      <p>
+        Hur många hönor och hur många kaniner finns det?
+      </p>
+
+      <button onclick="toggleHint('hint6')">Visa ledtråd</button>
+
+      <div class="hint" id="hint6">
+        En höna har 2 ben och en kanin har 4.
+        Prova olika kombinationer i en tabell.
+      </div>
+    </div>
+  </section>
+
+  <section class="box" id="oppna">
+    <h2>💡 Öppna problem</h2>
+
+    <div class="open-box">
+      <h3>7. Summan är 50</h3>
+
+      <p>
+        Hitta så många additioner du kan som har summan 50.
+      </p>
+
+      <p>
+        Exempel:
+        <strong>20 + 30 = 50</strong>
+      </p>
+
+      <p>
+        Kan du hitta minst 10 olika?
+      </p>
+    </div>
+
+    <div class="open-box">
+      <h3>8. Fyra tal</h3>
+
+      <p>
+        Använd fyra tal som tillsammans blir 24.
+      </p>
+
+      <p>
+        Du får använda addition.
+      </p>
+
+      <p>
+        Kan du hitta flera olika lösningar?
+      </p>
+    </div>
+
+    <div class="open-box">
+      <h3>9. Gör en rektangel</h3>
+
+      <p>
+        En rektangel ska ha omkretsen 20 cm.
+      </p>
+
+      <p>
+        Vilka längder kan sidorna ha?
+      </p>
+
+      <p>
+        Finns det flera lösningar?
+      </p>
+    </div>
+
+    <div class="open-box">
+      <h3>10. Skapa problemet själv</h3>
+
+      <p>
+        Svaret ska vara <strong>36</strong>.
+      </p>
+
+      <p>
+        Skriv ett eget matematiskt problem där svaret blir 36.
+      </p>
+
+      <p>
+        Kan du skapa ett med addition och ett med multiplikation?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Vilket räknesätt?</h2>
+
+    <div class="problem">
+      <p>
+        En klass har 28 elever.
+        Eleverna ska delas i grupper med 4 elever i varje grupp.
+      </p>
+
+      <p>
+        Vilket räknesätt passar bäst?
+      </p>
+
+      <div class="input-row">
+        <button onclick="operationAnswer(false, this)">Addition</button>
+        <button onclick="operationAnswer(false, this)">Subtraktion</button>
+        <button onclick="operationAnswer(false, this)">Multiplikation</button>
+        <button onclick="operationAnswer(true, this)">Division</button>
+      </div>
+
+      <div class="feedback" id="operationFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Hitta felet</h2>
+
+    <div class="problem">
+      <p>
+        En elev räknar:
+      </p>
+
+      <p>
+        <strong>36 ÷ 4 = 8</strong>
+      </p>
+
+      <p>
+        Är det rätt?
+      </p>
+
+      <p>
+        Om inte – vilket är det rätta svaret och hur vet du?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Superutmaningen</h2>
+
+    <div class="open-box">
+      <p>
+        Jag är ett tvåsiffrigt tal.
+      </p>
+
+      <ul>
+        <li>Jag är större än 40.</li>
+        <li>Jag är mindre än 70.</li>
+        <li>Jag är ett jämnt tal.</li>
+        <li>Jag finns i 6:ans multiplikationstabell.</li>
+        <li>Mina siffror har summan 9.</li>
+      </ul>
+
+      <p>
+        <strong>Vilket tal är jag?</strong>
+      </p>
+
+      <p>
+        Förklara hur du uteslöt de andra talen.
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Förklara ditt tänkande</h2>
+
+    <div class="challenge-grid">
+
+      <div class="challenge-card">
+        <h3>Jag började med...</h3>
+        <p>Beskriv ditt första steg.</p>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Jag märkte att...</h3>
+        <p>Vilket samband upptäckte du?</p>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Jag provade...</h3>
+        <p>Vilka möjligheter testade du?</p>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Jag vet att svaret stämmer eftersom...</h3>
+        <p>Hur kontrollerade du lösningen?</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>✅ Hur gick det?</h2>
+
+    <div class="level-grid">
+      <div class="level-card">🌱 Jag behöver en ledtråd</div>
+      <div class="level-card">🌿 Jag kan komma igång själv</div>
+      <div class="level-card">🌳 Jag hittar en lösning</div>
+      <div class="level-card">⭐ Jag hittar flera lösningar och kan förklara</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Klura • Prova • Upptäcka • Förklara</p>
+</footer>
+
+<script>
+
+  function toggleHint(id) {
+    const hint = document.getElementById(id);
+
+    if (hint.style.display === "block") {
+      hint.style.display = "none";
+    } else {
+      hint.style.display = "block";
+    }
+  }
+
+  function checkLogic() {
+    const value = Number(document.getElementById("logicAnswer").value);
+    const feedback = document.getElementById("logicFeedback");
+
+    if (value === 36) {
+      feedback.textContent =
+        "✅ Rätt! 36 är större än 30, mindre än 40, jämnt och 3 + 6 = 9.";
+    } else {
+      feedback.textContent =
+        "Inte riktigt. Skriv upp de jämna talen mellan 30 och 40 och kontrollera siffersumman.";
+    }
+  }
+
+  function checkPattern() {
+    const value = Number(document.getElementById("patternAnswer").value);
+    const feedback = document.getElementById("patternFeedback");
+
+    if (value === 48) {
+      feedback.textContent =
+        "✅ Rätt! Varje tal är dubbelt så stort som talet före.";
+    } else {
+      feedback.textContent =
+        "Försök igen. Vad händer från 3 till 6, från 6 till 12 och från 12 till 24?";
+    }
+  }
+
+  function operationAnswer(correct, button) {
+    const feedback = document.getElementById("operationFeedback");
+
+    const buttons =
+      button.parentElement.querySelectorAll("button");
+
+    buttons.forEach(btn => {
+      btn.style.background = "";
+    });
+
+    if (correct) {
+      button.style.background = "var(--ratt)";
+      feedback.textContent =
+        "✅ Rätt! Vi delar 28 elever i grupper med 4 elever i varje.";
+    } else {
+      button.style.background = "var(--fel)";
+      feedback.textContent =
+        "Inte riktigt. Fundera på vad 'delas i grupper' betyder.";
+    }
+  }
+
+</script>
+
+</body>
+</html>
