@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Materialbank – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .category-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 19px;
+    }
+
+    .category-card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .material-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 15px;
+      padding: 18px;
+      margin: 15px 0;
+    }
+
+    .material-card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin: 2px;
+    }
+
+    .material-box {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .question {
+      background: #eee4d6;
+      border-left: 4px solid #bca98d;
+      border-radius: 9px;
+      padding: 12px;
+    }
+
+    .station-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .station {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 17px;
+    }
+
+    .print-card {
+      background: #fffdf8;
+      border: 1px dashed #b7a68d;
+      border-radius: 13px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .print-card h3 {
+      margin-top: 0;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini-card {
+      background: var(--beige);
+      padding: 14px;
+      border-radius: 11px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .print-row {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box {
+        padding: 19px;
+      }
+    }
+
+    @media print {
+      nav,
+      footer,
+      .print-row,
+      .link-grid {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .material-card,
+      .print-card {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🗂️ Materialbank</h1>
+
+  <p>
+    Samlade idéer, uppgifter, samtalsfrågor och kopieringsunderlag
+    för matematikundervisning i åk 3.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#raknesatt">➕ Räknesätt</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#geometri">📐 Geometri</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#kopiering">🖨️ Kopieringsunderlag</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Så använder du materialbanken</h2>
+
+    <p>
+      Materialbanken är tänkt som en snabb lärarresurs.
+      Välj det område du arbetar med och plocka aktiviteter som passar gruppen.
+    </p>
+
+    <div class="category-grid">
+
+      <div class="category-card">
+        <div class="icon">🧱</div>
+        <h3>Konkret</h3>
+        <p>Material och laborativa aktiviteter.</p>
+      </div>
+
+      <div class="category-card">
+        <div class="icon">💬</div>
+        <h3>Muntligt</h3>
+        <p>Matteprat, resonemang och begrepp.</p>
+      </div>
+
+      <div class="category-card">
+        <div class="icon">✍️</div>
+        <h3>Skriftligt</h3>
+        <p>Korta uppgifter och träningsunderlag.</p>
+      </div>
+
+      <div class="category-card">
+        <div class="icon">⭐</div>
+        <h3>Fördjupning</h3>
+        <p>Öppna problem och flera lösningar.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="material-card">
+      <h3>Bygg talet</h3>
+
+      <span class="tag">Konkret</span>
+      <span class="tag">Positionssystem</span>
+
+      <p>
+        Skriv ett tresiffrigt tal, till exempel 374.
+        Eleverna bygger talet med basmaterial eller annat konkret material.
+      </p>
+
+      <div class="material-box">
+        Be eleven visa:
+        <ul>
+          <li>3 hundratal</li>
+          <li>7 tiotal</li>
+          <li>4 ental</li>
+          <li>374 = 300 + 70 + 4</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Hemliga talet</h3>
+
+      <span class="tag">Muntligt</span>
+      <span class="tag">Logik</span>
+
+      <div class="question-list">
+        <div class="question">
+          Jag är större än 300 men mindre än 400.
+        </div>
+
+        <div class="question">
+          Jag har 6 tiotal.
+        </div>
+
+        <div class="question">
+          Jag har 4 ental.
+        </div>
+      </div>
+
+      <p>
+        Vilket tal är jag?
+        <strong>364</strong>
+      </p>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Miniwhiteboard – tal</h3>
+
+      <span class="tag">Snabbkontroll</span>
+
+      <div class="question-list">
+        <div class="question">Skriv ett tal som är större än 450 men mindre än 500.</div>
+        <div class="question">Skriv ett jämnt tal mellan 200 och 220.</div>
+        <div class="question">Vad är 100 mer än 376?</div>
+        <div class="question">Vad är 10 mindre än 529?</div>
+        <div class="question">Skriv 604 i utvecklad form.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="raknesatt">
+    <h2>➕➖✖️➗ De fyra räknesätten</h2>
+
+    <div class="material-card">
+      <h3>Strategikort – addition</h3>
+
+      <span class="tag">Strategier</span>
+      <span class="tag">Pararbete</span>
+
+      <div class="material-box">
+        <strong>Uppgift:</strong> 48 + 27
+      </div>
+
+      <p>
+        Eleverna ska lösa uppgiften med minst två av följande strategier:
+      </p>
+
+      <ul>
+        <li>dela upp 27</li>
+        <li>gå via 50</li>
+        <li>tänk 48 + 30 − 3</li>
+        <li>visa på tallinje</li>
+      </ul>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Strategikort – subtraktion</h3>
+
+      <div class="material-box">
+        <strong>Uppgift:</strong> 72 − 38
+      </div>
+
+      <ul>
+        <li>räkna bakåt</li>
+        <li>räkna upp från 38 till 72</li>
+        <li>dela upp 38</li>
+        <li>kontrollera med addition</li>
+      </ul>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Multiplikationsbilder</h3>
+
+      <p>
+        Rita eller bygg:
+      </p>
+
+      <div class="mini-grid">
+        <div class="mini-card">3 grupper med 4</div>
+        <div class="mini-card">5 grupper med 2</div>
+        <div class="mini-card">4 grupper med 6</div>
+        <div class="mini-card">2 grupper med 8</div>
+      </div>
+
+      <p>
+        Låt eleverna skriva både upprepad addition och multiplikation.
+      </p>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Division med konkreta föremål</h3>
+
+      <p>
+        Ge eleverna 24 räknemarkörer.
+      </p>
+
+      <div class="question-list">
+        <div class="question">Dela 24 lika mellan 2 grupper.</div>
+        <div class="question">Dela 24 lika mellan 3 grupper.</div>
+        <div class="question">Dela 24 lika mellan 4 grupper.</div>
+        <div class="question">Dela 24 lika mellan 6 grupper.</div>
+      </div>
+
+      <p>
+        Diskutera sambandet med multiplikation.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="box" id="brak">
+    <h2>🍕 Bråk</h2>
+
+    <div class="material-card">
+      <h3>Vik papper</h3>
+
+      <span class="tag">Laborativt</span>
+
+      <p>
+        Eleverna får papper i samma storlek.
+      </p>
+
+      <ul>
+        <li>Vik ett papper i två lika stora delar.</li>
+        <li>Vik ett annat i fyra lika stora delar.</li>
+        <li>Jämför 1/2 och 1/4.</li>
+      </ul>
+
+      <div class="question">
+        Varför är en fjärdedel mindre än en halv när helheten är lika stor?
+      </div>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Del av antal</h3>
+
+      <div class="question-list">
+        <div class="question">Vad är hälften av 18?</div>
+        <div class="question">Vad är en fjärdedel av 20?</div>
+        <div class="question">Vad är en tredjedel av 15?</div>
+        <div class="question">Vad är hälften av 36?</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="geometri">
+    <h2>📐 Geometri och mätning</h2>
+
+    <div class="material-card">
+      <h3>Formjakt</h3>
+
+      <span class="tag">Aktivitet</span>
+      <span class="tag">Samtal</span>
+
+      <p>
+        Leta efter geometriska former i klassrummet.
+      </p>
+
+      <div class="question-list">
+        <div class="question">Hitta något som är rektangulärt.</div>
+        <div class="question">Hitta något som innehåller en cirkel.</div>
+        <div class="question">Hitta något som har symmetri.</div>
+      </div>
+
+      <p>
+        Eleverna ska beskriva vilka egenskaper som gjorde att de valde föremålet.
+      </p>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Uppskatta först</h3>
+
+      <p>
+        Innan eleverna mäter ska de alltid göra en uppskattning.
+      </p>
+
+      <div class="question-list">
+        <div class="question">Hur lång är din penna ungefär?</div>
+        <div class="question">Hur bred är bänken?</div>
+        <div class="question">Hur lång är klassrummets dörr?</div>
+      </div>
+
+      <p>
+        Mät sedan och jämför uppskattningen med resultatet.
+      </p>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Vilken enhet?</h3>
+
+      <div class="mini-grid">
+        <div class="mini-card">Penna → cm</div>
+        <div class="mini-card">Klassrum → m</div>
+        <div class="mini-card">Äpple → g</div>
+        <div class="mini-card">Vattenflaska → l/dl</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📊 Statistik</h2>
+
+    <div class="material-card">
+      <h3>Undersök klassen</h3>
+
+      <p>
+        Välj en fråga, till exempel:
+      </p>
+
+      <div class="question">
+        Vilken frukt tycker eleverna i klassen bäst om?
+      </div>
+
+      <p>
+        Arbeta i fyra steg:
+      </p>
+
+      <ol>
+        <li>Samla svar.</li>
+        <li>Gör en tabell.</li>
+        <li>Gör ett stapeldiagram.</li>
+        <li>Skriv tre frågor till diagrammet.</li>
+      </ol>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🎲 Sannolikhet</h2>
+
+    <div class="material-card">
+      <h3>Påsen</h3>
+
+      <p>
+        Lägg till exempel:
+      </p>
+
+      <ul>
+        <li>5 röda markörer</li>
+        <li>2 blå markörer</li>
+        <li>1 gul markör</li>
+      </ul>
+
+      <div class="question-list">
+        <div class="question">Vilken färg är mest sannolik att dra?</div>
+        <div class="question">Vilken färg är minst sannolik?</div>
+        <div class="question">Är det omöjligt att få blå?</div>
+        <div class="question">Vad händer om vi lägger till fem gula?</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösningsbank</h2>
+
+    <div class="material-card">
+      <h3>Problem 1</h3>
+
+      <div class="question">
+        Elsa har 28 pärlor. Hon får 15 nya och ger sedan bort 9.
+        Hur många pärlor har hon kvar?
+      </div>
+
+      <p>
+        Krav:
+      </p>
+
+      <ul>
+        <li>visa din lösning</li>
+        <li>skriv en uträkning</li>
+        <li>förklara hur du tänkte</li>
+      </ul>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Problem 2</h3>
+
+      <div class="question">
+        32 elever ska delas i lika stora grupper.
+        Vilka olika gruppstorlekar kan fungera?
+      </div>
+
+      <p>
+        Här kan det finnas flera lösningar.
+      </p>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Problem 3</h3>
+
+      <div class="question">
+        Ett tal är större än 40 och mindre än 70.
+        Det är jämnt och finns i 6:ans tabell.
+        Vilka tal kan det vara?
+      </div>
+    </div>
+
+
+    <div class="material-card">
+      <h3>Problem 4</h3>
+
+      <div class="question">
+        Du har 50 kr.
+        Välj tre saker som tillsammans kostar exakt 50 kr.
+      </div>
+
+      <p>
+        Läraren kan själv skriva priser på olika varor.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>💬 Matteprat – frågekort</h2>
+
+    <div class="question-list">
+      <div class="question">Hur vet du?</div>
+      <div class="question">Kan du visa på ett annat sätt?</div>
+      <div class="question">Finns det flera lösningar?</div>
+      <div class="question">Vilken strategi valde du?</div>
+      <div class="question">Varför fungerar strategin?</div>
+      <div class="question">Håller du med din kamrat? Varför?</div>
+      <div class="question">Vad är lika mellan lösningarna?</div>
+      <div class="question">Vad är olika?</div>
+      <div class="question">Är svaret rimligt?</div>
+      <div class="question">Hur kan du kontrollera?</div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🧑‍🏫 Miniwhiteboard-bank</h2>
+
+    <div class="station-grid">
+
+      <div class="station">
+        <h3>Tal</h3>
+        <p>Vad är 10 mer än 478?</p>
+        <p>Vad är 100 mindre än 623?</p>
+      </div>
+
+      <div class="station">
+        <h3>Addition</h3>
+        <p>48 + 19</p>
+        <p>67 + 28</p>
+      </div>
+
+      <div class="station">
+        <h3>Subtraktion</h3>
+        <p>74 − 29</p>
+        <p>83 − 46</p>
+      </div>
+
+      <div class="station">
+        <h3>Multiplikation</h3>
+        <p>6 × 4</p>
+        <p>7 × 5</p>
+      </div>
+
+      <div class="station">
+        <h3>Division</h3>
+        <p>24 ÷ 4</p>
+        <p>35 ÷ 5</p>
+      </div>
+
+      <div class="station">
+        <h3>Bråk</h3>
+        <p>Hälften av 20</p>
+        <p>En fjärdedel av 16</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="kopiering">
+    <h2>🖨️ Kopieringsunderlag</h2>
+
+    <p>
+      De här delarna kan skrivas ut direkt från webbläsaren.
+    </p>
+
+    <div class="print-card">
+      <h3>Problemlösningsmall</h3>
+
+      <p><strong>1. Vad vet jag?</strong></p>
+      <p>______________________________________________</p>
+
+      <p><strong>2. Vad ska jag ta reda på?</strong></p>
+      <p>______________________________________________</p>
+
+      <p><strong>3. Min strategi</strong></p>
+      <p>______________________________________________</p>
+
+      <p><strong>4. Min uträkning</strong></p>
+      <p>______________________________________________</p>
+
+      <p><strong>5. Mitt svar</strong></p>
+      <p>______________________________________________</p>
+
+      <p><strong>6. Så kontrollerade jag</strong></p>
+      <p>______________________________________________</p>
+    </div>
+
+
+    <div class="print-card">
+      <h3>Mattepratskort</h3>
+
+      <div class="mini-grid">
+        <div class="mini-card">Hur tänkte du?</div>
+        <div class="mini-card">Hur vet du?</div>
+        <div class="mini-card">Visa ett annat sätt.</div>
+        <div class="mini-card">Håller du med?</div>
+        <div class="mini-card">Är det rimligt?</div>
+        <div class="mini-card">Hur kan du kontrollera?</div>
+      </div>
+    </div>
+
+
+    <div class="print-card">
+      <h3>Elevens självskattning</h3>
+
+      <p>☐ 🌱 Jag tränar</p>
+      <p>☐ 🌿 Jag kan med stöd</p>
+      <p>☐ 🌳 Jag kan själv</p>
+      <p>☐ ⭐ Jag kan förklara för någon annan</p>
+
+      <p><strong>Det här vill jag träna mer på:</strong></p>
+      <p>______________________________________________</p>
+    </div>
+
+    <div class="print-row">
+      <button onclick="window.print()">
+        🖨️ Skriv ut material
+      </button>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Fler resurser i plattformen</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="stationsarbete.html">
+        🔄 Stationsarbete
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Räknestrategier
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="felanalys.html">
+        🕵️ Felanalys
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        🌟 Utmaningar
+      </a>
+
+      <a class="link-card" href="lararverktyg.html">
+        🧰 Lärarverktyg
+      </a>
+
+      <a class="link-card" href="veckoplan.html">
+        📅 Veckoplan
+      </a>
+
+      <a class="link-card" href="arsplan.html">
+        🗓️ Årsplan
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Materialbank</strong></p>
+  <p>Material • Samtal • Träning • Problemlösning • Undervisning</p>
+</footer>
+
+</body>
+</html>
