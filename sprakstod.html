@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Språkstöd i matematik – Åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .language-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .language-card h3 {
+      margin-top: 0;
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .word-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .word {
+      font-size: 1.12rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    .example-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .support-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .sentence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .sentence {
+      background: #f3eadf;
+      border-radius: 11px;
+      padding: 14px;
+      font-weight: bold;
+    }
+
+    .problem-step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: #cdbb9f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .routine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .routine-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 17px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .language-card {
+        padding: 18px;
+      }
+
+      .problem-step {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>💬 Språkstöd i matematik</h1>
+
+  <p>
+    Matematik kräver både förståelse av tal och förståelse av språk.
+    Här finns stöd för begrepp, samtal, problemlösning och matematiska förklaringar.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#begrepp">📚 Begrepp</a>
+  <a href="#vardag">🗣️ Vardagsspråk</a>
+  <a href="#meningar">💬 Meningsstarter</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#rutiner">🔁 Rutiner</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Språk och matematik hör ihop</h2>
+
+    <p>
+      En elev kan förstå själva beräkningen men ändå få svårt med en uppgift
+      om orden, frågan eller sambandet i texten är otydligt.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">👀</div>
+        <h3>Se</h3>
+        <p>Bild, modell, symbol och konkret material.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👂</div>
+        <h3>Höra</h3>
+        <p>Läraren modellerar matematiskt språk.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🗣️</div>
+        <h3>Säga</h3>
+        <p>Eleven får använda orden i samtal.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✍️</div>
+        <h3>Skriva</h3>
+        <p>Eleven formulerar sin matematiska tanke.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="begrepp">
+    <h2>📚 Centrala matematikbegrepp</h2>
+
+    <div class="word-grid">
+
+      <div class="word-card">
+        <div class="word">summa</div>
+        Svaret i en addition.
+        <div class="example-box">7 + 5 = 12<br>Summan är 12.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">differens</div>
+        Skillnaden mellan två tal eller svaret i en subtraktion.
+        <div class="example-box">12 − 5 = 7<br>Differensen är 7.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">produkt</div>
+        Svaret i en multiplikation.
+        <div class="example-box">4 × 6 = 24<br>Produkten är 24.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">kvot</div>
+        Svaret i en division.
+        <div class="example-box">20 ÷ 5 = 4<br>Kvoten är 4.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">ental</div>
+        Siffrans plats längst till höger i ett heltal.
+        <div class="example-box">I 364 är 4 ental.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">tiotal</div>
+        Grupper om tio.
+        <div class="example-box">I 364 är 6 tiotal = 60.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">hundratal</div>
+        Grupper om hundra.
+        <div class="example-box">I 364 är 3 hundratal = 300.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">hälften</div>
+        En av två lika stora delar.
+        <div class="example-box">Hälften av 12 är 6.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">dubbelt</div>
+        Två gånger så mycket.
+        <div class="example-box">Dubbelt av 7 är 14.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">jämföra</div>
+        Undersöka vad som är lika eller olika.
+        <div class="example-box">403 är större än 398.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">uppskatta</div>
+        Göra en genomtänkt ungefärlig bedömning.
+        <div class="example-box">48 + 31 är ungefär 80.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word">rimligt</div>
+        Att ett svar verkar möjligt och passar situationen.
+        <div class="example-box">40 + 30 kan inte bli 500.</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="vardag">
+    <h2>🗣️ När vardagsord får matematisk betydelse</h2>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Ord</th>
+          <th>I vardagen</th>
+          <th>I matematiken</th>
+        </tr>
+
+        <tr>
+          <td><strong>skillnad</strong></td>
+          <td>något är annorlunda</td>
+          <td>avståndet eller differensen mellan två tal</td>
+        </tr>
+
+        <tr>
+          <td><strong>produkt</strong></td>
+          <td>något man köper eller tillverkar</td>
+          <td>svaret i en multiplikation</td>
+        </tr>
+
+        <tr>
+          <td><strong>volym</strong></td>
+          <td>hur högt ljudet är</td>
+          <td>hur mycket något rymmer</td>
+        </tr>
+
+        <tr>
+          <td><strong>tabell</strong></td>
+          <td>kan vara ett schema</td>
+          <td>information ordnad i rader och kolumner</td>
+        </tr>
+
+        <tr>
+          <td><strong>udda</strong></td>
+          <td>något konstigt</td>
+          <td>ett tal som inte är delbart med 2 utan rest</td>
+        </tr>
+
+        <tr>
+          <td><strong>jämn</strong></td>
+          <td>slät eller regelbunden</td>
+          <td>ett tal som kan delas i två lika stora heltalsgrupper</td>
+        </tr>
+
+        <tr>
+          <td><strong>dra</strong></td>
+          <td>flytta något mot sig</td>
+          <td>kan i vardagligt klassrumsspråk syfta på subtraktion, men eleven bör också förstå ordet subtrahera</td>
+        </tr>
+
+        <tr>
+          <td><strong>dela</strong></td>
+          <td>ge något till flera</td>
+          <td>kan beskriva division eller att dela en helhet i lika delar</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="support-box">
+      <strong>Tips:</strong>
+      Säg både vardagsordet och matematikordet:
+      ”Vi tar reda på skillnaden. Det betyder att vi beräknar differensen.”
+    </div>
+  </section>
+
+
+  <section class="box" id="meningar">
+    <h2>💬 Meningsstarter för matteprat</h2>
+
+    <h3>Förklara en lösning</h3>
+
+    <div class="sentence-grid">
+      <div class="sentence">Först...</div>
+      <div class="sentence">Sedan...</div>
+      <div class="sentence">Jag började med att...</div>
+      <div class="sentence">Jag tänkte att...</div>
+      <div class="sentence">Jag valde den här strategin eftersom...</div>
+      <div class="sentence">Mitt svar blev...</div>
+    </div>
+
+
+    <h3>Jämföra lösningar</h3>
+
+    <div class="sentence-grid">
+      <div class="sentence">Båda lösningarna...</div>
+      <div class="sentence">Skillnaden är att...</div>
+      <div class="sentence">Min strategi liknar din eftersom...</div>
+      <div class="sentence">Den här lösningen är smidigare när...</div>
+    </div>
+
+
+    <h3>Argumentera</h3>
+
+    <div class="sentence-grid">
+      <div class="sentence">Jag håller med eftersom...</div>
+      <div class="sentence">Jag håller inte med eftersom...</div>
+      <div class="sentence">Jag vet att det stämmer eftersom...</div>
+      <div class="sentence">Ett exempel som visar det är...</div>
+    </div>
+
+
+    <h3>Rimlighet</h3>
+
+    <div class="sentence-grid">
+      <div class="sentence">Jag tror svaret är rimligt eftersom...</div>
+      <div class="sentence">Jag uppskattade först...</div>
+      <div class="sentence">Svaret kan inte vara... eftersom...</div>
+      <div class="sentence">Jag kontrollerade genom att...</div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔢 Språkstöd per matematikområde</h2>
+
+    <div class="language-card">
+      <h3>Taluppfattning</h3>
+
+      <p><strong>Ord:</strong> större än, mindre än, lika med, före, efter, mellan, ungefär.</p>
+
+      <div class="example-box">
+        Talet ___ är större än ___ eftersom...
+      </div>
+
+      <div class="example-box">
+        ___ ligger mellan ___ och ___.
+      </div>
+    </div>
+
+
+    <div class="language-card">
+      <h3>Addition</h3>
+
+      <p><strong>Ord:</strong> lägga ihop, tillsammans, öka, term, summa.</p>
+
+      <div class="example-box">
+        Jag delar upp ___ i ___ och ___.
+      </div>
+
+      <div class="example-box">
+        Summan blir ___.
+      </div>
+    </div>
+
+
+    <div class="language-card">
+      <h3>Subtraktion</h3>
+
+      <p><strong>Ord:</strong> ta bort, minska, skillnad, differens, hur många fler, hur många färre.</p>
+
+      <div class="example-box">
+        Skillnaden mellan ___ och ___ är ___.
+      </div>
+
+      <div class="example-box">
+        Jag räknade upp från ___ till ___.
+      </div>
+    </div>
+
+
+    <div class="language-card">
+      <h3>Multiplikation</h3>
+
+      <p><strong>Ord:</strong> grupper, lika många i varje, faktor, produkt, gånger.</p>
+
+      <div class="example-box">
+        Det finns ___ grupper med ___ i varje.
+      </div>
+
+      <div class="example-box">
+        Totalt blir det ___.
+      </div>
+    </div>
+
+
+    <div class="language-card">
+      <h3>Division</h3>
+
+      <p><strong>Ord:</strong> dela lika, gruppera, antal grupper, antal i varje grupp, kvot.</p>
+
+      <div class="example-box">
+        Jag vet att det finns ___ totalt.
+      </div>
+
+      <div class="example-box">
+        Jag ska ta reda på hur många ___.
+      </div>
+    </div>
+
+
+    <div class="language-card">
+      <h3>Bråk</h3>
+
+      <p><strong>Ord:</strong> helhet, lika stora delar, halv, tredjedel, fjärdedel.</p>
+
+      <div class="example-box">
+        Helheten är delad i ___ lika stora delar.
+      </div>
+
+      <div class="example-box">
+        ___ av delarna är färgade.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Språkstöd för problemlösning</h2>
+
+    <p>
+      Problem bör inte reduceras till att leta efter ett särskilt nyckelord.
+      Eleven behöver förstå situationen.
+    </p>
+
+    <div class="problem-step">
+      <div class="step-number">1</div>
+      <div>
+        <strong>Läs</strong>
+        <br>
+        Läs hela problemet utan att börja räkna.
+      </div>
+    </div>
+
+    <div class="problem-step">
+      <div class="step-number">2</div>
+      <div>
+        <strong>Återberätta</strong>
+        <br>
+        Vad händer i problemet? Säg det med egna ord.
+      </div>
+    </div>
+
+    <div class="problem-step">
+      <div class="step-number">3</div>
+      <div>
+        <strong>Vad vet vi?</strong>
+        <br>
+        Markera information som behövs.
+      </div>
+    </div>
+
+    <div class="problem-step">
+      <div class="step-number">4</div>
+      <div>
+        <strong>Vad ska vi ta reda på?</strong>
+        <br>
+        Formulera själva frågan.
+      </div>
+    </div>
+
+    <div class="problem-step">
+      <div class="step-number">5</div>
+      <div>
+        <strong>Visa situationen</strong>
+        <br>
+        Rita, bygg eller använd en modell.
+      </div>
+    </div>
+
+    <div class="problem-step">
+      <div class="step-number">6</div>
+      <div>
+        <strong>Välj strategi</strong>
+        <br>
+        Först nu bestämmer eleven hur problemet ska lösas.
+      </div>
+    </div>
+
+    <div class="problem-step">
+      <div class="step-number">7</div>
+      <div>
+        <strong>Kontrollera</strong>
+        <br>
+        Passar svaret till berättelsen?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📖 Exempel – packa upp ett textproblem</h2>
+
+    <div class="language-card">
+      <h3>Problem</h3>
+
+      <div class="example-box">
+        Sara har 26 pärlor.
+        Hon får 18 pärlor till.
+        Sedan använder hon 9 pärlor till ett armband.
+        Hur många pärlor har hon kvar?
+      </div>
+
+      <h4>Vad betyder orden?</h4>
+
+      <div class="word-grid">
+
+        <div class="word-card">
+          <div class="word">får ... till</div>
+          Mängden ökar.
+        </div>
+
+        <div class="word-card">
+          <div class="word">sedan</div>
+          Något händer efter det första steget.
+        </div>
+
+        <div class="word-card">
+          <div class="word">använder</div>
+          En del av mängden försvinner från det som finns kvar.
+        </div>
+
+        <div class="word-card">
+          <div class="word">har kvar</div>
+          Vi söker mängden efter båda förändringarna.
+        </div>
+
+      </div>
+
+      <div class="support-box">
+        Eleven behöver förstå att problemet innehåller två steg:
+        först ökar mängden, sedan minskar den.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>👩‍🏫 Lärarens modellering</h2>
+
+    <p>
+      Säg inte bara vad du gör. Sätt ord på varför.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Istället för</th>
+          <th>Modellera språket så här</th>
+        </tr>
+
+        <tr>
+          <td>”Jag gör så här.”</td>
+          <td>”Jag delar upp 27 i 20 och 7 eftersom det gör talet lättare att addera.”</td>
+        </tr>
+
+        <tr>
+          <td>”Nu lånar vi.”</td>
+          <td>”Jag växlar ett tiotal till tio ental. Talets värde är fortfarande lika stort.”</td>
+        </tr>
+
+        <tr>
+          <td>”Här gånger vi.”</td>
+          <td>”Jag ser lika stora grupper, därför kan situationen beskrivas med multiplikation.”</td>
+        </tr>
+
+        <tr>
+          <td>”Det är fel.”</td>
+          <td>”Visa hur du tänkte så undersöker vi var lösningen ändrade riktning.”</td>
+        </tr>
+
+        <tr>
+          <td>”Är du säker?”</td>
+          <td>”Hur kan du kontrollera om svaret är rimligt?”</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🖼️ Koppla alltid språk till representation</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🧱</div>
+        <h3>Material</h3>
+        <p>Eleven bygger det matematiska innehållet.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🖼️</div>
+        <h3>Bild</h3>
+        <p>Eleven ritar eller tolkar en modell.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔢</div>
+        <h3>Symbol</h3>
+        <p>Eleven skriver matematiskt uttryck.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Ord</h3>
+        <p>Eleven beskriver vad uttrycket betyder.</p>
+      </div>
+
+    </div>
+
+    <div class="example-box">
+      Exempel:
+      <br><br>
+      ●●●● &nbsp; ●●●● &nbsp; ●●●●
+      <br><br>
+      4 + 4 + 4 = 12
+      <br>
+      3 × 4 = 12
+      <br><br>
+      ”Det finns tre grupper med fyra i varje.”
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>👥 Parprat före helklass</h2>
+
+    <p>
+      Alla elever behöver få möjlighet att formulera sitt tänkande innan några få svarar inför hela gruppen.
+    </p>
+
+    <div class="routine-grid">
+
+      <div class="routine-card">
+        <h3>1. Tänk själv</h3>
+        <p>30–60 sekunder.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>2. Prata i par</h3>
+        <p>Använd en meningsstart.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>3. Jämför</h3>
+        <p>Vad är lika och olika?</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>4. Dela</h3>
+        <p>Några lösningar lyfts i helklass.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="rutiner">
+    <h2>🔁 Språkutvecklande rutiner varje vecka</h2>
+
+    <div class="routine-grid">
+
+      <div class="routine-card">
+        <h3>📚 Veckans begrepp</h3>
+        <p>2–4 matematikord som återkommer flera gånger.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>💬 Matteprat</h3>
+        <p>Jämför två lösningar.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>🧠 Problem</h3>
+        <p>Återberätta situationen innan beräkningen.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>✍️ Skriv en förklaring</h3>
+        <p>En kort matematisk mening räcker.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>🕵️ Felanalys</h3>
+        <p>Förklara varför en lösning inte fungerar.</p>
+      </div>
+
+      <div class="routine-card">
+        <h3>🚪 Exit ticket</h3>
+        <p>Minst en fråga där eleven behöver uttrycka en tanke.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🌱 När eleven behöver mycket språkstöd</h2>
+
+    <ul class="checklist">
+      <li>Förklara de viktigaste orden före uppgiften.</li>
+      <li>Använd samma matematikord konsekvent.</li>
+      <li>Kombinera muntlig förklaring med bild eller material.</li>
+      <li>Låt eleven återberätta instruktionen.</li>
+      <li>Ge möjlighet att prata med en kamrat före skriftligt svar.</li>
+      <li>Använd meningsstarter.</li>
+      <li>Minska mängden text utan att ta bort den matematiska idén.</li>
+      <li>Kontrollera matematikförståelsen separat från läsförståelsen när det behövs.</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>⭐ När eleven har stark matematik men begränsat skolspråk</h2>
+
+    <p>
+      Förenkla inte automatiskt matematiken.
+      Ge istället språkligt stöd så att eleven får möjlighet att visa sitt matematiska tänkande.
+    </p>
+
+    <div class="support-box">
+      Eleven kan till exempel få:
+      <ul>
+        <li>bildstöd,</li>
+        <li>begreppslista,</li>
+        <li>meningsstarter,</li>
+        <li>muntlig förklaring,</li>
+        <li>möjlighet att visa med symboler och modeller.</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Planera språkmedveten matematik</h2>
+
+    <ul class="checklist">
+      <li>Vilka matematikbegrepp är viktigast idag?</li>
+      <li>Vilka vardagsord i uppgiften kan skapa hinder?</li>
+      <li>Hur ska eleverna få se begreppet?</li>
+      <li>Hur ska eleverna få säga begreppet?</li>
+      <li>Vilken meningsstart kan stödja resonemanget?</li>
+      <li>Finns parprat före helklass?</li>
+      <li>Behöver texten packas upp tillsammans?</li>
+      <li>Hur ska eleven få visa förståelse på flera sätt?</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="begrepp.html">
+        📚 Begreppsbank
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧠 Problemlösning
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Representationer
+      </a>
+
+      <a class="link-card" href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a class="link-card" href="felanalys.html">
+        🕵️ Felanalys
+      </a>
+
+      <a class="link-card" href="lektionsbank.html">
+        📚 Lektionsbank
+      </a>
+
+      <a class="link-card" href="missuppfattningar.html">
+        🔎 Missuppfattningar
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Språkstöd</strong></p>
+  <p>Se • Höra • Säga • Skriva • Förstå</p>
+</footer>
+
+</body>
+</html>
