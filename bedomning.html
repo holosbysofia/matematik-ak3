@@ -8,16 +8,16 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
@@ -33,12 +33,12 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     header {
       background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
+      padding: 46px 20px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
     }
@@ -46,23 +46,23 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2rem,5vw,3.7rem);
+      font-size: clamp(2.2rem,6vw,4rem);
     }
 
     header p {
       max-width: 900px;
       margin: 12px auto 0;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 14px;
+      padding: 14px 8px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
     }
 
     nav a {
@@ -70,9 +70,9 @@
       text-decoration: none;
       color: var(--brun);
       font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 3px;
+      border-radius: 9px;
     }
 
     nav a:hover {
@@ -99,7 +99,8 @@
     }
 
     h2,
-    h3 {
+    h3,
+    h4 {
       color: var(--brun);
     }
 
@@ -110,100 +111,169 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-      gap: 15px;
+      gap: 14px;
       margin-top: 18px;
     }
 
     .card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
       border-radius: 14px;
       padding: 18px;
     }
 
-    .card h3 {
-      margin-top: 0;
-    }
-
-    .icon {
-      font-size: 2.4rem;
+    .card .icon {
+      font-size: 2rem;
       margin-bottom: 6px;
     }
 
-    .assessment-card {
+    .card strong {
+      display: block;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    .assessment-section {
       background: #fffdf8;
       border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 20px;
-      margin: 16px 0;
+      border-radius: 17px;
+      padding: 23px;
+      margin-bottom: 24px;
+    }
+
+    .assessment-section h2 {
+      margin-bottom: 7px;
+    }
+
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .assessment-card {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 15px;
     }
 
     .assessment-card h3 {
       margin-top: 0;
     }
 
-    .observe {
-      background: #f3eadf;
-      border-radius: 11px;
-      padding: 14px;
-      margin-top: 10px;
+    .assessment-card ul {
+      padding-left: 20px;
+      margin-bottom: 0;
     }
 
-    .question-box {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 14px;
-      margin: 11px 0;
+    .assessment-card li {
+      margin: 6px 0;
     }
 
-    .student-example {
-      background: #fffdf8;
-      border: 1px solid #d8cab7;
-      border-radius: 13px;
-      padding: 17px;
-      margin: 14px 0;
-    }
-
-    .student-work {
-      background: #f3eadf;
-      border-radius: 11px;
-      padding: 15px;
-      font-size: 1.08rem;
-      margin: 10px 0;
-    }
-
-    .analysis {
-      background: #e7eadf;
-      border-left: 5px solid #a7ad91;
-      border-radius: 10px;
-      padding: 14px;
-      margin-top: 12px;
-    }
-
-    .next-step {
+    .teacher-tip {
       background: #eee2d2;
       border-left: 5px solid #b7a17c;
       border-radius: 10px;
       padding: 14px;
-      margin-top: 12px;
+      margin-top: 15px;
+    }
+
+    .formative {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 15px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .print-page {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 25px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px var(--skugga);
+    }
+
+    .sheet-head {
+      border-bottom: 2px solid #cdbfae;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .sheet-head h2 {
+      margin: 0 0 5px;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #cdbfae;
+      border-radius: 8px;
+      padding: 9px;
+      background: white;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
     }
 
     .table-wrap {
       overflow-x: auto;
+      margin-top: 14px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 16px;
-      min-width: 760px;
+      min-width: 850px;
     }
 
     th,
     td {
-      border: 1px solid #d8cab7;
-      padding: 11px;
+      border: 1px solid #d1c2ae;
+      padding: 9px;
       text-align: left;
       vertical-align: top;
     }
@@ -217,73 +287,67 @@
       background: #fffdf8;
     }
 
-    .self-grid {
+    .small-cell {
+      width: 90px;
+      text-align: center;
+    }
+
+    .obs-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .obs-box {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 11px;
+      padding: 13px;
+    }
+
+    .obs-box textarea {
+      min-height: 90px;
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .reflection-card {
+      background: #fffaf2;
+      border: 1px solid #d8cab7;
+      border-radius: 11px;
+      padding: 13px;
+    }
+
+    .reflection-card textarea {
+      min-height: 90px;
+    }
+
+    .links {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
       gap: 12px;
-      margin-top: 15px;
-    }
-
-    .self-card {
-      background: #f3eadf;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .exit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 14px;
       margin-top: 16px;
     }
 
-    .exit-card {
-      background: #fffdf8;
-      border: 2px dashed #c6b49a;
-      border-radius: 13px;
-      padding: 16px;
-    }
-
-    .checklist {
-      list-style: none;
-      padding: 0;
-    }
-
-    .checklist li {
-      background: #f3eadf;
-      margin: 8px 0;
-      padding: 11px 13px;
-      border-radius: 10px;
-    }
-
-    .checklist li::before {
-      content: "✓ ";
-      font-weight: bold;
-      color: var(--brun);
-    }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .link-card {
+    .links a {
       display: block;
       text-decoration: none;
+      text-align: center;
       color: var(--text);
       background: #f3eadf;
       border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
+      border-radius: 12px;
+      padding: 15px;
       font-weight: bold;
     }
 
-    .link-card:hover {
+    .links a:hover {
       background: var(--beige);
     }
 
@@ -291,10 +355,173 @@
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 27px;
+      padding: 28px 20px;
     }
 
-    @media(max-width:650px) {
+
+    /* =========================
+       A4-UTSKRIFT
+       ========================= */
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 13mm 14mm 13mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.3pt;
+        line-height: 1.25;
+      }
+
+      header,
+      nav,
+      footer,
+      .intro,
+      .screen-only,
+      .button-row,
+      button,
+      .links {
+        display: none !important;
+      }
+
+      main {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .print-page {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .print-page:last-of-type {
+        break-after: auto;
+        page-break-after: auto;
+      }
+
+      .sheet-head {
+        margin: 0 0 4mm !important;
+        padding: 0 0 3mm !important;
+        border-bottom: 1.5pt solid #555 !important;
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .sheet-head h2 {
+        color: #000 !important;
+        font-size: 16pt !important;
+        margin: 0 0 1mm !important;
+      }
+
+      .info-row {
+        grid-template-columns: 2fr 1fr 1fr !important;
+        gap: 3mm !important;
+        margin-top: 3mm !important;
+      }
+
+      label {
+        color: #000 !important;
+        font-size: 8.4pt !important;
+        margin-bottom: 1mm !important;
+      }
+
+      input,
+      textarea {
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        padding: 1.5mm !important;
+        font-size: 8.8pt !important;
+        overflow: visible !important;
+      }
+
+      textarea {
+        min-height: 14mm !important;
+        resize: none !important;
+      }
+
+      .table-wrap {
+        overflow: visible !important;
+      }
+
+      table {
+        width: 100% !important;
+        min-width: 0 !important;
+        font-size: 8.1pt !important;
+        border-collapse: collapse !important;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tr {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      th,
+      td {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #666 !important;
+        padding: 1.6mm !important;
+      }
+
+      .obs-row,
+      .reflection-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .obs-box,
+      .reflection-card {
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000 !important;
+        break-after: avoid-page;
+        page-break-after: avoid;
+      }
+
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
+      }
+    }
+
+
+    @media(max-width:750px) {
+
       nav {
         position: static;
       }
@@ -308,667 +535,760 @@
       }
 
       .box,
-      .assessment-card {
+      .assessment-section,
+      .print-page {
         padding: 18px;
+      }
+
+      .assessment-grid,
+      .info-row,
+      .obs-row,
+      .reflection-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
-  <h1>🔎 Bedömning i matematik</h1>
+
+  <h1>🔎 Bedömning</h1>
 
   <p>
-    Formativ bedömning som hjälper läraren att se vad eleven förstår,
-    hur eleven tänker och vilket undervisningssteg som behöver komma härnäst.
+    Formativ bedömning i matematik – observera hur elever tänker,
+    vilka strategier de använder och vad undervisningen behöver ta sikte på härnäst.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#observera">👀 Observera</a>
-  <a href="#elevexempel">✍️ Elevexempel</a>
-  <a href="#exit">🚪 Exit tickets</a>
-  <a href="#sjalv">🌱 Självbedömning</a>
-  <a href="#nasta">➡️ Nästa steg</a>
+  <a href="#formativt">🌱 Formativt</a>
+  <a href="#observation">👀 Observation</a>
+  <a href="#omraden">🔢 Områden</a>
+  <a href="#samtal">💬 Samtal</a>
+  <a href="#uppfoljning">🔄 Uppföljning</a>
 </nav>
+
 
 <main>
 
-  <section class="box intro">
-    <h2>🌿 Vad vill vi få syn på?</h2>
+  <!-- INTRO -->
+
+  <section class="box intro" id="formativt">
+
+    <h2>🌱 Bedömning som stöd för nästa undervisningssteg</h2>
 
     <p>
-      Bedömning i matematik handlar inte bara om hur många rätt eleven får.
-      Vi behöver också se hur eleven förstår begrepp, väljer strategier,
-      använder representationer och förklarar sina lösningar.
+      Bedömning i matematik behöver ge information om mer än om ett svar är rätt eller fel.
+      Det viktiga är också att synliggöra <strong>hur eleven tänker</strong>,
+      vilka begrepp och strategier eleven använder och vilket stöd som behövs för fortsatt lärande.
     </p>
+
 
     <div class="grid">
 
       <div class="card">
-        <div class="icon">🔢</div>
-        <h3>Begrepp</h3>
-        <p>Förstår eleven vad talen och symbolerna betyder?</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🧠</div>
-        <h3>Strategier</h3>
-        <p>Hur väljer och använder eleven metoder?</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🧩</div>
-        <h3>Representationer</h3>
-        <p>Kan eleven visa samma matematik på flera sätt?</p>
+        <div class="icon">👀</div>
+        <strong>Observera</strong>
+        Vad gör eleven när en uppgift ska lösas?
       </div>
 
       <div class="card">
         <div class="icon">💬</div>
-        <h3>Resonemang</h3>
-        <p>Kan eleven förklara varför en lösning fungerar?</p>
+        <strong>Lyssna</strong>
+        Hur beskriver eleven sitt tänkande?
       </div>
-
-      <div class="card">
-        <div class="icon">🧠</div>
-        <h3>Problemlösning</h3>
-        <p>Kan eleven förstå situationen och välja relevant strategi?</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">✅</div>
-        <h3>Kontroll</h3>
-        <p>Kan eleven avgöra om svaret verkar rimligt?</p>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box" id="observera">
-    <h2>👀 Observation under lektionen</h2>
-
-    <p>
-      Välj gärna bara ett eller två fokusområden per lektion.
-      Då blir observationerna mer användbara.
-    </p>
-
-    <div class="assessment-card">
-      <h3>Taluppfattning</h3>
-
-      <div class="observe">
-        Observera om eleven:
-        <ul>
-          <li>förstår platsvärde,</li>
-          <li>kan jämföra tal,</li>
-          <li>kan placera tal ungefärligt på tallinje,</li>
-          <li>kan resonera om rimlighet.</li>
-        </ul>
-      </div>
-
-      <div class="question-box">
-        Fråga: Hur vet du att 403 är större än 398?
-      </div>
-    </div>
-
-
-    <div class="assessment-card">
-      <h3>Addition och subtraktion</h3>
-
-      <div class="observe">
-        Observera om eleven:
-        <ul>
-          <li>använder flexibla strategier,</li>
-          <li>delar upp tal på ett funktionellt sätt,</li>
-          <li>ser samband mellan addition och subtraktion,</li>
-          <li>kan kontrollera resultat.</li>
-        </ul>
-      </div>
-
-      <div class="question-box">
-        Fråga: Kan du lösa 48 + 27 på ett annat sätt?
-      </div>
-    </div>
-
-
-    <div class="assessment-card">
-      <h3>Multiplikation och division</h3>
-
-      <div class="observe">
-        Observera om eleven:
-        <ul>
-          <li>förstår lika stora grupper,</li>
-          <li>använder tabellsamband,</li>
-          <li>ser sambandet mellan multiplikation och division,</li>
-          <li>kan beskriva vad faktorerna betyder i situationen.</li>
-        </ul>
-      </div>
-
-      <div class="question-box">
-        Fråga: Om 5 × 6 = 30, vad mer vet du då?
-      </div>
-    </div>
-
-
-    <div class="assessment-card">
-      <h3>Problemlösning</h3>
-
-      <div class="observe">
-        Observera om eleven:
-        <ul>
-          <li>förstår frågan,</li>
-          <li>identifierar relevant information,</li>
-          <li>väljer strategi,</li>
-          <li>kan förklara och kontrollera lösningen.</li>
-        </ul>
-      </div>
-
-      <div class="question-box">
-        Fråga: Vad i problemet gjorde att du valde just den strategin?
-      </div>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>📊 Fyra nivåer för undervisningsanalys</h2>
-
-    <p>
-      Dessa är inte betygsnivåer. De hjälper bara läraren att planera nästa undervisningssteg.
-    </p>
-
-    <div class="table-wrap">
-      <table>
-
-        <tr>
-          <th>Vad visar eleven?</th>
-          <th>Tolkning</th>
-          <th>Nästa undervisningssteg</th>
-        </tr>
-
-        <tr>
-          <td>
-            Eleven kommer inte igång eller gissar utan strategi.
-          </td>
-          <td>
-            Den grundläggande idén behöver göras tydligare.
-          </td>
-          <td>
-            Konkret material, mindre tal, tydlig modellering och gemensamt språk.
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            Eleven kan lösa med mycket stöd.
-          </td>
-          <td>
-            Förståelsen börjar utvecklas men är ännu inte stabil.
-          </td>
-          <td>
-            Fortsatt guidning, flera representationer och kort repetition.
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            Eleven löser självständigt i bekanta situationer.
-          </td>
-          <td>
-            Strategin fungerar och kan användas självständigt.
-          </td>
-          <td>
-            Variera uppgifter och låt eleven jämföra strategier.
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            Eleven kan förklara, generalisera och använda kunskapen i nya situationer.
-          </td>
-          <td>
-            Förståelsen är djupare och flexibel.
-          </td>
-          <td>
-            Öppna problem, argumentation och nya sammanhang.
-          </td>
-        </tr>
-
-      </table>
-    </div>
-  </section>
-
-
-  <section class="box" id="elevexempel">
-    <h2>✍️ Analysera elevlösningar</h2>
-
-    <div class="student-example">
-
-      <h3>Elevexempel 1 – Addition</h3>
-
-      <div class="student-work">
-        48 + 27
-        <br><br>
-        48 + 20 = 68
-        <br>
-        68 + 7 = 75
-      </div>
-
-      <div class="analysis">
-        <strong>Vad ser vi?</strong>
-        <br>
-        Eleven delar upp den andra termen i tiotal och ental och genomför beräkningen korrekt.
-      </div>
-
-      <div class="next-step">
-        <strong>Nästa steg:</strong>
-        <br>
-        Be eleven jämföra med strategin 48 + 30 − 3.
-      </div>
-
-    </div>
-
-
-    <div class="student-example">
-
-      <h3>Elevexempel 2 – Addition</h3>
-
-      <div class="student-work">
-        38 + 27 = 515
-      </div>
-
-      <div class="analysis">
-        <strong>Vad kan felet visa?</strong>
-        <br>
-        Eleven kan ha räknat 3 + 2 och 8 + 7 separat och sedan skrivit svaren bredvid varandra.
-      </div>
-
-      <div class="next-step">
-        <strong>Nästa steg:</strong>
-        <br>
-        Gå tillbaka till tiotal och ental med konkret material och koppla sedan till symbolerna.
-      </div>
-
-    </div>
-
-
-    <div class="student-example">
-
-      <h3>Elevexempel 3 – Bråk</h3>
-
-      <div class="student-work">
-        1/4 är större än 1/2 eftersom 4 är större än 2.
-      </div>
-
-      <div class="analysis">
-        <strong>Vad ser vi?</strong>
-        <br>
-        Eleven jämför nämnarna som vanliga heltal istället för att tolka hur många lika delar helheten är delad i.
-      </div>
-
-      <div class="next-step">
-        <strong>Nästa steg:</strong>
-        <br>
-        Jämför lika stora pappersmodeller delade i två respektive fyra lika delar.
-      </div>
-
-    </div>
-
-
-    <div class="student-example">
-
-      <h3>Elevexempel 4 – Problemlösning</h3>
-
-      <div class="student-work">
-        24 kakor delas lika mellan 6 barn.
-        <br><br>
-        Eleven räknar 24 − 6 = 18.
-      </div>
-
-      <div class="analysis">
-        <strong>Vad kan felet visa?</strong>
-        <br>
-        Eleven ser ordet ”delas” men har inte förstått situationens gruppstruktur.
-      </div>
-
-      <div class="next-step">
-        <strong>Nästa steg:</strong>
-        <br>
-        Dela 24 konkreta föremål mellan 6 grupper och låt eleven beskriva vad som händer.
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="box" id="exit">
-    <h2>🚪 Snabba exit tickets</h2>
-
-    <p>
-      En exit ticket behöver inte innehålla många frågor.
-      En enda genomtänkt fråga kan ge mycket information.
-    </p>
-
-    <div class="exit-grid">
-
-      <div class="exit-card">
-        <h3>🔢 Taluppfattning</h3>
-        <p>
-          I talet 472, vad är siffran 7 värd?
-        </p>
-        <p>
-          Förklara hur du vet.
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>➕ Addition</h3>
-        <p>
-          Lös 39 + 28.
-        </p>
-        <p>
-          Visa hur du tänkte.
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>➖ Subtraktion</h3>
-        <p>
-          Vad är skillnaden mellan 63 och 28?
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>✖️ Multiplikation</h3>
-        <p>
-          Rita en bild som visar 4 × 6.
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>➗ Division</h3>
-        <p>
-          Om 5 × 7 = 35, skriv ett divisionsuttryck som hör ihop.
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>🍕 Bråk</h3>
-        <p>
-          Vilket är störst: 1/2 eller 1/4?
-        </p>
-        <p>
-          Förklara.
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>📐 Geometri</h3>
-        <p>
-          Hur vet du att en figur är en fyrhörning?
-        </p>
-      </div>
-
-      <div class="exit-card">
-        <h3>🧠 Problemlösning</h3>
-        <p>
-          Vilken strategi använde du idag och varför?
-        </p>
-      </div>
-
-    </div>
-
-    <p>
-      Du kan också använda den självrättande sidan:
-      <a href="exit-ticket.html"><strong>Öppna Exit ticket →</strong></a>
-    </p>
-  </section>
-
-
-  <section class="box" id="sjalv">
-    <h2>🌱 Elevens självbedömning</h2>
-
-    <p>
-      Självbedömning fungerar bäst när eleven bedömer något konkret,
-      till exempel en strategi eller ett område som nyligen undervisats.
-    </p>
-
-    <div class="self-grid">
-
-      <div class="self-card">
-        🌱
-        <br>
-        Jag behöver hjälp för att komma igång
-      </div>
-
-      <div class="self-card">
-        🌿
-        <br>
-        Jag kan med stöd
-      </div>
-
-      <div class="self-card">
-        🌳
-        <br>
-        Jag kan göra själv
-      </div>
-
-      <div class="self-card">
-        ⭐
-        <br>
-        Jag kan förklara för någon annan
-      </div>
-
-    </div>
-
-    <div class="question-box">
-      Vad kan du idag som du inte kunde tidigare?
-    </div>
-
-    <div class="question-box">
-      Vilken strategi fungerar bäst för dig?
-    </div>
-
-    <div class="question-box">
-      Vad vill du träna mer på?
-    </div>
-
-    <div class="question-box">
-      Vad blir ditt nästa mål?
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>💬 Muntlig bedömning</h2>
-
-    <p>
-      Vissa elever visar mer av sin matematiska förståelse muntligt än i skrift.
-    </p>
-
-    <p>
-      Använd frågor som:
-    </p>
-
-    <div class="question-box">
-      Hur började du?
-    </div>
-
-    <div class="question-box">
-      Varför fungerar det sättet?
-    </div>
-
-    <div class="question-box">
-      Kan du visa samma sak med en bild?
-    </div>
-
-    <div class="question-box">
-      Finns det ett annat sätt?
-    </div>
-
-    <div class="question-box">
-      Hur kan du kontrollera?
-    </div>
-
-    <div class="question-box">
-      Vad händer om vi ändrar talet?
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🧩 Bedöm flera representationer</h2>
-
-    <p>
-      En elev som verkligen förstår en matematisk idé kan ofta koppla ihop flera sätt att visa den.
-    </p>
-
-    <div class="grid">
 
       <div class="card">
         <div class="icon">🧱</div>
-        <h3>Material</h3>
-        <p>Kan eleven bygga situationen?</p>
+        <strong>Se representationer</strong>
+        Kan eleven använda material, bild, tallinje eller symboler?
       </div>
 
       <div class="card">
-        <div class="icon">🖼️</div>
-        <h3>Bild</h3>
-        <p>Kan eleven rita en modell?</p>
+        <div class="icon">🧠</div>
+        <strong>Identifiera strategi</strong>
+        Är strategin effektiv och begriplig för eleven?
       </div>
 
       <div class="card">
-        <div class="icon">📏</div>
-        <h3>Tallinje</h3>
-        <p>Kan eleven visa förflyttningen?</p>
+        <div class="icon">🔎</div>
+        <strong>Analysera</strong>
+        Vad verkar eleven förstå och vad är fortfarande osäkert?
       </div>
 
       <div class="card">
-        <div class="icon">🔢</div>
-        <h3>Symboler</h3>
-        <p>Kan eleven skriva ett korrekt uttryck?</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">💬</div>
-        <h3>Ord</h3>
-        <p>Kan eleven förklara vad uttrycket betyder?</p>
+        <div class="icon">➡️</div>
+        <strong>Planera nästa steg</strong>
+        Hur behöver undervisningen anpassas?
       </div>
 
     </div>
+
+
+    <div class="formative">
+      <strong>Viktigt:</strong>
+      ett enskilt quiz eller kort test ska inte ensamt användas för långtgående slutsatser.
+      Kombinera elevlösningar, samtal, observationer och återkommande uppgifter.
+    </div>
+
+
+    <div class="button-row">
+      <button onclick="window.print()">🖨️ Skriv ut bedömningsunderlagen</button>
+    </div>
+
   </section>
 
 
-  <section class="box" id="nasta">
-    <h2>➡️ Från bedömning till nästa steg</h2>
+
+  <!-- SKÄRMDEL -->
+
+  <section class="assessment-section screen-only">
+
+    <h2>🧭 Vad kan läraren titta efter?</h2>
+
+    <div class="assessment-grid">
+
+      <div class="assessment-card">
+        <h3>🔢 Begrepp</h3>
+        <ul>
+          <li>förstår eleven begreppens betydelse?</li>
+          <li>kan eleven använda begreppen i rätt sammanhang?</li>
+          <li>kan eleven ge exempel och icke-exempel?</li>
+        </ul>
+      </div>
+
+      <div class="assessment-card">
+        <h3>🧠 Strategier</h3>
+        <ul>
+          <li>vilken strategi väljer eleven?</li>
+          <li>är strategin flexibel?</li>
+          <li>kan eleven byta strategi när talen förändras?</li>
+        </ul>
+      </div>
+
+      <div class="assessment-card">
+        <h3>🧱 Representationer</h3>
+        <ul>
+          <li>kan eleven visa med material?</li>
+          <li>kan eleven rita eller använda tallinje?</li>
+          <li>kan eleven koppla modellen till symboler?</li>
+        </ul>
+      </div>
+
+      <div class="assessment-card">
+        <h3>💬 Resonemang</h3>
+        <ul>
+          <li>kan eleven beskriva hur hen tänkte?</li>
+          <li>kan eleven motivera varför en lösning fungerar?</li>
+          <li>kan eleven jämföra två strategier?</li>
+        </ul>
+      </div>
+
+      <div class="assessment-card">
+        <h3>🧩 Problemlösning</h3>
+        <ul>
+          <li>förstår eleven situationen?</li>
+          <li>kan eleven välja relevant information?</li>
+          <li>kontrollerar eleven om svaret är rimligt?</li>
+        </ul>
+      </div>
+
+      <div class="assessment-card">
+        <h3>🌱 Självständighet</h3>
+        <ul>
+          <li>vilket stöd behöver eleven?</li>
+          <li>kan eleven komma igång själv?</li>
+          <li>kan eleven använda tidigare kunskap?</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- A4 1 OBSERVATION -->
+
+  <section class="print-page" id="observation">
+
+    <div class="sheet-head">
+
+      <h2>👀 Bedömningsunderlag 1 – Matematikobservation</h2>
+
+      <p>
+        Använd under lektion, matematikverkstad, problemlösning eller elevsamtal.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elev / kod</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Datum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
 
     <div class="table-wrap">
+
       <table>
 
-        <tr>
-          <th>Jag ser att eleven...</th>
-          <th>Nästa undervisningssteg</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Jag observerar</th>
+            <th class="small-cell">Självständigt</th>
+            <th class="small-cell">Med stöd</th>
+            <th class="small-cell">Inte ännu</th>
+            <th>Anteckning</th>
+          </tr>
+        </thead>
 
-        <tr>
-          <td>inte förstår själva begreppet</td>
-          <td>gå tillbaka till konkret material, bild och muntlig modellering</td>
-        </tr>
+        <tbody>
 
-        <tr>
-          <td>förstår men gör många beräkningsfel</td>
-          <td>arbeta med strategins steg och kort kontrollerad träning</td>
-        </tr>
+          <tr>
+            <td>Förstår vad uppgiften frågar efter.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td>kan lösa men inte förklara</td>
-          <td>matteprat, meningsstarter och jämförelse av elevlösningar</td>
-        </tr>
+          <tr>
+            <td>Väljer en relevant strategi.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td>kan en metod men inte växla strategi</td>
-          <td>visa samma uppgift med flera strategier och representationer</td>
-        </tr>
+          <tr>
+            <td>Använder material, bild eller annan representation på ett meningsfullt sätt.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td>kan i övningsbok men inte i textproblem</td>
-          <td>arbeta med situationer och modellering innan uträkningen</td>
-        </tr>
+          <tr>
+            <td>Genomför beräkningen med förståelse.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td>kan lösa och förklara säkert</td>
-          <td>öppna problem, generalisering och större krav på argumentation</td>
-        </tr>
+          <tr>
+            <td>Kan beskriva hur hen tänkte.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>Använder matematiska begrepp.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>Kontrollerar svaret eller bedömer rimlighet.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>Kan prova ett annat sätt när det behövs.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td></td>
+          </tr>
+
+        </tbody>
 
       </table>
+
     </div>
+
+
+    <div class="obs-row">
+
+      <div class="obs-box">
+        <label>Det här fungerar redan</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="obs-box">
+        <label>Det här behöver utvecklas</label>
+        <textarea></textarea>
+      </div>
+
+    </div>
+
+
+    <div class="obs-row">
+
+      <div class="obs-box">
+        <label>Vilket stöd hjälpte?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="obs-box">
+        <label>Nästa undervisningssteg</label>
+        <textarea></textarea>
+      </div>
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>✅ Före jag drar en slutsats</h2>
 
-    <ul class="checklist">
-      <li>Har eleven fått möta uppgiften mer än en gång?</li>
-      <li>Har jag sett både muntliga och skriftliga lösningar?</li>
-      <li>Kan språk eller läsförståelse påverka resultatet?</li>
-      <li>Har eleven fått möjlighet att använda konkret eller visuellt stöd?</li>
-      <li>Visar eleven samma svårighet i flera situationer?</li>
-      <li>Vad kan eleven redan som jag kan bygga vidare på?</li>
-    </ul>
+  <!-- A4 2 OMRÅDEN -->
+
+  <section class="print-page" id="omraden">
+
+    <div class="sheet-head">
+
+      <h2>🔢 Bedömningsunderlag 2 – Matematikområden</h2>
+
+      <p>
+        En översikt för planering och uppföljning. Markera endast sådant som faktiskt har observerats.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elev / kod</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Period</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Klass/grupp</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Område</th>
+            <th>Det här tittar jag efter</th>
+            <th class="small-cell">Säkert</th>
+            <th class="small-cell">På väg</th>
+            <th class="small-cell">Behöver stöd</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Taluppfattning</td>
+            <td>Platsvärde, jämföra tal, tallinje och rimlighet.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Addition</td>
+            <td>Förstå innebörd och använda lämpliga strategier.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Subtraktion</td>
+            <td>Förstå ta bort, skillnad och samband med addition.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Multiplikation</td>
+            <td>Lika stora grupper, rutnät och tabellsamband.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Division</td>
+            <td>Dela lika, gruppera och koppla till multiplikation.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Bråk</td>
+            <td>Helhet, lika stora delar och enkla bråkdelar.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Algebra och mönster</td>
+            <td>Likhet, saknade tal, regler och mönster.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Geometri</td>
+            <td>Beskriva figurer med egenskaper.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Mätning</td>
+            <td>Välja enhet, mäta och uppskatta.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Tid</td>
+            <td>Klocka, minuter och tidsintervall.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Statistik</td>
+            <td>Läsa, skapa och beskriva tabeller och diagram.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Sannolikhet</td>
+            <td>Resonera om säkert, möjligt och omöjligt.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+          <tr>
+            <td>Problemlösning</td>
+            <td>Förstå, planera, lösa, förklara och kontrollera.</td>
+            <td>☐</td>
+            <td>☐</td>
+            <td>☐</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>🔗 Bedömningsverktyg i plattformen</h2>
 
-    <div class="link-grid">
+  <!-- A4 3 SAMTAL -->
 
-      <a class="link-card" href="diagnos.html">
-        🔎 Diagnos
+  <section class="print-page" id="samtal">
+
+    <div class="sheet-head">
+
+      <h2>💬 Bedömningsunderlag 3 – Matematiskt samtal</h2>
+
+      <p>
+        Frågor som hjälper läraren att få syn på elevens förståelse.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elev / kod</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Datum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="reflection-grid">
+
+      <div class="reflection-card">
+        <label>Hur tänkte du?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Kan du visa på ett annat sätt?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Varför fungerar din strategi?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Hur vet du att svaret är rimligt?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Vad var lätt?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Vad var svårt?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Vilket matematikord använde eleven?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Vad behöver följas upp?</label>
+        <textarea></textarea>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- A4 4 UPPFÖLJNING -->
+
+  <section class="print-page" id="uppfoljning">
+
+    <div class="sheet-head">
+
+      <h2>🔄 Bedömningsunderlag 4 – Från observation till nästa steg</h2>
+
+      <p>
+        Sammanfatta vad undervisningen behöver göra härnäst.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elev / grupp</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Datum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="reflection-grid">
+
+      <div class="reflection-card">
+        <label>Det eleven visar förståelse för</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Osäkerhet eller möjlig missuppfattning</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Representation som kan hjälpa</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Språk och begrepp som behöver synliggöras</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Nästa undervisningsaktivitet</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label>Hur ska förståelsen följas upp?</label>
+        <textarea></textarea>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- LÄNKAR -->
+
+  <section class="box screen-only">
+
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="links">
+
+      <a href="kartlaggning.html">
+        🧭 Kartläggning
       </a>
 
-      <a class="link-card" href="kunskapskoll.html">
-        ✅ Kunskapskoll
+      <a href="missuppfattningar.html">
+        🕵️ Missuppfattningar
       </a>
 
-      <a class="link-card" href="exit-ticket.html">
+      <a href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a href="interventioner.html">
+        🎯 Interventioner
+      </a>
+
+      <a href="progression.html">
+        📈 Progression
+      </a>
+
+      <a href="veckoplan.html">
+        📅 Veckoplan
+      </a>
+
+      <a href="exit-ticket.html">
         🚪 Exit ticket
       </a>
 
-      <a class="link-card" href="min-utveckling.html">
+      <a href="min-utveckling.html">
         🌱 Min utveckling
       </a>
 
-      <a class="link-card" href="felanalys.html">
-        🕵️ Felanalys
-      </a>
-
-      <a class="link-card" href="matteprat.html">
-        💬 Matteprat
-      </a>
-
-      <a class="link-card" href="lararverktyg.html">
-        🧰 Lärarverktyg
-      </a>
-
-      <a class="link-card" href="anpassningar.html">
-        🌿 Anpassningar
-      </a>
-
     </div>
+
   </section>
 
 </main>
 
+
 <footer>
   <p><strong>Matematik åk 3 – Bedömning</strong></p>
-  <p>Synliggör • Analysera • Anpassa • Följa upp</p>
+  <p>Observera • Lyssna • Analysera • Anpassa • Följ upp</p>
 </footer>
+
+
+<script>
+
+function expandTextareasForPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.dataset.oldHeight =
+        textarea.style.height;
+
+      textarea.style.height = "auto";
+
+      textarea.style.height =
+        Math.max(
+          textarea.scrollHeight,
+          55
+        ) + "px";
+
+    });
+
+}
+
+
+function restoreTextareasAfterPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.style.height =
+        textarea.dataset.oldHeight || "";
+
+    });
+
+}
+
+
+window.addEventListener(
+  "beforeprint",
+  expandTextareasForPrint
+);
+
+
+window.addEventListener(
+  "afterprint",
+  restoreTextareasAfterPrint
+);
+
+</script>
 
 </body>
 </html>
