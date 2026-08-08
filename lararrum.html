@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lärarrum – Matematik åk 3</title>
+
+  <style>
+
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --sand: #d8c6aa;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 800px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 32px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .lgr {
+      border-left: 5px solid #b7a488;
+      background: #f1e8da;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .accordion {
+      margin-top: 12px;
+    }
+
+    .accordion button {
+      width: 100%;
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: left;
+      margin-top: 9px;
+    }
+
+    .accordion button:hover {
+      background: var(--beige2);
+    }
+
+    .content {
+      display: none;
+      padding: 18px;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .content.open {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    th,td {
+      border: 1px solid #d8cab7;
+      padding: 12px;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .lesson {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .lesson-step {
+      background: #fffaf2;
+      border-left: 4px solid #bca98d;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+    }
+
+    .assessment {
+      background: #eee4d6;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      margin: 10px 0;
+      padding: 10px 12px;
+      background: #f3eadf;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "☐ ";
+      font-weight: bold;
+    }
+
+    .warning {
+      background: #f0e4dc;
+      border-left: 5px solid #b99882;
+      padding: 16px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .tip {
+      background: #e9e5d8;
+      border-left: 5px solid #9d987a;
+      padding: 16px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .button-link {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--text);
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin: 5px;
+    }
+
+    .button-link:hover {
+      background: var(--beige2);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media(max-width:700px){
+
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display:block;
+      }
+
+      table {
+        font-size: 0.9rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>👩‍🏫 Lärarrum</h1>
+
+  <p>
+    Planering, undervisning, språkstöd, bedömning och pedagogiska idéer
+    för matematik i årskurs 3.
+  </p>
+
+</header>
+
+<nav>
+
+  <a href="index.html">🏠 Elevsidan</a>
+  <a href="#lgr22">📘 Lgr22</a>
+  <a href="#planering">📅 Planering</a>
+  <a href="#lektion">🧩 Lektion</a>
+  <a href="#missuppfattningar">⚠️ Missuppfattningar</a>
+  <a href="#sprak">💬 Språkstöd</a>
+  <a href="#anpassningar">🧠 Anpassningar</a>
+  <a href="#bedomning">✅ Bedömning</a>
+
+</nav>
+
+
+<main>
+
+
+<section class="box intro">
+
+  <h2>🌿 Matematikundervisning i årskurs 3</h2>
+
+  <p>
+    Plattformen är byggd för att eleverna ska få möta matematiken
+    genom flera representationer: konkret material, bilder, symboler,
+    muntliga resonemang och skriftliga metoder.
+  </p>
+
+  <p>
+    Målet är inte bara att eleverna ska få rätt svar.
+    De ska också utveckla förståelse för matematiska begrepp,
+    välja fungerande metoder, lösa problem, resonera och kunna
+    beskriva hur de tänker.
+  </p>
+
+</section>
+
+
+<section class="box" id="lgr22">
+
+  <h2>📘 Koppling till Lgr22</h2>
+
+  <p>
+    Matematikundervisningen ska ge eleverna möjlighet att utveckla flera
+    matematiska förmågor.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="icon">💬</div>
+
+      <h3>Begrepp</h3>
+
+      <p>
+        Förstå, använda och beskriva matematiska begrepp
+        och samband mellan begreppen.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🧮</div>
+
+      <h3>Metoder</h3>
+
+      <p>
+        Välja och använda lämpliga matematiska metoder
+        för beräkningar och rutinuppgifter.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🧠</div>
+
+      <h3>Problemlösning</h3>
+
+      <p>
+        Formulera och lösa problem och värdera valda
+        strategier och lösningar.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🔎</div>
+
+      <h3>Resonemang</h3>
+
+      <p>
+        Föra och följa matematiska resonemang.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🗣️</div>
+
+      <h3>Kommunikation</h3>
+
+      <p>
+        Använda matematikens uttrycksformer för att
+        samtala om och redogöra för matematik.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="lgr">
+
+    <strong>Viktigt:</strong>
+
+    Plattformens olika sidor bör inte ses som isolerade områden.
+
+    Addition kan till exempel kombineras med problemlösning,
+    statistik, mätning och matematiska samtal.
+
+  </div>
+
+</section>
+
+
+<section class="box">
+
+  <h2>📚 Centralt innehåll åk 1–3</h2>
+
+  <div class="accordion">
+
+
+    <button onclick="toggleContent('tal')">
+      🔢 Taluppfattning och tals användning
+    </button>
+
+    <div class="content" id="tal">
+
+      <ul>
+        <li>naturliga tal och deras egenskaper</li>
+        <li>positionssystemet</li>
+        <li>enkla bråk</li>
+        <li>de fyra räknesätten</li>
+        <li>huvudräkning och skriftliga metoder</li>
+        <li>rimlighetsbedömning</li>
+        <li>tal i elevnära situationer</li>
+      </ul>
+
+    </div>
+
+
+    <button onclick="toggleContent('algebra')">
+      ⚖️ Algebra
+    </button>
+
+    <div class="content" id="algebra">
+
+      <ul>
+        <li>matematiska likheter</li>
+        <li>likhetstecknets betydelse</li>
+        <li>obekanta tal</li>
+        <li>enkla mönster</li>
+        <li>stegvisa instruktioner</li>
+        <li>programmering</li>
+      </ul>
+
+    </div>
+
+
+    <button onclick="toggleContent('geometri')">
+      📐 Geometri
+    </button>
+
+    <div class="content" id="geometri">
+
+      <ul>
+        <li>geometriska objekt</li>
+        <li>egenskaper hos former</li>
+        <li>lägesord</li>
+        <li>symmetri</li>
+        <li>skala</li>
+        <li>längd</li>
+        <li>massa</li>
+        <li>volym</li>
+        <li>tid</li>
+      </ul>
+
+    </div>
+
+
+    <button onclick="toggleContent('stat')">
+      📊 Sannolikhet och statistik
+    </button>
+
+    <div class="content" id="stat">
+
+      <ul>
+        <li>enkla tabeller</li>
+        <li>diagram</li>
+        <li>insamling och sortering av data</li>
+        <li>slumpmässiga händelser</li>
+        <li>enkla sannolikhetssituationer</li>
+      </ul>
+
+    </div>
+
+
+    <button onclick="toggleContent('samb')">
+      🔗 Samband och förändring
+    </button>
+
+    <div class="content" id="samb">
+
+      <ul>
+        <li>dubbelt och hälften</li>
+        <li>enkla proportionella samband</li>
+        <li>hur mängder förändras tillsammans</li>
+      </ul>
+
+    </div>
+
+
+    <button onclick="toggleContent('problem')">
+      🧠 Problemlösning
+    </button>
+
+    <div class="content" id="problem">
+
+      <ul>
+        <li>strategier för problemlösning</li>
+        <li>matematiska problem i elevnära situationer</li>
+        <li>formulera egna frågor</li>
+        <li>tolka resultat</li>
+        <li>bedöma lösningars rimlighet</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="box" id="planering">
+
+  <h2>📅 Förslag på årsplanering</h2>
+
+  <p>
+    Planeringen är ett förslag. Områden bör återkomma under året
+    så att eleverna får möjlighet till repetition och progression.
+  </p>
+
+  <table>
+
+    <tr>
+      <th>Period</th>
+      <th>Huvudområde</th>
+      <th>Återkommande träning</th>
+    </tr>
+
+    <tr>
+      <td>Augusti–september</td>
+      <td>Taluppfattning och positionssystem</td>
+      <td>Begrepp, huvudräkning och problemlösning</td>
+    </tr>
+
+    <tr>
+      <td>September–oktober</td>
+      <td>Addition och subtraktion</td>
+      <td>Strategier, textproblem och rimlighet</td>
+    </tr>
+
+    <tr>
+      <td>Oktober–november</td>
+      <td>Multiplikation och division</td>
+      <td>Tabeller, konkret material och samband</td>
+    </tr>
+
+    <tr>
+      <td>November–december</td>
+      <td>Geometri och mätning</td>
+      <td>Begrepp, praktiskt arbete och problemlösning</td>
+    </tr>
+
+    <tr>
+      <td>Januari</td>
+      <td>Bråk</td>
+      <td>Del av helhet, del av antal och tallinje</td>
+    </tr>
+
+    <tr>
+      <td>Februari</td>
+      <td>Algebra och mönster</td>
+      <td>Likheter, obekanta tal och programmering</td>
+    </tr>
+
+    <tr>
+      <td>Mars</td>
+      <td>Statistik och sannolikhet</td>
+      <td>Tabeller, diagram och undersökningar</td>
+    </tr>
+
+    <tr>
+      <td>April</td>
+      <td>Tid, symmetri och skala</td>
+      <td>Problemlösning och praktiska aktiviteter</td>
+    </tr>
+
+    <tr>
+      <td>Maj–juni</td>
+      <td>Repetition och fördjupning</td>
+      <td>Problemlösning, resonemang och kunskapskoll</td>
+    </tr>
+
+  </table>
+
+</section>
+
+
+<section class="box" id="lektion">
+
+  <h2>🧩 Förslag på lektionsstruktur</h2>
+
+  <p>
+    En återkommande struktur skapar trygghet och gör att eleverna
+    kan lägga mer energi på matematiken.
+  </p>
+
+  <div class="lesson">
+
+    <h3>1. Start – cirka 5 minuter</h3>
+
+    <div class="lesson-step">
+      Dagens matematikfråga eller en kort huvudräkningsaktivitet.
+    </div>
+
+  </div>
+
+
+  <div class="lesson">
+
+    <h3>2. Gemensam undervisning – cirka 10–15 minuter</h3>
+
+    <div class="lesson-step">
+      Presentera dagens begrepp.
+    </div>
+
+    <div class="lesson-step">
+      Visa med konkret material, bild och symboler.
+    </div>
+
+    <div class="lesson-step">
+      Låt eleverna förklara vad de ser.
+    </div>
+
+  </div>
+
+
+  <div class="lesson">
+
+    <h3>3. Gemensam träning – cirka 10 minuter</h3>
+
+    <div class="lesson-step">
+      Lös några uppgifter tillsammans.
+    </div>
+
+    <div class="lesson-step">
+      Jämför olika lösningsstrategier.
+    </div>
+
+  </div>
+
+
+  <div class="lesson">
+
+    <h3>4. Elevaktivitet – cirka 20 minuter</h3>
+
+    <div class="lesson-step">
+      Individuellt arbete, pararbete, stationer eller laborativ matematik.
+    </div>
+
+  </div>
+
+
+  <div class="lesson">
+
+    <h3>5. Avslut – cirka 5 minuter</h3>
+
+    <div class="lesson-step">
+      Exit ticket eller kort gemensam sammanfattning.
+    </div>
+
+    <div class="lesson-step">
+      Vad lärde vi oss idag?
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="box" id="missuppfattningar">
+
+  <h2>⚠️ Vanliga missuppfattningar</h2>
+
+  <div class="accordion">
+
+
+    <button onclick="toggleContent('m1')">
+      🔢 Positionssystemet
+    </button>
+
+    <div class="content" id="m1">
+
+      <p>
+        Eleven kan läsa talet 342 men har svårt att förstå
+        att siffran 4 representerar 40.
+      </p>
+
+      <div class="tip">
+        Använd basmaterial, pengar, positionskort och utvecklad form:
+        342 = 300 + 40 + 2.
+      </div>
+
+    </div>
+
+
+    <button onclick="toggleContent('m2')">
+      ⚖️ Likhetstecknet
+    </button>
+
+    <div class="content" id="m2">
+
+      <p>
+        Eleven tolkar = som ”här kommer svaret”.
+      </p>
+
+      <div class="tip">
+        Arbeta med exempel som:
+        8 + 4 = 7 + 5.
+      </div>
+
+    </div>
+
+
+    <button onclick="toggleContent('m3')">
+      🍕 Bråk
+    </button>
+
+    <div class="content" id="m3">
+
+      <p>
+        Eleven tror att 1/4 är större än 1/2 eftersom 4 är större än 2.
+      </p>
+
+      <div class="tip">
+        Använd samma helhet och jämför visuellt med bråkcirklar,
+        papper eller matmodeller.
+      </div>
+
+    </div>
+
+
+    <button onclick="toggleContent('m4')">
+      ✖️ Multiplikation
+    </button>
+
+    <div class="content" id="m4">
+
+      <p>
+        Eleven memorerar tabeller utan att förstå lika stora grupper.
+      </p>
+
+      <div class="tip">
+        Börja med föremål, grupper, bilder och upprepad addition.
+      </div>
+
+    </div>
+
+
+    <button onclick="toggleContent('m5')">
+      ➗ Division
+    </button>
+
+    <div class="content" id="m5">
+
+      <p>
+        Eleven ser inte skillnaden mellan att dela lika och att gruppera.
+      </p>
+
+      <div class="tip">
+        Låt eleverna praktiskt dela föremål och beskriva vad de gör.
+      </div>
+
+    </div>
+
+
+    <button onclick="toggleContent('m6')">
+      🕐 Tid
+    </button>
+
+    <div class="content" id="m6">
+
+      <p>
+        ”Halv nio” tolkas ibland som 09.30.
+      </p>
+
+      <div class="tip">
+        Använd tidslinje och betona att 08.30 är halvvägs till nio.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="box" id="sprak">
+
+  <h2>💬 Språkutvecklande matematik</h2>
+
+  <p>
+    Matematikundervisningen behöver ge eleverna möjlighet att
+    både förstå och själva använda matematiska ord.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="icon">👀</div>
+
+      <h3>Visa</h3>
+
+      <p>
+        Kombinera ord med bilder, symboler, konkret material och gester.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🗣️</div>
+
+      <h3>Säg</h3>
+
+      <p>
+        Modellera hur ett matematiskt resonemang kan uttryckas muntligt.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">👥</div>
+
+      <h3>Samtala</h3>
+
+      <p>
+        Låt eleverna först tänka själva och sedan prata med en kamrat.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">✍️</div>
+
+      <h3>Skriv</h3>
+
+      <p>
+        Ge eleverna meningsstarter för matematiska förklaringar.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="lgr">
+
+    <strong>Meningsstarter:</strong>
+
+    <ul>
+      <li>Jag började med att...</li>
+      <li>Jag vet att...</li>
+      <li>Jag valde ... eftersom...</li>
+      <li>Jag ser ett mönster...</li>
+      <li>Mitt svar är rimligt eftersom...</li>
+      <li>Jag håller med eftersom...</li>
+      <li>Jag tänkte annorlunda...</li>
+    </ul>
+
+  </div>
+
+</section>
+
+
+<section class="box" id="anpassningar">
+
+  <h2>🧠 Stöd och extra anpassningar</h2>
+
+  <div class="grid">
+
+
+    <div class="card">
+
+      <h3>👁️ Visuellt stöd</h3>
+
+      <ul>
+        <li>bildstöd</li>
+        <li>tallinje</li>
+        <li>hundraruta</li>
+        <li>positionsschema</li>
+        <li>stegkort</li>
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🧱 Konkret material</h3>
+
+      <ul>
+        <li>multibasmaterial</li>
+        <li>räknemarkörer</li>
+        <li>tärningar</li>
+        <li>bråkmaterial</li>
+        <li>måttband</li>
+        <li>låtsaspengar</li>
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>📖 Språkligt stöd</h3>
+
+      <ul>
+        <li>förklara nya ord före uppgiften</li>
+        <li>korta instruktioner</li>
+        <li>ett steg i taget</li>
+        <li>exempel före självständigt arbete</li>
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>⏱️ Struktur</h3>
+
+      <ul>
+        <li>tydligt mål</li>
+        <li>kortare arbetsperioder</li>
+        <li>synlig arbetsgång</li>
+        <li>regelbundna pauser</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <div class="warning">
+
+    Anpassning bör inte automatiskt innebära enklare matematik.
+    Försök först förändra representation, språk, material,
+    antal uppgifter eller mängden stöd.
+
+  </div>
+
+</section>
+
+
+<section class="box">
+
+  <h2>🚀 Utmaning och fördjupning</h2>
+
+  <p>
+    Elever som snabbt behärskar rutinuppgifterna behöver inte framför allt
+    fler likadana uppgifter.
+  </p>
+
+  <ul class="checklist">
+
+    <li>Hitta flera lösningar.</li>
+
+    <li>Förklara varför en metod fungerar.</li>
+
+    <li>Skapa ett eget problem.</li>
+
+    <li>Hitta felet i en felaktig lösning.</li>
+
+    <li>Jämför två strategier.</li>
+
+    <li>Ändra ett villkor i problemet.</li>
+
+    <li>Generaliserar eleven ett mönster?</li>
+
+  </ul>
+
+</section>
+
+
+<section class="box" id="bedomning">
+
+  <h2>✅ Bedömning</h2>
+
+  <p>
+    Bedömningen behöver ge information om mer än om eleven kan
+    utföra en beräkning.
+  </p>
+
+  <div class="grid">
+
+
+    <div class="card">
+
+      <h3>🔢 Begrepp</h3>
+
+      <p>
+        Förstår och använder eleven matematiska begrepp?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🧮 Metoder</h3>
+
+      <p>
+        Kan eleven använda fungerande metoder och välja mellan olika strategier?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🧠 Problemlösning</h3>
+
+      <p>
+        Kan eleven förstå problemet, välja strategi och komma framåt?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>💬 Resonemang</h3>
+
+      <p>
+        Kan eleven beskriva hur den tänker och följa någon annans resonemang?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🔍 Rimlighet</h3>
+
+      <p>
+        Kan eleven upptäcka när ett svar verkar orimligt?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🗣️ Kommunikation</h3>
+
+      <p>
+        Kan eleven använda ord, bilder, symboler och andra uttrycksformer?
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="assessment">
+
+    <h3>Exempel på observationsfrågor</h3>
+
+    <ul class="checklist">
+
+      <li>Hur startar eleven en ny uppgift?</li>
+
+      <li>Vilken representation väljer eleven?</li>
+
+      <li>Kan eleven byta strategi när den första inte fungerar?</li>
+
+      <li>Kan eleven förklara sin metod?</li>
+
+      <li>Kontrollerar eleven sitt svar?</li>
+
+      <li>Kan eleven använda matematiska begrepp?</li>
+
+      <li>Kan eleven se samband mellan räknesätten?</li>
+
+    </ul>
+
+  </div>
+
+</section>
+
+
+<section class="box">
+
+  <h2>🚪 Exit tickets</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3>Exit 1</h3>
+
+      <p>
+        Skriv en sak du lärde dig idag.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Exit 2</h3>
+
+      <p>
+        Lös en uppgift och förklara hur du tänkte.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Exit 3</h3>
+
+      <p>
+        Vilket matematikord var viktigast idag?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Exit 4</h3>
+
+      <p>
+        Vad behöver du träna mer på?
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Exit 5</h3>
+
+      <p>
+        Skapa en egen uppgift som handlar om dagens matematik.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Exit 6</h3>
+
+      <p>
+        Visa två olika sätt att lösa samma uppgift.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="box">
+
+  <h2>🔗 Gå till matematikområden</h2>
+
+  <p>
+    Härifrån kan läraren snabbt öppna de olika elevsidorna.
+  </p>
+
+  <a class="button-link" href="taluppfattning.html">🔢 Taluppfattning</a>
+
+  <a class="button-link" href="addition.html">➕ Addition</a>
+
+  <a class="button-link" href="subtraktion.html">➖ Subtraktion</a>
+
+  <a class="button-link" href="multiplikation.html">✖️ Multiplikation</a>
+
+  <a class="button-link" href="division.html">➗ Division</a>
+
+  <a class="button-link" href="brak.html">🍕 Bråk</a>
+
+  <a class="button-link" href="algebra.html">⚖️ Algebra</a>
+
+  <a class="button-link" href="geometri.html">📐 Geometri</a>
+
+  <a class="button-link" href="matning.html">📏 Mätning</a>
+
+  <a class="button-link" href="tid.html">🕐 Tid</a>
+
+  <a class="button-link" href="statistik.html">📊 Statistik</a>
+
+  <a class="button-link" href="sannolikhet.html">🎲 Sannolikhet</a>
+
+  <a class="button-link" href="samband.html">🔗 Samband</a>
+
+  <a class="button-link" href="problemlosning.html">🧠 Problemlösning</a>
+
+  <a class="button-link" href="begrepp.html">💬 Begrepp</a>
+
+  <a class="button-link" href="spel.html">🎮 Mattespel</a>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  <p><strong>Lärarrum – Matematik åk 3</strong></p>
+
+  <p>
+    Planera • Undervisa • Stödja • Utmana • Följa upp
+  </p>
+
+</footer>
+
+
+<script>
+
+  function toggleContent(id) {
+
+    const content =
+      document.getElementById(id);
+
+    content.classList.toggle("open");
+
+  }
+
+</script>
+
+</body>
+</html>
