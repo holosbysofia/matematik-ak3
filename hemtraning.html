@@ -8,925 +8,1428 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
-      box-sizing: border-box;
+      box-sizing:border-box;
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior:smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.6;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2rem,5vw,3.6rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 850px;
-      margin: 12px auto 0;
-      font-size: 1.1rem;
+      max-width:880px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
+      position:sticky;
+      top:0;
+      z-index:20;
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1050px;
-      margin: auto;
-      padding: 30px 20px 70px;
+      max-width:1050px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 15px var(--skugga);
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     .intro {
-      background: #eee4d6;
+      background:#eee4d6;
     }
 
     h2,
     h3 {
-      color: var(--brun);
+      color:var(--brun);
     }
 
     h2 {
-      margin-top: 0;
+      margin-top:0;
     }
 
-    .week-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 15px;
-      margin-top: 18px;
+    .intro-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-top:18px;
     }
 
-    .day-card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
-      border-radius: 15px;
-      padding: 18px;
+    .intro-card {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:14px;
+      padding:17px;
     }
 
-    .day-card h3 {
-      margin-top: 0;
+    .intro-card .icon {
+      font-size:2rem;
+      margin-bottom:6px;
     }
 
-    .time {
-      display: inline-block;
-      background: var(--beige);
-      border-radius: 20px;
-      padding: 4px 10px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .intro-card strong {
+      display:block;
+      color:var(--brun);
+      margin-bottom:5px;
     }
 
-    .activity {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 14px;
-      padding: 18px;
-      margin: 14px 0;
+    .parent-note {
+      background:#e7eadf;
+      border-left:5px solid #a7ad91;
+      border-radius:10px;
+      padding:14px;
+      margin-top:16px;
     }
 
-    .activity h3 {
-      margin-top: 0;
+    .controls {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
     }
 
-    .math-box {
-      background: #f3eadf;
-      border-radius: 12px;
-      padding: 16px;
-      text-align: center;
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin: 14px 0;
+    label {
+      display:block;
+      color:var(--brun);
+      font-weight:bold;
+      margin-bottom:5px;
     }
 
-    .question-box {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 14px;
-      margin: 11px 0;
-    }
-
-    .parent-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .parent-card {
-      background: #f3eadf;
-      border-radius: 14px;
-      padding: 17px;
-    }
-
-    .good {
-      background: #e7eadf;
-    }
-
-    .avoid {
-      background: #eee0dc;
-    }
-
-    .practice-area {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 15px;
-      padding: 20px;
-      margin: 15px 0;
-    }
-
-    .answers {
-      display: grid;
-      gap: 9px;
-      margin-top: 12px;
+    select {
+      width:100%;
+      padding:10px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      background:white;
+      color:var(--text);
+      font:inherit;
     }
 
     button {
-      border: none;
-      background: var(--beige);
-      color: var(--text);
-      padding: 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
     button:hover {
-      background: var(--beige2);
+      background:var(--beige2);
     }
 
-    button.correct {
-      background: var(--ratt);
+    .secondary {
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
     }
 
-    button.wrong {
-      background: var(--fel);
+    .button-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:17px;
+    }
+
+    .progress-wrap {
+      margin-top:17px;
+    }
+
+    .progress {
+      height:12px;
+      background:#e5d8c5;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress-bar {
+      height:100%;
+      width:0%;
+      background:#b8aa91;
+      transition:width .25s ease;
+    }
+
+    .progress-text {
+      margin-top:7px;
+      font-weight:bold;
+      color:var(--brun);
+    }
+
+    .training {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 4px 12px var(--skugga);
+    }
+
+    .question {
+      background:#f3eadf;
+      border:1px solid #d8cab7;
+      border-radius:14px;
+      padding:18px;
+      margin-bottom:16px;
+    }
+
+    .question h3 {
+      margin-top:0;
+    }
+
+    .question-number {
+      display:inline-block;
+      background:#e8dcc8;
+      border-radius:999px;
+      padding:4px 9px;
+      font-size:.86rem;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
+
+    .task-text {
+      font-size:1.1rem;
+      font-weight:bold;
+      margin:8px 0 12px;
+    }
+
+    .options {
+      display:grid;
+      gap:9px;
+      margin-top:12px;
+    }
+
+    .option {
+      display:flex;
+      gap:9px;
+      align-items:center;
+      background:#fffdf8;
+      border:1px solid #d2c3af;
+      border-radius:10px;
+      padding:11px;
+      cursor:pointer;
+    }
+
+    .option:hover {
+      background:#eee4d6;
+    }
+
+    .option input {
+      transform:scale(1.15);
+    }
+
+    .answer-input {
+      width:100%;
+      padding:11px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      background:white;
+      color:var(--text);
+      font:inherit;
+      margin-top:10px;
     }
 
     .feedback {
-      min-height: 25px;
-      margin-top: 10px;
-      font-weight: bold;
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      border-radius:10px;
     }
 
-    .routine-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
-      gap: 12px;
-      margin-top: 16px;
+    .feedback.correct {
+      display:block;
+      background:var(--ratt);
+      border:1px solid #bcc9ae;
     }
 
-    .routine-card {
-      background: var(--beige);
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      font-weight: bold;
+    .feedback.wrong {
+      display:block;
+      background:var(--fel);
+      border:1px solid #d1b5af;
     }
 
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
-      margin-top: 18px;
+    .summary {
+      display:none;
+      background:#e7eadf;
+      border:1px solid #b9c0a8;
+      border-radius:14px;
+      padding:18px;
+      margin-top:20px;
     }
 
-    .link-card {
-      display: block;
-      text-decoration: none;
-      color: var(--text);
-      background: #f3eadf;
-      border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
-      font-weight: bold;
+    .summary.show {
+      display:block;
     }
 
-    .link-card:hover {
-      background: var(--beige);
+    .tip {
+      background:#eee2d2;
+      border-left:5px solid #b7a17c;
+      border-radius:10px;
+      padding:14px;
+      margin-top:16px;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 27px;
+      background:#d8c8b2;
+      color:#4d443c;
+      text-align:center;
+      padding:27px 20px;
     }
 
-    @media(max-width:650px) {
+    @media(max-width:750px) {
+
       nav {
-        position: static;
+        position:static;
       }
 
       nav a {
-        display: block;
+        display:block;
       }
 
       main {
-        padding: 22px 12px 55px;
+        padding:20px 10px 50px;
       }
 
-      .box {
-        padding: 19px;
+      .box,
+      .training {
+        padding:17px;
+      }
+
+      .controls {
+        grid-template-columns:1fr;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
+
   <h1>🏠 Hemträning</h1>
 
   <p>
-    Korta matematikpass hemma – ungefär 10 minuter åt gången.
-    Lite och ofta är bättre än långa träningspass.
+    Kort och varierad matematikträning för årskurs 3.
+    Träna några minuter åt gången och fokusera på att förstå hur du tänker.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#veckan">📅 Veckan</a>
-  <a href="#huvudrakning">⚡ Huvudräkning</a>
-  <a href="#tabeller">✖️ Tabeller</a>
-  <a href="#vardag">🛒 Vardagsmatte</a>
-  <a href="#vuxen">👨‍👩‍👧 Till vuxna</a>
+  <a href="#installningar">⚙️ Inställningar</a>
+  <a href="#traning">✏️ Träning</a>
+  <a href="#tips">💡 Hemmatips</a>
 </nav>
+
 
 <main>
 
   <section class="box intro">
-    <h2>🌿 10 minuter räcker</h2>
+
+    <h2>🌱 Lite och ofta</h2>
 
     <p>
-      Hemträningen ska vara kort, lugn och möjlig att lyckas med.
-      Målet är att eleven ska få återkommande träning och samtidigt kunna förklara hur hen tänker.
+      Hemträningen är tänkt att vara kort.
+      Det är bättre att träna 10–15 minuter med fokus än att göra många uppgifter utan att tänka.
     </p>
 
-    <div class="routine-grid">
+    <div class="intro-grid">
 
-      <div class="routine-card">
-        2 min
-        <br>
-        gamla kunskaper
+      <div class="intro-card">
+        <div class="icon">🔢</div>
+        <strong>Taluppfattning</strong>
+        Tal, platsvärde och jämförelser.
       </div>
 
-      <div class="routine-card">
-        5 min
-        <br>
-        dagens träning
+      <div class="intro-card">
+        <div class="icon">➕➖</div>
+        <strong>Räknesätt</strong>
+        Addition och subtraktion.
       </div>
 
-      <div class="routine-card">
-        2 min
-        <br>
-        förklara
+      <div class="intro-card">
+        <div class="icon">✖️➗</div>
+        <strong>Samband</strong>
+        Multiplikation och division.
       </div>
 
-      <div class="routine-card">
-        1 min
-        <br>
-        avsluta positivt
+      <div class="intro-card">
+        <div class="icon">🧩</div>
+        <strong>Problemlösning</strong>
+        Förstå situationen innan du räknar.
       </div>
 
     </div>
+
+
+    <div class="parent-note">
+
+      <strong>👨‍👩‍👧 Till vuxen hemma:</strong><br>
+      Hjälp gärna barnet genom att fråga
+      <em>”Hur tänkte du?”</em>,
+      <em>”Kan du visa på ett annat sätt?”</em>
+      och
+      <em>”Hur vet du att svaret är rimligt?”</em>.
+      Försök undvika att direkt säga vilket svar barnet ska skriva.
+
+    </div>
+
   </section>
 
 
-  <section class="box" id="veckan">
-    <h2>📅 Förslag på en mattevecka hemma</h2>
 
-    <div class="week-grid">
+  <section class="box" id="installningar">
 
-      <div class="day-card">
-        <div class="time">Måndag • 10 min</div>
-        <h3>🔢 Tal</h3>
-        <p>
-          Välj ett tresiffrigt tal.
-          Säg hundratal, tiotal och ental.
-        </p>
+    <h2>⚙️ Skapa hemträning</h2>
 
-        <p>
-          Exempel:
-          <strong>472 = 400 + 70 + 2</strong>
-        </p>
+    <div class="controls">
+
+      <div>
+
+        <label for="level">
+          Nivå
+        </label>
+
+        <select id="level">
+          <option value="grund">🌱 Grund</option>
+          <option value="blandad" selected>🧠 Blandad</option>
+          <option value="utmaning">⭐ Utmaning</option>
+        </select>
+
       </div>
 
-      <div class="day-card">
-        <div class="time">Tisdag • 10 min</div>
-        <h3>➕➖ Huvudräkning</h3>
 
-        <p>
-          Räkna fem additioner och fem subtraktioner.
-        </p>
+      <div>
 
-        <p>
-          Förklara minst en strategi.
-        </p>
-      </div>
+        <label for="amount">
+          Antal uppgifter
+        </label>
 
-      <div class="day-card">
-        <div class="time">Onsdag • 10 min</div>
-        <h3>✖️ Tabeller</h3>
+        <select id="amount">
+          <option value="5">5 uppgifter</option>
+          <option value="8" selected>8 uppgifter</option>
+          <option value="10">10 uppgifter</option>
+        </select>
 
-        <p>
-          Träna en eller två multiplikationstabeller.
-        </p>
-
-        <p>
-          Koppla alltid till division.
-        </p>
-      </div>
-
-      <div class="day-card">
-        <div class="time">Torsdag • 10 min</div>
-        <h3>🧠 Problem</h3>
-
-        <p>
-          Lös ett kort vardagsproblem.
-        </p>
-
-        <p>
-          Rita gärna.
-        </p>
-      </div>
-
-      <div class="day-card">
-        <div class="time">Fredag • 10 min</div>
-        <h3>🎮 Matte på ett roligt sätt</h3>
-
-        <p>
-          Spela ett mattespel eller gör en kluring tillsammans.
-        </p>
       </div>
 
     </div>
+
+
+    <div class="button-row">
+
+      <button onclick="generateTraining()">
+        🎲 Skapa träning
+      </button>
+
+      <button class="secondary" onclick="resetTraining()">
+        ↺ Börja om
+      </button>
+
+    </div>
+
+
+    <div class="progress-wrap">
+
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="progress-text" id="progressText">
+        Ingen träning skapad ännu.
+      </div>
+
+    </div>
+
   </section>
 
 
-  <section class="box" id="huvudrakning">
-    <h2>⚡ Huvudräkning</h2>
 
-    <div class="practice-area">
-      <h3>Runda 1</h3>
+  <section class="training" id="traning">
 
-      <div class="math-box">
-        37 + 20
-      </div>
+    <h2>✏️ Dagens hemträning</h2>
 
-      <div class="answers">
-        <button onclick="answer(this,false)">47</button>
-        <button onclick="answer(this,true)">57</button>
-        <button onclick="answer(this,false)">67</button>
-      </div>
+    <div id="questionArea">
 
-      <div class="feedback"></div>
+      <p>
+        Välj nivå och tryck på
+        <strong>Skapa träning</strong>.
+      </p>
+
     </div>
 
 
-    <div class="practice-area">
-      <h3>Runda 2</h3>
+    <div class="summary" id="summary">
 
-      <div class="math-box">
-        64 − 30
-      </div>
+      <h2>🎉 Träningen är klar</h2>
 
-      <div class="answers">
-        <button onclick="answer(this,true)">34</button>
-        <button onclick="answer(this,false)">44</button>
-        <button onclick="answer(this,false)">94</button>
-      </div>
+      <p id="summaryText"></p>
 
-      <div class="feedback"></div>
     </div>
 
-
-    <div class="practice-area">
-      <h3>Runda 3</h3>
-
-      <div class="math-box">
-        48 + 19
-      </div>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">57</button>
-        <button onclick="answer(this,false)">77</button>
-        <button onclick="answer(this,true)">67</button>
-      </div>
-
-      <div class="feedback"></div>
-
-      <div class="question-box">
-        Kan du tänka 48 + 20 − 1?
-      </div>
-    </div>
-
-
-    <div class="practice-area">
-      <h3>Runda 4</h3>
-
-      <div class="math-box">
-        72 − 38
-      </div>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">44</button>
-        <button onclick="answer(this,true)">34</button>
-        <button onclick="answer(this,false)">46</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
   </section>
 
 
-  <section class="box" id="tabeller">
-    <h2>✖️➗ Tabellträning</h2>
 
-    <div class="activity">
-      <h3>2:ans tabell</h3>
+  <section class="box" id="tips">
 
-      <p>
-        2 × 3 = ___
-        <br>
-        2 × 6 = ___
-        <br>
-        2 × 9 = ___
-      </p>
+    <h2>💡 Matematik hemma utan arbetsblad</h2>
 
-      <p>
-        Fråga sedan:
-      </p>
+    <div class="intro-grid">
 
-      <div class="question-box">
-        Om 2 × 6 = 12, vad är då 12 ÷ 2?
-      </div>
-    </div>
-
-
-    <div class="activity">
-      <h3>5:ans tabell</h3>
-
-      <p>
-        5 × 4 = ___
-        <br>
-        5 × 7 = ___
-        <br>
-        5 × 9 = ___
-      </p>
-
-      <div class="question-box">
-        Vad ser du för mönster i svaren?
-      </div>
-    </div>
-
-
-    <div class="activity">
-      <h3>10:ans tabell</h3>
-
-      <p>
-        10 × 3 = ___
-        <br>
-        10 × 6 = ___
-        <br>
-        10 × 8 = ___
-      </p>
-
-      <div class="question-box">
-        Vad händer med talet när du multiplicerar med 10?
-      </div>
-    </div>
-
-
-    <div class="activity">
-      <h3>3:an och 4:an</h3>
-
-      <p>
-        Träna gärna med samband:
-      </p>
-
-      <div class="question-box">
-        Om du vet att 3 × 5 = 15,
-        hur kan det hjälpa dig att räkna 3 × 6?
+      <div class="intro-card">
+        <strong>🛒 I affären</strong>
+        Uppskatta pris, jämför priser och räkna ungefärlig totalsumma.
       </div>
 
-      <div class="question-box">
-        Om du vet att 2 × 7 = 14,
-        hur kan det hjälpa dig att räkna 4 × 7?
-      </div>
-    </div>
-  </section>
-
-
-  <section class="box" id="vardag">
-    <h2>🛒 Matematik i vardagen</h2>
-
-    <div class="activity">
-      <h3>🍎 I affären</h3>
-
-      <p>
-        Ett äpple kostar 7 kr.
-        Två äpplen kostar?
-      </p>
-
-      <p>
-        Tre äpplen kostar?
-      </p>
-
-      <p>
-        Hur mycket får du tillbaka om du betalar 30 kr för tre äpplen?
-      </p>
-    </div>
-
-
-    <div class="activity">
-      <h3>🕐 Klockan</h3>
-
-      <p>
-        Middagen börjar klockan 18.00.
-      </p>
-
-      <p>
-        Klockan är 17.30.
-      </p>
-
-      <div class="question-box">
-        Hur lång tid är det kvar?
-      </div>
-    </div>
-
-
-    <div class="activity">
-      <h3>📏 Mäta hemma</h3>
-
-      <p>
-        Välj tre saker hemma.
-      </p>
-
-      <ol>
-        <li>Uppskatta längden.</li>
-        <li>Mät.</li>
-        <li>Jämför uppskattningen med resultatet.</li>
-      </ol>
-    </div>
-
-
-    <div class="activity">
-      <h3>🍕 Bråk</h3>
-
-      <p>
-        Använd en smörgås, frukt eller pizza som exempel.
-      </p>
-
-      <div class="question-box">
-        Hur kan vi dela den i två lika stora delar?
+      <div class="intro-card">
+        <strong>🍽️ I köket</strong>
+        Räkna antal, dela lika och prata om halvor och fjärdedelar.
       </div>
 
-      <div class="question-box">
-        Hur kan vi dela samma helhet i fyra lika stora delar?
+      <div class="intro-card">
+        <strong>🕐 Klockan</strong>
+        Fråga hur lång tid det är tills ni ska gå eller äta.
       </div>
 
-      <div class="question-box">
-        Vilken är störst – en halv eller en fjärdedel?
-      </div>
-    </div>
-
-
-    <div class="activity">
-      <h3>🧦 Sortera och statistik</h3>
-
-      <p>
-        Sortera till exempel strumpor efter färg.
-      </p>
-
-      <p>
-        Gör en enkel tabell och fråga:
-      </p>
-
-      <div class="question-box">
-        Vilken färg finns det flest av?
+      <div class="intro-card">
+        <strong>🎲 Spel</strong>
+        Tärningar och kortspel tränar tal, strategier och huvudräkning.
       </div>
 
-      <div class="question-box">
-        Hur många fler är de än den minsta gruppen?
-      </div>
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🎲 Spel utan särskilt material</h2>
-
-    <div class="activity">
-      <h3>Tänk på ett tal</h3>
-
-      <p>
-        En person tänker på ett tal mellan 1 och 100.
-      </p>
-
-      <p>
-        Den andra får fråga:
-      </p>
-
-      <ul>
-        <li>Är talet större än 50?</li>
-        <li>Är det jämnt?</li>
-        <li>Är det större än 70?</li>
-      </ul>
-
-      <p>
-        Försök hitta talet med så få frågor som möjligt.
-      </p>
-    </div>
-
-
-    <div class="activity">
-      <h3>Närmast 100</h3>
-
-      <p>
-        Säg två tvåsiffriga tal.
-      </p>
-
-      <p>
-        Eleven uppskattar först summan och räknar sedan exakt.
-      </p>
-
-      <div class="question-box">
-        Hur nära 100 kom ni?
-      </div>
-    </div>
-
-
-    <div class="activity">
-      <h3>Tabellpingis</h3>
-
-      <p>
-        Vuxen:
-        <strong>4 × 6</strong>
-      </p>
-
-      <p>
-        Elev:
-        <strong>24</strong>
-      </p>
-
-      <p>
-        Eleven frågar sedan den vuxne.
-        Turas om.
-      </p>
-    </div>
-  </section>
-
-
-  <section class="box" id="vuxen">
-    <h2>👨‍👩‍👧 Till vuxna</h2>
-
-    <p>
-      Det viktigaste är inte att visa eleven hur en vuxen räknar.
-      Försök istället hjälpa eleven att själv hitta nästa steg.
-    </p>
-
-    <div class="parent-grid">
-
-      <div class="parent-card good">
-        <h3>✅ Säg gärna</h3>
-
-        <p>Hur tänkte du?</p>
-        <p>Vad vet du redan?</p>
-        <p>Kan du rita?</p>
-        <p>Kan du dela upp talet?</p>
-        <p>Finns ett annat sätt?</p>
-        <p>Hur kan du kontrollera?</p>
+      <div class="intro-card">
+        <strong>📏 Mätning</strong>
+        Uppskatta och mät föremål hemma.
       </div>
 
-      <div class="parent-card avoid">
-        <h3>⚠️ Försök undvika</h3>
-
-        <p>”Nej, så gör man inte.”</p>
-        <p>”Det där är enkelt.”</p>
-        <p>Att direkt säga svaret.</p>
-        <p>Att kräva långa träningspass.</p>
-        <p>Att jämföra med syskon eller andra elever.</p>
+      <div class="intro-card">
+        <strong>💬 Förklara</strong>
+        Be barnet visa två sätt att lösa samma uppgift.
       </div>
 
     </div>
-  </section>
 
 
-  <section class="box">
-    <h2>💬 Bra frågor när barnet fastnar</h2>
+    <div class="tip">
 
-    <div class="question-box">
-      Vad handlar uppgiften om?
-    </div>
-
-    <div class="question-box">
-      Vad vet du redan?
-    </div>
-
-    <div class="question-box">
-      Kan vi använda mindre tal först?
-    </div>
-
-    <div class="question-box">
-      Kan du visa med saker?
-    </div>
-
-    <div class="question-box">
-      Kan du rita en bild?
-    </div>
-
-    <div class="question-box">
-      Vilket räknesätt verkar passa?
-    </div>
-
-    <div class="question-box">
-      Är svaret rimligt?
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🌱 När det känns svårt</h2>
-
-    <p>
-      Börja med ett enklare exempel men behåll samma matematiska idé.
-    </p>
-
-    <p>
-      Om <strong>72 − 38</strong> känns svårt kan ni först fundera på:
-    </p>
-
-    <div class="math-box">
-      20 − 8
-    </div>
-
-    <p>
-      Prata sedan om vad som är likt mellan uppgifterna.
-    </p>
-  </section>
-
-
-  <section class="box">
-    <h2>⭐ När det känns lätt</h2>
-
-    <p>
-      Gör inte bara fler likadana tal.
-      Öka istället tänkandet.
-    </p>
-
-    <div class="question-box">
-      Kan du hitta tre olika sätt att räkna 48 + 27?
-    </div>
-
-    <div class="question-box">
-      Kan du skapa ett problem där svaret blir 36?
-    </div>
-
-    <div class="question-box">
-      Hitta alla tvåsiffriga tal med siffersumman 8.
-    </div>
-
-    <div class="question-box">
-      Är summan av två udda tal alltid jämn? Undersök.
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🔗 Träna vidare på plattformen</h2>
-
-    <div class="link-grid">
-
-      <a class="link-card" href="spel.html">
-        🎮 Mattespel
-      </a>
-
-      <a class="link-card" href="ovningsbank.html">
-        📚 Övningsbank
-      </a>
-
-      <a class="link-card" href="dagensmatte.html">
-        ☀️ Dagens matte
-      </a>
-
-      <a class="link-card" href="strategier.html">
-        🧠 Strategier
-      </a>
-
-      <a class="link-card" href="problemlosning.html">
-        🧩 Problemlösning
-      </a>
-
-      <a class="link-card" href="begrepp.html">
-        💬 Begreppsbank
-      </a>
+      <strong>Kom ihåg:</strong>
+      målet är inte att barnet ska svara snabbast.
+      Målet är att barnet ska utveckla en säker och flexibel förståelse för matematiken.
 
     </div>
+
   </section>
 
 </main>
 
+
 <footer>
+
   <p><strong>Matematik åk 3 – Hemträning</strong></p>
-  <p>Kort • Regelbundet • Begripligt • Positivt</p>
+
+  <p>Lite i taget • Tänk högt • Förklara • Träna vidare</p>
+
 </footer>
+
 
 <script>
 
-  function answer(button, correct) {
+const questionBank = {
 
-    const area =
-      button.closest(".practice-area");
+  grund: [
 
-    const buttons =
-      area.querySelectorAll(".answers button");
+    {
+      type:"choice",
+      question:"Vilket tal är störst?",
+      options:["47","74","44"],
+      answer:"74",
+      explanation:"74 har 7 tiotal. Det är fler tiotal än i 47 och 44."
+    },
 
-    const feedback =
-      area.querySelector(".feedback");
+    {
+      type:"choice",
+      question:"Vad är 8 + 7?",
+      options:["14","15","16"],
+      answer:"15",
+      explanation:"8 + 7 = 15."
+    },
 
+    {
+      type:"choice",
+      question:"Vad är 17 − 9?",
+      options:["7","8","9"],
+      answer:"8",
+      explanation:"17 − 9 = 8."
+    },
 
-    buttons.forEach(btn => {
-      btn.classList.remove("correct", "wrong");
-    });
+    {
+      type:"choice",
+      question:"Vad är 5 × 4?",
+      options:["20","15","25"],
+      answer:"20",
+      explanation:"5 grupper med 4 i varje blir 20."
+    },
 
+    {
+      type:"choice",
+      question:"Vad är 18 ÷ 3?",
+      options:["5","6","7"],
+      answer:"6",
+      explanation:"18 delat i 3 lika grupper ger 6 i varje."
+    },
 
-    if (correct) {
+    {
+      type:"choice",
+      question:"Vad är tiotalssiffran värd i talet 352?",
+      options:["5","50","500"],
+      answer:"50",
+      explanation:"5 står på tiotalsplatsen och är därför värd 50."
+    },
 
-      button.classList.add("correct");
+    {
+      type:"choice",
+      question:"Vilket tal kommer efter 35 om du räknar 5 steg framåt?",
+      options:["40","45","30"],
+      answer:"40",
+      explanation:"35 + 5 = 40."
+    },
 
-      feedback.textContent =
-        "✅ Rätt! Kan du också förklara hur du tänkte?";
+    {
+      type:"choice",
+      question:"Vilket bråk är störst om helheten är lika stor?",
+      options:["1/2","1/4","1/8"],
+      answer:"1/2",
+      explanation:"När helheten är lika stor är en halv större än en fjärdedel och en åttondel."
+    },
 
-    } else {
+    {
+      type:"number",
+      question:"Räkna 26 + 13.",
+      answer:39,
+      explanation:"26 + 10 = 36 och 36 + 3 = 39."
+    },
 
-      button.classList.add("wrong");
+    {
+      type:"number",
+      question:"Räkna 50 − 18.",
+      answer:32,
+      explanation:"50 − 18 = 32."
+    },
 
-      feedback.textContent =
-        "Inte riktigt. Försök tänka på tiotal och ental och prova igen.";
+    {
+      type:"number",
+      question:"4 lådor har 3 pennor i varje. Hur många pennor finns sammanlagt?",
+      answer:12,
+      explanation:"4 × 3 = 12."
+    },
+
+    {
+      type:"number",
+      question:"20 kulor delas lika mellan 5 barn. Hur många får varje?",
+      answer:4,
+      explanation:"20 ÷ 5 = 4."
     }
+
+  ],
+
+
+  blandad: [
+
+    {
+      type:"choice",
+      question:"Vilket tal är störst?",
+      options:["398","403","390"],
+      answer:"403",
+      explanation:"403 har 4 hundratal. De andra talen har 3 hundratal."
+    },
+
+    {
+      type:"choice",
+      question:"Vad är 49 + 8?",
+      options:["57","56","58"],
+      answer:"57",
+      explanation:"49 + 1 = 50 och sedan 50 + 7 = 57."
+    },
+
+    {
+      type:"choice",
+      question:"Vad är 72 − 38?",
+      options:["34","44","36"],
+      answer:"34",
+      explanation:"72 − 38 = 34. Kontroll: 34 + 38 = 72."
+    },
+
+    {
+      type:"choice",
+      question:"Vad är 7 × 6?",
+      options:["42","36","48"],
+      answer:"42",
+      explanation:"7 × 6 = 42."
+    },
+
+    {
+      type:"choice",
+      question:"Vad är 54 ÷ 6?",
+      options:["8","9","10"],
+      answer:"9",
+      explanation:"6 × 9 = 54, alltså är 54 ÷ 6 = 9."
+    },
+
+    {
+      type:"choice",
+      question:"Vilket påstående stämmer?",
+      options:[
+        "1/2 är större än 1/4 när helheten är lika stor",
+        "1/4 är alltid större än 1/2",
+        "Alla bråkdelar är lika stora"
+      ],
+      answer:"1/2 är större än 1/4 när helheten är lika stor",
+      explanation:"Om samma helhet delas i fler lika delar blir varje del mindre."
+    },
+
+    {
+      type:"choice",
+      question:"Vad betyder likhetstecknet i 7 + 5 = 6 + 6?",
+      options:[
+        "Båda sidor har samma värde",
+        "Svaret kommer efter tecknet",
+        "Man ska alltid addera"
+      ],
+      answer:"Båda sidor har samma värde",
+      explanation:"Båda sidor är 12."
+    },
+
+    {
+      type:"choice",
+      question:"Vilken enhet passar bäst för längden på ett klassrum?",
+      options:["meter","centimeter","millimeter"],
+      answer:"meter",
+      explanation:"Ett klassrum är flera meter långt."
+    },
+
+    {
+      type:"number",
+      question:"Räkna 68 + 27.",
+      answer:95,
+      explanation:"68 + 20 = 88 och 88 + 7 = 95."
+    },
+
+    {
+      type:"number",
+      question:"Räkna 81 − 56.",
+      answer:25,
+      explanation:"81 − 56 = 25."
+    },
+
+    {
+      type:"number",
+      question:"Mira har 28 pärlor. Hon får 15 nya och använder sedan 9. Hur många har hon kvar?",
+      answer:34,
+      explanation:"28 + 15 = 43 och 43 − 9 = 34."
+    },
+
+    {
+      type:"number",
+      question:"En lektion börjar 10.15 och slutar 10.55. Hur många minuter pågår den?",
+      answer:40,
+      explanation:"Från 10.15 till 10.55 går 40 minuter."
+    },
+
+    {
+      type:"number",
+      question:"6 lådor har 8 pennor i varje. Hur många pennor finns sammanlagt?",
+      answer:48,
+      explanation:"6 × 8 = 48."
+    },
+
+    {
+      type:"number",
+      question:"63 delas i 7 lika stora grupper. Hur många finns i varje grupp?",
+      answer:9,
+      explanation:"63 ÷ 7 = 9."
+    }
+
+  ],
+
+
+  utmaning: [
+
+    {
+      type:"choice",
+      question:"Vilket uttryck har samma värde som 68 + 27?",
+      options:["70 + 25","60 + 25","70 + 27"],
+      answer:"70 + 25",
+      explanation:"Om 68 ökar med 2 måste 27 minska med 2. Då blir summan fortfarande 95."
+    },
+
+    {
+      type:"choice",
+      question:"Vilket påstående stämmer?",
+      options:[
+        "125 + 78 är ungefär 200",
+        "125 + 78 är ungefär 100",
+        "125 + 78 är ungefär 300"
+      ],
+      answer:"125 + 78 är ungefär 200",
+      explanation:"125 är ungefär 120 och 78 ungefär 80. 120 + 80 är ungefär 200."
+    },
+
+    {
+      type:"choice",
+      question:"Vilket tal saknas? 18 + ___ = 45",
+      options:["27","23","63"],
+      answer:"27",
+      explanation:"45 − 18 = 27."
+    },
+
+    {
+      type:"choice",
+      question:"Vilket uttryck visar samma samband som 8 × 7 = 56?",
+      options:["56 ÷ 8 = 7","56 − 8 = 7","8 + 7 = 56"],
+      answer:"56 ÷ 8 = 7",
+      explanation:"Multiplikation och division är motsatta räknesätt."
+    },
+
+    {
+      type:"choice",
+      question:"En kvadrat roteras. Vad händer?",
+      options:[
+        "Den är fortfarande en kvadrat",
+        "Den blir alltid en triangel",
+        "Den får färre sidor"
+      ],
+      answer:"Den är fortfarande en kvadrat",
+      explanation:"Figurens egenskaper ändras inte när den roteras."
+    },
+
+    {
+      type:"number",
+      question:"Räkna 175 + 49.",
+      answer:224,
+      explanation:"175 + 50 = 225. Ta sedan bort 1: 224."
+    },
+
+    {
+      type:"number",
+      question:"Räkna 300 − 126.",
+      answer:174,
+      explanation:"300 − 126 = 174."
+    },
+
+    {
+      type:"number",
+      question:"Räkna 12 × 6.",
+      answer:72,
+      explanation:"12 × 6 = 72."
+    },
+
+    {
+      type:"number",
+      question:"Räkna 96 ÷ 8.",
+      answer:12,
+      explanation:"8 × 12 = 96."
+    },
+
+    {
+      type:"number",
+      question:"Två tal har skillnaden 27. Det ena talet är 63. Vilket är det mindre talet?",
+      answer:36,
+      explanation:"63 − 27 = 36."
+    },
+
+    {
+      type:"number",
+      question:"Sara har 125 kr och får 78 kr till. Hur mycket har hon då?",
+      answer:203,
+      explanation:"125 + 78 = 203."
+    },
+
+    {
+      type:"number",
+      question:"144 kulor delas i 12 lika stora grupper. Hur många finns i varje grupp?",
+      answer:12,
+      explanation:"144 ÷ 12 = 12."
+    }
+
+  ]
+
+};
+
+
+let currentQuestions = [];
+let checked = new Set();
+let correct = new Set();
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
+
+    [copy[i],copy[j]] =
+      [copy[j],copy[i]];
+
   }
+
+  return copy;
+
+}
+
+
+function generateTraining() {
+
+  const level =
+    document.getElementById("level").value;
+
+  const amount =
+    Number(
+      document.getElementById("amount").value
+    );
+
+
+  const pool =
+    shuffle(questionBank[level]);
+
+
+  currentQuestions =
+    pool.slice(
+      0,
+      Math.min(amount,pool.length)
+    );
+
+
+  checked.clear();
+  correct.clear();
+
+
+  document
+    .getElementById("summary")
+    .classList.remove("show");
+
+
+  renderQuestions();
+
+  updateProgress();
+
+}
+
+
+function renderQuestions() {
+
+  const area =
+    document.getElementById("questionArea");
+
+  area.innerHTML = "";
+
+
+  currentQuestions.forEach(
+    (question,index) => {
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "question";
+
+      card.dataset.index =
+        index;
+
+
+      const number =
+        document.createElement("div");
+
+      number.className =
+        "question-number";
+
+      number.textContent =
+        "Uppgift " +
+        (index + 1);
+
+
+      const title =
+        document.createElement("div");
+
+      title.className =
+        "task-text";
+
+      title.textContent =
+        question.question;
+
+
+      card.appendChild(number);
+      card.appendChild(title);
+
+
+      if (question.type === "choice") {
+
+        const options =
+          document.createElement("div");
+
+        options.className =
+          "options";
+
+
+        /*
+          QA-FIX:
+
+          Svarsalternativen blandas
+          separat för VARJE fråga.
+
+          Det gör att rätt svar
+          inte ligger på samma plats
+          varje gång.
+        */
+
+        const shuffledOptions =
+          shuffle(question.options);
+
+
+        shuffledOptions.forEach(
+          optionText => {
+
+            const label =
+              document.createElement("label");
+
+            label.className =
+              "option";
+
+
+            const radio =
+              document.createElement("input");
+
+            radio.type =
+              "radio";
+
+            radio.name =
+              "question-" + index;
+
+            radio.value =
+              optionText;
+
+
+            const span =
+              document.createElement("span");
+
+            span.textContent =
+              optionText;
+
+
+            label.appendChild(radio);
+            label.appendChild(span);
+
+            options.appendChild(label);
+
+          }
+        );
+
+
+        card.appendChild(options);
+
+      } else {
+
+        const input =
+          document.createElement("input");
+
+        input.type =
+          "number";
+
+        input.inputMode =
+          "numeric";
+
+        input.className =
+          "answer-input";
+
+        input.id =
+          "answer-" + index;
+
+        input.placeholder =
+          "Skriv ditt svar";
+
+
+        input.addEventListener(
+          "keydown",
+          event => {
+
+            if (event.key === "Enter") {
+              checkQuestion(index);
+            }
+
+          }
+        );
+
+
+        card.appendChild(input);
+
+      }
+
+
+      const buttons =
+        document.createElement("div");
+
+      buttons.className =
+        "button-row";
+
+
+      const checkButton =
+        document.createElement("button");
+
+      checkButton.type =
+        "button";
+
+      checkButton.textContent =
+        "Kontrollera";
+
+      checkButton.onclick =
+        function() {
+          checkQuestion(index);
+        };
+
+
+      buttons.appendChild(checkButton);
+
+
+      const feedback =
+        document.createElement("div");
+
+      feedback.className =
+        "feedback";
+
+      feedback.id =
+        "feedback-" + index;
+
+
+      card.appendChild(buttons);
+      card.appendChild(feedback);
+
+      area.appendChild(card);
+
+    }
+  );
+
+}
+
+
+function checkQuestion(index) {
+
+  const question =
+    currentQuestions[index];
+
+  const feedback =
+    document.getElementById(
+      "feedback-" + index
+    );
+
+
+  let isCorrect = false;
+
+
+  if (question.type === "choice") {
+
+    const selected =
+      document.querySelector(
+        'input[name="question-' +
+        index +
+        '"]:checked'
+      );
+
+
+    if (!selected) {
+
+      feedback.className =
+        "feedback wrong";
+
+      feedback.innerHTML =
+        "<strong>Välj ett svar först.</strong>";
+
+      return;
+    }
+
+
+    isCorrect =
+      selected.value ===
+      question.answer;
+
+  } else {
+
+    const input =
+      document.getElementById(
+        "answer-" + index
+      );
+
+    const raw =
+      input.value.trim();
+
+
+    if (raw === "") {
+
+      feedback.className =
+        "feedback wrong";
+
+      feedback.innerHTML =
+        "<strong>Skriv ett svar först.</strong>";
+
+      return;
+    }
+
+
+    const value =
+      Number(raw);
+
+
+    if (!Number.isFinite(value)) {
+
+      feedback.className =
+        "feedback wrong";
+
+      feedback.innerHTML =
+        "<strong>Skriv ett giltigt tal.</strong>";
+
+      return;
+    }
+
+
+    isCorrect =
+      value === question.answer;
+
+  }
+
+
+  checked.add(index);
+
+
+  if (isCorrect) {
+
+    correct.add(index);
+
+    feedback.className =
+      "feedback correct";
+
+    feedback.innerHTML =
+      "<strong>✓ Rätt!</strong><br>" +
+      question.explanation;
+
+  } else {
+
+    correct.delete(index);
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.innerHTML =
+      "<strong>Inte riktigt.</strong><br>" +
+      question.explanation +
+      "<br>Rätt svar är <strong>" +
+      question.answer +
+      "</strong>.";
+
+  }
+
+
+  updateProgress();
+
+}
+
+
+function updateProgress() {
+
+  const total =
+    currentQuestions.length;
+
+
+  if (total === 0) {
+
+    document.getElementById(
+      "progressBar"
+    ).style.width =
+      "0%";
+
+    document.getElementById(
+      "progressText"
+    ).textContent =
+      "Ingen träning skapad ännu.";
+
+    return;
+
+  }
+
+
+  const done =
+    checked.size;
+
+  const percent =
+    (done / total) * 100;
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    percent + "%";
+
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    done +
+    " av " +
+    total +
+    " uppgifter kontrollerade";
+
+
+  if (done === total) {
+    showSummary();
+  }
+
+}
+
+
+function showSummary() {
+
+  const score =
+    correct.size;
+
+  const total =
+    currentQuestions.length;
+
+
+  let message = "";
+
+
+  if (score === total) {
+
+    message =
+      "Du löste alla " +
+      total +
+      " uppgifter rätt. Bra! Försök nu förklara minst två lösningar med ord.";
+
+  } else if (score >= Math.ceil(total * .7)) {
+
+    message =
+      "Du löste " +
+      score +
+      " av " +
+      total +
+      " uppgifter rätt. Titta på återkopplingen och träna lite extra på det som var svårare.";
+
+  } else {
+
+    message =
+      "Du löste " +
+      score +
+      " av " +
+      total +
+      " uppgifter rätt. Välj några uppgifter att göra igen och be gärna en vuxen fråga hur du tänker.";
+
+  }
+
+
+  document.getElementById(
+    "summaryText"
+  ).textContent =
+    message;
+
+
+  document
+    .getElementById("summary")
+    .classList.add("show");
+
+}
+
+
+function resetTraining() {
+
+  currentQuestions = [];
+
+  checked.clear();
+  correct.clear();
+
+
+  document.getElementById(
+    "questionArea"
+  ).innerHTML =
+    "<p>Välj nivå och tryck på <strong>Skapa träning</strong>.</p>";
+
+
+  document
+    .getElementById("summary")
+    .classList.remove("show");
+
+
+  updateProgress();
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  generateTraining
+);
 
 </script>
 
