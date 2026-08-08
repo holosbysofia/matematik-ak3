@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programmering – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .step {
+      background: #f1e8da;
+      border: 1px solid #dccdb9;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .step .icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .grid-area {
+      display: grid;
+      grid-template-columns: repeat(5, 70px);
+      gap: 6px;
+      justify-content: center;
+      margin: 25px auto;
+    }
+
+    .cell {
+      width: 70px;
+      height: 70px;
+      background: #f2e8da;
+      border: 1px solid #cdbda7;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+
+    .start {
+      background: #e3dbc7;
+    }
+
+    .goal {
+      background: #dfe8d8;
+    }
+
+    .obstacle {
+      background: #ded0ba;
+    }
+
+    .code-box {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 16px 0;
+      font-family: "Courier New", monospace;
+      font-size: 1.1rem;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .control-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .control-panel button {
+      min-width: 130px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .grid-area {
+        grid-template-columns: repeat(5, 48px);
+      }
+
+      .cell {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🤖 Programmering</h1>
+  <p>
+    Här tränar du på stegvisa instruktioner, algoritmer, riktningar och att hitta fel.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="algebra.html">⚖️ Algebra</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#bana">🧩 Programmera</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#fel">🔍 Hitta felet</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>förstå vad en instruktion är</li>
+      <li>följa steg i rätt ordning</li>
+      <li>förstå vad en algoritm är</li>
+      <li>använda riktningarna framåt, bakåt, höger och vänster</li>
+      <li>skapa egna instruktioner</li>
+      <li>upptäcka och rätta fel</li>
+      <li>förklara hur en lösning fungerar</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Vad är programmering?</h2>
+
+    <p>
+      Programmering handlar om att ge tydliga instruktioner i rätt ordning.
+    </p>
+
+    <div class="example">
+      Tänk att en robot ska gå till dörren.
+      <br><br>
+      Om du bara säger <strong>"gå till dörren"</strong> kanske roboten inte vet hur.
+      <br><br>
+      Du måste ge tydliga steg.
+    </div>
+
+    <div class="step-grid">
+      <div class="step">
+        <div class="icon">⬆️</div>
+        <strong>Gå 2 steg framåt</strong>
+      </div>
+
+      <div class="step">
+        <div class="icon">➡️</div>
+        <strong>Sväng höger</strong>
+      </div>
+
+      <div class="step">
+        <div class="icon">⬆️</div>
+        <strong>Gå 1 steg framåt</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Vad är en algoritm?</h2>
+
+    <p>
+      En algoritm är en serie instruktioner som följs steg för steg.
+    </p>
+
+    <div class="example">
+      Exempel på en algoritm för att borsta tänderna:
+      <br><br>
+      1. Ta tandborsten.
+      <br>
+      2. Lägg på tandkräm.
+      <br>
+      3. Borsta tänderna.
+      <br>
+      4. Skölj munnen.
+    </div>
+
+    <p>
+      Om stegen kommer i fel ordning fungerar inte algoritmen lika bra.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🧭 Riktningar</h2>
+
+    <div class="step-grid">
+      <div class="step">
+        <div class="icon">⬆️</div>
+        <strong>Framåt</strong>
+      </div>
+
+      <div class="step">
+        <div class="icon">⬇️</div>
+        <strong>Bakåt</strong>
+      </div>
+
+      <div class="step">
+        <div class="icon">⬅️</div>
+        <strong>Vänster</strong>
+      </div>
+
+      <div class="step">
+        <div class="icon">➡️</div>
+        <strong>Höger</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="box" id="bana">
+    <h2>🧩 Programmera roboten</h2>
+
+    <p>
+      Robotens mål är att gå från <strong>🤖</strong> till <strong>⭐</strong>.
+      Hindret är markerat med <strong>■</strong>.
+    </p>
+
+    <div class="grid-area">
+      <div class="cell start">🤖</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell obstacle">■</div>
+      <div class="cell"></div>
+
+      <div class="cell"></div>
+      <div class="cell obstacle">■</div>
+      <div class="cell"></div>
+      <div class="cell obstacle">■</div>
+      <div class="cell"></div>
+
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+
+      <div class="cell obstacle">■</div>
+      <div class="cell"></div>
+      <div class="cell obstacle">■</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell goal">⭐</div>
+    </div>
+
+    <div class="challenge">
+      <p>
+        Skriv eller säg en instruktion som tar roboten till stjärnan.
+      </p>
+      <p>
+        Försök använda så få steg som möjligt.
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔁 Upprepa</h2>
+
+    <p>
+      Om samma instruktion ska göras flera gånger kan vi säga att den ska upprepas.
+    </p>
+
+    <div class="code-box">
+      Gå framåt<br>
+      Gå framåt<br>
+      Gå framåt<br>
+      Gå framåt
+    </div>
+
+    <p>kan skrivas enklare som:</p>
+
+    <div class="code-box">
+      Upprepa 4 gånger:<br>
+      Gå framåt
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vad betyder algoritm?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Ett matematiskt svar</button>
+        <button onclick="answer(this,true)">Instruktioner i en bestämd ordning</button>
+        <button onclick="answer(this,false)">En geometrisk figur</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vilken pil betyder höger?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">⬅️</button>
+        <button onclick="answer(this,true)">➡️</button>
+        <button onclick="answer(this,false)">⬆️</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vad betyder "upprepa 3 gånger"?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">Gör samma instruktion tre gånger</button>
+        <button onclick="answer(this,false)">Hoppa över instruktionen</button>
+        <button onclick="answer(this,false)">Gör instruktionen en gång</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Varför behöver instruktioner vara tydliga?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">För att de ska vara längre</button>
+        <button onclick="answer(this,true)">För att de ska kunna följas rätt</button>
+        <button onclick="answer(this,false)">För att de ska se svåra ut</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box" id="fel">
+    <h2>🔍 Hitta felet</h2>
+
+    <p>
+      Roboten ska gå två steg framåt och sedan svänga vänster.
+    </p>
+
+    <div class="code-box">
+      1. Gå framåt<br>
+      2. Sväng vänster<br>
+      3. Gå framåt
+    </div>
+
+    <div class="question">
+      <p>Vad är felet?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">
+          Roboten svänger för tidigt
+        </button>
+
+        <button onclick="answer(this,false)">
+          Roboten går för många steg
+        </button>
+
+        <button onclick="answer(this,false)">
+          Det finns inget fel
+        </button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="example">
+      Rätt ordning är:
+      <br><br>
+      1. Gå framåt
+      <br>
+      2. Gå framåt
+      <br>
+      3. Sväng vänster
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🎮 Ge roboten kommandon</h2>
+
+    <p>
+      Tryck på knapparna och bygg en instruktion.
+    </p>
+
+    <div class="control-panel">
+      <button onclick="addCommand('⬆️ Framåt')">⬆️ Framåt</button>
+      <button onclick="addCommand('⬇️ Bakåt')">⬇️ Bakåt</button>
+      <button onclick="addCommand('⬅️ Vänster')">⬅️ Vänster</button>
+      <button onclick="addCommand('➡️ Höger')">➡️ Höger</button>
+      <button onclick="clearCommands()">🗑️ Rensa</button>
+    </div>
+
+    <div class="code-box" id="commandList">
+      Din instruktion visas här.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        En robot står i mitten av ett rutnät.
+      </p>
+
+      <p>
+        Den ska:
+      </p>
+
+      <ul>
+        <li>gå 3 steg framåt</li>
+        <li>svänga höger</li>
+        <li>gå 2 steg framåt</li>
+        <li>svänga vänster</li>
+        <li>gå 1 steg framåt</li>
+      </ul>
+
+      <p>
+        Kan du rita rutnätet och visa var roboten hamnar?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Programmeringsproblem</h2>
+
+    <div class="challenge">
+      <p>
+        Du ska hjälpa en robot att besöka tre platser i klassrummet:
+      </p>
+
+      <p>
+        📚 bokhyllan → 🚪 dörren → 🪑 bordet
+      </p>
+
+      <p>
+        Skriv en algoritm med tydliga instruktioner.
+      </p>
+
+      <p>
+        Kan en kompis följa dina instruktioner utan att fråga något?
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>programmering</strong> – att skapa instruktioner som ska följas</p>
+
+    <p><strong>algoritm</strong> – instruktioner i en bestämd ordning</p>
+
+    <p><strong>instruktion</strong> – beskriver vad som ska göras</p>
+
+    <p><strong>upprepa</strong> – göra samma sak flera gånger</p>
+
+    <p><strong>felsöka</strong> – hitta och rätta ett fel</p>
+
+    <p><strong>riktning</strong> – vilket håll något ska röra sig åt</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Programmering • Algoritmer • Riktningar • Felsökning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen.";
+    }
+  }
+
+  let commands = [];
+
+  function addCommand(command) {
+    commands.push(command);
+    showCommands();
+  }
+
+  function clearCommands() {
+    commands = [];
+    showCommands();
+  }
+
+  function showCommands() {
+    const list = document.getElementById("commandList");
+
+    if (commands.length === 0) {
+      list.innerHTML = "Din instruktion visas här.";
+      return;
+    }
+
+    list.innerHTML = commands
+      .map((command, index) => (index + 1) + ". " + command)
+      .join("<br>");
+  }
+</script>
+
+</body>
+</html>
