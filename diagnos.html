@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematikdiagnos – Åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --trana: #efe1c7;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.7rem);
+    }
+
+    header p {
+      max-width: 800px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      color: var(--brun);
+      text-decoration: none;
+      font-weight: bold;
+      margin: 4px 6px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 13px;
+      margin-top: 18px;
+    }
+
+    .info-card {
+      background: var(--beige);
+      border-radius: 13px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .question-card {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 23px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px var(--skugga);
+    }
+
+    .area-label {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      padding: 5px 11px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .question-card h3 {
+      margin-top: 6px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 13px;
+      border-radius: 11px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.selected {
+      outline: 3px solid #a89171;
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      min-height: 25px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .finish-btn {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      margin: 32px auto;
+      background: #d6c3a6;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    #results {
+      display: none;
+    }
+
+    .result-header {
+      text-align: center;
+      background: #eee4d6;
+    }
+
+    .big-score {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 10px 0;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .result-card {
+      background: #fffaf2;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 19px;
+    }
+
+    .result-card.good {
+      background: var(--ratt);
+    }
+
+    .result-card.practice {
+      background: var(--trana);
+    }
+
+    .result-card h3 {
+      margin-top: 0;
+    }
+
+    .bar {
+      height: 16px;
+      background: #e4d8c5;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: #9f927d;
+      border-radius: 20px;
+    }
+
+    .practice-link {
+      display: inline-block;
+      margin-top: 8px;
+      background: #fffaf2;
+      color: var(--brun);
+      text-decoration: none;
+      border: 1px solid #cdbda7;
+      padding: 9px 13px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .practice-link:hover {
+      background: #f7efe4;
+    }
+
+    .teacher-note {
+      background: #e7dfd1;
+    }
+
+    .teacher-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .teacher-table th,
+    .teacher-table td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      text-align: left;
+    }
+
+    .teacher-table th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    .teacher-table td {
+      background: #fffdf8;
+    }
+
+    .restart-btn {
+      display: block;
+      margin: 28px auto 0;
+      max-width: 350px;
+      background: #d8c6aa;
+      text-align: center;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media (max-width: 650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .question-card {
+        padding: 19px;
+      }
+
+      .teacher-table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔎 Matematikdiagnos</h1>
+
+  <p>
+    Undersök vad du redan kan och vilka matematikområden
+    som du behöver träna mer på.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#diagnos">📝 Diagnos</a>
+  <a href="#results">📊 Resultat</a>
+  <a href="kunskapskoll.html">✅ Kunskapskoll</a>
+  <a href="spel.html">🎮 Träna</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Så fungerar diagnosen</h2>
+
+    <p>
+      Diagnosen innehåller frågor från flera matematikområden.
+      Resultatet används för att visa vad du verkar kunna och
+      vad du kan behöva träna mer på.
+    </p>
+
+    <p>
+      Det här är <strong>inte ett betyg</strong>.
+      Diagnosen är till för att hjälpa dig och din lärare att planera nästa steg.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-card">🔢 Taluppfattning</div>
+      <div class="info-card">➕ Räknesätt</div>
+      <div class="info-card">✖️ Multiplikation & division</div>
+      <div class="info-card">🍕 Bråk & algebra</div>
+      <div class="info-card">📐 Geometri & mätning</div>
+      <div class="info-card">📊 Statistik & problemlösning</div>
+    </div>
+  </section>
+
+  <section id="diagnos">
+    <div id="quiz"></div>
+  </section>
+
+  <button class="finish-btn" onclick="finishDiagnosis()">
+    📊 Visa mitt resultat
+  </button>
+
+
+  <section id="results">
+
+    <div class="box result-header">
+      <h2>📊 Ditt resultat</h2>
+
+      <div class="big-score">
+        <span id="totalScore">0</span> /
+        <span id="totalQuestions">0</span>
+      </div>
+
+      <p id="overallText"></p>
+    </div>
+
+    <div class="box">
+      <h2>🎯 Resultat område för område</h2>
+
+      <div class="result-grid" id="areaResults"></div>
+    </div>
+
+    <div class="box teacher-note">
+      <h2>👩‍🏫 Till läraren</h2>
+
+      <p>
+        Diagnosen är ett pedagogiskt stöd och bör kombineras med
+        observationer, samtal, elevlösningar och ordinarie undervisning.
+      </p>
+
+      <table class="teacher-table">
+        <tr>
+          <th>Resultat</th>
+          <th>Tolkning</th>
+        </tr>
+
+        <tr>
+          <td>80–100 %</td>
+          <td>
+            Eleven visar säkerhet i de aktuella uppgifterna.
+            Fördjupa genom resonemang och problemlösning.
+          </td>
+        </tr>
+
+        <tr>
+          <td>50–79 %</td>
+          <td>
+            Eleven visar viss förståelse men området behöver återkommande träning.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Under 50 %</td>
+          <td>
+            Undersök elevens strategier och eventuella missuppfattningar.
+            Arbeta konkret och stegvis.
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <button class="restart-btn" onclick="restartDiagnosis()">
+      🔄 Gör diagnosen igen
+    </button>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Upptäck • Träna • Förstå • Utvecklas</p>
+</footer>
+
+<script>
+
+  const areas = {
+    tal: {
+      name: "Taluppfattning",
+      icon: "🔢",
+      link: "taluppfattning.html"
+    },
+
+    raknesatt: {
+      name: "Addition och subtraktion",
+      icon: "➕",
+      link: "addition.html"
+    },
+
+    multi: {
+      name: "Multiplikation och division",
+      icon: "✖️",
+      link: "multiplikation.html"
+    },
+
+    brak: {
+      name: "Bråk och algebra",
+      icon: "🍕",
+      link: "brak.html"
+    },
+
+    geometri: {
+      name: "Geometri och mätning",
+      icon: "📐",
+      link: "geometri.html"
+    },
+
+    problem: {
+      name: "Statistik och problemlösning",
+      icon: "🧠",
+      link: "problemlosning.html"
+    }
+  };
+
+
+  const questions = [
+
+    /* TALUPPFATTNING */
+
+    {
+      area: "tal",
+      text: "Vilket värde har siffran 7 i talet 472?",
+      answers: ["7", "70", "700"],
+      correct: "70"
+    },
+
+    {
+      area: "tal",
+      text: "Vilket tal är störst?",
+      answers: ["398", "389", "308"],
+      correct: "398"
+    },
+
+    {
+      area: "tal",
+      text: "Vilket tal kommer sedan? 125, 135, 145, 155, ...",
+      answers: ["160", "165", "175"],
+      correct: "165"
+    },
+
+
+    /* ADDITION / SUBTRAKTION */
+
+    {
+      area: "raknesatt",
+      text: "Vad är 58 + 27?",
+      answers: ["75", "85", "95"],
+      correct: "85"
+    },
+
+    {
+      area: "raknesatt",
+      text: "Vad är 83 − 46?",
+      answers: ["37", "47", "39"],
+      correct: "37"
+    },
+
+    {
+      area: "raknesatt",
+      text: "Vilket svar är rimligast för 198 + 203?",
+      answers: ["Ungefär 40", "Ungefär 400", "Ungefär 900"],
+      correct: "Ungefär 400"
+    },
+
+
+    /* MULTIPLIKATION / DIVISION */
+
+    {
+      area: "multi",
+      text: "Vad är 7 × 4?",
+      answers: ["24", "28", "32"],
+      correct: "28"
+    },
+
+    {
+      area: "multi",
+      text: "Vad är 30 ÷ 5?",
+      answers: ["5", "6", "10"],
+      correct: "6"
+    },
+
+    {
+      area: "multi",
+      text: "Det finns 4 lådor med 6 bollar i varje. Hur många bollar finns totalt?",
+      answers: ["10", "20", "24"],
+      correct: "24"
+    },
+
+
+    /* BRÅK / ALGEBRA */
+
+    {
+      area: "brak",
+      text: "Vad är hälften av 18?",
+      answers: ["6", "9", "12"],
+      correct: "9"
+    },
+
+    {
+      area: "brak",
+      text: "Vilket bråk är störst?",
+      answers: ["1/4", "1/2", "1/8"],
+      correct: "1/2"
+    },
+
+    {
+      area: "brak",
+      text: "Vilket tal saknas? □ + 9 = 21",
+      answers: ["10", "11", "12"],
+      correct: "12"
+    },
+
+
+    /* GEOMETRI / MÄTNING */
+
+    {
+      area: "geometri",
+      text: "Vilken figur har fyra lika långa sidor?",
+      answers: ["Triangel", "Kvadrat", "Cirkel"],
+      correct: "Kvadrat"
+    },
+
+    {
+      area: "geometri",
+      text: "Hur många centimeter är 1 meter?",
+      answers: ["10 cm", "100 cm", "1000 cm"],
+      correct: "100 cm"
+    },
+
+    {
+      area: "geometri",
+      text: "Vilken enhet passar bäst för massan hos ett äpple?",
+      answers: ["gram", "meter", "liter"],
+      correct: "gram"
+    },
+
+
+    /* STATISTIK / PROBLEMLÖSNING */
+
+    {
+      area: "problem",
+      text: "I en undersökning får hund 8 röster och katt 5 röster. Hur stor är skillnaden?",
+      answers: ["3", "5", "13"],
+      correct: "3"
+    },
+
+    {
+      area: "problem",
+      text: "Sara har 24 pärlor. Hon får 8 och ger sedan bort 5. Hur många har hon kvar?",
+      answers: ["27", "29", "37"],
+      correct: "27"
+    },
+
+    {
+      area: "problem",
+      text: "24 kakor delas lika mellan 6 barn. Hur många får varje barn?",
+      answers: ["3", "4", "6"],
+      correct: "4"
+    }
+
+  ];
+
+
+  let selectedAnswers =
+    new Array(questions.length).fill(null);
+
+
+  function shuffle(array) {
+
+    const copy = [...array];
+
+    for (
+      let i = copy.length - 1;
+      i > 0;
+      i--
+    ) {
+
+      const j =
+        Math.floor(
+          Math.random() * (i + 1)
+        );
+
+      [copy[i], copy[j]] =
+        [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+
+  function createDiagnosis() {
+
+    const quiz =
+      document.getElementById("quiz");
+
+    quiz.innerHTML = "";
+
+    questions.forEach(
+      (question, index) => {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "question-card";
+
+
+        const label =
+          document.createElement("div");
+
+        label.className =
+          "area-label";
+
+        label.textContent =
+          areas[question.area].icon +
+          " " +
+          areas[question.area].name;
+
+
+        const heading =
+          document.createElement("h3");
+
+        heading.textContent =
+          (index + 1) +
+          ". " +
+          question.text;
+
+
+        const answerBox =
+          document.createElement("div");
+
+        answerBox.className =
+          "answers";
+
+
+        const shuffled =
+          shuffle(question.answers);
+
+
+        shuffled.forEach(answer => {
+
+          const button =
+            document.createElement("button");
+
+          button.textContent =
+            answer;
+
+          button.dataset.answer =
+            answer;
+
+
+          button.onclick =
+            function() {
+
+              const buttons =
+                answerBox.querySelectorAll(
+                  "button"
+                );
+
+              buttons.forEach(btn => {
+                btn.classList.remove(
+                  "selected"
+                );
+              });
+
+              button.classList.add(
+                "selected"
+              );
+
+              selectedAnswers[index] =
+                answer;
+            };
+
+
+          answerBox.appendChild(
+            button
+          );
+
+        });
+
+
+        const feedback =
+          document.createElement("div");
+
+        feedback.className =
+          "feedback";
+
+
+        card.appendChild(label);
+        card.appendChild(heading);
+        card.appendChild(answerBox);
+        card.appendChild(feedback);
+
+        quiz.appendChild(card);
+
+      }
+    );
+  }
+
+
+  function finishDiagnosis() {
+
+    const areaScores = {};
+
+    Object.keys(areas).forEach(key => {
+
+      areaScores[key] = {
+        correct: 0,
+        total: 0
+      };
+
+    });
+
+
+    let totalCorrect = 0;
+
+    const cards =
+      document.querySelectorAll(
+        ".question-card"
+      );
+
+
+    questions.forEach(
+      (question, index) => {
+
+        areaScores[
+          question.area
+        ].total++;
+
+
+        const card =
+          cards[index];
+
+        const buttons =
+          card.querySelectorAll(
+            "button"
+          );
+
+        const feedback =
+          card.querySelector(
+            ".feedback"
+          );
+
+
+        buttons.forEach(button => {
+
+          button.classList.remove(
+            "correct",
+            "wrong"
+          );
+
+
+          if (
+            button.dataset.answer ===
+            question.correct
+          ) {
+
+            button.classList.add(
+              "correct"
+            );
+          }
+
+
+          if (
+            button.classList.contains(
+              "selected"
+            ) &&
+            button.dataset.answer !==
+            question.correct
+          ) {
+
+            button.classList.add(
+              "wrong"
+            );
+          }
+
+        });
+
+
+        if (
+          selectedAnswers[index] ===
+          question.correct
+        ) {
+
+          totalCorrect++;
+
+          areaScores[
+            question.area
+          ].correct++;
+
+          feedback.textContent =
+            "✅ Rätt.";
+
+        } else if (
+          selectedAnswers[index] ===
+          null
+        ) {
+
+          feedback.textContent =
+            "Du valde inget svar.";
+
+        } else {
+
+          feedback.textContent =
+            "Titta på det markerade rätta svaret och fundera på varför det stämmer.";
+
+        }
+
+      }
+    );
+
+
+    document.getElementById(
+      "totalScore"
+    ).textContent =
+      totalCorrect;
+
+
+    document.getElementById(
+      "totalQuestions"
+    ).textContent =
+      questions.length;
+
+
+    const totalPercent =
+      Math.round(
+        totalCorrect /
+        questions.length *
+        100
+      );
+
+
+    const overallText =
+      document.getElementById(
+        "overallText"
+      );
+
+
+    if (totalPercent >= 80) {
+
+      overallText.textContent =
+        "Du visar säkerhet inom många av områdena. Titta ändå på resultatet nedan och fortsätt fördjupa ditt matematiska tänkande.";
+
+    } else if (
+      totalPercent >= 50
+    ) {
+
+      overallText.textContent =
+        "Du kan redan mycket, men det finns några områden som behöver mer träning. Se dina rekommendationer nedan.";
+
+    } else {
+
+      overallText.textContent =
+        "Här finns flera områden som du behöver fortsätta arbeta med. Börja med ett område i taget.";
+
+    }
+
+
+    createAreaResults(
+      areaScores
+    );
+
+
+    document.getElementById(
+      "results"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "results"
+    ).scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function createAreaResults(
+    areaScores
+  ) {
+
+    const container =
+      document.getElementById(
+        "areaResults"
+      );
+
+    container.innerHTML = "";
+
+
+    Object.keys(areas).forEach(
+      key => {
+
+        const data =
+          areaScores[key];
+
+        const percent =
+          Math.round(
+            data.correct /
+            data.total *
+            100
+          );
+
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        if (percent >= 80) {
+
+          card.className =
+            "result-card good";
+
+        } else {
+
+          card.className =
+            "result-card practice";
+        }
+
+
+        const heading =
+          document.createElement("h3");
+
+        heading.textContent =
+          areas[key].icon +
+          " " +
+          areas[key].name;
+
+
+        const score =
+          document.createElement("p");
+
+        score.innerHTML =
+          "<strong>" +
+          data.correct +
+          " av " +
+          data.total +
+          " rätt</strong>";
+
+
+        const bar =
+          document.createElement("div");
+
+        bar.className = "bar";
+
+
+        const fill =
+          document.createElement("div");
+
+        fill.className =
+          "bar-fill";
+
+        fill.style.width =
+          percent + "%";
+
+
+        bar.appendChild(fill);
+
+
+        const text =
+          document.createElement("p");
+
+
+        if (percent >= 80) {
+
+          text.textContent =
+            "✅ Du visar god säkerhet i de här uppgifterna.";
+
+        } else if (
+          percent >= 50
+        ) {
+
+          text.textContent =
+            "🌿 Du är på väg. Fortsätt träna på området.";
+
+        } else {
+
+          text.textContent =
+            "🔄 Här behöver du mer undervisning och träning.";
+        }
+
+
+        const link =
+          document.createElement("a");
+
+        link.className =
+          "practice-link";
+
+        link.href =
+          areas[key].link;
+
+        link.textContent =
+          percent >= 80
+          ? "Fördjupa området →"
+          : "Träna området →";
+
+
+        card.appendChild(
+          heading
+        );
+
+        card.appendChild(
+          score
+        );
+
+        card.appendChild(
+          bar
+        );
+
+        card.appendChild(
+          text
+        );
+
+        card.appendChild(
+          link
+        );
+
+
+        container.appendChild(
+          card
+        );
+
+      }
+    );
+  }
+
+
+  function restartDiagnosis() {
+
+    selectedAnswers =
+      new Array(
+        questions.length
+      ).fill(null);
+
+    document.getElementById(
+      "results"
+    ).style.display =
+      "none";
+
+    createDiagnosis();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  createDiagnosis();
+
+</script>
+
+</body>
+</html>
