@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mätning – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .unit-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .unit-icon {
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+
+    .measure-line {
+      width: 100%;
+      height: 18px;
+      background: #d8c6aa;
+      border-radius: 12px;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .measure-line::before,
+    .measure-line::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 28px;
+      top: -5px;
+      background: #6f6255;
+    }
+
+    .measure-line::before {
+      left: 0;
+    }
+
+    .measure-line::after {
+      right: 0;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📏 Mätning</h1>
+  <p>
+    Här tränar du på längd, massa, volym, enheter och att uppskatta mått.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="geometri.html">📐 Geometri</a>
+  <a href="#langd">📏 Längd</a>
+  <a href="#massa">⚖️ Massa</a>
+  <a href="#volym">🥛 Volym</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+
+    <ul>
+      <li>mäta och jämföra längd</li>
+      <li>använda centimeter och meter</li>
+      <li>mäta och jämföra massa</li>
+      <li>använda gram och kilogram</li>
+      <li>förstå volym</li>
+      <li>använda deciliter och liter</li>
+      <li>välja en passande enhet</li>
+      <li>uppskatta innan du mäter</li>
+    </ul>
+  </section>
+
+  <section class="box" id="langd">
+    <h2>📏 Längd</h2>
+
+    <p>
+      Längd beskriver hur långt, högt eller brett något är.
+    </p>
+
+    <div class="unit-grid">
+
+      <div class="unit-card">
+        <div class="unit-icon">📎</div>
+        <h3>Centimeter</h3>
+        <p>
+          Förkortas <strong>cm</strong>.
+        </p>
+        <p>
+          Passar när vi mäter mindre saker.
+        </p>
+      </div>
+
+      <div class="unit-card">
+        <div class="unit-icon">🚪</div>
+        <h3>Meter</h3>
+        <p>
+          Förkortas <strong>m</strong>.
+        </p>
+        <p>
+          Passar när vi mäter större saker.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="example">
+      En penna kan vara ungefär <strong>15 cm</strong> lång.
+      <br><br>
+      En dörr kan vara ungefär <strong>2 m</strong> hög.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔗 Sambandet mellan centimeter och meter</h2>
+
+    <div class="example">
+      <strong>100 cm = 1 m</strong>
+    </div>
+
+    <p>
+      Det betyder att 100 centimeter tillsammans blir en meter.
+    </p>
+
+    <div class="measure-line"></div>
+
+    <p style="text-align:center;">
+      0 cm &nbsp;&nbsp;&nbsp;&nbsp; 50 cm &nbsp;&nbsp;&nbsp;&nbsp; 100 cm
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Uppskatta först</h2>
+
+    <p>
+      Innan du mäter kan du försöka gissa ungefär hur långt något är.
+      Det kallas att <strong>uppskatta</strong>.
+    </p>
+
+    <div class="example">
+      Hur lång tror du att din mattebok är?
+      <br><br>
+      Gissa först.
+      <br>
+      Mät sedan med linjal.
+      <br>
+      Jämför din gissning med resultatet.
+    </div>
+  </section>
+
+  <section class="box" id="massa">
+    <h2>⚖️ Massa</h2>
+
+    <p>
+      Massa beskriver hur mycket något väger.
+    </p>
+
+    <div class="unit-grid">
+
+      <div class="unit-card">
+        <div class="unit-icon">🍎</div>
+        <h3>Gram</h3>
+        <p>
+          Förkortas <strong>g</strong>.
+        </p>
+        <p>
+          Passar för lättare saker.
+        </p>
+      </div>
+
+      <div class="unit-card">
+        <div class="unit-icon">🎒</div>
+        <h3>Kilogram</h3>
+        <p>
+          Förkortas <strong>kg</strong>.
+        </p>
+        <p>
+          Passar för tyngre saker.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="example">
+      Ett äpple kan väga ungefär <strong>150 g</strong>.
+      <br><br>
+      En skolväska kan väga några <strong>kg</strong>.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔗 Gram och kilogram</h2>
+
+    <div class="example">
+      <strong>1000 g = 1 kg</strong>
+    </div>
+
+    <p>
+      1000 gram tillsammans blir ett kilogram.
+    </p>
+  </section>
+
+  <section class="box" id="volym">
+    <h2>🥛 Volym</h2>
+
+    <p>
+      Volym beskriver hur mycket något rymmer.
+    </p>
+
+    <div class="unit-grid">
+
+      <div class="unit-card">
+        <div class="unit-icon">🥤</div>
+        <h3>Deciliter</h3>
+        <p>
+          Förkortas <strong>dl</strong>.
+        </p>
+        <p>
+          Passar för mindre mängder vätska.
+        </p>
+      </div>
+
+      <div class="unit-card">
+        <div class="unit-icon">🧴</div>
+        <h3>Liter</h3>
+        <p>
+          Förkortas <strong>l</strong>.
+        </p>
+        <p>
+          Passar för större mängder vätska.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="example">
+      Ett glas kan rymma ungefär <strong>2 dl</strong>.
+      <br><br>
+      Ett mjölkpaket kan rymma <strong>1 liter</strong>.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔗 Deciliter och liter</h2>
+
+    <div class="example">
+      <strong>10 dl = 1 l</strong>
+    </div>
+
+    <p>
+      Tio deciliter tillsammans blir en liter.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Välj rätt enhet</h2>
+
+    <div class="example">
+      Hur lång är en penna?
+      <br>
+      <strong>Centimeter</strong> passar bäst.
+    </div>
+
+    <div class="example">
+      Hur mycket väger en elev?
+      <br>
+      <strong>Kilogram</strong> passar bäst.
+    </div>
+
+    <div class="example">
+      Hur mycket rymmer ett mjölkpaket?
+      <br>
+      <strong>Liter</strong> passar bäst.
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vilken enhet passar bäst för längden på en penna?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">cm</button>
+        <button onclick="answer(this,false)">kg</button>
+        <button onclick="answer(this,false)">l</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Hur många centimeter är 1 meter?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">10 cm</button>
+        <button onclick="answer(this,true)">100 cm</button>
+        <button onclick="answer(this,false)">1000 cm</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vilken enhet passar bäst för vikten på en skolväska?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">cm</button>
+        <button onclick="answer(this,true)">kg</button>
+        <button onclick="answer(this,false)">dl</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Hur många gram är 1 kilogram?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">100 g</button>
+        <button onclick="answer(this,false)">10 g</button>
+        <button onclick="answer(this,true)">1000 g</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Hur många deciliter är 1 liter?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">10 dl</button>
+        <button onclick="answer(this,false)">100 dl</button>
+        <button onclick="answer(this,false)">1 dl</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Ett rep är 1 meter långt.
+      Hur många centimeter är det?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Saften</h3>
+
+      <p>
+        En kanna innehåller 1 liter saft.
+      </p>
+
+      <p>
+        Du häller upp 3 deciliter.
+      </p>
+
+      <p>
+        <strong>Hur många deciliter finns kvar i kannan?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Ett snöre är 2 meter långt.
+      </p>
+
+      <p>
+        Du klipper bort 75 cm.
+      </p>
+
+      <p>
+        <strong>Hur många centimeter är kvar?</strong>
+      </p>
+
+      <p>
+        Tips: Gör först om 2 meter till centimeter.
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Mätardetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        Hitta tre saker i klassrummet.
+      </p>
+
+      <ol>
+        <li>Uppskatta längden.</li>
+        <li>Mät med linjal eller måttband.</li>
+        <li>Skriv resultatet.</li>
+        <li>Jämför med din uppskattning.</li>
+      </ol>
+
+      <p>
+        Vilken uppskattning kom närmast?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Rimligt eller orimligt?</h2>
+
+    <div class="question">
+      <p>En elev säger att ett suddgummi är 2 meter långt. Är det rimligt?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Ja</button>
+        <button onclick="answer(this,true)">Nej</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>En mjölkförpackning rymmer ungefär 1 liter. Är det rimligt?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">Ja</button>
+        <button onclick="answer(this,false)">Nej</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>längd</strong> – hur långt, högt eller brett något är</p>
+
+    <p><strong>centimeter</strong> – enhet för längd, skrivs cm</p>
+
+    <p><strong>meter</strong> – enhet för längd, skrivs m</p>
+
+    <p><strong>massa</strong> – hur mycket något väger</p>
+
+    <p><strong>gram</strong> – enhet för massa, skrivs g</p>
+
+    <p><strong>kilogram</strong> – enhet för massa, skrivs kg</p>
+
+    <p><strong>volym</strong> – hur mycket något rymmer</p>
+
+    <p><strong>deciliter</strong> – enhet för volym, skrivs dl</p>
+
+    <p><strong>liter</strong> – enhet för volym, skrivs l</p>
+
+    <p><strong>uppskatta</strong> – att göra en rimlig gissning innan man mäter</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Mätning • Längd • Massa • Volym • Uppskattning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 100) {
+      feedback.textContent = "✅ Rätt! 1 meter = 100 centimeter.";
+    } else {
+      feedback.textContent = "Försök igen. Kom ihåg att 100 cm = 1 m.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 7) {
+      feedback.textContent = "✅ Rätt! 1 liter är 10 dl. 10 − 3 = 7 dl.";
+    } else {
+      feedback.textContent = "Försök igen. Börja med att göra om 1 liter till deciliter.";
+    }
+  }
+</script>
+
+</body>
+</html>
