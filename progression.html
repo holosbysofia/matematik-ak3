@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Progression – Matematik åk 1–3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .overview-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .progress-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin: 18px 0;
+    }
+
+    .progress-card h3 {
+      margin-top: 0;
+    }
+
+    .year-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 13px;
+      margin-top: 15px;
+    }
+
+    .year-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 16px;
+    }
+
+    .year-card h4 {
+      color: var(--brun);
+      margin-top: 0;
+    }
+
+    .focus3 {
+      background: #eee4d6;
+      border: 2px solid #cdbb9f;
+    }
+
+    .gap-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .support-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .question-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 820px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .signal-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 17px;
+    }
+
+    .signal-card h3 {
+      margin-top: 0;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:850px) {
+      .year-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .progress-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📈 Progression matematik åk 1–3</h1>
+
+  <p>
+    Se hur matematiska idéer byggs upp steg för steg och vilka
+    grundläggande kunskaper elever behöver för att lyckas i åk 3.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#raknesatt">➕ Räknesätt</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#geometri">📐 Geometri</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#luckor">🔎 Kunskapsluckor</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Progression betyder att bygga vidare</h2>
+
+    <p>
+      Matematiska kunskaper utvecklas inte som separata lådor.
+      Nya kunskaper bygger på sådant eleven redan förstått.
+    </p>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        <div class="icon">🌱</div>
+        <strong>Åk 1</strong>
+        <p>Grundläggande förståelse och konkret matematik.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🌿</div>
+        <strong>Åk 2</strong>
+        <p>Utvidga talområdet och utveckla strategier.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🌳</div>
+        <strong>Åk 3</strong>
+        <p>Använda kunskaper mer flexibelt och i fler sammanhang.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">⭐</div>
+        <strong>Fördjupning</strong>
+        <p>Förklara, jämföra, argumentera och generalisera.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="progress-card">
+      <h3>Progression</h3>
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+
+          <ul>
+            <li>räkna antal</li>
+            <li>koppla antal till siffra</li>
+            <li>talens ordning</li>
+            <li>del–helhet</li>
+            <li>tiokompisar</li>
+            <li>enkla talmönster</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+
+          <ul>
+            <li>ental och tiotal</li>
+            <li>tal på tallinje</li>
+            <li>jämföra större tal</li>
+            <li>udda och jämna tal</li>
+            <li>ökande och minskande mönster</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+
+          <ul>
+            <li>hundratal, tiotal och ental</li>
+            <li>utvecklad form</li>
+            <li>flexibel jämförelse av tal</li>
+            <li>uppskattning</li>
+            <li>rimlighetsbedömning</li>
+            <li>förstå större tal på tallinje</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Viktig kunskapslucka att fånga:</strong>
+        <br>
+        Eleven ser tal som en följd av siffror men förstår inte platsvärdet.
+      </div>
+
+      <div class="support-box">
+        <strong>🌱 Då behöver undervisningen tillbaka till:</strong>
+        <br>
+        konkret positionsmaterial, platsvärdestabell och koppling mellan
+        364, 300 + 60 + 4 och tre hundratal + sex tiotal + fyra ental.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="raknesatt">
+    <h2>➕ Addition</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>lägga ihop mängder</li>
+            <li>del–helhet</li>
+            <li>tiokompisar</li>
+            <li>dubbelt</li>
+            <li>enkla additionsstrategier</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>addera tiotal och ental</li>
+            <li>gå via tiotal</li>
+            <li>nära dubbelt</li>
+            <li>använda tallinje</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>flexibla huvudräkningsstrategier</li>
+            <li>skriftliga metoder</li>
+            <li>välja strategi efter tal</li>
+            <li>uppskatta resultat</li>
+            <li>förklara och jämföra metoder</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven räknar fortfarande allt från ett.
+      </div>
+
+      <div class="support-box">
+        Träna talbilder, tiokompisar, dubbelt och att dela upp tal.
+      </div>
+    </div>
+
+
+    <h2>➖ Subtraktion</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>ta bort</li>
+            <li>hur många är kvar?</li>
+            <li>skillnad mellan små mängder</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>räkna bakåt</li>
+            <li>räkna upp</li>
+            <li>gå via tiotal</li>
+            <li>samband med addition</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>välja effektiv strategi</li>
+            <li>förstå ta bort och skillnad</li>
+            <li>skriftliga metoder</li>
+            <li>kontrollera med addition</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven tar alltid mindre siffra från större siffra i varje position.
+      </div>
+
+      <div class="support-box">
+        Gå tillbaka till talens värde och använd konkret växling mellan tiotal och ental.
+      </div>
+    </div>
+
+
+    <h2>✖️ Multiplikation</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>räkna lika stora grupper</li>
+            <li>dubbelt</li>
+            <li>hoppräkning</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>upprepad addition</li>
+            <li>2:ans, 5:ans och 10:ans samband</li>
+            <li>enkla rektangulära mönster</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>förstå faktorer och produkt</li>
+            <li>använda tabellsamband</li>
+            <li>3:ans och 4:ans tabell</li>
+            <li>kommutativitet</li>
+            <li>lösa multiplikativa problem</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven tolkar 4 × 6 som 4 + 6.
+      </div>
+
+      <div class="support-box">
+        Bygg lika stora grupper och koppla konkret → bild → upprepad addition → multiplikation.
+      </div>
+    </div>
+
+
+    <h2>➗ Division</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>dela föremål lika</li>
+            <li>hälften av små mängder</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>dela lika</li>
+            <li>göra lika stora grupper</li>
+            <li>koppla till multiplikation</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>förstå kvot</li>
+            <li>antal grupper</li>
+            <li>antal i varje grupp</li>
+            <li>använda multiplikation för att lösa division</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven kan tabellsvaret men förstår inte vad divisionen betyder.
+      </div>
+
+      <div class="support-box">
+        Låt eleven både dela 24 i 4 grupper och skapa grupper om 4 av 24.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="brak">
+    <h2>🍕 Bråk</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>dela lika</li>
+            <li>hel och halv</li>
+            <li>hälften av små mängder</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>hälften och fjärdedelar</li>
+            <li>delar av samma helhet</li>
+            <li>enkla bråkbilder</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>hälften, tredjedelar och fjärdedelar</li>
+            <li>enkla jämförelser</li>
+            <li>del av mängd</li>
+            <li>förstå täljare och nämnare på enkel nivå</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven tror att 1/8 är större än 1/4 eftersom 8 är större än 4.
+      </div>
+
+      <div class="support-box">
+        Jämför lika stora helheter delade i olika många lika stora delar.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="geometri">
+    <h2>📐 Geometri och mätning</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>känna igen enkla former</li>
+            <li>jämföra längd</li>
+            <li>vardagsord som längre och kortare</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>beskriva sidor och hörn</li>
+            <li>mäta med cm</li>
+            <li>enkla symmetrier</li>
+            <li>jämföra massa och volym</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>klassificera geometriska former</li>
+            <li>använda cm och m</li>
+            <li>g och kg</li>
+            <li>dl och l</li>
+            <li>uppskatta före mätning</li>
+            <li>symmetri</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven känner igen en kvadrat visuellt men kan inte beskriva varför den är en kvadrat.
+      </div>
+
+      <div class="support-box">
+        Flytta fokus från ”hur figuren ser ut” till egenskaper: sidor, hörn och sidornas längd.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🕐 Tid</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>dag, vecka och månad</li>
+            <li>hel timme</li>
+            <li>vardagliga tidsord</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>halv timme</li>
+            <li>kvart</li>
+            <li>analog och digital tid</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>läsa av klockan säkrare</li>
+            <li>enkla tidsintervall</li>
+            <li>kalender och datum</li>
+            <li>koppla analog och digital tid</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📊 Statistik och sannolikhet</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>sortera föremål</li>
+            <li>jämföra antal</li>
+            <li>flest och minst</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>enkla tabeller</li>
+            <li>bilddiagram</li>
+            <li>säkert och omöjligt</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>samla och sortera data</li>
+            <li>stapeldiagram</li>
+            <li>tolka information</li>
+            <li>möjligt, säkert och omöjligt</li>
+            <li>enkla slumpförsök</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning och resonemang</h2>
+
+    <div class="progress-card">
+
+      <div class="year-grid">
+
+        <div class="year-card">
+          <h4>🌱 Åk 1</h4>
+          <ul>
+            <li>förstå enkla berättelseproblem</li>
+            <li>rita situationen</li>
+            <li>prova med konkret material</li>
+          </ul>
+        </div>
+
+        <div class="year-card">
+          <h4>🌿 Åk 2</h4>
+          <ul>
+            <li>välja mellan olika strategier</li>
+            <li>förklara enkla lösningar</li>
+            <li>jämföra två sätt</li>
+          </ul>
+        </div>
+
+        <div class="year-card focus3">
+          <h4>🌳 Åk 3</h4>
+          <ul>
+            <li>identifiera relevant information</li>
+            <li>välja räknesätt utifrån situationen</li>
+            <li>lösa problem i flera steg</li>
+            <li>motivera strategi</li>
+            <li>kontrollera rimlighet</li>
+            <li>jämföra lösningar</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="gap-box">
+        <strong>🔎 Varningssignal:</strong>
+        Eleven letar efter ett särskilt nyckelord istället för att förstå situationen.
+      </div>
+
+      <div class="support-box">
+        Läs, återberätta, rita och prata om relationerna innan eleven väljer räknesätt.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="luckor">
+    <h2>🔎 Vanliga grundluckor som påverkar åk 3</h2>
+
+    <div class="signal-grid">
+
+      <div class="signal-card">
+        <h3>1. Svag taluppfattning</h3>
+        <p>
+          Eleven kan räkna men har svårt att se hur tal är uppbyggda.
+        </p>
+
+        <strong>Syns ofta genom:</strong>
+        <ul>
+          <li>förväxling av 326 och 362</li>
+          <li>svårt att uppskatta</li>
+          <li>osäkerhet på tallinjen</li>
+        </ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>2. Räknar från ett</h3>
+        <p>
+          Eleven har inte utvecklat tillräckligt många talrelationer.
+        </p>
+
+        <strong>Behöver:</strong>
+        <ul>
+          <li>tiokompisar</li>
+          <li>dubbelt</li>
+          <li>del–helhet</li>
+          <li>talmönster</li>
+        </ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>3. Procedur utan förståelse</h3>
+        <p>
+          Eleven kan följa en metod men kan inte förklara varför den fungerar.
+        </p>
+
+        <strong>Behöver:</strong>
+        <ul>
+          <li>material</li>
+          <li>bilder</li>
+          <li>matteprat</li>
+          <li>flera representationer</li>
+        </ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>4. Språket hindrar matematiken</h3>
+
+        <p>
+          Eleven kan beräkningen men förstår inte problemet eller begreppen.
+        </p>
+
+        <strong>Behöver:</strong>
+        <ul>
+          <li>begreppsförberedelse</li>
+          <li>bildstöd</li>
+          <li>muntlig återberättelse</li>
+          <li>meningsstarter</li>
+        </ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>5. Svaga tabellsamband</h3>
+
+        <p>
+          Eleven försöker memorera varje uppgift separat.
+        </p>
+
+        <strong>Behöver:</strong>
+        <ul>
+          <li>2-, 5- och 10-samband</li>
+          <li>dubbelt</li>
+          <li>kommutativitet</li>
+          <li>samband med division</li>
+        </ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>6. Svårt att kontrollera</h3>
+
+        <p>
+          Eleven accepterar svar som inte passar situationen.
+        </p>
+
+        <strong>Behöver:</strong>
+        <ul>
+          <li>uppskattning</li>
+          <li>rimlighetsfrågor</li>
+          <li>motsatt räknesätt</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>👀 Snabb kartläggning</h2>
+
+    <p>
+      Om en elev får stora svårigheter i åk 3 kan några få väl valda frågor visa var progressionen har brutits.
+    </p>
+
+    <div class="question-box">
+      <strong>Tal:</strong>
+      Vad betyder siffran 6 i talet 364?
+    </div>
+
+    <div class="question-box">
+      <strong>Addition:</strong>
+      Hur skulle du räkna 8 + 7 utan att räkna från ett?
+    </div>
+
+    <div class="question-box">
+      <strong>Subtraktion:</strong>
+      Vad är skillnaden mellan 12 och 8? Visa på två sätt.
+    </div>
+
+    <div class="question-box">
+      <strong>Multiplikation:</strong>
+      Visa 3 × 4 med föremål eller bild.
+    </div>
+
+    <div class="question-box">
+      <strong>Division:</strong>
+      Dela 12 lika mellan 3 grupper.
+    </div>
+
+    <div class="question-box">
+      <strong>Bråk:</strong>
+      Visa hälften av 8 föremål.
+    </div>
+
+    <div class="question-box">
+      <strong>Problemlösning:</strong>
+      Vad gör du först när du får ett textproblem?
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>➡️ När en kunskapslucka upptäcks</h2>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        <div class="icon">1️⃣</div>
+        <strong>Identifiera</strong>
+        <p>Vilken matematisk idé saknas?</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">2️⃣</div>
+        <strong>Backa lagom</strong>
+        <p>Hitta den nivå där eleven faktiskt förstår.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">3️⃣</div>
+        <strong>Bygg upp</strong>
+        <p>Konkret → bild → symbol → språk.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">4️⃣</div>
+        <strong>Träna kort</strong>
+        <p>Återkom ofta istället för ett långt pass.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">5️⃣</div>
+        <strong>Följ upp</strong>
+        <p>Kontrollera om förståelsen fungerar i ny uppgift.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Progressionscheck inför åk 3</h2>
+
+    <ul class="checklist">
+      <li>Eleven förstår tiotal och ental.</li>
+      <li>Eleven kan använda tiokompisar.</li>
+      <li>Eleven ser enkla talrelationer utan att alltid räkna från ett.</li>
+      <li>Eleven förstår addition som att lägga samman.</li>
+      <li>Eleven förstår subtraktion som ta bort och skillnad.</li>
+      <li>Eleven känner igen lika stora grupper.</li>
+      <li>Eleven kan dela en mängd lika.</li>
+      <li>Eleven förstår hel och halv.</li>
+      <li>Eleven kan läsa enkla tabeller och bilder.</li>
+      <li>Eleven kan beskriva sitt matematiska tänkande med stöd.</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="diagnos.html">
+        🔎 Diagnos
+      </a>
+
+      <a class="link-card" href="bedomning.html">
+        📊 Bedömning
+      </a>
+
+      <a class="link-card" href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Representationer
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="arsplan.html">
+        📅 Årsplan
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 1–3 – Progression</strong></p>
+  <p>Grundlägga • Utveckla • Fördjupa • Följa upp</p>
+</footer>
+
+</body>
+</html>
