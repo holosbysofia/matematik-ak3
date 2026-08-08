@@ -8,15 +8,16 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
@@ -32,12 +33,12 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     header {
       background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 48px 20px;
+      padding: 46px 20px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
     }
@@ -45,33 +46,33 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2rem,5vw,3.8rem);
+      font-size: clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 850px;
+      max-width: 900px;
       margin: 12px auto 0;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 14px;
+      padding: 14px 8px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
     }
 
     nav a {
       display: inline-block;
-      color: var(--brun);
       text-decoration: none;
+      color: var(--brun);
       font-weight: bold;
-      margin: 4px 6px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 3px;
+      border-radius: 9px;
     }
 
     nav a:hover {
@@ -79,7 +80,7 @@
     }
 
     main {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: auto;
       padding: 30px 20px 70px;
     }
@@ -98,7 +99,8 @@
     }
 
     h2,
-    h3 {
+    h3,
+    h4 {
       color: var(--brun);
     }
 
@@ -106,160 +108,131 @@
       margin-top: 0;
     }
 
-    .principles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .principle {
-      background: #f3eadf;
-      border-radius: 14px;
-      padding: 17px;
-      text-align: center;
-    }
-
-    .icon {
-      font-size: 2.3rem;
-      margin-bottom: 6px;
-    }
-
-    .term-heading {
-      background: var(--beige);
-      border-radius: 14px;
-      padding: 18px;
-      margin: 30px 0 18px;
-    }
-
-    .term-heading h2 {
-      margin: 0;
-    }
-
-    .period-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-      gap: 18px;
-    }
-
-    .period-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 16px;
-      padding: 21px;
-    }
-
-    .period-card h3 {
-      margin-top: 0;
-    }
-
-    .week {
-      display: inline-block;
-      background: #e8dcc8;
-      color: var(--brun);
-      border-radius: 20px;
-      padding: 5px 11px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .focus {
-      background: #f3eadf;
-      border-radius: 11px;
-      padding: 12px;
-      margin: 10px 0;
-    }
-
-    .focus strong {
-      color: var(--brun);
-    }
-
-    ul {
-      padding-left: 22px;
-    }
-
-    .progression {
+    .overview-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
       gap: 14px;
       margin-top: 18px;
     }
 
-    .progress-card {
-      background: #f3eadf;
+    .overview-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
       border-radius: 14px;
       padding: 17px;
     }
 
-    .progress-card h3 {
+    .overview-card .icon {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    .overview-card strong {
+      display: block;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    .period {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 23px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px var(--skugga);
+    }
+
+    .period-head {
+      background: #eee4d6;
+      border-radius: 13px;
+      padding: 15px;
+      margin-bottom: 16px;
+    }
+
+    .period-head h2 {
+      margin: 0 0 5px;
+    }
+
+    .period-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .plan-card {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .plan-card h3 {
       margin-top: 0;
     }
 
-    .assessment-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 18px;
+    .plan-card ul {
+      padding-left: 20px;
+      margin-bottom: 0;
     }
 
-    .assessment-table th,
-    .assessment-table td {
+    .plan-card li {
+      margin: 6px 0;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .focus-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .support-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    th,
+    td {
       border: 1px solid #d8cab7;
-      padding: 11px;
+      padding: 10px;
       text-align: left;
       vertical-align: top;
     }
 
-    .assessment-table th {
+    th {
       background: var(--beige);
       color: var(--brun);
     }
 
-    .assessment-table td {
+    td {
       background: #fffdf8;
-    }
-
-    .routine {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 11px 0;
-    }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
-      margin-top: 17px;
-    }
-
-    .link-card {
-      display: block;
-      text-decoration: none;
-      color: var(--text);
-      background: #f3eadf;
-      border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .link-card:hover {
-      background: var(--beige);
-    }
-
-    .teacher-note {
-      background: #e7dfd1;
     }
 
     button {
       border: none;
       background: #d6c3a6;
       color: var(--text);
-      padding: 12px 18px;
       border-radius: 10px;
+      padding: 11px 16px;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
@@ -269,19 +242,225 @@
       background: var(--beige2);
     }
 
-    .print-row {
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .links a {
+      display: block;
+      text-decoration: none;
       text-align: center;
-      margin-top: 20px;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 12px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      background: var(--beige);
     }
 
     footer {
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 27px;
+      padding: 28px 20px;
     }
 
-    @media(max-width:700px) {
+
+    /* =====================================
+       A4-UTSKRIFT
+       ===================================== */
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 13mm 14mm 13mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.6pt;
+        line-height: 1.28;
+      }
+
+      header,
+      nav,
+      footer,
+      .intro,
+      .screen-only,
+      .button-row,
+      button,
+      .links {
+        display: none !important;
+      }
+
+      main {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .box {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      .print-title {
+        display: block !important;
+        margin: 0 0 5mm 0 !important;
+        padding-bottom: 3mm !important;
+        border-bottom: 1.5pt solid #555 !important;
+      }
+
+      .print-title h1 {
+        font-size: 19pt !important;
+        color: #000 !important;
+        margin: 0 0 1.5mm !important;
+      }
+
+      .print-title p {
+        margin: 0 !important;
+      }
+
+      .period {
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 4mm !important;
+        margin: 0 0 5mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .period-head {
+        background: #eee !important;
+        border-radius: 0 !important;
+        padding: 2.5mm 3mm !important;
+        margin-bottom: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .period-head h2 {
+        color: #000 !important;
+        font-size: 14pt !important;
+        margin: 0 0 1mm !important;
+      }
+
+      .period-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .plan-card {
+        background: white !important;
+        border: 1px solid #888 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .plan-card h3 {
+        color: #000 !important;
+        font-size: 11pt !important;
+        margin: 0 0 2mm !important;
+      }
+
+      .focus-box,
+      .support-box {
+        background: white !important;
+        border: 1px solid #888 !important;
+        border-left: 2pt solid #666 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+        margin-top: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000 !important;
+        break-after: avoid-page;
+        page-break-after: avoid;
+      }
+
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .table-wrap {
+        overflow: visible !important;
+      }
+
+      table {
+        width: 100% !important;
+        min-width: 0 !important;
+        font-size: 8.4pt !important;
+        border-collapse: collapse !important;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tr {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      th,
+      td {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #777 !important;
+        padding: 2mm !important;
+      }
+
+      .year-table {
+        break-before: page;
+        page-break-before: always;
+      }
+    }
+
+
+    @media(max-width:750px) {
+
       nav {
         position: static;
       }
@@ -294,712 +473,819 @@
         padding: 22px 12px 55px;
       }
 
-      .box {
-        padding: 19px;
-      }
-
-      .assessment-table {
-        display: block;
-        overflow-x: auto;
-      }
-    }
-
-    @media print {
-      nav,
-      footer,
-      .print-row {
-        display: none;
-      }
-
-      body {
-        background: white;
-      }
-
       .box,
-      .period-card {
-        box-shadow: none;
-        page-break-inside: avoid;
+      .period {
+        padding: 18px;
+      }
+
+      .period-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
-  <h1>📅 Årsplan matematik åk 3</h1>
+
+  <h1>🗓️ Årsplan – Matematik åk 3</h1>
 
   <p>
-    En sammanhängande planering med progression, repetition,
-    problemlösning, begrepp, bedömning och återkommande träning.
+    Ett pedagogiskt planeringsförslag för hur matematikundervisningen
+    kan organiseras över läsåret med progression, repetition,
+    problemlösning och återkommande matematiska samtal.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#host">🍂 Hösttermin</a>
-  <a href="#var">🌱 Vårtermin</a>
-  <a href="#progression">📈 Progression</a>
-  <a href="#bedomning">🔎 Uppföljning</a>
-  <a href="lararrum.html">👩‍🏫 Lärarrum</a>
+  <a href="#start">🌱 Start</a>
+  <a href="#ht1">🍂 HT 1</a>
+  <a href="#ht2">🍁 HT 2</a>
+  <a href="#vt1">❄️ VT 1</a>
+  <a href="#vt2">🌷 VT 2</a>
+  <a href="#oversikt">📋 Översikt</a>
 </nav>
+
 
 <main>
 
-  <section class="box intro">
-    <h2>🌿 Grundtanke</h2>
+
+  <!-- SKÄRMINTRO -->
+
+  <section class="box intro" id="start">
+
+    <h2>🧭 Om årsplanen</h2>
 
     <p>
-      Årsplanen bygger på att eleverna möter matematiska idéer flera gånger
-      under året. Områden återkommer därför i nya sammanhang istället för att
-      avslutas och sedan lämnas.
+      Årsplanen är ett <strong>planeringsförslag</strong> och inte en
+      officiellt föreskriven årskurs-för-årskurs-ordning.
+      Innehåll, tempo och tyngdpunkter behöver anpassas efter elevernas
+      tidigare erfarenheter och den undervisning som bedrivs på skolan.
     </p>
 
-    <div class="principles">
+    <div class="overview-grid">
 
-      <div class="principle">
-        <div class="icon">🔁</div>
-        <strong>Återkommande repetition</strong>
-        <p>Korta återblickar under hela året.</p>
+      <div class="overview-card">
+        <div class="icon">🔢</div>
+        <strong>Tal och räknesätt</strong>
+        Återkommer genom hela året.
       </div>
 
-      <div class="principle">
-        <div class="icon">🧠</div>
-        <strong>Strategier</strong>
-        <p>Förstå hur man kan tänka, inte bara vad svaret blir.</p>
+      <div class="overview-card">
+        <div class="icon">🧩</div>
+        <strong>Problemlösning</strong>
+        Finns med kontinuerligt, inte bara som ett eget område.
       </div>
 
-      <div class="principle">
+      <div class="overview-card">
         <div class="icon">💬</div>
         <strong>Matematiskt språk</strong>
-        <p>Begrepp, meningsstarter och samtal varje vecka.</p>
+        Begrepp, förklaringar och resonemang tränas varje vecka.
       </div>
 
-      <div class="principle">
-        <div class="icon">🧩</div>
+      <div class="overview-card">
+        <div class="icon">🧱</div>
         <strong>Representationer</strong>
-        <p>Material, bild, tallinje, symboler och ord.</p>
+        Material, bilder, tallinjer, tabeller och symboler växlas.
       </div>
 
-      <div class="principle">
+      <div class="overview-card">
         <div class="icon">🔎</div>
         <strong>Formativ uppföljning</strong>
-        <p>Se vad eleverna förstått och planera nästa steg.</p>
+        Exit tickets, observationer och elevlösningar styr nästa steg.
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🔄</div>
+        <strong>Repetition</strong>
+        Tidigare innehåll vävs in i nya områden.
       </div>
 
     </div>
-  </section>
 
-
-  <div class="term-heading" id="host">
-    <h2>🍂 Hösttermin</h2>
-  </div>
-
-
-  <section class="period-grid">
-
-    <div class="period-card">
-      <div class="week">Period 1</div>
-
-      <h3>🔢 Taluppfattning och positionssystem</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        bygga en stabil grund för årets fortsatta matematik.
-      </div>
-
-      <ul>
-        <li>läsa och skriva tal</li>
-        <li>hundratal, tiotal och ental</li>
-        <li>utvecklad form, till exempel 326 = 300 + 20 + 6</li>
-        <li>jämföra och ordna tal</li>
-        <li>tallinje</li>
-        <li>udda och jämna tal</li>
-        <li>enkla talmönster</li>
-        <li>uppskattning och rimlighet</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="taluppfattning.html">Taluppfattning</a>,
-        <a href="representationer.html">Representationer</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 2</div>
-
-      <h3>➕ Addition</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        utveckla flexibla räknestrategier.
-      </div>
-
-      <ul>
-        <li>tiokompisar</li>
-        <li>dela upp tal</li>
-        <li>gå via tiotal</li>
-        <li>nära jämna tiotal</li>
-        <li>huvudräkning</li>
-        <li>skriftliga metoder</li>
-        <li>kontroll och rimlighet</li>
-        <li>textproblem</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="addition.html">Addition</a>,
-        <a href="strategier.html">Strategier</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 3</div>
-
-      <h3>➖ Subtraktion</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        förstå subtraktion som både ta bort och skillnad.
-      </div>
-
-      <ul>
-        <li>ta bort</li>
-        <li>jämföra</li>
-        <li>räkna upp</li>
-        <li>dela upp tal</li>
-        <li>gå via tiotal</li>
-        <li>samband med addition</li>
-        <li>skriftliga metoder</li>
-        <li>problemlösning</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="subtraktion.html">Subtraktion</a>,
-        <a href="felanalys.html">Felanalys</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 4</div>
-
-      <h3>✖️ Multiplikation</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        förstå multiplikation innan tabeller automatiseras.
-      </div>
-
-      <ul>
-        <li>lika stora grupper</li>
-        <li>upprepad addition</li>
-        <li>2:ans tabell</li>
-        <li>5:ans tabell</li>
-        <li>10:ans tabell</li>
-        <li>3:ans och 4:ans tabell</li>
-        <li>kommutativa samband</li>
-        <li>dubbelt och hälften</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="multiplikation.html">Multiplikation</a>,
-        <a href="spel.html">Mattespel</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 5</div>
-
-      <h3>➗ Division</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        koppla division tydligt till multiplikation.
-      </div>
-
-      <ul>
-        <li>dela lika</li>
-        <li>gruppera</li>
-        <li>antal grupper</li>
-        <li>antal i varje grupp</li>
-        <li>samband med multiplikation</li>
-        <li>enkla divisionsproblem</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="division.html">Division</a>,
-        <a href="representationer.html">Representationer</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 6</div>
-
-      <h3>🧠 Problemlösning och repetition</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        använda höstens kunskaper i nya situationer.
-      </div>
-
-      <ul>
-        <li>förstå frågan</li>
-        <li>välja räknesätt</li>
-        <li>rita och modellera</li>
-        <li>prova systematiskt</li>
-        <li>förklara strategier</li>
-        <li>bedöma rimlighet</li>
-        <li>repetition av tal och räknesätt</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="problemlosning.html">Problemlösning</a>,
-        <a href="utmaningar.html">Utmaningar</a>.
-      </p>
+    <div class="button-row">
+      <button onclick="window.print()">🖨️ Skriv ut årsplan A4</button>
     </div>
 
   </section>
 
 
-  <div class="term-heading" id="var">
-    <h2>🌱 Vårtermin</h2>
-  </div>
 
+  <!-- UTSKRIFTSRUBRIK -->
 
-  <section class="period-grid">
+  <section class="print-title" style="display:none;">
 
-    <div class="period-card">
-      <div class="week">Period 7</div>
-
-      <h3>🍕 Bråk</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        förstå bråk som delar av samma helhet.
-      </div>
-
-      <ul>
-        <li>helhet och del</li>
-        <li>lika stora delar</li>
-        <li>hälften</li>
-        <li>tredjedelar</li>
-        <li>fjärdedelar</li>
-        <li>enkla jämförelser</li>
-        <li>del av antal</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="brak.html">Bråk</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 8</div>
-
-      <h3>⚖️ Algebra och mönster</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        se matematiska samband och förstå likhet.
-      </div>
-
-      <ul>
-        <li>likhetstecknets betydelse</li>
-        <li>obekanta tal</li>
-        <li>enkla ekvationer</li>
-        <li>talmönster</li>
-        <li>bildmönster</li>
-        <li>beskriva regler</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="algebra.html">Algebra</a>,
-        <a href="samband.html">Samband</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 9</div>
-
-      <h3>📐 Geometri</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        beskriva och jämföra geometriska objekt.
-      </div>
-
-      <ul>
-        <li>triangel</li>
-        <li>fyrhörningar</li>
-        <li>kvadrat och rektangel</li>
-        <li>cirkel</li>
-        <li>sidor och hörn</li>
-        <li>geometriska kroppar</li>
-        <li>symmetri</li>
-        <li>enkel skala</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="geometri.html">Geometri</a>,
-        <a href="symmetri-skala.html">Symmetri och skala</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 10</div>
-
-      <h3>📏 Mätning och tid</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        välja, använda och förstå vanliga enheter.
-      </div>
-
-      <ul>
-        <li>centimeter och meter</li>
-        <li>gram och kilogram</li>
-        <li>deciliter och liter</li>
-        <li>uppskatta före mätning</li>
-        <li>analog och digital tid</li>
-        <li>hel, halv och kvart</li>
-        <li>enkla tidsintervall</li>
-        <li>kalender</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="matning.html">Mätning</a>,
-        <a href="tid.html">Tid</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 11</div>
-
-      <h3>📊 Statistik och sannolikhet</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        samla, visa och tolka information.
-      </div>
-
-      <ul>
-        <li>samla data</li>
-        <li>sortera information</li>
-        <li>tabeller</li>
-        <li>bilddiagram</li>
-        <li>stapeldiagram</li>
-        <li>säkert, möjligt och omöjligt</li>
-        <li>enkla slumpförsök</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="statistik.html">Statistik</a>,
-        <a href="sannolikhet.html">Sannolikhet</a>.
-      </p>
-    </div>
-
-
-    <div class="period-card">
-      <div class="week">Period 12</div>
-
-      <h3>📝 Repetition och sammanfattning</h3>
-
-      <div class="focus">
-        <strong>Fokus:</strong>
-        identifiera vad varje elev behöver repetera och fördjupa.
-      </div>
-
-      <ul>
-        <li>taluppfattning</li>
-        <li>de fyra räknesätten</li>
-        <li>bråk</li>
-        <li>problemlösning</li>
-        <li>geometri och mätning</li>
-        <li>begrepp</li>
-        <li>matematiska resonemang</li>
-      </ul>
-
-      <p>
-        <strong>Plattform:</strong>
-        <a href="diagnos.html">Diagnos</a>,
-        <a href="ovningsbank.html">Övningsbank</a>,
-        <a href="np-traning.html">Matematiska förmågor</a>.
-      </p>
-    </div>
-
-  </section>
-
-
-  <section class="box" id="progression">
-    <h2>📈 Progression genom året</h2>
-
-    <div class="progression">
-
-      <div class="progress-card">
-        <h3>1. Konkret</h3>
-        <p>
-          Eleven bygger, flyttar, delar och undersöker med föremål.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>2. Visuellt</h3>
-        <p>
-          Eleven använder bilder, tallinjer, tabeller och modeller.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>3. Symboliskt</h3>
-        <p>
-          Eleven använder siffror, uttryck och matematiska symboler.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>4. Förklara</h3>
-        <p>
-          Eleven beskriver hur och varför strategin fungerar.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>5. Tillämpa</h3>
-        <p>
-          Eleven använder kunskapen i nya problem och sammanhang.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🔁 Sådant som bör återkomma varje vecka</h2>
-
-    <div class="routine">
-      <strong>🔢 Taluppfattning:</strong>
-      korta frågor om tal, mönster, platsvärde och rimlighet.
-    </div>
-
-    <div class="routine">
-      <strong>⚡ Huvudräkning:</strong>
-      några minuter med strategibaserad träning.
-    </div>
-
-    <div class="routine">
-      <strong>💬 Matematikord:</strong>
-      välj 2–4 begrepp som används aktivt under veckan.
-    </div>
-
-    <div class="routine">
-      <strong>🧠 Problemlösning:</strong>
-      minst ett problem där eleverna behöver välja strategi själva.
-    </div>
-
-    <div class="routine">
-      <strong>🗣️ Matematiska samtal:</strong>
-      jämför lösningar och låt eleverna motivera.
-    </div>
-
-    <div class="routine">
-      <strong>🔎 Formativ kontroll:</strong>
-      exit ticket, miniwhiteboard eller kort elevsamtal.
-    </div>
-  </section>
-
-
-  <section class="box" id="bedomning">
-    <h2>🔎 Uppföljning under året</h2>
-
-    <table class="assessment-table">
-
-      <tr>
-        <th>När?</th>
-        <th>Vad?</th>
-        <th>Hur?</th>
-      </tr>
-
-      <tr>
-        <td>Vid terminsstart</td>
-        <td>Förkunskaper</td>
-        <td>Korta uppgifter, samtal och observation.</td>
-      </tr>
-
-      <tr>
-        <td>Efter varje större område</td>
-        <td>Begrepp och strategier</td>
-        <td>Exit ticket, problemlösning och elevförklaring.</td>
-      </tr>
-
-      <tr>
-        <td>Löpande</td>
-        <td>Huvudräkning och taluppfattning</td>
-        <td>Dagens matte, miniwhiteboard och spel.</td>
-      </tr>
-
-      <tr>
-        <td>Mitt i terminen</td>
-        <td>Bredare överblick</td>
-        <td>Diagnos område för område.</td>
-      </tr>
-
-      <tr>
-        <td>Inför nästa undervisningsperiod</td>
-        <td>Behov av stöd och fördjupning</td>
-        <td>Analysera elevlösningar och gruppera flexibelt.</td>
-      </tr>
-
-      <tr>
-        <td>Slutet av året</td>
-        <td>Samlad progression</td>
-        <td>Kunskapskoll, problemlösning, samtal och elevreflektion.</td>
-      </tr>
-
-    </table>
-  </section>
-
-
-  <section class="box">
-    <h2>🌱 Stöd genom hela året</h2>
-
-    <div class="progression">
-
-      <div class="progress-card">
-        <h3>Språkstöd</h3>
-        <p>
-          Bilder, konkreta exempel, begrepp och meningsstarter.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>Mindre steg</h3>
-        <p>
-          Minska talområdet utan att förenkla själva matematiska idén.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>Flera representationer</h3>
-        <p>
-          Låt eleverna gå mellan material, bild och symboler.
-        </p>
-      </div>
-
-      <div class="progress-card">
-        <h3>Återkommande repetition</h3>
-        <p>
-          Repetition i korta doser är bättre än att vänta tills kunskapen glömts.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>⭐ Fördjupning genom hela året</h2>
-
-    <ul>
-      <li>Hitta flera lösningar.</li>
-      <li>Jämför två strategier.</li>
-      <li>Skapa egna problem.</li>
-      <li>Beskriv en generell regel.</li>
-      <li>Avgör om något alltid, ibland eller aldrig är sant.</li>
-      <li>Förklara varför en metod fungerar.</li>
-      <li>Hitta och analysera matematiska fel.</li>
-    </ul>
+    <h1>Årsplan – Matematik åk 3</h1>
 
     <p>
-      Använd gärna
-      <a href="utmaningar.html"><strong>Matematikutmaningar</strong></a>
-      för fördjupning.
+      Pedagogiskt planeringsförslag för matematikundervisning under läsåret.
     </p>
+
   </section>
 
 
-  <section class="box teacher-note">
-    <h2>👩‍🏫 Viktigt om årsplanen</h2>
 
-    <p>
-      Planen är en struktur för undervisningen, inte ett krav på att alla elever
-      ska gå vidare samtidigt.
-    </p>
+  <!-- HT PERIOD 1 -->
 
-    <p>
-      Om en formativ kontroll visar att viktiga delar inte är befästa behöver
-      undervisningen justeras innan gruppen går vidare.
-    </p>
+  <section class="period" id="ht1">
 
-    <p>
-      Samtidigt kan elever som redan visar säker förståelse arbeta med större
-      komplexitet, fler representationer och mer avancerade resonemang.
-    </p>
+    <div class="period-head">
+
+      <h2>🍂 Hösttermin – Period 1</h2>
+
+      <p>
+        Fokus: taluppfattning, addition, subtraktion och matematiska strategier.
+      </p>
+
+    </div>
+
+
+    <div class="period-grid">
+
+      <div class="plan-card">
+
+        <h3>🔢 Taluppfattning</h3>
+
+        <ul>
+          <li>tal inom aktuellt talområde</li>
+          <li>positionssystemet</li>
+          <li>hundratal, tiotal och ental</li>
+          <li>jämföra och ordna tal</li>
+          <li>tallinje</li>
+          <li>talmönster</li>
+          <li>uppskattning och rimlighet</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>➕ Addition</h3>
+
+        <ul>
+          <li>förstå additionens innebörd</li>
+          <li>tiokamrater och talrelationer</li>
+          <li>nära tiotal</li>
+          <li>dela upp tal</li>
+          <li>kommutativa samband</li>
+          <li>huvudräkningsstrategier</li>
+          <li>skriftliga representationer</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>➖ Subtraktion</h3>
+
+        <ul>
+          <li>ta bort</li>
+          <li>skillnad</li>
+          <li>jämförelse</li>
+          <li>räkna upp</li>
+          <li>räkna bakåt</li>
+          <li>samband mellan addition och subtraktion</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🧠 Strategier</h3>
+
+        <ul>
+          <li>välja strategi utifrån talen</li>
+          <li>visa lösningar på olika sätt</li>
+          <li>jämföra strategier</li>
+          <li>förklara varför en strategi fungerar</li>
+          <li>kontrollera svar</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card full">
+
+        <h3>🧩 Problemlösning under perioden</h3>
+
+        <ul>
+          <li>förstå vad problemet handlar om</li>
+          <li>skilja viktig information från oviktig</li>
+          <li>rita en bild eller modell</li>
+          <li>välja räknesätt</li>
+          <li>skriva svar med ord</li>
+          <li>kontrollera rimlighet</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+
+      <strong>💬 Språkfokus:</strong>
+      fler än, färre än, lika många, summa, term, differens,
+      större än, mindre än, ungefär, rimligt och strategi.
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>🌱 Återkommande undervisningsstöd:</strong>
+      tallinje, konkret material, positionsschema, bildstöd,
+      parprat och meningsstarter.
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>🔗 Planeringsverktyg</h2>
 
-    <div class="link-grid">
+  <!-- HT PERIOD 2 -->
 
-      <a class="link-card" href="veckoplan.html">
+  <section class="period" id="ht2">
+
+    <div class="period-head">
+
+      <h2>🍁 Hösttermin – Period 2</h2>
+
+      <p>
+        Fokus: multiplikation, division, samband, mönster och tid.
+      </p>
+
+    </div>
+
+
+    <div class="period-grid">
+
+      <div class="plan-card">
+
+        <h3>✖️ Multiplikation</h3>
+
+        <ul>
+          <li>lika stora grupper</li>
+          <li>upprepad addition</li>
+          <li>rutnät och arrays</li>
+          <li>multiplikationsuttryck</li>
+          <li>tabellmönster</li>
+          <li>dubbelt och hälften</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>➗ Division</h3>
+
+        <ul>
+          <li>dela lika</li>
+          <li>gruppera</li>
+          <li>division med konkret material</li>
+          <li>samband till multiplikation</li>
+          <li>faktamiljer</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🔗 Samband</h3>
+
+        <ul>
+          <li>dubbelt och hälften</li>
+          <li>addition ↔ subtraktion</li>
+          <li>multiplikation ↔ division</li>
+          <li>tabeller</li>
+          <li>enkla funktionella samband</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🔁 Mönster och algebra</h3>
+
+        <ul>
+          <li>fortsätta mönster</li>
+          <li>beskriva regel</li>
+          <li>saknade tal</li>
+          <li>likhetstecknets betydelse</li>
+          <li>öppna utsagor</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>⏰ Tid</h3>
+
+        <ul>
+          <li>hel och halv timme</li>
+          <li>kvart</li>
+          <li>minuter</li>
+          <li>tidsintervall</li>
+          <li>kalender och datum</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🎲 Sannolikhet</h3>
+
+        <ul>
+          <li>säkert</li>
+          <li>möjligt</li>
+          <li>omöjligt</li>
+          <li>enkla slumpförsök</li>
+          <li>beskriva utfall</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+
+      <strong>💬 Språkfokus:</strong>
+      gånger, grupper, dela lika, varje, dubbelt, hälften,
+      kvot, produkt, mönster, regel, före, efter och tidsintervall.
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>🔄 Repetition:</strong>
+      taluppfattning, addition och subtraktion fortsätter att ingå i
+      korta starter, problemlösning och vardagsmatematik.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- VT PERIOD 1 -->
+
+  <section class="period" id="vt1">
+
+    <div class="period-head">
+
+      <h2>❄️ Vårtermin – Period 1</h2>
+
+      <p>
+        Fokus: bråk, geometri, mätning, symmetri och skala.
+      </p>
+
+    </div>
+
+
+    <div class="period-grid">
+
+      <div class="plan-card">
+
+        <h3>🍕 Bråk</h3>
+
+        <ul>
+          <li>del av helhet</li>
+          <li>lika stora delar</li>
+          <li>hälften</li>
+          <li>tredjedelar</li>
+          <li>fjärdedelar</li>
+          <li>del av antal</li>
+          <li>jämföra enkla bråk med samma helhet</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>📐 Geometri</h3>
+
+        <ul>
+          <li>tvådimensionella figurer</li>
+          <li>hörn och sidor</li>
+          <li>kvadrat och rektangel</li>
+          <li>trianglar</li>
+          <li>cirklar</li>
+          <li>beskriva och sortera figurer</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>📏 Mätning</h3>
+
+        <ul>
+          <li>längd</li>
+          <li>massa</li>
+          <li>volym</li>
+          <li>lämpliga enheter</li>
+          <li>uppskatta före mätning</li>
+          <li>jämföra mätresultat</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🪞 Symmetri</h3>
+
+        <ul>
+          <li>symmetrilinjer</li>
+          <li>spegling</li>
+          <li>skapa symmetriska bilder</li>
+          <li>undersöka symmetri i geometriska figurer</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🔍 Skala</h3>
+
+        <ul>
+          <li>förstoring</li>
+          <li>förminskning</li>
+          <li>jämföra längder</li>
+          <li>enkla modeller och bilder</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🧩 Problemlösning</h3>
+
+        <ul>
+          <li>geometriska problem</li>
+          <li>mätproblem</li>
+          <li>bråk i vardagliga situationer</li>
+          <li>förklara lösningar med bild och ord</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+
+      <strong>💬 Språkfokus:</strong>
+      helhet, del, lika stora delar, täljare, nämnare,
+      sida, hörn, symmetri, längd, massa, volym och enhet.
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>🧱 Representationer:</strong>
+      pappersvikning, bråkmodeller, geometriska former,
+      linjal, måttband, våg, kärl och konkreta jämförelser.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- VT PERIOD 2 -->
+
+  <section class="period" id="vt2">
+
+    <div class="period-head">
+
+      <h2>🌷 Vårtermin – Period 2</h2>
+
+      <p>
+        Fokus: statistik, sammanhang, problemlösning, repetition och fördjupning.
+      </p>
+
+    </div>
+
+
+    <div class="period-grid">
+
+      <div class="plan-card">
+
+        <h3>📊 Statistik</h3>
+
+        <ul>
+          <li>ställa frågor</li>
+          <li>samla information</li>
+          <li>göra tabeller</li>
+          <li>läsa diagram</li>
+          <li>skapa enkla diagram</li>
+          <li>beskriva resultat</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🧩 Fördjupad problemlösning</h3>
+
+        <ul>
+          <li>problem i flera steg</li>
+          <li>välja bland flera strategier</li>
+          <li>förklara varför metoden fungerar</li>
+          <li>jämföra lösningar</li>
+          <li>skapa egna problem</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>💬 Matematiskt resonemang</h3>
+
+        <ul>
+          <li>”Jag tänkte så här...”</li>
+          <li>”Jag håller med eftersom...”</li>
+          <li>”Jag löste det på ett annat sätt...”</li>
+          <li>”Jag vet att svaret är rimligt eftersom...”</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🔄 Repetition</h3>
+
+        <ul>
+          <li>taluppfattning</li>
+          <li>de fyra räknesätten</li>
+          <li>bråk</li>
+          <li>geometri och mätning</li>
+          <li>tid</li>
+          <li>algebra och mönster</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>⭐ Utmaning</h3>
+
+        <ul>
+          <li>öppna problem</li>
+          <li>flera möjliga svar</li>
+          <li>hitta alla lösningar</li>
+          <li>generalisera mönster</li>
+          <li>förklara varför</li>
+        </ul>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <h3>🌱 Elevens utveckling</h3>
+
+        <ul>
+          <li>självskattning</li>
+          <li>reflektera över strategier</li>
+          <li>synliggöra framsteg</li>
+          <li>formulera nästa mål</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+
+      <strong>🎯 Periodens fokus:</strong>
+      knyta ihop matematikområdena och ge eleverna möjlighet att använda
+      sina kunskaper i nya sammanhang.
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>🔎 Uppföljning:</strong>
+      använd elevsamtal, problemlösningar, exit tickets och observationer
+      för att avgöra vad som behöver repeteras eller fördjupas.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- HELÅRSÖVERSIKT -->
+
+  <section class="box year-table" id="oversikt">
+
+    <h2>📋 Helårsöversikt</h2>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Period</th>
+            <th>Huvudfokus</th>
+            <th>Återkommande innehåll</th>
+            <th>Språk och resonemang</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>HT period 1</td>
+            <td>
+              Taluppfattning, addition, subtraktion
+            </td>
+            <td>
+              Problemlösning, tallinje, rimlighet
+            </td>
+            <td>
+              Jämföra, beskriva strategier och kontrollera
+            </td>
+          </tr>
+
+          <tr>
+            <td>HT period 2</td>
+            <td>
+              Multiplikation, division, mönster, tid
+            </td>
+            <td>
+              Taluppfattning och räknestrategier
+            </td>
+            <td>
+              Förklara samband och använda begrepp
+            </td>
+          </tr>
+
+          <tr>
+            <td>VT period 1</td>
+            <td>
+              Bråk, geometri, mätning, symmetri
+            </td>
+            <td>
+              Problemlösning och representationer
+            </td>
+            <td>
+              Beskriva egenskaper och jämföra
+            </td>
+          </tr>
+
+          <tr>
+            <td>VT period 2</td>
+            <td>
+              Statistik, problemlösning, repetition
+            </td>
+            <td>
+              Alla tidigare områden
+            </td>
+            <td>
+              Resonera, förklara, motivera och generalisera
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ÅTERKOMMANDE STRUKTUR -->
+
+  <section class="box screen-only">
+
+    <h2>🔄 Förslag på återkommande veckostruktur</h2>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        <div class="icon">☀️</div>
+        <strong>Måndag</strong>
+        Introducera eller synliggör veckans matematiska idé.
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🧠</div>
+        <strong>Tisdag</strong>
+        Strategier, representationer och strukturerad träning.
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">💬</div>
+        <strong>Onsdag</strong>
+        Matematiska samtal och fördjupning.
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🧩</div>
+        <strong>Torsdag</strong>
+        Problemlösning och tillämpning.
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🔎</div>
+        <strong>Fredag</strong>
+        Repetition, exit ticket och uppföljning.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- LÄNKAR -->
+
+  <section class="box screen-only">
+
+    <h2>🔗 Planera vidare</h2>
+
+    <div class="links">
+
+      <a href="veckoplan.html">
         📅 Veckoplan
       </a>
 
-      <a class="link-card" href="lararverktyg.html">
-        🧰 Lärarverktyg
+      <a href="lektionsbank.html">
+        📚 Lektionsbank
       </a>
 
-      <a class="link-card" href="stationsarbete.html">
-        🔄 Stationsarbete
+      <a href="lektionsgenerator.html">
+        ✨ Lektionsgenerator
       </a>
 
-      <a class="link-card" href="dagensmatte.html">
-        ☀️ Dagens matte
+      <a href="mattepass.html">
+        🧮 Mattepass
       </a>
 
-      <a class="link-card" href="exit-ticket.html">
-        🚪 Exit ticket
+      <a href="progression.html">
+        📈 Progression
       </a>
 
-      <a class="link-card" href="diagnos.html">
-        🔎 Diagnos
+      <a href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a href="sprakstod.html">
+        💬 Språkstöd
       </a>
 
     </div>
 
-    <div class="print-row">
-      <button onclick="window.print()">
-        🖨️ Skriv ut årsplanen
-      </button>
-    </div>
   </section>
 
 </main>
 
+
 <footer>
   <p><strong>Matematik åk 3 – Årsplan</strong></p>
-  <p>Progression • Repetition • Förståelse • Uppföljning</p>
+  <p>Planera • Repetera • Fördjupa • Följa upp</p>
 </footer>
 
 </body>
