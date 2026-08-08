@@ -8,16 +8,16 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
@@ -33,12 +33,12 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     header {
       background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
+      padding: 46px 20px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
     }
@@ -46,23 +46,23 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2rem,5vw,3.7rem);
+      font-size: clamp(2.2rem,6vw,4rem);
     }
 
     header p {
       max-width: 900px;
       margin: 12px auto 0;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 14px;
+      padding: 14px 8px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
     }
 
     nav a {
@@ -70,9 +70,9 @@
       text-decoration: none;
       color: var(--brun);
       font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 3px;
+      border-radius: 9px;
     }
 
     nav a:hover {
@@ -111,129 +111,194 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-      gap: 15px;
+      gap: 14px;
       margin-top: 18px;
     }
 
     .card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
       border-radius: 14px;
-      padding: 18px;
+      padding: 17px;
     }
 
-    .icon {
-      font-size: 2.4rem;
+    .card .icon {
+      font-size: 2rem;
       margin-bottom: 6px;
     }
 
-    .intervention {
+    .card strong {
+      display: block;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    .intervention-section {
       background: #fffdf8;
       border: 1px solid var(--kant);
       border-radius: 17px;
-      padding: 22px;
-      margin: 20px 0;
+      padding: 23px;
+      margin-bottom: 24px;
     }
 
-    .intervention h3 {
-      margin-top: 0;
+    .intervention-section h2 {
+      margin-bottom: 7px;
     }
 
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .tag {
-      background: var(--beige);
-      color: var(--brun);
-      border-radius: 20px;
-      padding: 5px 10px;
-      font-size: 0.87rem;
-      font-weight: bold;
-    }
-
-    .start-box {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 12px 0;
-    }
-
-    .goal-box {
-      background: #e7eadf;
-      border-left: 5px solid #a7ad91;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 12px 0;
-    }
-
-    .session-grid {
+    .intervention-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 13px;
-      margin-top: 14px;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 15px;
     }
 
-    .session {
+    .intervention-card {
       background: #f3eadf;
+      border: 1px solid #d8cab7;
       border-radius: 12px;
       padding: 15px;
     }
 
-    .session h4 {
+    .intervention-card h3 {
       margin-top: 0;
     }
 
-    .lesson-structure {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 10px;
+    .intervention-card ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .intervention-card li {
+      margin: 6px 0;
+    }
+
+    .focus-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
       margin-top: 14px;
     }
 
-    .lesson-step {
+    .warning-box {
+      background: #eedbd7;
+      border-left: 5px solid #c6a39d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .teacher-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .print-page {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 25px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px var(--skugga);
+    }
+
+    .sheet-head {
+      border-bottom: 2px solid #cdbfae;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .sheet-head h2 {
+      margin: 0 0 5px;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #cdbfae;
+      border-radius: 8px;
+      padding: 9px;
+      background: white;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .plan-card {
       background: #f3eadf;
+      border: 1px solid #d8cab7;
       border-radius: 11px;
       padding: 13px;
-      text-align: center;
     }
 
-    .assessment {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 15px;
+    .plan-card textarea {
+      min-height: 90px;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
       margin-top: 14px;
     }
 
-    .question-box {
-      background: #f3eadf;
-      border-radius: 10px;
+    .week-card {
+      background: #fffaf2;
+      border: 1px solid #d8cab7;
+      border-radius: 11px;
       padding: 13px;
-      margin: 9px 0;
     }
 
-    .table-wrap {
+    .week-card h3 {
+      margin-top: 0;
+    }
+
+    .session-table-wrap {
       overflow-x: auto;
+      margin-top: 14px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 16px;
-      min-width: 760px;
+      min-width: 850px;
     }
 
     th,
     td {
-      border: 1px solid #d8cab7;
-      padding: 11px;
-      vertical-align: top;
+      border: 1px solid #d1c2ae;
+      padding: 9px;
       text-align: left;
+      vertical-align: top;
     }
 
     th {
@@ -245,44 +310,62 @@
       background: #fffdf8;
     }
 
-    .checklist {
-      list-style: none;
-      padding: 0;
-    }
-
-    .checklist li {
-      background: #f3eadf;
-      margin: 8px 0;
-      padding: 11px 13px;
-      border-radius: 10px;
-    }
-
-    .checklist li::before {
-      content: "✓ ";
-      font-weight: bold;
-      color: var(--brun);
-    }
-
-    .link-grid {
+    .check-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
+      grid-template-columns: repeat(2,1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .check-item {
+      border: 1px solid #d5c6b2;
+      background: white;
+      border-radius: 9px;
+      padding: 11px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 18px;
     }
 
-    .link-card {
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .links a {
       display: block;
       text-decoration: none;
+      text-align: center;
       color: var(--text);
       background: #f3eadf;
       border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
+      border-radius: 12px;
+      padding: 15px;
       font-weight: bold;
     }
 
-    .link-card:hover {
+    .links a:hover {
       background: var(--beige);
     }
 
@@ -290,16 +373,188 @@
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 27px;
+      padding: 28px 20px;
     }
 
-    @media(max-width:850px) {
-      .lesson-structure {
-        grid-template-columns: 1fr 1fr;
+
+    /* =========================
+       A4-UTSKRIFT
+       ========================= */
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 13mm 14mm 13mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.3pt;
+        line-height: 1.25;
+      }
+
+      header,
+      nav,
+      footer,
+      .intro,
+      .screen-only,
+      .button-row,
+      button,
+      .links {
+        display: none !important;
+      }
+
+      main {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .print-page {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .print-page:last-of-type {
+        break-after: auto;
+        page-break-after: auto;
+      }
+
+      .sheet-head {
+        margin: 0 0 4mm !important;
+        padding: 0 0 3mm !important;
+        border-bottom: 1.5pt solid #555 !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .sheet-head h2 {
+        color: #000 !important;
+        font-size: 16pt !important;
+        margin: 0 0 1mm !important;
+      }
+
+      .info-row {
+        grid-template-columns: 2fr 1fr 1fr !important;
+        gap: 3mm !important;
+        margin-top: 3mm !important;
+      }
+
+      label {
+        color: #000 !important;
+        font-size: 8.4pt !important;
+        margin-bottom: 1mm !important;
+      }
+
+      input,
+      textarea,
+      select {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 1.5mm !important;
+        font-size: 8.8pt !important;
+        overflow: visible !important;
+      }
+
+      textarea {
+        min-height: 14mm !important;
+        resize: none !important;
+      }
+
+      .plan-grid,
+      .week-grid,
+      .check-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .plan-card,
+      .week-card,
+      .check-item,
+      .focus-box,
+      .warning-box,
+      .teacher-box {
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .focus-box,
+      .warning-box,
+      .teacher-box {
+        border-left: 2pt solid #666 !important;
+      }
+
+      .session-table-wrap {
+        overflow: visible !important;
+      }
+
+      table {
+        width: 100% !important;
+        min-width: 0 !important;
+        font-size: 7.9pt !important;
+        border-collapse: collapse !important;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tr {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      th,
+      td {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #666 !important;
+        padding: 1.5mm !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000 !important;
+        break-after: avoid-page;
+        page-break-after: avoid;
+      }
+
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
       }
     }
 
-    @media(max-width:650px) {
+
+    @media(max-width:750px) {
+
       nav {
         position: static;
       }
@@ -313,797 +568,1013 @@
       }
 
       .box,
-      .intervention {
+      .intervention-section,
+      .print-page {
         padding: 18px;
       }
 
-      .lesson-structure {
+      .intervention-grid,
+      .info-row,
+      .plan-grid,
+      .week-grid,
+      .check-grid {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
+
   <h1>🎯 Matematikinterventioner</h1>
 
   <p>
-    Korta riktade stödinsatser för elever som behöver mer undervisning
-    inom ett avgränsat matematiskt område.
+    Korta, fokuserade och uppföljningsbara undervisningsinsatser
+    för elever som behöver mer stöd inom ett avgränsat matematiskt område.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#struktur">📋 Struktur</a>
+  <a href="#principer">🧭 Principer</a>
   <a href="#tal">🔢 Tal</a>
-  <a href="#addition">➕ Addition</a>
-  <a href="#mult">✖️ Multiplikation</a>
-  <a href="#sprak">💬 Språk</a>
-  <a href="#problem">🧠 Problem</a>
+  <a href="#raknesatt">➕➖ Räknesätt</a>
+  <a href="#multdiv">✖️➗ Mult/Div</a>
+  <a href="#plan">📝 Plan</a>
   <a href="#uppfoljning">🔎 Uppföljning</a>
 </nav>
 
+
 <main>
 
+  <!-- INTRO -->
+
   <section class="box intro">
-    <h2>🌿 När används en intervention?</h2>
+
+    <h2>🌱 Kort, tydligt och fokuserat</h2>
 
     <p>
-      En intervention kan användas när kartläggning och undervisningsobservationer
-      visar att eleven behöver mer fokuserad träning inom en specifik matematisk idé.
+      En intervention bör utgå från ett <strong>tydligt identifierat behov</strong>
+      och ha ett så avgränsat mål att det går att följa upp efter en kort period.
     </p>
 
+    <p>
+      Ett upplägg kan till exempel pågå i <strong>2–4 veckor</strong>,
+      flera korta tillfällen per vecka, samtidigt som eleven fortsätter
+      delta i den ordinarie matematikundervisningen.
+    </p>
+
+
     <div class="grid">
-
-      <div class="card">
-        <div class="icon">🎯</div>
-        <h3>Avgränsad</h3>
-        <p>Fokusera på en tydlig matematisk idé åt gången.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">⏱️</div>
-        <h3>Kort</h3>
-        <p>15–25 minuter per tillfälle.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🔁</div>
-        <h3>Återkommande</h3>
-        <p>Helst 3–4 korta tillfällen per vecka.</p>
-      </div>
 
       <div class="card">
         <div class="icon">🔎</div>
-        <h3>Uppföljd</h3>
-        <p>Kontrollera om förståelsen förändras.</p>
+        <strong>1. Identifiera</strong>
+        Vad är det specifika matematiska behovet?
+      </div>
+
+      <div class="card">
+        <div class="icon">🎯</div>
+        <strong>2. Avgränsa mål</strong>
+        Vad ska eleven förstå bättre efter insatsen?
+      </div>
+
+      <div class="card">
+        <div class="icon">🧱</div>
+        <strong>3. Undervisa explicit</strong>
+        Modellera, använd representationer och låt eleven förklara.
+      </div>
+
+      <div class="card">
+        <div class="icon">🔄</div>
+        <strong>4. Repetera</strong>
+        Återkom ofta till samma idé i varierade situationer.
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <strong>5. Synliggör tänkandet</strong>
+        Be eleven beskriva hur och varför.
+      </div>
+
+      <div class="card">
+        <div class="icon">📈</div>
+        <strong>6. Följ upp</strong>
+        Jämför med startläget och besluta om nästa steg.
       </div>
 
     </div>
+
+
+    <div class="button-row">
+      <button onclick="window.print()">🖨️ Skriv ut interventionsunderlagen</button>
+    </div>
+
   </section>
 
 
-  <section class="box" id="struktur">
-    <h2>📋 Gemensam struktur</h2>
 
-    <p>
-      Varje kortpass kan följa samma upplägg.
-    </p>
+  <!-- PRINCIPER -->
 
-    <div class="lesson-structure">
+  <section class="intervention-section screen-only" id="principer">
 
-      <div class="lesson-step">
-        <strong>1. Återblick</strong>
-        <br>
-        3–5 min
+    <h2>🧭 Vad kännetecknar en bra intervention?</h2>
+
+    <div class="intervention-grid">
+
+      <div class="intervention-card">
+        <h3>🎯 Ett avgränsat mål</h3>
+
+        <p>
+          Undvik mål som ”bli bättre på matematik”.
+          Välj hellre en specifik idé, till exempel:
+        </p>
+
+        <ul>
+          <li>förstå tiotalsövergång</li>
+          <li>förstå platsvärde</li>
+          <li>se multiplikation som lika stora grupper</li>
+          <li>koppla division till multiplikation</li>
+        </ul>
       </div>
 
-      <div class="lesson-step">
-        <strong>2. Modellering</strong>
-        <br>
-        5 min
+
+      <div class="intervention-card">
+        <h3>⏱️ Korta och täta pass</h3>
+
+        <ul>
+          <li>cirka 15–25 minuter</li>
+          <li>flera gånger per vecka</li>
+          <li>samma matematiska kärna återkommer</li>
+          <li>liten grupp eller individuellt vid behov</li>
+        </ul>
       </div>
 
-      <div class="lesson-step">
-        <strong>3. Elevaktivitet</strong>
-        <br>
-        8–12 min
+
+      <div class="intervention-card">
+        <h3>🧱 Tydliga representationer</h3>
+
+        <ul>
+          <li>konkret material</li>
+          <li>bild</li>
+          <li>tallinje</li>
+          <li>tabell eller schema</li>
+          <li>matematiska symboler</li>
+        </ul>
       </div>
 
-      <div class="lesson-step">
-        <strong>4. Kontroll</strong>
-        <br>
-        2–3 min
+
+      <div class="intervention-card">
+        <h3>💬 Aktiv elev</h3>
+
+        <ul>
+          <li>eleven visar</li>
+          <li>eleven förklarar</li>
+          <li>eleven jämför strategier</li>
+          <li>eleven kontrollerar</li>
+        </ul>
+      </div>
+
+
+      <div class="intervention-card">
+        <h3>🔄 Generalisering</h3>
+
+        <p>
+          Eleven behöver möta den matematiska idén med olika tal och
+          i olika sammanhang, så att förståelsen inte bara knyts till en viss uppgift.
+        </p>
+      </div>
+
+
+      <div class="intervention-card">
+        <h3>🔎 Uppföljning</h3>
+
+        <p>
+          Använd en liknande men inte identisk uppgift efter interventionen
+          för att se om förståelsen kan användas självständigt.
+        </p>
       </div>
 
     </div>
 
-    <div class="goal-box">
-      Interventionen ska inte bara ge fler uppgifter.
-      Den ska rikta undervisningen mot det som kartläggningen visar att eleven ännu inte förstått.
+
+    <div class="warning-box">
+
+      <strong>Undvik:</strong>
+      långa mängder av likadana träningsuppgifter om elevens grundläggande
+      förståelse fortfarande är osäker. Mer av samma procedur löser inte alltid problemet.
+
     </div>
+
   </section>
 
 
-  <section class="box" id="tal">
-    <h2>🔢 Intervention 1 – Taluppfattning och platsvärde</h2>
 
-    <div class="intervention">
+  <!-- EXEMPEL TAL -->
 
-      <div class="meta">
-        <span class="tag">3 veckor</span>
-        <span class="tag">4 × 20 min/vecka</span>
-        <span class="tag">1–4 elever</span>
-      </div>
+  <section class="intervention-section screen-only" id="tal">
 
-      <div class="start-box">
-        <strong>Startnivå:</strong>
-        Eleven blandar ihop hundratal, tiotal och ental eller har svårt att jämföra tresiffriga tal.
-      </div>
+    <h2>🔢 Exempel – platsvärde och taluppfattning</h2>
 
-      <div class="goal-box">
-        <strong>Mål:</strong>
-        Eleven ska förstå att siffrans värde bestäms av dess position
-        och kunna koppla mellan material, bild, utvecklad form och sifferskrift.
-      </div>
+    <div class="intervention-grid">
 
-      <h3>Vecka 1 – Bygg platsvärde</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
+        <h3>Möjligt behov</h3>
 
-        <div class="session">
-          <h4>Pass 1</h4>
-          Bygg tvåsiffriga och tresiffriga tal med basmaterial.
-        </div>
+        <p>
+          Eleven blandar ihop siffrans namn med dess platsvärde.
+        </p>
 
-        <div class="session">
-          <h4>Pass 2</h4>
-          Koppla material till platsvärdestabell.
-        </div>
-
-        <div class="session">
-          <h4>Pass 3</h4>
-          Skriv tal i utvecklad form.
-        </div>
-
-        <div class="session">
-          <h4>Pass 4</h4>
-          Bygg samma tal på flera sätt och förklara.
-        </div>
+        <p>
+          Exempel: i 472 säger eleven att 7 är värd 7.
+        </p>
 
       </div>
 
 
-      <h3>Vecka 2 – Jämföra och ordna</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
+        <h3>Mål</h3>
 
-        <div class="session">
-          Jämför två tal med konkret material.
-        </div>
-
-        <div class="session">
-          Använd &gt;, &lt; och =.
-        </div>
-
-        <div class="session">
-          Placera tal på tallinje.
-        </div>
-
-        <div class="session">
-          Hemliga tal med ledtrådar.
-        </div>
+        <p>
+          Eleven ska kunna beskriva ett tresiffrigt tal som hundratal,
+          tiotal och ental och förklara värdet av en siffra.
+        </p>
 
       </div>
 
 
-      <h3>Vecka 3 – Flexibilitet</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
+        <h3>Undervisning</h3>
 
-        <div class="session">
-          10 mer / 10 mindre.
-        </div>
-
-        <div class="session">
-          100 mer / 100 mindre.
-        </div>
-
-        <div class="session">
-          Uppskatta tal på tallinje.
-        </div>
-
-        <div class="session">
-          Kort slutkartläggning.
-        </div>
+        <ul>
+          <li>bygg tal med tiobasmaterial</li>
+          <li>använd positionsschema</li>
+          <li>växla mellan konkret material och siffror</li>
+          <li>jämför 7, 70 och 700</li>
+          <li>låt eleven skapa egna tal</li>
+        </ul>
 
       </div>
 
-      <div class="assessment">
-        <strong>🔎 Kontrollfrågor:</strong>
 
-        <div class="question-box">
-          Vad betyder 7:an i 472?
-        </div>
+      <div class="intervention-card">
 
-        <div class="question-box">
-          Vilket är störst: 398 eller 403? Förklara.
-        </div>
+        <h3>Följ upp</h3>
 
-        <div class="question-box">
-          Skriv 506 i utvecklad form.
-        </div>
+        <p>
+          Ge nya tal som 638, 504 och 291.
+          Be eleven både visa och förklara.
+        </p>
+
       </div>
 
     </div>
+
   </section>
 
 
-  <section class="box" id="addition">
-    <h2>➕➖ Intervention 2 – Addition och subtraktion</h2>
 
-    <div class="intervention">
+  <!-- EXEMPEL RÄKNESÄTT -->
 
-      <div class="meta">
-        <span class="tag">3 veckor</span>
-        <span class="tag">4 × 20 min/vecka</span>
-        <span class="tag">Strategier</span>
-      </div>
+  <section class="intervention-section screen-only" id="raknesatt">
 
-      <div class="start-box">
-        <strong>Startnivå:</strong>
-        Eleven räknar ofta från ett, gör positionsfel eller saknar stabila strategier.
-      </div>
+    <h2>➕➖ Exempel – addition och subtraktion</h2>
 
-      <div class="goal-box">
-        <strong>Mål:</strong>
-        Eleven ska använda ett fåtal begripliga och flexibla strategier
-        istället för att räkna varje uppgift från början.
-      </div>
+    <div class="intervention-grid">
 
+      <div class="intervention-card">
 
-      <h3>Vecka 1 – Talrelationer</h3>
+        <h3>Möjligt behov</h3>
 
-      <div class="session-grid">
-
-        <div class="session">
-          <h4>Tiokompisar</h4>
-          7 + ? = 10
-        </div>
-
-        <div class="session">
-          <h4>Dubbelt</h4>
-          6 + 6, 7 + 7, 8 + 8
-        </div>
-
-        <div class="session">
-          <h4>Nästan dubbelt</h4>
-          7 + 8 kopplas till 7 + 7.
-        </div>
-
-        <div class="session">
-          <h4>Del–helhet</h4>
-          Dela tal på flera sätt.
-        </div>
+        <p>
+          Eleven använder en mekanisk metod men har svag förståelse
+          för tiotal, ental och växling.
+        </p>
 
       </div>
 
 
-      <h3>Vecka 2 – Addition</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
+        <h3>Mål</h3>
 
-        <div class="session">
-          28 + 15 genom att dela upp 15.
-        </div>
-
-        <div class="session">
-          38 + 27 via närmaste tiotal.
-        </div>
-
-        <div class="session">
-          Tallinjestrategier.
-        </div>
-
-        <div class="session">
-          Jämför två strategier.
-        </div>
+        <p>
+          Eleven ska kunna dela upp tvåsiffriga tal i tiotal och ental
+          och använda detta vid addition eller subtraktion.
+        </p>
 
       </div>
 
 
-      <h3>Vecka 3 – Subtraktion</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
+        <h3>Undervisning</h3>
 
-        <div class="session">
-          Räkna bakåt i delar.
-        </div>
-
-        <div class="session">
-          Räkna upp från mindre till större.
-        </div>
-
-        <div class="session">
-          Koppla subtraktion till addition.
-        </div>
-
-        <div class="session">
-          Problemlösning och slutkontroll.
-        </div>
+        <ul>
+          <li>bygg talen med material</li>
+          <li>rita tiotal och ental</li>
+          <li>visa på tallinje</li>
+          <li>jämför två strategier</li>
+          <li>träna rimlighetsbedömning före exakt beräkning</li>
+        </ul>
 
       </div>
 
 
-      <div class="assessment">
-        <strong>🔎 Kontroll:</strong>
+      <div class="intervention-card">
 
-        <div class="question-box">
-          Räkna 8 + 7 utan att räkna från ett.
-        </div>
+        <h3>Följ upp</h3>
 
-        <div class="question-box">
-          Räkna 48 + 27 och visa hur du tänker.
-        </div>
+        <p>
+          Använd nya tal och fråga eleven vilken strategi som passar bäst och varför.
+        </p>
 
-        <div class="question-box">
-          Räkna 72 − 38 och kontrollera med addition.
-        </div>
       </div>
 
     </div>
+
   </section>
 
 
-  <section class="box" id="mult">
-    <h2>✖️➗ Intervention 3 – Multiplikation och division</h2>
 
-    <div class="intervention">
+  <!-- EXEMPEL MULTDIV -->
 
-      <div class="meta">
-        <span class="tag">4 veckor</span>
-        <span class="tag">3–4 × 20 min/vecka</span>
-        <span class="tag">Förståelse före snabbhet</span>
-      </div>
+  <section class="intervention-section screen-only" id="multdiv">
 
-      <div class="start-box">
-        <strong>Startnivå:</strong>
-        Eleven kan några tabellsvar men förstår inte grupper,
-        eller löser division genom att börja om från början varje gång.
-      </div>
+    <h2>✖️➗ Exempel – multiplikation och division</h2>
 
-      <div class="goal-box">
-        <strong>Mål:</strong>
-        Eleven ska förstå multiplikation som lika stora grupper
-        och använda sambandet mellan multiplikation och division.
+    <div class="intervention-grid">
+
+      <div class="intervention-card">
+
+        <h3>Möjligt behov</h3>
+
+        <p>
+          Eleven kan vissa tabellsvar men kan inte visa vad multiplikationen betyder.
+        </p>
+
       </div>
 
 
-      <h3>Vecka 1 – Bygg grupper</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
-        <div class="session">2 grupper med 5.</div>
-        <div class="session">4 grupper med 3.</div>
-        <div class="session">Bild → addition → multiplikation.</div>
-        <div class="session">Byt plats på faktorerna.</div>
+        <h3>Mål</h3>
+
+        <p>
+          Eleven ska kunna tolka multiplikation som lika stora grupper
+          och koppla division till motsvarande multiplikationsfakta.
+        </p>
+
       </div>
 
 
-      <h3>Vecka 2 – Kända samband</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
-        <div class="session">2:ans tabell.</div>
-        <div class="session">5:ans tabell.</div>
-        <div class="session">10:ans tabell.</div>
-        <div class="session">Använd känd tabell för att lösa en ny.</div>
+        <h3>Undervisning</h3>
+
+        <ul>
+          <li>bygg lika stora grupper</li>
+          <li>använd rutnät</li>
+          <li>koppla till upprepad addition</li>
+          <li>skriv faktamiljer</li>
+          <li>växla mellan 4 × 6 och 24 ÷ 6</li>
+        </ul>
+
       </div>
 
 
-      <h3>Vecka 3 – 3:an och 4:an</h3>
+      <div class="intervention-card">
 
-      <div class="session-grid">
-        <div class="session">3 × 5 → 3 × 6.</div>
-        <div class="session">2 × 7 → 4 × 7.</div>
-        <div class="session">Rektangulära modeller.</div>
-        <div class="session">Blandad tabellträning.</div>
-      </div>
+        <h3>Följ upp</h3>
 
+        <p>
+          Ge en ny situation och låt eleven själv välja om den bäst
+          representeras med multiplikation eller division.
+        </p>
 
-      <h3>Vecka 4 – Division</h3>
-
-      <div class="session-grid">
-        <div class="session">Dela lika.</div>
-        <div class="session">Göra grupper.</div>
-        <div class="session">Faktfamiljer.</div>
-        <div class="session">Problemlösning och slutkartläggning.</div>
-      </div>
-
-
-      <div class="assessment">
-        <strong>🔎 Kontroll:</strong>
-
-        <div class="question-box">
-          Visa 4 × 6 på tre olika sätt.
-        </div>
-
-        <div class="question-box">
-          Om 5 × 7 = 35, vad är 35 ÷ 5?
-        </div>
-
-        <div class="question-box">
-          24 saker ska delas i grupper om 4. Hur många grupper blir det?
-        </div>
       </div>
 
     </div>
+
   </section>
 
 
-  <section class="box" id="sprak">
-    <h2>💬 Intervention 4 – Matematik och språk</h2>
 
-    <div class="intervention">
+  <!-- A4 1 STARTLÄGE -->
 
-      <div class="meta">
-        <span class="tag">2–3 veckor</span>
-        <span class="tag">15–20 min</span>
-        <span class="tag">Språk + matematik</span>
-      </div>
+  <section class="print-page">
 
-      <div class="start-box">
-        <strong>Startnivå:</strong>
-        Eleven klarar rena beräkningar men fastnar i instruktioner,
-        matematikord eller textproblem.
-      </div>
+    <div class="sheet-head">
 
-      <div class="goal-box">
-        <strong>Mål:</strong>
-        Eleven ska förstå och använda centrala matematikord
-        och kunna återberätta matematiska situationer.
-      </div>
+      <h2>🎯 Interventionsunderlag 1 – Startläge och mål</h2>
 
+      <p>
+        Avgränsa behovet innan insatsen börjar.
+      </p>
 
-      <h3>Vecka 1 – Begrepp</h3>
+      <div class="info-row">
 
-      <div class="session-grid">
-
-        <div class="session">
-          Större än, mindre än, lika med.
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
         </div>
 
-        <div class="session">
-          Summa och differens.
+        <div>
+          <label>Startdatum</label>
+          <input type="text">
         </div>
 
-        <div class="session">
-          Dubbelt och hälften.
+        <div>
+          <label>Område</label>
+          <input type="text">
         </div>
 
-        <div class="session">
-          Grupp, dela lika och skillnad.
-        </div>
-
-      </div>
-
-
-      <h3>Vecka 2 – Förklara matematik</h3>
-
-      <div class="session-grid">
-
-        <div class="session">
-          ”Först... sedan...”
-        </div>
-
-        <div class="session">
-          ”Jag valde... eftersom...”
-        </div>
-
-        <div class="session">
-          Jämför två elevlösningar.
-        </div>
-
-        <div class="session">
-          Förklara ett begrepp med exempel.
-        </div>
-
-      </div>
-
-
-      <h3>Vecka 3 – Textproblem</h3>
-
-      <div class="session-grid">
-
-        <div class="session">
-          Läs och återberätta utan siffror.
-        </div>
-
-        <div class="session">
-          Markera vad vi vet.
-        </div>
-
-        <div class="session">
-          Formulera frågan med egna ord.
-        </div>
-
-        <div class="session">
-          Rita och välj strategi.
-        </div>
-
-      </div>
-
-
-      <div class="assessment">
-        <strong>🔎 Kontroll:</strong>
-
-        <div class="question-box">
-          Vad betyder ”skillnad” i matematik?
-        </div>
-
-        <div class="question-box">
-          Förklara hur du räknade 37 + 25.
-        </div>
-
-        <div class="question-box">
-          Återberätta ett textproblem med egna ord innan du räknar.
-        </div>
       </div>
 
     </div>
-  </section>
 
 
-  <section class="box" id="problem">
-    <h2>🧠 Intervention 5 – Problemlösning</h2>
+    <div class="plan-grid">
 
-    <div class="intervention">
-
-      <div class="meta">
-        <span class="tag">3 veckor</span>
-        <span class="tag">3 × 20 min/vecka</span>
-        <span class="tag">Struktur och resonemang</span>
+      <div class="plan-card">
+        <label>Vad visar kartläggningen?</label>
+        <textarea></textarea>
       </div>
 
-      <div class="start-box">
-        <strong>Startnivå:</strong>
-        Eleven kan beräkna men väljer fel räknesätt,
-        använder alla siffror i texten eller vet inte hur ett problem ska påbörjas.
+      <div class="plan-card">
+        <label>Vilken specifik matematisk idé är osäker?</label>
+        <textarea></textarea>
       </div>
 
-      <div class="goal-box">
-        <strong>Mål:</strong>
-        Eleven ska kunna förstå situationen, välja en strategi
-        och kontrollera om svaret passar problemet.
+      <div class="plan-card">
+        <label>Vad klarar eleven redan?</label>
+        <textarea></textarea>
       </div>
 
-
-      <h3>Vecka 1 – Förstå situationen</h3>
-
-      <div class="session-grid">
-        <div class="session">Återberätta problemet.</div>
-        <div class="session">Rita situationen.</div>
-        <div class="session">Vad vet vi? Vad söker vi?</div>
+      <div class="plan-card">
+        <label>Vilken möjlig missuppfattning ser jag?</label>
+        <textarea></textarea>
       </div>
 
-
-      <h3>Vecka 2 – Välja strategi</h3>
-
-      <div class="session-grid">
-        <div class="session">Addition eller subtraktion?</div>
-        <div class="session">Multiplikation eller division?</div>
-        <div class="session">Jämför två möjliga strategier.</div>
+      <div class="plan-card">
+        <label>Mål efter interventionen</label>
+        <textarea></textarea>
       </div>
 
-
-      <h3>Vecka 3 – Kontroll och resonemang</h3>
-
-      <div class="session-grid">
-        <div class="session">Uppskatta före beräkning.</div>
-        <div class="session">Kontrollera med annat sätt.</div>
-        <div class="session">Skapa eget problem och slutkartlägg.</div>
-      </div>
-
-
-      <div class="assessment">
-        <strong>🔎 Kontroll:</strong>
-
-        <div class="question-box">
-          Vad gör du först när du läser ett matematikproblem?
-        </div>
-
-        <div class="question-box">
-          Hur kan du avgöra vilket räknesätt som passar?
-        </div>
-
-        <div class="question-box">
-          Hur vet du om svaret är rimligt?
-        </div>
+      <div class="plan-card">
+        <label>Hur ska målet följas upp?</label>
+        <textarea></textarea>
       </div>
 
     </div>
+
+
+    <div class="focus-box">
+
+      <strong>Formulera målet konkret.</strong><br>
+      Exempel: ”Eleven kan använda en tallinje för att visa och förklara
+      subtraktion med tvåsiffriga tal.”
+
+    </div>
+
   </section>
 
 
-  <section class="box" id="uppfoljning">
-    <h2>🔎 Före och efter interventionen</h2>
 
-    <div class="table-wrap">
+  <!-- A4 2 PLAN -->
+
+  <section class="print-page" id="plan">
+
+    <div class="sheet-head">
+
+      <h2>📝 Interventionsunderlag 2 – Plan för 2–4 veckor</h2>
+
+      <p>
+        Planera korta, fokuserade undervisningstillfällen.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Period</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Antal pass/vecka</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="week-grid">
+
+      <div class="week-card">
+
+        <h3>Vecka 1 – Synliggör förståelsen</h3>
+
+        <label>Matematisk idé</label>
+        <textarea></textarea>
+
+        <label>Aktiviteter</label>
+        <textarea></textarea>
+
+        <label>Representationer</label>
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="week-card">
+
+        <h3>Vecka 2 – Bygg och befäst</h3>
+
+        <label>Matematisk idé</label>
+        <textarea></textarea>
+
+        <label>Aktiviteter</label>
+        <textarea></textarea>
+
+        <label>Representationer</label>
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="week-card">
+
+        <h3>Vecka 3 – Variera och generalisera</h3>
+
+        <label>Matematisk idé</label>
+        <textarea></textarea>
+
+        <label>Aktiviteter</label>
+        <textarea></textarea>
+
+        <label>Nya sammanhang</label>
+        <textarea></textarea>
+
+      </div>
+
+
+      <div class="week-card">
+
+        <h3>Vecka 4 – Självständighet och uppföljning</h3>
+
+        <label>Matematisk idé</label>
+        <textarea></textarea>
+
+        <label>Aktiviteter</label>
+        <textarea></textarea>
+
+        <label>Uppföljningsuppgift</label>
+        <textarea></textarea>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- A4 3 PASS -->
+
+  <section class="print-page">
+
+    <div class="sheet-head">
+
+      <h2>⏱️ Interventionsunderlag 3 – Struktur för ett kort pass</h2>
+
+      <p>
+        Exempel på struktur för cirka 15–25 minuter.
+      </p>
+
+    </div>
+
+
+    <div class="session-table-wrap">
 
       <table>
-        <tr>
-          <th>Steg</th>
-          <th>Vad gör läraren?</th>
-        </tr>
 
-        <tr>
-          <td><strong>1. Före</strong></td>
-          <td>
-            Dokumentera vad eleven kan och vad som är svårt.
-            Välj ett tydligt fokus.
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Del</th>
+            <th>Ungefärlig tid</th>
+            <th>Syfte</th>
+            <th>Planering</th>
+          </tr>
+        </thead>
 
-        <tr>
-          <td><strong>2. Startuppgift</strong></td>
-          <td>
-            Ge 2–4 uppgifter som visar elevens utgångsläge.
-          </td>
-        </tr>
+        <tbody>
 
-        <tr>
-          <td><strong>3. Undervisning</strong></td>
-          <td>
-            Genomför korta återkommande pass med modellering,
-            elevaktivitet och omedelbar återkoppling.
-          </td>
-        </tr>
+          <tr>
+            <td>1. Återkalla</td>
+            <td>2–3 min</td>
+            <td>Aktivera tidigare förståelse.</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td><strong>4. Veckokontroll</strong></td>
-          <td>
-            Kontrollera om eleven börjar använda den nya förståelsen självständigt.
-          </td>
-        </tr>
+          <tr>
+            <td>2. Modellera</td>
+            <td>4–5 min</td>
+            <td>Synliggör den matematiska idén.</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td><strong>5. Slutuppgift</strong></td>
-          <td>
-            Använd liknande men inte identiska uppgifter som före interventionen.
-          </td>
-        </tr>
+          <tr>
+            <td>3. Gemensamt</td>
+            <td>4–5 min</td>
+            <td>Lös och resonera tillsammans.</td>
+            <td></td>
+          </tr>
 
-        <tr>
-          <td><strong>6. Beslut</strong></td>
-          <td>
-            Avsluta, fortsätt, ändra fokus eller genomför fördjupad kartläggning.
-          </td>
-        </tr>
+          <tr>
+            <td>4. Eleven provar</td>
+            <td>5–8 min</td>
+            <td>Eleven använder idén själv.</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>5. Förklara</td>
+            <td>2–3 min</td>
+            <td>Eleven beskriver strategi och samband.</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>6. Mini-check</td>
+            <td>1–2 min</td>
+            <td>Fånga vad som ska tas vidare.</td>
+            <td></td>
+          </tr>
+
+        </tbody>
+
       </table>
 
     </div>
+
+
+    <div class="teacher-box">
+
+      <strong>Viktigt:</strong>
+      ett interventionspass ska inte bara vara ett arbetsblad.
+      Lärarens modellering, frågor och återkoppling är centrala delar av undervisningen.
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>📈 Vad visar att insatsen fungerar?</h2>
 
-    <ul class="checklist">
-      <li>Eleven behöver mindre stöd än vid starten.</li>
-      <li>Eleven använder strategin spontant.</li>
-      <li>Eleven kan förklara vad hen gör.</li>
-      <li>Eleven kan lösa en ny liknande uppgift.</li>
-      <li>Eleven gör färre systematiska fel.</li>
-      <li>Eleven kan kontrollera sitt svar.</li>
-    </ul>
+  <!-- A4 4 LOGG -->
+
+  <section class="print-page">
+
+    <div class="sheet-head">
+
+      <h2>📋 Interventionsunderlag 4 – Kort logg</h2>
+
+      <p>
+        Dokumentera endast det som behövs för att följa undervisningen och nästa steg.
+      </p>
+
+      <div class="info-row">
+
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Period</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="session-table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Pass</th>
+            <th>Fokus</th>
+            <th>Det eleven visade</th>
+            <th>Stöd som hjälpte</th>
+            <th>Nästa steg</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>6</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>7</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>8</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>⚠️ Om eleven inte gör framsteg</h2>
 
-    <p>
-      Gör inte automatiskt mer av samma träning.
-    </p>
+  <!-- A4 5 UPPFÖLJNING -->
 
-    <div class="grid">
+  <section class="print-page" id="uppfoljning">
 
-      <div class="card">
-        <h3>🔎 Kontrollera fokus</h3>
-        <p>Arbetar vi verkligen med rätt kunskapslucka?</p>
-      </div>
+    <div class="sheet-head">
 
-      <div class="card">
-        <h3>🧱 Ändra representation</h3>
-        <p>Behöver eleven mer konkret eller visuellt stöd?</p>
-      </div>
+      <h2>🔎 Interventionsunderlag 5 – Uppföljning</h2>
 
-      <div class="card">
-        <h3>💬 Kontrollera språket</h3>
-        <p>Är det matematiken eller språkförståelsen som hindrar?</p>
-      </div>
+      <p>
+        Jämför med startläget och besluta om nästa undervisningssteg.
+      </p>
 
-      <div class="card">
-        <h3>🪜 Backa ett steg</h3>
-        <p>Vilken tidigare matematisk idé behöver bli stabil?</p>
+      <div class="info-row">
+
+        <div>
+          <label>Elevkod / grupp</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Slutdatum</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Område</label>
+          <input type="text">
+        </div>
+
       </div>
 
     </div>
+
+
+    <div class="plan-grid">
+
+      <div class="plan-card">
+        <label>Vad kan eleven nu som inte var säkert vid start?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="plan-card">
+        <label>Kan eleven använda förståelsen i en ny uppgift?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="plan-card">
+        <label>Vad är fortfarande osäkert?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="plan-card">
+        <label>Vilket stöd behövs fortfarande?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="plan-card">
+        <label>Hur fungerar eleven i ordinarie undervisning?</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="plan-card">
+        <label>Nästa undervisningssteg</label>
+        <textarea></textarea>
+      </div>
+
+    </div>
+
+
+    <h3>Beslut efter interventionen</h3>
+
+    <div class="check-grid">
+
+      <div class="check-item">
+        ☐ Målet är uppnått – fortsätt i ordinarie undervisning.
+      </div>
+
+      <div class="check-item">
+        ☐ Förståelsen har utvecklats – fortsatt repetition behövs.
+      </div>
+
+      <div class="check-item">
+        ☐ Interventionen behöver fortsätta med justerat innehåll.
+      </div>
+
+      <div class="check-item">
+        ☐ Ny kartläggning behövs för att förstå svårigheten bättre.
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+
+      <strong>Efter en intervention:</strong>
+      fråga inte bara om eleven har gjort framsteg i träningsuppgifterna.
+      Kontrollera om den matematiska förståelsen kan användas i nya situationer.
+
+    </div>
+
   </section>
 
 
-  <section class="box">
-    <h2>👩‍🏫 Dokumentera kort</h2>
 
-    <p>
-      Det behövs inte långa texter efter varje pass.
-    </p>
+  <!-- DIGITALA LÄNKAR -->
 
-    <div class="question-box">
-      <strong>Idag tränade vi:</strong> __________________________
-    </div>
+  <section class="box screen-only">
 
-    <div class="question-box">
-      <strong>Eleven kunde själv:</strong> ______________________
-    </div>
+    <h2>🔗 Arbeta vidare</h2>
 
-    <div class="question-box">
-      <strong>Eleven behövde stöd med:</strong> _________________
-    </div>
+    <div class="links">
 
-    <div class="question-box">
-      <strong>Nästa pass fokuserar på:</strong> _________________
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>🔗 Verktyg före och under insatsen</h2>
-
-    <div class="link-grid">
-
-      <a class="link-card" href="kartlaggning.html">
+      <a href="kartlaggning.html">
         🧭 Kartläggning
       </a>
 
-      <a class="link-card" href="progression.html">
-        📈 Progression
-      </a>
-
-      <a class="link-card" href="missuppfattningar.html">
-        🕵️ Missuppfattningar
-      </a>
-
-      <a class="link-card" href="anpassningar.html">
-        🌱 Anpassningar
-      </a>
-
-      <a class="link-card" href="sprakstod.html">
-        💬 Språkstöd
-      </a>
-
-      <a class="link-card" href="matteverkstad.html">
-        🧱 Matteverkstad
-      </a>
-
-      <a class="link-card" href="ovningsbank.html">
-        📚 Övningsbank
-      </a>
-
-      <a class="link-card" href="bedomning.html">
+      <a href="bedomning.html">
         🔎 Bedömning
       </a>
 
+      <a href="missuppfattningar.html">
+        🕵️ Missuppfattningar
+      </a>
+
+      <a href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a href="intensivtraning.html">
+        ⚡ Intensivträning
+      </a>
+
+      <a href="minilektioner.html">
+        🎯 Minilektioner
+      </a>
+
+      <a href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a href="representationer.html">
+        🧱 Representationer
+      </a>
+
     </div>
+
   </section>
 
 </main>
 
+
 <footer>
   <p><strong>Matematik åk 3 – Interventioner</strong></p>
-  <p>Kartlägg • Undervisa • Följ upp • Anpassa</p>
+  <p>Kartlägg • Avgränsa • Undervisa • Följ upp</p>
 </footer>
+
+
+<script>
+
+function expandTextareasForPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.dataset.oldHeight =
+        textarea.style.height;
+
+      textarea.style.height =
+        "auto";
+
+      textarea.style.height =
+        Math.max(
+          textarea.scrollHeight,
+          55
+        ) + "px";
+
+    });
+
+}
+
+
+function restoreTextareasAfterPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.style.height =
+        textarea.dataset.oldHeight || "";
+
+    });
+
+}
+
+
+window.addEventListener(
+  "beforeprint",
+  expandTextareasForPrint
+);
+
+
+window.addEventListener(
+  "afterprint",
+  restoreTextareasAfterPrint
+);
+
+</script>
 
 </body>
 </html>
