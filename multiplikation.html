@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiplikation – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 750px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .strategy {
+      background: #f1e8da;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid #dfd1be;
+    }
+
+    .dots {
+      font-size: 1.8rem;
+      letter-spacing: 7px;
+      line-height: 1.7;
+      margin: 12px 0;
+    }
+
+    .table-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .table-card {
+      background: #f1e8da;
+      border: 1px solid #dfd1be;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .table-card h3 {
+      margin-top: 0;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .game-box {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .game-question {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 15px 0;
+    }
+
+    .score {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>✖️ Multiplikation</h1>
+  <p>
+    Här lär du dig att tänka i lika stora grupper och träna multiplikationstabeller.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="subtraktion.html">➖ Subtraktion</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#tabeller">🔢 Tabeller</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#spel">🎮 Snabbträning</a>
+  <a href="#problem">🧠 Problemlösning</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>förstå vad multiplikation betyder</li>
+      <li>se multiplikation som lika stora grupper</li>
+      <li>koppla multiplikation till upprepad addition</li>
+      <li>använda 2:ans, 3:ans, 4:ans, 5:ans och 10:ans tabell</li>
+      <li>använda smarta strategier</li>
+      <li>lösa textuppgifter med multiplikation</li>
+      <li>förklara hur du tänker</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Vad betyder multiplikation?</h2>
+
+    <p>
+      Multiplikation använder vi när vi har flera lika stora grupper.
+    </p>
+
+    <div class="example">
+      <strong>3 × 4 = 12</strong>
+      <br><br>
+      Det betyder 3 grupper med 4 i varje grupp.
+    </div>
+
+    <div class="dots">
+      ● ● ● ●<br>
+      ● ● ● ●<br>
+      ● ● ● ●
+    </div>
+
+    <p>
+      Vi kan också skriva:
+    </p>
+
+    <div class="example">
+      4 + 4 + 4 = 12
+      <br><br>
+      alltså
+      <br>
+      <strong>3 × 4 = 12</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔄 Upprepad addition</h2>
+
+    <p>
+      Multiplikation är ett snabbare sätt att skriva samma addition flera gånger.
+    </p>
+
+    <div class="example">
+      5 + 5 + 5 + 5 = 20
+      <br>
+      kan skrivas
+      <br>
+      <strong>4 × 5 = 20</strong>
+    </div>
+
+    <div class="example">
+      2 + 2 + 2 + 2 + 2 = 10
+      <br>
+      kan skrivas
+      <br>
+      <strong>5 × 2 = 10</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Smarta strategier</h2>
+
+    <div class="strategy-grid">
+
+      <div class="strategy">
+        <h3>2:ans tabell</h3>
+        <p>Tänk dubbelt.</p>
+        <p>
+          6 × 2 = dubbelt 6
+          <br>
+          = 12
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>4:ans tabell</h3>
+        <p>Dubbla två gånger.</p>
+        <p>
+          6 × 4
+          <br>
+          dubbelt 6 = 12
+          <br>
+          dubbelt 12 = 24
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>5:ans tabell</h3>
+        <p>Svaren slutar på 0 eller 5.</p>
+        <p>
+          5, 10, 15, 20, 25, 30...
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>10:ans tabell</h3>
+        <p>Lägg till en nolla.</p>
+        <p>
+          7 × 10 = 70
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔁 Ordningen kan bytas</h2>
+
+    <p>
+      I multiplikation kan faktorerna byta plats och svaret blir ändå samma.
+    </p>
+
+    <div class="example">
+      3 × 5 = 15
+      <br>
+      5 × 3 = 15
+    </div>
+
+    <p>
+      Det kan hjälpa dig om du kan den ena uppgiften bättre.
+    </p>
+  </section>
+
+  <section class="box" id="tabeller">
+    <h2>🔢 Träna tabellerna</h2>
+
+    <div class="table-grid">
+
+      <div class="table-card">
+        <h3>2:ans tabell</h3>
+        <p>
+          1 × 2 = 2<br>
+          2 × 2 = 4<br>
+          3 × 2 = 6<br>
+          4 × 2 = 8<br>
+          5 × 2 = 10<br>
+          6 × 2 = 12<br>
+          7 × 2 = 14<br>
+          8 × 2 = 16<br>
+          9 × 2 = 18<br>
+          10 × 2 = 20
+        </p>
+      </div>
+
+      <div class="table-card">
+        <h3>3:ans tabell</h3>
+        <p>
+          1 × 3 = 3<br>
+          2 × 3 = 6<br>
+          3 × 3 = 9<br>
+          4 × 3 = 12<br>
+          5 × 3 = 15<br>
+          6 × 3 = 18<br>
+          7 × 3 = 21<br>
+          8 × 3 = 24<br>
+          9 × 3 = 27<br>
+          10 × 3 = 30
+        </p>
+      </div>
+
+      <div class="table-card">
+        <h3>4:ans tabell</h3>
+        <p>
+          1 × 4 = 4<br>
+          2 × 4 = 8<br>
+          3 × 4 = 12<br>
+          4 × 4 = 16<br>
+          5 × 4 = 20<br>
+          6 × 4 = 24<br>
+          7 × 4 = 28<br>
+          8 × 4 = 32<br>
+          9 × 4 = 36<br>
+          10 × 4 = 40
+        </p>
+      </div>
+
+      <div class="table-card">
+        <h3>5:ans tabell</h3>
+        <p>
+          1 × 5 = 5<br>
+          2 × 5 = 10<br>
+          3 × 5 = 15<br>
+          4 × 5 = 20<br>
+          5 × 5 = 25<br>
+          6 × 5 = 30<br>
+          7 × 5 = 35<br>
+          8 × 5 = 40<br>
+          9 × 5 = 45<br>
+          10 × 5 = 50
+        </p>
+      </div>
+
+      <div class="table-card">
+        <h3>10:ans tabell</h3>
+        <p>
+          1 × 10 = 10<br>
+          2 × 10 = 20<br>
+          3 × 10 = 30<br>
+          4 × 10 = 40<br>
+          5 × 10 = 50<br>
+          6 × 10 = 60<br>
+          7 × 10 = 70<br>
+          8 × 10 = 80<br>
+          9 × 10 = 90<br>
+          10 × 10 = 100
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vad är 4 × 3?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">7</button>
+        <button onclick="answer(this,true)">12</button>
+        <button onclick="answer(this,false)">14</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vad är 6 × 5?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">25</button>
+        <button onclick="answer(this,false)">35</button>
+        <button onclick="answer(this,true)">30</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vad är 8 × 2?</p>
+      <div class="answers">
+        <button onclick="answer(this,true)">16</button>
+        <button onclick="answer(this,false)">14</button>
+        <button onclick="answer(this,false)">18</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vad är 7 × 4?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">24</button>
+        <button onclick="answer(this,true)">28</button>
+        <button onclick="answer(this,false)">32</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vad är 9 × 10?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">19</button>
+        <button onclick="answer(this,false)">80</button>
+        <button onclick="answer(this,true)">90</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Vad är <strong>8 × 4</strong>?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="spel">
+    <h2>🎮 Snabbträning</h2>
+
+    <div class="game-box">
+
+      <p>Räkna ut multiplikationen.</p>
+
+      <div class="game-question" id="gameQuestion">
+        2 × 5
+      </div>
+
+      <input type="number" id="gameAnswer" placeholder="Svar">
+
+      <button class="check-btn" onclick="checkGame()">
+        Svara
+      </button>
+
+      <div class="feedback" id="gameFeedback"></div>
+
+      <div class="score">
+        Poäng: <span id="score">0</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Fruktpåsarna</h3>
+
+      <p>
+        Det finns 6 påsar.
+        I varje påse ligger 4 äpplen.
+      </p>
+
+      <p>
+        <strong>Hur många äpplen finns det sammanlagt?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Ett klassrum har 5 bord.
+        Vid varje bord sitter 4 elever.
+      </p>
+
+      <p>
+        Sedan kommer 3 elever till.
+      </p>
+
+      <p>
+        <strong>Hur många elever finns nu i klassrummet?</strong>
+      </p>
+
+      <p>
+        Vilka två räknesätt behöver du använda?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔗 Sambandet med division</h2>
+
+    <p>
+      Multiplikation och division hör ihop.
+    </p>
+
+    <div class="example">
+      4 × 5 = 20
+      <br>
+      20 ÷ 5 = 4
+      <br>
+      20 ÷ 4 = 5
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>multiplikation</strong> – lika stora grupper</p>
+    <p><strong>faktor</strong> – talen som multipliceras</p>
+    <p><strong>produkt</strong> – svaret i en multiplikation</p>
+    <p><strong>tabell</strong> – multiplikationsuppgifter som följer ett mönster</p>
+    <p><strong>dubbelt</strong> – två gånger så mycket</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Multiplikation • Grupper • Tabeller • Problemlösning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra jobbat.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 32) {
+      feedback.textContent = "✅ Rätt! 8 × 4 = 32.";
+    } else {
+      feedback.textContent = "Försök igen. Du kan tänka dubbelt två gånger.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 24) {
+      feedback.textContent = "✅ Rätt! 6 × 4 = 24 äpplen.";
+    } else {
+      feedback.textContent = "Försök igen. Det är 6 grupper med 4 i varje.";
+    }
+  }
+
+  let score = 0;
+  let factor1 = 2;
+  let factor2 = 5;
+
+  const allowedTables = [2, 3, 4, 5, 10];
+
+  function newGameQuestion() {
+    factor1 = Math.floor(Math.random() * 10) + 1;
+    factor2 = allowedTables[Math.floor(Math.random() * allowedTables.length)];
+
+    document.getElementById("gameQuestion").textContent =
+      factor1 + " × " + factor2;
+
+    document.getElementById("gameAnswer").value = "";
+  }
+
+  function checkGame() {
+    const answerValue = Number(document.getElementById("gameAnswer").value);
+    const correctAnswer = factor1 * factor2;
+    const feedback = document.getElementById("gameFeedback");
+
+    if (answerValue === correctAnswer) {
+      score++;
+      document.getElementById("score").textContent = score;
+      feedback.textContent = "✅ Rätt! Ny uppgift kommer.";
+      newGameQuestion();
+    } else {
+      feedback.textContent = "Försök igen.";
+    }
+  }
+
+  newGameQuestion();
+</script>
+
+</body>
+</html>
