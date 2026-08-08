@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Veckoplan – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 15px;
+      margin-top: 16px;
+    }
+
+    .top-card {
+      background: #f3eadf;
+      border-radius: 14px;
+      padding: 17px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 6px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cdbda7;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fffdf8;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .day-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .day-title {
+      background: var(--beige);
+      border-radius: 12px;
+      padding: 12px 15px;
+      margin-bottom: 17px;
+    }
+
+    .day-title h3 {
+      margin: 0;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .field {
+      margin-bottom: 4px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .routine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .routine-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 15px;
+      margin-top: 16px;
+    }
+
+    .support-card {
+      background: #f3eadf;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 10px 12px;
+      border-radius: 9px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .save-btn {
+      background: #d6c3a6;
+    }
+
+    .message {
+      text-align: center;
+      min-height: 25px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:750px) {
+      .day-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wide {
+        grid-column: auto;
+      }
+    }
+
+    @media(max-width:650px) {
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .box,
+      .day-card {
+        padding: 18px;
+      }
+    }
+
+    @media print {
+      nav,
+      footer,
+      .button-row,
+      .message,
+      .link-grid {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .day-card {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📅 Veckoplan matematik</h1>
+
+  <p>
+    Planera en hel matematikvecka med tydliga mål, undervisning,
+    stöd, utmaningar och uppföljning.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="lararrum.html">👩‍🏫 Lärarrum</a>
+  <a href="lararverktyg.html">🧰 Lärarverktyg</a>
+  <a href="#vecka">📅 Veckan</a>
+  <a href="#uppfoljning">📊 Uppföljning</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Veckans fokus</h2>
+
+    <div class="top-grid">
+
+      <div class="top-card">
+        <label for="weekNumber">Vecka</label>
+        <input type="text" id="weekNumber" placeholder="Till exempel vecka 38">
+      </div>
+
+      <div class="top-card">
+        <label for="mainArea">Matematikområde</label>
+
+        <select id="mainArea">
+          <option value="">Välj område</option>
+          <option>Taluppfattning</option>
+          <option>Addition</option>
+          <option>Subtraktion</option>
+          <option>Multiplikation</option>
+          <option>Division</option>
+          <option>Bråk</option>
+          <option>Algebra</option>
+          <option>Geometri</option>
+          <option>Mätning</option>
+          <option>Tid</option>
+          <option>Statistik</option>
+          <option>Sannolikhet</option>
+          <option>Problemlösning</option>
+        </select>
+      </div>
+
+      <div class="top-card">
+        <label for="weekGoal">Veckans mål</label>
+        <textarea id="weekGoal"
+          placeholder="Efter veckan ska eleverna kunna..."></textarea>
+      </div>
+
+      <div class="top-card">
+        <label for="weekConcepts">Viktiga begrepp</label>
+        <textarea id="weekConcepts"
+          placeholder="Till exempel summa, differens, tiotal, ental..."></textarea>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="vecka">
+    <h2>📚 Veckans lektioner</h2>
+
+    <div id="days"></div>
+  </section>
+
+
+  <section class="box">
+    <h2>🧠 Förslag på gemensam lektionsstruktur</h2>
+
+    <div class="routine-grid">
+
+      <div class="routine-card">
+        1️⃣ Start
+        <br>
+        5–10 min
+      </div>
+
+      <div class="routine-card">
+        2️⃣ Modellering
+        <br>
+        10–15 min
+      </div>
+
+      <div class="routine-card">
+        3️⃣ Elevaktivitet
+        <br>
+        20–30 min
+      </div>
+
+      <div class="routine-card">
+        4️⃣ Matteprat
+        <br>
+        5–10 min
+      </div>
+
+      <div class="routine-card">
+        5️⃣ Exit ticket
+        <br>
+        3–5 min
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🌱 Stöd och utmaning under veckan</h2>
+
+    <div class="support-grid">
+
+      <div class="support-card">
+        <h3>🌱 Elever som behöver mer stöd</h3>
+
+        <textarea id="supportPlan"
+          placeholder="Vilka elever/grupper behöver extra modellering, konkret material, bildstöd, mindre tal eller fler repetitioner?"></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>⭐ Elever som behöver utmaning</h3>
+
+        <textarea id="challengePlan"
+          placeholder="Öppna problem, fler lösningar, större tal, resonemang, skapa egna problem..."></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>💬 Språkstöd</h3>
+
+        <textarea id="languagePlan"
+          placeholder="Begrepp, bilder, meningsstarter, parprat, modellering..."></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>🧱 Material</h3>
+
+        <textarea id="materialPlan"
+          placeholder="Tallinje, basmaterial, multilink, miniwhiteboards, spel, digitala verktyg..."></textarea>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>👥 Gruppindelning</h2>
+
+    <div class="support-grid">
+
+      <div class="support-card">
+        <h3>Grupp 1</h3>
+        <textarea id="group1"
+          placeholder="Elever och fokus..."></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>Grupp 2</h3>
+        <textarea id="group2"
+          placeholder="Elever och fokus..."></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>Grupp 3</h3>
+        <textarea id="group3"
+          placeholder="Elever och fokus..."></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>Grupp 4</h3>
+        <textarea id="group4"
+          placeholder="Elever och fokus..."></textarea>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="uppfoljning">
+    <h2>📊 Uppföljning efter veckan</h2>
+
+    <div class="support-grid">
+
+      <div class="support-card">
+        <h3>✅ Det här fungerar</h3>
+
+        <textarea id="workedWell"
+          placeholder="Vad verkar eleverna ha förstått?"></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>🔎 Det här behöver följas upp</h3>
+
+        <textarea id="needsFollowUp"
+          placeholder="Vilka delar behöver mer undervisning?"></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>🕵️ Missuppfattningar</h3>
+
+        <textarea id="misconceptions"
+          placeholder="Vilka missuppfattningar blev synliga?"></textarea>
+      </div>
+
+      <div class="support-card">
+        <h3>➡️ Nästa steg</h3>
+
+        <textarea id="nextStep"
+          placeholder="Vad blir nästa matematiska steg?"></textarea>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Veckocheck</h2>
+
+    <ul class="checklist">
+      <li>Har veckan ett tydligt matematiskt mål?</li>
+      <li>Vet eleverna vilka begrepp de ska använda?</li>
+      <li>Finns konkret och visuellt stöd?</li>
+      <li>Får eleverna använda flera strategier?</li>
+      <li>Får eleverna prata och förklara matematik?</li>
+      <li>Finns anpassningar för olika behov?</li>
+      <li>Finns en plan för formativ uppföljning?</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Använd plattformen i veckoplaneringen</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="dagensmatte.html">
+        ☀️ Dagens matte
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Räknestrategier
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Representationer
+      </a>
+
+      <a class="link-card" href="stationsarbete.html">
+        🔄 Stationsarbete
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="exit-ticket.html">
+        🚪 Exit ticket
+      </a>
+
+      <a class="link-card" href="diagnos.html">
+        🔎 Diagnos
+      </a>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <div class="button-row">
+
+      <button class="save-btn" onclick="saveWeek()">
+        💾 Spara veckoplanen
+      </button>
+
+      <button onclick="window.print()">
+        🖨️ Skriv ut
+      </button>
+
+      <button onclick="clearWeek()">
+        🗑️ Töm planen
+      </button>
+
+    </div>
+
+    <div class="message" id="saveMessage"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Veckoplan</strong></p>
+  <p>Planera • Undervisa • Anpassa • Följa upp</p>
+</footer>
+
+<script>
+
+  const weekdays = [
+    "Måndag",
+    "Tisdag",
+    "Onsdag",
+    "Torsdag",
+    "Fredag"
+  ];
+
+
+  function renderDays() {
+
+    const container =
+      document.getElementById("days");
+
+    weekdays.forEach((day, index) => {
+
+      const number = index + 1;
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "day-card";
+
+      card.innerHTML = `
+
+        <div class="day-title">
+          <h3>${day}</h3>
+        </div>
+
+        <div class="day-grid">
+
+          <div class="field">
+            <label>Lektionsmål</label>
+            <textarea id="day${number}Goal"
+              placeholder="Idag ska eleverna kunna..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Begrepp</label>
+            <textarea id="day${number}Concepts"
+              placeholder="Viktiga matematikord..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Startaktivitet</label>
+            <textarea id="day${number}Start"
+              placeholder="Till exempel Dagens matte..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Modellering</label>
+            <textarea id="day${number}Model"
+              placeholder="Vad visar läraren?"></textarea>
+          </div>
+
+          <div class="field wide">
+            <label>Elevaktivitet</label>
+            <textarea id="day${number}Activity"
+              placeholder="Vad ska eleverna göra, undersöka, spela eller diskutera?"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Stöd</label>
+            <textarea id="day${number}Support"
+              placeholder="Konkret material, bildstöd, mindre tal..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Utmaning</label>
+            <textarea id="day${number}Challenge"
+              placeholder="Öppet problem, flera lösningar..."></textarea>
+          </div>
+
+          <div class="field wide">
+            <label>Avslut / exit ticket</label>
+            <textarea id="day${number}End"
+              placeholder="Hur synliggörs elevernas förståelse?"></textarea>
+          </div>
+
+        </div>
+
+      `;
+
+      container.appendChild(card);
+
+    });
+
+  }
+
+
+  function getValue(id) {
+
+    const element =
+      document.getElementById(id);
+
+    return element
+      ? element.value
+      : "";
+  }
+
+
+  function setValue(id, value) {
+
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+      element.value =
+        value || "";
+    }
+
+  }
+
+
+  function saveWeek() {
+
+    const data = {
+
+      weekNumber:
+        getValue("weekNumber"),
+
+      mainArea:
+        getValue("mainArea"),
+
+      weekGoal:
+        getValue("weekGoal"),
+
+      weekConcepts:
+        getValue("weekConcepts"),
+
+      supportPlan:
+        getValue("supportPlan"),
+
+      challengePlan:
+        getValue("challengePlan"),
+
+      languagePlan:
+        getValue("languagePlan"),
+
+      materialPlan:
+        getValue("materialPlan"),
+
+      group1:
+        getValue("group1"),
+
+      group2:
+        getValue("group2"),
+
+      group3:
+        getValue("group3"),
+
+      group4:
+        getValue("group4"),
+
+      workedWell:
+        getValue("workedWell"),
+
+      needsFollowUp:
+        getValue("needsFollowUp"),
+
+      misconceptions:
+        getValue("misconceptions"),
+
+      nextStep:
+        getValue("nextStep"),
+
+      days: []
+
+    };
+
+
+    weekdays.forEach(
+      (day, index) => {
+
+        const number =
+          index + 1;
+
+        data.days.push({
+
+          goal:
+            getValue(
+              `day${number}Goal`
+            ),
+
+          concepts:
+            getValue(
+              `day${number}Concepts`
+            ),
+
+          start:
+            getValue(
+              `day${number}Start`
+            ),
+
+          model:
+            getValue(
+              `day${number}Model`
+            ),
+
+          activity:
+            getValue(
+              `day${number}Activity`
+            ),
+
+          support:
+            getValue(
+              `day${number}Support`
+            ),
+
+          challenge:
+            getValue(
+              `day${number}Challenge`
+            ),
+
+          end:
+            getValue(
+              `day${number}End`
+            )
+
+        });
+
+      }
+    );
+
+
+    localStorage.setItem(
+      "matematikAk3WeekPlan",
+      JSON.stringify(data)
+    );
+
+
+    document.getElementById(
+      "saveMessage"
+    ).textContent =
+      "✅ Veckoplanen är sparad på den här enheten.";
+
+  }
+
+
+  function loadWeek() {
+
+    const saved =
+      localStorage.getItem(
+        "matematikAk3WeekPlan"
+      );
+
+    if (!saved) {
+      return;
+    }
+
+
+    try {
+
+      const data =
+        JSON.parse(saved);
+
+
+      setValue(
+        "weekNumber",
+        data.weekNumber
+      );
+
+      setValue(
+        "mainArea",
+        data.mainArea
+      );
+
+      setValue(
+        "weekGoal",
+        data.weekGoal
+      );
+
+      setValue(
+        "weekConcepts",
+        data.weekConcepts
+      );
+
+      setValue(
+        "supportPlan",
+        data.supportPlan
+      );
+
+      setValue(
+        "challengePlan",
+        data.challengePlan
+      );
+
+      setValue(
+        "languagePlan",
+        data.languagePlan
+      );
+
+      setValue(
+        "materialPlan",
+        data.materialPlan
+      );
+
+      setValue(
+        "group1",
+        data.group1
+      );
+
+      setValue(
+        "group2",
+        data.group2
+      );
+
+      setValue(
+        "group3",
+        data.group3
+      );
+
+      setValue(
+        "group4",
+        data.group4
+      );
+
+      setValue(
+        "workedWell",
+        data.workedWell
+      );
+
+      setValue(
+        "needsFollowUp",
+        data.needsFollowUp
+      );
+
+      setValue(
+        "misconceptions",
+        data.misconceptions
+      );
+
+      setValue(
+        "nextStep",
+        data.nextStep
+      );
+
+
+      if (
+        Array.isArray(
+          data.days
+        )
+      ) {
+
+        data.days.forEach(
+          (day, index) => {
+
+            const number =
+              index + 1;
+
+            setValue(
+              `day${number}Goal`,
+              day.goal
+            );
+
+            setValue(
+              `day${number}Concepts`,
+              day.concepts
+            );
+
+            setValue(
+              `day${number}Start`,
+              day.start
+            );
+
+            setValue(
+              `day${number}Model`,
+              day.model
+            );
+
+            setValue(
+              `day${number}Activity`,
+              day.activity
+            );
+
+            setValue(
+              `day${number}Support`,
+              day.support
+            );
+
+            setValue(
+              `day${number}Challenge`,
+              day.challenge
+            );
+
+            setValue(
+              `day${number}End`,
+              day.end
+            );
+
+          }
+        );
+
+      }
+
+    } catch(error) {
+
+      console.log(
+        "Kunde inte läsa den sparade veckoplanen."
+      );
+
+    }
+
+  }
+
+
+  function clearWeek() {
+
+    const confirmClear =
+      confirm(
+        "Vill du verkligen tömma hela veckoplanen?"
+      );
+
+    if (!confirmClear) {
+      return;
+    }
+
+
+    localStorage.removeItem(
+      "matematikAk3WeekPlan"
+    );
+
+
+    document
+      .querySelectorAll(
+        "input, textarea, select"
+      )
+      .forEach(element => {
+
+        element.value = "";
+
+      });
+
+
+    document.getElementById(
+      "saveMessage"
+    ).textContent =
+      "Veckoplanen är tömd.";
+
+  }
+
+
+  renderDays();
+  loadWeek();
+
+</script>
+
+</body>
+</html>
