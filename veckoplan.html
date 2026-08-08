@@ -8,19 +8,24 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -28,7 +33,7 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     header {
@@ -41,20 +46,23 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2rem,5vw,3.6rem);
+      font-size: clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 850px;
+      max-width: 900px;
       margin: 12px auto 0;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 14px;
+      padding: 14px 8px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
 
     nav a {
@@ -62,9 +70,9 @@
       text-decoration: none;
       color: var(--brun);
       font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 3px;
+      border-radius: 9px;
     }
 
     nav a:hover {
@@ -72,7 +80,7 @@
     }
 
     main {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: auto;
       padding: 30px 20px 70px;
     }
@@ -91,180 +99,218 @@
     }
 
     h2,
-    h3 {
+    h3,
+    h4 {
       color: var(--brun);
     }
 
-    .top-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-      gap: 15px;
-      margin-top: 16px;
+    h2 {
+      margin-top: 0;
     }
 
-    .top-card {
-      background: #f3eadf;
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .info-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
       border-radius: 14px;
       padding: 17px;
+    }
+
+    .info-card .icon {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .info-card strong {
+      display: block;
+      color: var(--brun);
+      margin-bottom: 5px;
     }
 
     label {
       display: block;
       font-weight: bold;
       color: var(--brun);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     input,
     textarea,
     select {
       width: 100%;
-      padding: 11px;
-      border: 1px solid #cdbda7;
+      border: 1px solid #cdbfae;
       border-radius: 9px;
-      font-family: inherit;
-      font-size: 1rem;
+      padding: 10px;
       background: #fffdf8;
+      color: var(--text);
+      font: inherit;
     }
 
     textarea {
       resize: vertical;
-      min-height: 90px;
-    }
-
-    .day-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 17px;
-      padding: 22px;
-      margin: 20px 0;
-    }
-
-    .day-title {
-      background: var(--beige);
-      border-radius: 12px;
-      padding: 12px 15px;
-      margin-bottom: 17px;
-    }
-
-    .day-title h3 {
-      margin: 0;
-    }
-
-    .day-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 14px;
-    }
-
-    .field {
-      margin-bottom: 4px;
-    }
-
-    .wide {
-      grid-column: 1 / -1;
-    }
-
-    .routine-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .routine-card {
-      background: #f3eadf;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .support-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-      gap: 15px;
-      margin-top: 16px;
-    }
-
-    .support-card {
-      background: #f3eadf;
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .checklist {
-      list-style: none;
-      padding: 0;
-    }
-
-    .checklist li {
-      background: #f3eadf;
-      margin: 8px 0;
-      padding: 10px 12px;
-      border-radius: 9px;
-    }
-
-    .checklist li::before {
-      content: "✓ ";
-      font-weight: bold;
-      color: var(--brun);
-    }
-
-    .button-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 24px;
+      min-height: 80px;
     }
 
     button {
       border: none;
-      background: var(--beige);
+      background: #d6c3a6;
       color: var(--text);
-      padding: 12px 18px;
       border-radius: 10px;
-      cursor: pointer;
+      padding: 11px 16px;
       font-size: 1rem;
       font-weight: bold;
+      cursor: pointer;
     }
 
     button:hover {
       background: var(--beige2);
     }
 
-    .save-btn {
-      background: #d6c3a6;
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
     }
 
-    .message {
-      text-align: center;
-      min-height: 25px;
-      font-weight: bold;
+    .danger {
+      background: #ead7d2;
+      border: 1px solid #cfaea7;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .week-header {
+      background: #eee4d6;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .week-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .day-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+      box-shadow: 0 3px 9px var(--skugga);
+    }
+
+    .day-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #f3eadf;
+      border-radius: 11px;
+      padding: 12px 14px;
+      margin-bottom: 15px;
+    }
+
+    .day-title h3 {
+      margin: 0;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .support-row {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .support-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .challenge-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .reflection-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 11px;
+      padding: 16px;
+      margin-top: 18px;
+    }
+
+    .privacy-note {
+      background: #f3eadf;
+      border: 1px solid #d6c7b4;
+      border-radius: 11px;
+      padding: 14px;
+      margin-top: 17px;
+    }
+
+    .save-status {
       margin-top: 10px;
+      min-height: 24px;
+      font-weight: bold;
+      color: var(--brun);
     }
 
-    .link-grid {
+    .links {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
       gap: 12px;
       margin-top: 16px;
     }
 
-    .link-card {
+    .links a {
       display: block;
       text-decoration: none;
+      text-align: center;
       color: var(--text);
       background: #f3eadf;
       border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
+      border-radius: 12px;
+      padding: 15px;
       font-weight: bold;
     }
 
-    .link-card:hover {
+    .links a:hover {
       background: var(--beige);
     }
 
@@ -272,807 +318,1312 @@
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 27px;
+      padding: 28px 20px;
     }
+
+
+    /* =====================================
+       A4-UTSKRIFT
+       ===================================== */
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 13mm 14mm 13mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.5pt;
+        line-height: 1.25;
+      }
+
+      header,
+      nav,
+      footer,
+      .intro,
+      .screen-only,
+      .button-row,
+      .privacy-note,
+      .save-status,
+      .links,
+      button {
+        display: none !important;
+      }
+
+      main {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .box {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .week-header {
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 4mm !important;
+        margin: 0 0 5mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .week-header::before {
+        content: "Veckoplan – Matematik åk 3";
+        display: block;
+        font-size: 18pt;
+        font-weight: bold;
+        margin-bottom: 4mm;
+      }
+
+      .week-top {
+        grid-template-columns: repeat(3,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .focus-grid {
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+        margin-top: 3mm !important;
+      }
+
+      label {
+        color: #000 !important;
+        font-size: 8.5pt;
+        margin-bottom: 1mm !important;
+      }
+
+      input,
+      textarea,
+      select {
+        border: 1px solid #888 !important;
+        border-radius: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        padding: 2mm !important;
+        font-size: 9pt !important;
+        overflow: visible !important;
+      }
+
+      textarea {
+        resize: none !important;
+        min-height: 13mm !important;
+        height: auto !important;
+      }
+
+      .day-card {
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 4mm !important;
+        margin: 0 0 5mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .day-title {
+        background: #eee !important;
+        border-radius: 0 !important;
+        padding: 2mm 3mm !important;
+        margin: 0 0 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .day-title h3 {
+        color: #000 !important;
+        font-size: 13pt !important;
+      }
+
+      .lesson-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .field {
+        margin-bottom: 2mm !important;
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .support-row {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+        margin-top: 2mm !important;
+      }
+
+      .support-box,
+      .challenge-box {
+        background: white !important;
+        border: 1px solid #888 !important;
+        border-left: 2pt solid #666 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .reflection-box {
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-left: 2pt solid #666 !important;
+        border-radius: 0 !important;
+        padding: 4mm !important;
+        margin-top: 5mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000 !important;
+        break-after: avoid-page;
+        page-break-after: avoid;
+      }
+
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .monday,
+      .tuesday,
+      .wednesday,
+      .thursday,
+      .friday {
+        break-after: auto;
+      }
+    }
+
 
     @media(max-width:750px) {
-      .day-grid {
-        grid-template-columns: 1fr;
-      }
 
-      .wide {
-        grid-column: auto;
-      }
-    }
-
-    @media(max-width:650px) {
-      main {
-        padding: 22px 12px 55px;
+      nav {
+        position: static;
       }
 
       nav a {
         display: block;
       }
 
+      main {
+        padding: 22px 12px 55px;
+      }
+
       .box,
       .day-card {
         padding: 18px;
       }
-    }
 
-    @media print {
-      nav,
-      footer,
-      .button-row,
-      .message,
-      .link-grid {
-        display: none;
+      .week-top,
+      .focus-grid,
+      .lesson-grid,
+      .support-row {
+        grid-template-columns: 1fr;
       }
 
-      body {
-        background: white;
-      }
-
-      .box,
-      .day-card {
-        box-shadow: none;
-        page-break-inside: avoid;
+      .full {
+        grid-column: auto;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
-  <h1>📅 Veckoplan matematik</h1>
+
+  <h1>📅 Veckoplan</h1>
 
   <p>
-    Planera en hel matematikvecka med tydliga mål, undervisning,
-    stöd, utmaningar och uppföljning.
+    Planera matematikundervisningen vecka för vecka med mål,
+    begrepp, aktiviteter, språkstöd, anpassningar,
+    utmaning och uppföljning.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="lararrum.html">👩‍🏫 Lärarrum</a>
-  <a href="lararverktyg.html">🧰 Lärarverktyg</a>
   <a href="#vecka">📅 Veckan</a>
-  <a href="#uppfoljning">📊 Uppföljning</a>
+  <a href="#mandag">Måndag</a>
+  <a href="#tisdag">Tisdag</a>
+  <a href="#onsdag">Onsdag</a>
+  <a href="#torsdag">Torsdag</a>
+  <a href="#fredag">Fredag</a>
+  <a href="#uppfoljning">🔎 Uppföljning</a>
 </nav>
+
 
 <main>
 
+
+  <!-- INTRO -->
+
   <section class="box intro">
-    <h2>🌿 Veckans fokus</h2>
 
-    <div class="top-grid">
+    <h2>🧭 Planera från mål till uppföljning</h2>
 
-      <div class="top-card">
-        <label for="weekNumber">Vecka</label>
-        <input type="text" id="weekNumber" placeholder="Till exempel vecka 38">
+    <p>
+      Veckoplanen hjälper dig att hålla ihop innehåll,
+      matematiskt språk, undervisningsaktivitet och elevbehov.
+    </p>
+
+
+    <div class="info-grid">
+
+      <div class="info-card">
+        <div class="icon">🎯</div>
+        <strong>Mål</strong>
+        Vad ska eleverna utveckla förståelse för?
       </div>
 
-      <div class="top-card">
-        <label for="mainArea">Matematikområde</label>
-
-        <select id="mainArea">
-          <option value="">Välj område</option>
-          <option>Taluppfattning</option>
-          <option>Addition</option>
-          <option>Subtraktion</option>
-          <option>Multiplikation</option>
-          <option>Division</option>
-          <option>Bråk</option>
-          <option>Algebra</option>
-          <option>Geometri</option>
-          <option>Mätning</option>
-          <option>Tid</option>
-          <option>Statistik</option>
-          <option>Sannolikhet</option>
-          <option>Problemlösning</option>
-        </select>
+      <div class="info-card">
+        <div class="icon">💬</div>
+        <strong>Språk</strong>
+        Vilka ord och sätt att uttrycka matematik behöver synliggöras?
       </div>
 
-      <div class="top-card">
-        <label for="weekGoal">Veckans mål</label>
-        <textarea id="weekGoal"
-          placeholder="Efter veckan ska eleverna kunna..."></textarea>
+      <div class="info-card">
+        <div class="icon">🧱</div>
+        <strong>Representationer</strong>
+        Vilket material, vilka bilder och symboler ska användas?
       </div>
 
-      <div class="top-card">
-        <label for="weekConcepts">Viktiga begrepp</label>
-        <textarea id="weekConcepts"
-          placeholder="Till exempel summa, differens, tiotal, ental..."></textarea>
+      <div class="info-card">
+        <div class="icon">🌱</div>
+        <strong>Stöd</strong>
+        Vilka elever behöver mer konkretisering, språkstöd eller repetition?
       </div>
 
-    </div>
-  </section>
-
-
-  <section class="box" id="vecka">
-    <h2>📚 Veckans lektioner</h2>
-
-    <div id="days"></div>
-  </section>
-
-
-  <section class="box">
-    <h2>🧠 Förslag på gemensam lektionsstruktur</h2>
-
-    <div class="routine-grid">
-
-      <div class="routine-card">
-        1️⃣ Start
-        <br>
-        5–10 min
+      <div class="info-card">
+        <div class="icon">⭐</div>
+        <strong>Utmaning</strong>
+        Hur kan uppgiften öppnas eller fördjupas?
       </div>
 
-      <div class="routine-card">
-        2️⃣ Modellering
-        <br>
-        10–15 min
-      </div>
-
-      <div class="routine-card">
-        3️⃣ Elevaktivitet
-        <br>
-        20–30 min
-      </div>
-
-      <div class="routine-card">
-        4️⃣ Matteprat
-        <br>
-        5–10 min
-      </div>
-
-      <div class="routine-card">
-        5️⃣ Exit ticket
-        <br>
-        3–5 min
+      <div class="info-card">
+        <div class="icon">🔎</div>
+        <strong>Uppföljning</strong>
+        Vad visar att undervisningen gett önskad effekt?
       </div>
 
     </div>
-  </section>
 
 
-  <section class="box">
-    <h2>🌱 Stöd och utmaning under veckan</h2>
-
-    <div class="support-grid">
-
-      <div class="support-card">
-        <h3>🌱 Elever som behöver mer stöd</h3>
-
-        <textarea id="supportPlan"
-          placeholder="Vilka elever/grupper behöver extra modellering, konkret material, bildstöd, mindre tal eller fler repetitioner?"></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>⭐ Elever som behöver utmaning</h3>
-
-        <textarea id="challengePlan"
-          placeholder="Öppna problem, fler lösningar, större tal, resonemang, skapa egna problem..."></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>💬 Språkstöd</h3>
-
-        <textarea id="languagePlan"
-          placeholder="Begrepp, bilder, meningsstarter, parprat, modellering..."></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>🧱 Material</h3>
-
-        <textarea id="materialPlan"
-          placeholder="Tallinje, basmaterial, multilink, miniwhiteboards, spel, digitala verktyg..."></textarea>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>👥 Gruppindelning</h2>
-
-    <div class="support-grid">
-
-      <div class="support-card">
-        <h3>Grupp 1</h3>
-        <textarea id="group1"
-          placeholder="Elever och fokus..."></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>Grupp 2</h3>
-        <textarea id="group2"
-          placeholder="Elever och fokus..."></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>Grupp 3</h3>
-        <textarea id="group3"
-          placeholder="Elever och fokus..."></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>Grupp 4</h3>
-        <textarea id="group4"
-          placeholder="Elever och fokus..."></textarea>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box" id="uppfoljning">
-    <h2>📊 Uppföljning efter veckan</h2>
-
-    <div class="support-grid">
-
-      <div class="support-card">
-        <h3>✅ Det här fungerar</h3>
-
-        <textarea id="workedWell"
-          placeholder="Vad verkar eleverna ha förstått?"></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>🔎 Det här behöver följas upp</h3>
-
-        <textarea id="needsFollowUp"
-          placeholder="Vilka delar behöver mer undervisning?"></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>🕵️ Missuppfattningar</h3>
-
-        <textarea id="misconceptions"
-          placeholder="Vilka missuppfattningar blev synliga?"></textarea>
-      </div>
-
-      <div class="support-card">
-        <h3>➡️ Nästa steg</h3>
-
-        <textarea id="nextStep"
-          placeholder="Vad blir nästa matematiska steg?"></textarea>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="box">
-    <h2>✅ Veckocheck</h2>
-
-    <ul class="checklist">
-      <li>Har veckan ett tydligt matematiskt mål?</li>
-      <li>Vet eleverna vilka begrepp de ska använda?</li>
-      <li>Finns konkret och visuellt stöd?</li>
-      <li>Får eleverna använda flera strategier?</li>
-      <li>Får eleverna prata och förklara matematik?</li>
-      <li>Finns anpassningar för olika behov?</li>
-      <li>Finns en plan för formativ uppföljning?</li>
-    </ul>
-  </section>
-
-
-  <section class="box">
-    <h2>🔗 Använd plattformen i veckoplaneringen</h2>
-
-    <div class="link-grid">
-
-      <a class="link-card" href="dagensmatte.html">
-        ☀️ Dagens matte
-      </a>
-
-      <a class="link-card" href="strategier.html">
-        🧠 Räknestrategier
-      </a>
-
-      <a class="link-card" href="representationer.html">
-        🧩 Representationer
-      </a>
-
-      <a class="link-card" href="stationsarbete.html">
-        🔄 Stationsarbete
-      </a>
-
-      <a class="link-card" href="matteprat.html">
-        💬 Matteprat
-      </a>
-
-      <a class="link-card" href="ovningsbank.html">
-        📚 Övningsbank
-      </a>
-
-      <a class="link-card" href="exit-ticket.html">
-        🚪 Exit ticket
-      </a>
-
-      <a class="link-card" href="diagnos.html">
-        🔎 Diagnos
-      </a>
-
-    </div>
-  </section>
-
-
-  <section class="box">
     <div class="button-row">
 
-      <button class="save-btn" onclick="saveWeek()">
-        💾 Spara veckoplanen
+      <button onclick="savePlan()">
+        💾 Spara veckoplan
       </button>
 
-      <button onclick="window.print()">
-        🖨️ Skriv ut
+      <button class="secondary" onclick="window.print()">
+        🖨️ Skriv ut A4
       </button>
 
-      <button onclick="clearWeek()">
-        🗑️ Töm planen
+      <button class="danger" onclick="clearPlan()">
+        🗑️ Rensa
       </button>
 
     </div>
 
-    <div class="message" id="saveMessage"></div>
+
+    <div class="save-status" id="saveStatus"></div>
+
+
+    <div class="privacy-note">
+
+      <strong>🔒 Om sparfunktionen:</strong>
+
+      Innehållet sparas endast lokalt i den webbläsare och på den enhet
+      där sidan används. Undvik att skriva känsliga personuppgifter eller
+      fullständiga elevnamn, särskilt på delade datorer.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- VECKA -->
+
+  <section class="box" id="vecka">
+
+    <div class="week-header">
+
+      <div class="week-top">
+
+        <div>
+          <label for="week">Vecka</label>
+          <input id="week" type="text" placeholder="t.ex. 37">
+        </div>
+
+        <div>
+          <label for="className">Klass/grupp</label>
+          <input id="className" type="text" placeholder="t.ex. 3A">
+        </div>
+
+        <div>
+          <label for="area">Matematikområde</label>
+          <input id="area" type="text" placeholder="t.ex. Addition">
+        </div>
+
+      </div>
+
+
+      <div class="focus-grid">
+
+        <div>
+          <label for="weekGoal">Veckans matematiska mål</label>
+
+          <textarea
+            id="weekGoal"
+            placeholder="Efter veckan ska eleverna kunna..."
+          ></textarea>
+        </div>
+
+
+        <div>
+          <label for="concepts">Viktiga begrepp</label>
+
+          <textarea
+            id="concepts"
+            placeholder="t.ex. summa, term, strategi, tiotal..."
+          ></textarea>
+        </div>
+
+
+        <div>
+          <label for="representations">Representationer/material</label>
+
+          <textarea
+            id="representations"
+            placeholder="tallinje, tiobasmaterial, bild, symboler..."
+          ></textarea>
+        </div>
+
+
+        <div>
+          <label for="languageFocus">Språkfokus</label>
+
+          <textarea
+            id="languageFocus"
+            placeholder="meningsstarter, begrepp, frågor..."
+          ></textarea>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- MÅNDAG -->
+
+    <div class="day-card monday" id="mandag">
+
+      <div class="day-title">
+        <h3>☀️ Måndag</h3>
+        <strong>Start och synliggörande</strong>
+      </div>
+
+
+      <div class="lesson-grid">
+
+        <div class="field">
+
+          <label for="monGoal">
+            Dagens mål
+          </label>
+
+          <textarea
+            id="monGoal"
+            placeholder="Vad ska eleverna förstå eller kunna?"
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="monStart">
+            Lektionsstart
+          </label>
+
+          <textarea
+            id="monStart"
+            placeholder="Dagens tal, bild, problem, samtalsfråga..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="monActivity">
+            Huvudaktivitet
+          </label>
+
+          <textarea
+            id="monActivity"
+            placeholder="Vad gör läraren och eleverna?"
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="monTalk">
+            Matematikprat
+          </label>
+
+          <textarea
+            id="monTalk"
+            placeholder="Vilka frågor ska ställas?"
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="monExit">
+            Avslut / exit ticket
+          </label>
+
+          <textarea
+            id="monExit"
+            placeholder="Hur fångar jag elevernas förståelse?"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="support-row">
+
+        <div class="support-box">
+
+          <label for="monSupport">
+            🌱 Stöd
+          </label>
+
+          <textarea
+            id="monSupport"
+            placeholder="konkret material, språkstöd, mindre talområde..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="challenge-box">
+
+          <label for="monChallenge">
+            ⭐ Utmaning
+          </label>
+
+          <textarea
+            id="monChallenge"
+            placeholder="öppen fråga, fler lösningar, generalisering..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TISDAG -->
+
+    <div class="day-card tuesday" id="tisdag">
+
+      <div class="day-title">
+        <h3>🌿 Tisdag</h3>
+        <strong>Strategier och träning</strong>
+      </div>
+
+
+      <div class="lesson-grid">
+
+        <div class="field">
+
+          <label for="tueGoal">
+            Dagens mål
+          </label>
+
+          <textarea id="tueGoal"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="tueStart">
+            Lektionsstart
+          </label>
+
+          <textarea id="tueStart"></textarea>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="tueActivity">
+            Huvudaktivitet
+          </label>
+
+          <textarea id="tueActivity"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="tueTalk">
+            Matematikprat
+          </label>
+
+          <textarea id="tueTalk"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="tueExit">
+            Avslut / exit ticket
+          </label>
+
+          <textarea id="tueExit"></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="support-row">
+
+        <div class="support-box">
+
+          <label for="tueSupport">
+            🌱 Stöd
+          </label>
+
+          <textarea id="tueSupport"></textarea>
+
+        </div>
+
+
+        <div class="challenge-box">
+
+          <label for="tueChallenge">
+            ⭐ Utmaning
+          </label>
+
+          <textarea id="tueChallenge"></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ONSDAG -->
+
+    <div class="day-card wednesday" id="onsdag">
+
+      <div class="day-title">
+        <h3>🧠 Onsdag</h3>
+        <strong>Fördjupa förståelsen</strong>
+      </div>
+
+
+      <div class="lesson-grid">
+
+        <div class="field">
+
+          <label for="wedGoal">
+            Dagens mål
+          </label>
+
+          <textarea id="wedGoal"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="wedStart">
+            Lektionsstart
+          </label>
+
+          <textarea id="wedStart"></textarea>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="wedActivity">
+            Huvudaktivitet
+          </label>
+
+          <textarea id="wedActivity"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="wedTalk">
+            Matematikprat
+          </label>
+
+          <textarea id="wedTalk"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="wedExit">
+            Avslut / exit ticket
+          </label>
+
+          <textarea id="wedExit"></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="support-row">
+
+        <div class="support-box">
+
+          <label for="wedSupport">
+            🌱 Stöd
+          </label>
+
+          <textarea id="wedSupport"></textarea>
+
+        </div>
+
+
+        <div class="challenge-box">
+
+          <label for="wedChallenge">
+            ⭐ Utmaning
+          </label>
+
+          <textarea id="wedChallenge"></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TORSDAG -->
+
+    <div class="day-card thursday" id="torsdag">
+
+      <div class="day-title">
+        <h3>🧩 Torsdag</h3>
+        <strong>Problemlösning och resonemang</strong>
+      </div>
+
+
+      <div class="lesson-grid">
+
+        <div class="field">
+
+          <label for="thuGoal">
+            Dagens mål
+          </label>
+
+          <textarea id="thuGoal"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="thuStart">
+            Lektionsstart
+          </label>
+
+          <textarea id="thuStart"></textarea>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="thuActivity">
+            Huvudaktivitet
+          </label>
+
+          <textarea id="thuActivity"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="thuTalk">
+            Matematikprat
+          </label>
+
+          <textarea id="thuTalk"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="thuExit">
+            Avslut / exit ticket
+          </label>
+
+          <textarea id="thuExit"></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="support-row">
+
+        <div class="support-box">
+
+          <label for="thuSupport">
+            🌱 Stöd
+          </label>
+
+          <textarea id="thuSupport"></textarea>
+
+        </div>
+
+
+        <div class="challenge-box">
+
+          <label for="thuChallenge">
+            ⭐ Utmaning
+          </label>
+
+          <textarea id="thuChallenge"></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- FREDAG -->
+
+    <div class="day-card friday" id="fredag">
+
+      <div class="day-title">
+        <h3>🌟 Fredag</h3>
+        <strong>Sammanfatta och följa upp</strong>
+      </div>
+
+
+      <div class="lesson-grid">
+
+        <div class="field">
+
+          <label for="friGoal">
+            Dagens mål
+          </label>
+
+          <textarea id="friGoal"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="friStart">
+            Lektionsstart
+          </label>
+
+          <textarea id="friStart"></textarea>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="friActivity">
+            Huvudaktivitet
+          </label>
+
+          <textarea id="friActivity"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="friTalk">
+            Matematikprat
+          </label>
+
+          <textarea id="friTalk"></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="friExit">
+            Avslut / exit ticket
+          </label>
+
+          <textarea id="friExit"></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="support-row">
+
+        <div class="support-box">
+
+          <label for="friSupport">
+            🌱 Stöd
+          </label>
+
+          <textarea id="friSupport"></textarea>
+
+        </div>
+
+
+        <div class="challenge-box">
+
+          <label for="friChallenge">
+            ⭐ Utmaning
+          </label>
+
+          <textarea id="friChallenge"></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- UPPFÖLJNING -->
+
+    <div class="reflection-box" id="uppfoljning">
+
+      <h3>🔎 Veckans uppföljning</h3>
+
+
+      <div class="focus-grid">
+
+        <div>
+
+          <label for="whatWorked">
+            Vad fungerade bra?
+          </label>
+
+          <textarea
+            id="whatWorked"
+            placeholder="Vilka aktiviteter, representationer eller frågor gav effekt?"
+          ></textarea>
+
+        </div>
+
+
+        <div>
+
+          <label for="evidence">
+            Vad såg eller hörde jag?
+          </label>
+
+          <textarea
+            id="evidence"
+            placeholder="Elevlösningar, samtal, exit tickets, observationer..."
+          ></textarea>
+
+        </div>
+
+
+        <div>
+
+          <label for="needs">
+            Vad behöver eleverna mer av?
+          </label>
+
+          <textarea
+            id="needs"
+            placeholder="Vilka begrepp, strategier eller representationer?"
+          ></textarea>
+
+        </div>
+
+
+        <div>
+
+          <label for="nextWeek">
+            Nästa undervisningssteg
+          </label>
+
+          <textarea
+            id="nextWeek"
+            placeholder="Vad behöver planeras in nästa vecka?"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- DIGITALA LÄNKAR -->
+
+  <section class="box screen-only">
+
+    <h2>🔗 Planeringsstöd</h2>
+
+    <div class="links">
+
+      <a href="arsplan.html">
+        🗓️ Årsplan
+      </a>
+
+      <a href="lektionsbank.html">
+        📚 Lektionsbank
+      </a>
+
+      <a href="lektionsgenerator.html">
+        ✨ Lektionsgenerator
+      </a>
+
+      <a href="mattepass.html">
+        🧮 Skapa mattepass
+      </a>
+
+      <a href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a href="sprakstod.html">
+        💬 Språkstöd
+      </a>
+
+      <a href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a href="missuppfattningar.html">
+        🕵️ Missuppfattningar
+      </a>
+
+    </div>
+
   </section>
 
 </main>
 
+
 <footer>
   <p><strong>Matematik åk 3 – Veckoplan</strong></p>
-  <p>Planera • Undervisa • Anpassa • Följa upp</p>
+  <p>Planera • Undervisa • Observera • Anpassa • Följ upp</p>
 </footer>
+
 
 <script>
 
-  const weekdays = [
-    "Måndag",
-    "Tisdag",
-    "Onsdag",
-    "Torsdag",
-    "Fredag"
-  ];
+const STORAGE_KEY =
+  "matematikAk3Veckoplan";
 
 
-  function renderDays() {
+const fields = [
 
-    const container =
-      document.getElementById("days");
+  "week",
+  "className",
+  "area",
+  "weekGoal",
+  "concepts",
+  "representations",
+  "languageFocus",
 
-    weekdays.forEach((day, index) => {
+  "monGoal",
+  "monStart",
+  "monActivity",
+  "monTalk",
+  "monExit",
+  "monSupport",
+  "monChallenge",
 
-      const number = index + 1;
+  "tueGoal",
+  "tueStart",
+  "tueActivity",
+  "tueTalk",
+  "tueExit",
+  "tueSupport",
+  "tueChallenge",
 
-      const card =
-        document.createElement("div");
+  "wedGoal",
+  "wedStart",
+  "wedActivity",
+  "wedTalk",
+  "wedExit",
+  "wedSupport",
+  "wedChallenge",
 
-      card.className =
-        "day-card";
+  "thuGoal",
+  "thuStart",
+  "thuActivity",
+  "thuTalk",
+  "thuExit",
+  "thuSupport",
+  "thuChallenge",
 
-      card.innerHTML = `
+  "friGoal",
+  "friStart",
+  "friActivity",
+  "friTalk",
+  "friExit",
+  "friSupport",
+  "friChallenge",
 
-        <div class="day-title">
-          <h3>${day}</h3>
-        </div>
+  "whatWorked",
+  "evidence",
+  "needs",
+  "nextWeek"
 
-        <div class="day-grid">
-
-          <div class="field">
-            <label>Lektionsmål</label>
-            <textarea id="day${number}Goal"
-              placeholder="Idag ska eleverna kunna..."></textarea>
-          </div>
-
-          <div class="field">
-            <label>Begrepp</label>
-            <textarea id="day${number}Concepts"
-              placeholder="Viktiga matematikord..."></textarea>
-          </div>
-
-          <div class="field">
-            <label>Startaktivitet</label>
-            <textarea id="day${number}Start"
-              placeholder="Till exempel Dagens matte..."></textarea>
-          </div>
-
-          <div class="field">
-            <label>Modellering</label>
-            <textarea id="day${number}Model"
-              placeholder="Vad visar läraren?"></textarea>
-          </div>
-
-          <div class="field wide">
-            <label>Elevaktivitet</label>
-            <textarea id="day${number}Activity"
-              placeholder="Vad ska eleverna göra, undersöka, spela eller diskutera?"></textarea>
-          </div>
-
-          <div class="field">
-            <label>Stöd</label>
-            <textarea id="day${number}Support"
-              placeholder="Konkret material, bildstöd, mindre tal..."></textarea>
-          </div>
-
-          <div class="field">
-            <label>Utmaning</label>
-            <textarea id="day${number}Challenge"
-              placeholder="Öppet problem, flera lösningar..."></textarea>
-          </div>
-
-          <div class="field wide">
-            <label>Avslut / exit ticket</label>
-            <textarea id="day${number}End"
-              placeholder="Hur synliggörs elevernas förståelse?"></textarea>
-          </div>
-
-        </div>
-
-      `;
-
-      container.appendChild(card);
-
-    });
-
-  }
+];
 
 
-  function getValue(id) {
+function savePlan() {
 
-    const element =
-      document.getElementById(id);
-
-    return element
-      ? element.value
-      : "";
-  }
+  const data = {};
 
 
-  function setValue(id, value) {
+  fields.forEach(id => {
 
     const element =
       document.getElementById(id);
 
     if (element) {
-      element.value =
-        value || "";
+      data[id] =
+        element.value;
     }
 
-  }
+  });
 
 
-  function saveWeek() {
-
-    const data = {
-
-      weekNumber:
-        getValue("weekNumber"),
-
-      mainArea:
-        getValue("mainArea"),
-
-      weekGoal:
-        getValue("weekGoal"),
-
-      weekConcepts:
-        getValue("weekConcepts"),
-
-      supportPlan:
-        getValue("supportPlan"),
-
-      challengePlan:
-        getValue("challengePlan"),
-
-      languagePlan:
-        getValue("languagePlan"),
-
-      materialPlan:
-        getValue("materialPlan"),
-
-      group1:
-        getValue("group1"),
-
-      group2:
-        getValue("group2"),
-
-      group3:
-        getValue("group3"),
-
-      group4:
-        getValue("group4"),
-
-      workedWell:
-        getValue("workedWell"),
-
-      needsFollowUp:
-        getValue("needsFollowUp"),
-
-      misconceptions:
-        getValue("misconceptions"),
-
-      nextStep:
-        getValue("nextStep"),
-
-      days: []
-
-    };
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
 
 
-    weekdays.forEach(
-      (day, index) => {
-
-        const number =
-          index + 1;
-
-        data.days.push({
-
-          goal:
-            getValue(
-              `day${number}Goal`
-            ),
-
-          concepts:
-            getValue(
-              `day${number}Concepts`
-            ),
-
-          start:
-            getValue(
-              `day${number}Start`
-            ),
-
-          model:
-            getValue(
-              `day${number}Model`
-            ),
-
-          activity:
-            getValue(
-              `day${number}Activity`
-            ),
-
-          support:
-            getValue(
-              `day${number}Support`
-            ),
-
-          challenge:
-            getValue(
-              `day${number}Challenge`
-            ),
-
-          end:
-            getValue(
-              `day${number}End`
-            )
-
-        });
-
-      }
-    );
-
-
-    localStorage.setItem(
-      "matematikAk3WeekPlan",
-      JSON.stringify(data)
-    );
-
-
+  const status =
     document.getElementById(
-      "saveMessage"
-    ).textContent =
-      "✅ Veckoplanen är sparad på den här enheten.";
-
-  }
+      "saveStatus"
+    );
 
 
-  function loadWeek() {
-
-    const saved =
-      localStorage.getItem(
-        "matematikAk3WeekPlan"
-      );
-
-    if (!saved) {
-      return;
-    }
+  status.textContent =
+    "✓ Veckoplanen är sparad på den här enheten.";
 
 
-    try {
+  setTimeout(() => {
 
-      const data =
-        JSON.parse(saved);
+    status.textContent = "";
+
+  }, 3500);
+
+}
 
 
-      setValue(
-        "weekNumber",
-        data.weekNumber
-      );
+function loadPlan() {
 
-      setValue(
-        "mainArea",
-        data.mainArea
-      );
+  const saved =
+    localStorage.getItem(
+      STORAGE_KEY
+    );
 
-      setValue(
-        "weekGoal",
-        data.weekGoal
-      );
 
-      setValue(
-        "weekConcepts",
-        data.weekConcepts
-      );
+  if (!saved) return;
 
-      setValue(
-        "supportPlan",
-        data.supportPlan
-      );
 
-      setValue(
-        "challengePlan",
-        data.challengePlan
-      );
+  try {
 
-      setValue(
-        "languagePlan",
-        data.languagePlan
-      );
+    const data =
+      JSON.parse(saved);
 
-      setValue(
-        "materialPlan",
-        data.materialPlan
-      );
 
-      setValue(
-        "group1",
-        data.group1
-      );
+    fields.forEach(id => {
 
-      setValue(
-        "group2",
-        data.group2
-      );
-
-      setValue(
-        "group3",
-        data.group3
-      );
-
-      setValue(
-        "group4",
-        data.group4
-      );
-
-      setValue(
-        "workedWell",
-        data.workedWell
-      );
-
-      setValue(
-        "needsFollowUp",
-        data.needsFollowUp
-      );
-
-      setValue(
-        "misconceptions",
-        data.misconceptions
-      );
-
-      setValue(
-        "nextStep",
-        data.nextStep
-      );
+      const element =
+        document.getElementById(id);
 
 
       if (
-        Array.isArray(
-          data.days
-        )
+        element &&
+        data[id] !== undefined
       ) {
 
-        data.days.forEach(
-          (day, index) => {
-
-            const number =
-              index + 1;
-
-            setValue(
-              `day${number}Goal`,
-              day.goal
-            );
-
-            setValue(
-              `day${number}Concepts`,
-              day.concepts
-            );
-
-            setValue(
-              `day${number}Start`,
-              day.start
-            );
-
-            setValue(
-              `day${number}Model`,
-              day.model
-            );
-
-            setValue(
-              `day${number}Activity`,
-              day.activity
-            );
-
-            setValue(
-              `day${number}Support`,
-              day.support
-            );
-
-            setValue(
-              `day${number}Challenge`,
-              day.challenge
-            );
-
-            setValue(
-              `day${number}End`,
-              day.end
-            );
-
-          }
-        );
+        element.value =
+          data[id];
 
       }
 
-    } catch(error) {
+    });
 
-      console.log(
-        "Kunde inte läsa den sparade veckoplanen."
-      );
+  } catch (error) {
 
-    }
+    console.log(
+      "Kunde inte läsa sparad veckoplan."
+    );
 
   }
 
-
-  function clearWeek() {
-
-    const confirmClear =
-      confirm(
-        "Vill du verkligen tömma hela veckoplanen?"
-      );
-
-    if (!confirmClear) {
-      return;
-    }
+}
 
 
-    localStorage.removeItem(
-      "matematikAk3WeekPlan"
+function clearPlan() {
+
+  const ok =
+    confirm(
+      "Vill du rensa hela veckoplanen? Detta går inte att ångra."
     );
 
 
-    document
-      .querySelectorAll(
-        "input, textarea, select"
-      )
-      .forEach(element => {
-
-        element.value = "";
-
-      });
+  if (!ok) return;
 
 
-    document.getElementById(
-      "saveMessage"
-    ).textContent =
-      "Veckoplanen är tömd.";
+  fields.forEach(id => {
 
-  }
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+      element.value = "";
+    }
+
+  });
 
 
-  renderDays();
-  loadWeek();
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+
+  document.getElementById(
+    "saveStatus"
+  ).textContent =
+    "Veckoplanen är rensad.";
+
+}
+
+
+function expandTextareasForPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.dataset.oldHeight =
+        textarea.style.height;
+
+      textarea.style.height =
+        "auto";
+
+      textarea.style.height =
+        Math.max(
+          textarea.scrollHeight,
+          55
+        ) + "px";
+
+    });
+
+}
+
+
+function restoreTextareasAfterPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.style.height =
+        textarea.dataset.oldHeight || "";
+
+    });
+
+}
+
+
+window.addEventListener(
+  "beforeprint",
+  expandTextareasForPrint
+);
+
+
+window.addEventListener(
+  "afterprint",
+  restoreTextareasAfterPrint
+);
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  loadPlan
+);
 
 </script>
 
