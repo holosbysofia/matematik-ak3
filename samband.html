@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samband – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .relation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .relation-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .relation-icon {
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #d8cab7;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .table th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    .table td {
+      background: #fffdf8;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔗 Samband</h1>
+  <p>
+    Här tränar du på dubbelt, hälften och enkla samband mellan tal och mängder.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="sannolikhet.html">🎲 Sannolikhet</a>
+  <a href="#dubbelt">✌️ Dubbelt</a>
+  <a href="#halften">½ Hälften</a>
+  <a href="#samband">🔗 Samband</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+
+    <ul>
+      <li>förstå vad dubbelt betyder</li>
+      <li>förstå vad hälften betyder</li>
+      <li>se samband mellan dubbelt och hälften</li>
+      <li>upptäcka enkla proportionella samband</li>
+      <li>använda tabeller för att visa samband</li>
+      <li>lösa vardagsproblem med dubbelt och hälften</li>
+      <li>förklara hur mängder förändras</li>
+    </ul>
+  </section>
+
+  <section class="box" id="dubbelt">
+    <h2>✌️ Dubbelt</h2>
+
+    <p>
+      Dubbelt betyder <strong>två gånger så mycket</strong>.
+    </p>
+
+    <div class="relation-grid">
+
+      <div class="relation-card">
+        <div class="relation-icon">🍎🍎</div>
+        <h3>Dubbelt 2</h3>
+        <p>
+          2 + 2 = 4
+          <br>
+          <strong>Dubbelt 2 är 4.</strong>
+        </p>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-icon">⭐⭐⭐⭐⭐⭐</div>
+        <h3>Dubbelt 3</h3>
+        <p>
+          3 + 3 = 6
+          <br>
+          <strong>Dubbelt 3 är 6.</strong>
+        </p>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-icon">✋✋</div>
+        <h3>Dubbelt 5</h3>
+        <p>
+          5 + 5 = 10
+          <br>
+          <strong>Dubbelt 5 är 10.</strong>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Dubbelt kan skrivas på olika sätt</h2>
+
+    <div class="example">
+      Dubbelt 7:
+      <br><br>
+      7 + 7 = 14
+      <br>
+      2 × 7 = 14
+    </div>
+
+    <p>
+      Addition och multiplikation kan alltså beskriva samma samband.
+    </p>
+  </section>
+
+  <section class="box" id="halften">
+    <h2>½ Hälften</h2>
+
+    <p>
+      Hälften betyder att något delas i <strong>två lika stora delar</strong>.
+    </p>
+
+    <div class="relation-grid">
+
+      <div class="relation-card">
+        <div class="relation-icon">🍪🍪🍪🍪</div>
+        <h3>Hälften av 4</h3>
+        <p>
+          4 ÷ 2 = 2
+          <br>
+          <strong>Hälften av 4 är 2.</strong>
+        </p>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-icon">● ● ● ● ● ●</div>
+        <h3>Hälften av 6</h3>
+        <p>
+          6 ÷ 2 = 3
+          <br>
+          <strong>Hälften av 6 är 3.</strong>
+        </p>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-icon">🔟</div>
+        <h3>Hälften av 10</h3>
+        <p>
+          10 ÷ 2 = 5
+          <br>
+          <strong>Hälften av 10 är 5.</strong>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔄 Dubbelt och hälften hör ihop</h2>
+
+    <div class="example">
+      Dubbelt 6 är 12.
+      <br>
+      Hälften av 12 är 6.
+    </div>
+
+    <div class="example">
+      Dubbelt 9 är 18.
+      <br>
+      Hälften av 18 är 9.
+    </div>
+
+    <p>
+      Dubbelt och hälften är motsatta samband.
+    </p>
+  </section>
+
+  <section class="box" id="samband">
+    <h2>🔗 Enkla proportionella samband</h2>
+
+    <p>
+      Ibland ökar två mängder tillsammans på ett bestämt sätt.
+    </p>
+
+    <div class="example">
+      En glass kostar 10 kronor.
+      <br><br>
+      2 glassar kostar 20 kronor.
+      <br>
+      3 glassar kostar 30 kronor.
+      <br>
+      4 glassar kostar 40 kronor.
+    </div>
+
+    <table class="table">
+      <tr>
+        <th>Antal glassar</th>
+        <th>Pris</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>10 kr</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>20 kr</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>30 kr</td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>40 kr</td>
+      </tr>
+    </table>
+
+    <p>
+      Varje gång antalet glassar ökar med 1 ökar priset med 10 kronor.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🥛 Samband mellan antal och mängd</h2>
+
+    <div class="example">
+      Varje flaska innehåller 2 dl saft.
+      <br><br>
+      1 flaska = 2 dl
+      <br>
+      2 flaskor = 4 dl
+      <br>
+      3 flaskor = 6 dl
+      <br>
+      4 flaskor = 8 dl
+    </div>
+
+    <table class="table">
+      <tr>
+        <th>Flaskor</th>
+        <th>Saft</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>2 dl</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>4 dl</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>6 dl</td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>8 dl</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Upptäck regeln</h2>
+
+    <div class="example">
+      1 påse → 5 kulor
+      <br>
+      2 påsar → 10 kulor
+      <br>
+      3 påsar → 15 kulor
+      <br>
+      4 påsar → 20 kulor
+    </div>
+
+    <p>
+      Regeln är:
+      <strong>5 kulor per påse.</strong>
+    </p>
+
+    <p>
+      Om vi vet antalet påsar kan vi räkna ut hur många kulor det blir.
+    </p>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vad är dubbelt 6?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">8</button>
+        <button onclick="answer(this,true)">12</button>
+        <button onclick="answer(this,false)">18</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vad är hälften av 14?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">7</button>
+        <button onclick="answer(this,false)">8</button>
+        <button onclick="answer(this,false)">12</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Om 1 glass kostar 10 kr, vad kostar 3 glassar?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">20 kr</button>
+        <button onclick="answer(this,true)">30 kr</button>
+        <button onclick="answer(this,false)">40 kr</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Varje låda innehåller 4 bollar. Hur många bollar finns i 5 lådor?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">9</button>
+        <button onclick="answer(this,false)">16</button>
+        <button onclick="answer(this,true)">20</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Dubbelt 8 är 16. Vad är då hälften av 16?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">8</button>
+        <button onclick="answer(this,false)">6</button>
+        <button onclick="answer(this,false)">4</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Vad är dubbelt <strong>9</strong>?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Pennpaketen</h3>
+
+      <p>
+        Varje paket innehåller 6 pennor.
+      </p>
+
+      <p>
+        Läraren köper 4 paket.
+      </p>
+
+      <p>
+        <strong>Hur många pennor blir det sammanlagt?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        En biljett kostar 15 kronor.
+      </p>
+
+      <p>
+        Hur mycket kostar:
+      </p>
+
+      <ul>
+        <li>2 biljetter?</li>
+        <li>4 biljetter?</li>
+        <li>6 biljetter?</li>
+      </ul>
+
+      <p>
+        Kan du göra en tabell som visar sambandet?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Sambandsdetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        En elev säger:
+      </p>
+
+      <p>
+        <strong>
+          ”Om 2 påsar innehåller 10 kulor, måste 4 påsar innehålla 20 kulor.”
+        </strong>
+      </p>
+
+      <p>
+        Stämmer det om alla påsar innehåller lika många kulor?
+      </p>
+
+      <p>
+        Förklara hur du vet.
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p>
+      <strong>dubbelt</strong> – två gånger så mycket
+    </p>
+
+    <p>
+      <strong>hälften</strong> – en av två lika stora delar
+    </p>
+
+    <p>
+      <strong>samband</strong> – hur två saker hör ihop
+    </p>
+
+    <p>
+      <strong>regel</strong> – beskriver hur något förändras
+    </p>
+
+    <p>
+      <strong>proportionellt samband</strong> – när två mängder förändras i samma förhållande
+    </p>
+
+    <p>
+      <strong>tabell</strong> – ett sätt att visa samband mellan tal och mängder
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Dubbelt • Hälften • Samband • Tabeller • Problemlösning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen och titta på sambandet.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 18) {
+      feedback.textContent = "✅ Rätt! Dubbelt 9 är 18.";
+    } else {
+      feedback.textContent = "Försök igen. Tänk 9 + 9.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 24) {
+      feedback.textContent = "✅ Rätt! 4 × 6 = 24 pennor.";
+    } else {
+      feedback.textContent = "Försök igen. Det är 4 grupper med 6 pennor i varje.";
+    }
+  }
+</script>
+
+</body>
+</html>
