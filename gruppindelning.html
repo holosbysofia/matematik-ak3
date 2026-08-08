@@ -8,20 +8,24 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -29,12 +33,12 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     header {
       background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
+      padding: 46px 20px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
     }
@@ -42,23 +46,23 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2rem,5vw,3.7rem);
+      font-size: clamp(2.2rem,6vw,4rem);
     }
 
     header p {
       max-width: 900px;
       margin: 12px auto 0;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 14px;
+      padding: 14px 8px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
     }
 
     nav a {
@@ -66,9 +70,9 @@
       text-decoration: none;
       color: var(--brun);
       font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 3px;
+      border-radius: 9px;
     }
 
     nav a:hover {
@@ -95,7 +99,8 @@
     }
 
     h2,
-    h3 {
+    h3,
+    h4 {
       color: var(--brun);
     }
 
@@ -103,49 +108,94 @@
       margin-top: 0;
     }
 
-    .grid {
+    .overview-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
       gap: 14px;
       margin-top: 18px;
     }
 
-    .card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
+    .overview-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
       border-radius: 14px;
-      padding: 18px;
+      padding: 17px;
     }
 
-    .icon {
-      font-size: 2.3rem;
-      margin-bottom: 7px;
+    .overview-card .icon {
+      font-size: 2rem;
+      margin-bottom: 6px;
     }
 
-    .student-form {
+    .overview-card strong {
+      display: block;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    .privacy-note {
+      background: #f3eadf;
+      border: 1px solid #d6c7b4;
+      border-left: 5px solid #b7a17c;
+      border-radius: 11px;
+      padding: 15px;
+      margin-top: 18px;
+    }
+
+    .privacy-note strong {
+      color: var(--brun);
+    }
+
+    .planner {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px var(--skugga);
+    }
+
+    .planner-top {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 12px;
-      margin-top: 15px;
+      grid-template-columns: repeat(3,1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      color: var(--brun);
+      font-weight: bold;
+      margin-bottom: 5px;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 10px;
       border: 1px solid #cdbfae;
       border-radius: 9px;
-      background: #fffdf8;
+      padding: 10px;
+      background: white;
       color: var(--text);
       font: inherit;
     }
 
-    label {
-      font-weight: bold;
-      color: var(--brun);
-      display: block;
-      margin-bottom: 5px;
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    .student-form {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr auto;
+      gap: 10px;
+      align-items: end;
+      padding: 15px;
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      margin-top: 16px;
     }
 
     button {
@@ -169,138 +219,164 @@
     }
 
     .danger {
-      background: #eadbd6;
+      background: #ead7d2;
+      border: 1px solid #cfaea7;
     }
 
     .button-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 15px;
-    }
-
-    .groups-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 15px;
       margin-top: 18px;
     }
 
-    .group-card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 15px;
-      padding: 18px;
-    }
-
-    .group-card h3 {
-      margin-top: 0;
-    }
-
-    .group-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .student-list {
-      min-height: 90px;
-      background: #f3eadf;
-      border-radius: 10px;
-      padding: 10px;
+    .save-status {
       margin-top: 10px;
-    }
-
-    .student-item {
-      background: #fffaf2;
-      border: 1px solid #d7c8b5;
-      border-radius: 9px;
-      padding: 8px 10px;
-      margin: 7px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .student-item button {
-      padding: 4px 8px;
-      font-size: 0.8rem;
-      background: #eadbd6;
-    }
-
-    .focus-box {
-      background: #eee4d6;
-      border-left: 5px solid #bca98d;
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 12px;
-    }
-
-    .activity-box {
-      background: #e7eadf;
-      border-left: 5px solid #a7ad91;
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 12px;
-    }
-
-    .teacher-box {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 12px;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      min-width: 760px;
-    }
-
-    th,
-    td {
-      border: 1px solid #d8cab7;
-      padding: 11px;
-      vertical-align: top;
-      text-align: left;
-    }
-
-    th {
-      background: var(--beige);
+      min-height: 24px;
+      font-weight: bold;
       color: var(--brun);
     }
 
-    td {
-      background: #fffdf8;
+    .group-area {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 12px;
+      margin-top: 20px;
     }
 
-    .link-grid {
+    .group-column {
+      min-height: 320px;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .group-head {
+      padding: 13px;
+      text-align: center;
+      background: #eee4d6;
+      border-bottom: 1px solid #d6c7b4;
+    }
+
+    .group-head h3 {
+      margin: 0 0 4px;
+    }
+
+    .group-head p {
+      font-size: .88rem;
+      margin: 0;
+    }
+
+    .student-list {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+      min-height: 240px;
+    }
+
+    .student-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 9px;
+      padding: 9px;
+      margin-bottom: 8px;
+    }
+
+    .student-name {
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .remove-btn {
+      border: none;
+      padding: 4px 7px;
+      min-width: 30px;
+      background: #ead7d2;
+      font-size: .8rem;
+    }
+
+    .group-guide {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .guide-card {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .guide-card h3 {
+      margin-top: 0;
+    }
+
+    .guide-card ul {
+      margin-bottom: 0;
+      padding-left: 20px;
+    }
+
+    .guide-card li {
+      margin: 6px 0;
+    }
+
+    .important {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 16px;
+    }
+
+    .warning {
+      background: #eedbd7;
+      border-left: 5px solid #c6a39d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 16px;
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .reflection-card {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .links {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
-    .link-card {
+    .links a {
       display: block;
       text-decoration: none;
+      text-align: center;
       color: var(--text);
       background: #f3eadf;
       border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 16px;
-      text-align: center;
+      border-radius: 12px;
+      padding: 15px;
       font-weight: bold;
     }
 
-    .link-card:hover {
+    .links a:hover {
       background: var(--beige);
     }
 
@@ -308,10 +384,227 @@
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 27px;
+      padding: 28px 20px;
     }
 
-    @media(max-width:700px) {
+
+    /* =====================================
+       A4-UTSKRIFT
+       ===================================== */
+
+    @page {
+      size: A4 landscape;
+      margin: 11mm 12mm 13mm 12mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9pt;
+        line-height: 1.22;
+      }
+
+      header,
+      nav,
+      footer,
+      .intro,
+      .screen-only,
+      .student-form,
+      .button-row,
+      .privacy-note,
+      .save-status,
+      button,
+      .links {
+        display: none !important;
+      }
+
+      main {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .planner {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        background: white !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .planner::before {
+        content: "Flexibel gruppindelning – Matematik åk 3";
+        display: block;
+        font-size: 18pt;
+        font-weight: bold;
+        margin-bottom: 4mm;
+        padding-bottom: 2mm;
+        border-bottom: 1.5pt solid #555;
+      }
+
+      .planner-top {
+        display: grid !important;
+        grid-template-columns: repeat(3,1fr) !important;
+        gap: 3mm !important;
+        margin-bottom: 4mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      label {
+        color: #000 !important;
+        font-size: 8.3pt !important;
+        margin-bottom: 1mm !important;
+      }
+
+      input,
+      select,
+      textarea {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 1.4mm !important;
+        font-size: 8.5pt !important;
+      }
+
+      .group-area {
+        display: grid !important;
+        grid-template-columns: repeat(5,1fr) !important;
+        gap: 2.5mm !important;
+        margin-top: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .group-column {
+        min-height: 145mm !important;
+        background: white !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .group-head {
+        background: #eee !important;
+        padding: 2mm !important;
+        border-bottom: 1px solid #777 !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .group-head h3 {
+        color: #000 !important;
+        font-size: 10pt !important;
+        margin: 0 0 1mm !important;
+      }
+
+      .group-head p {
+        font-size: 7.2pt !important;
+        line-height: 1.15 !important;
+      }
+
+      .student-list {
+        padding: 2mm !important;
+        min-height: 120mm !important;
+      }
+
+      .student-item {
+        display: block !important;
+        background: white !important;
+        border: 1px solid #888 !important;
+        border-radius: 0 !important;
+        padding: 1.6mm !important;
+        margin-bottom: 1.5mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .student-name {
+        font-size: 8.4pt !important;
+        font-weight: bold;
+      }
+
+      .remove-btn {
+        display: none !important;
+      }
+
+      .print-followup {
+        display: block !important;
+        break-before: page;
+        page-break-before: always;
+        margin-top: 0 !important;
+      }
+
+      .group-guide,
+      .reflection-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2,1fr) !important;
+        gap: 3mm !important;
+      }
+
+      .guide-card,
+      .reflection-card,
+      .important,
+      .warning {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #777 !important;
+        border-radius: 0 !important;
+        padding: 3mm !important;
+
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+
+      .important,
+      .warning {
+        border-left: 2pt solid #666 !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000 !important;
+        break-after: avoid-page;
+        page-break-after: avoid;
+      }
+
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
+      }
+    }
+
+
+    @media(max-width:950px) {
+
+      .group-area {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+    }
+
+
+    @media(max-width:750px) {
+
       nav {
         position: static;
       }
@@ -320,600 +613,1018 @@
         display: block;
       }
 
-      .student-form {
-        grid-template-columns: 1fr;
-      }
-
       main {
         padding: 22px 12px 55px;
       }
 
-      .box {
+      .box,
+      .planner {
         padding: 18px;
       }
-    }
 
-    @media print {
-      nav,
+      .planner-top,
       .student-form,
-      .button-row,
-      footer,
-      .link-grid {
-        display: none !important;
+      .group-guide,
+      .reflection-grid {
+        grid-template-columns: 1fr;
       }
 
-      body {
-        background: white;
-      }
-
-      .box,
-      .group-card {
-        box-shadow: none;
-        break-inside: avoid;
+      .group-area {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
+
   <h1>👥 Flexibel gruppindelning</h1>
 
   <p>
-    Sortera elever efter aktuellt undervisningsbehov och få förslag på
-    fokus, aktiviteter och lärarstöd för varje grupp.
+    Skapa tillfälliga matematikgrupper utifrån vad eleverna
+    behöver arbeta med just nu – inte fasta grupper efter förmåga.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#skapa">➕ Lägg till</a>
-  <a href="#grupper">👥 Grupper</a>
-  <a href="#planering">📋 Planering</a>
+  <a href="#verktyg">👥 Grupper</a>
+  <a href="#principer">🧭 Principer</a>
+  <a href="#uppfoljning">🔎 Uppföljning</a>
 </nav>
+
 
 <main>
 
+
+  <!-- INTRO -->
+
   <section class="box intro">
-    <h2>🌿 Flexibla grupper – inte fasta nivågrupper</h2>
+
+    <h2>🧭 Grupper efter aktuellt undervisningsbehov</h2>
 
     <p>
-      En elev kan behöva stöd inom ett område och samtidigt vara redo för
-      utmaning inom ett annat. Gruppindelningen bör därför förändras utifrån
-      det matematiska innehållet och det läraren ser i kartläggning och undervisning.
+      Grupperna på den här sidan är tänkta att vara
+      <strong>tillfälliga och föränderliga</strong>.
+      En elev kan exempelvis behöva språkstöd i ett område men
+      arbeta självständigt eller behöva större utmaning i ett annat.
     </p>
 
-    <div class="grid">
 
-      <div class="card">
-        <div class="icon">🔢</div>
-        <h3>Grund</h3>
-        <p>Behöver bygga eller återbygga en central matematisk idé.</p>
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        <div class="icon">🌱</div>
+        <strong>Grund</strong>
+        När den matematiska grunden behöver konkretiseras.
       </div>
 
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">🧠</div>
-        <h3>Strategi</h3>
-        <p>Förstår idén men behöver effektivare och säkrare strategier.</p>
+        <strong>Strategi</strong>
+        När eleven behöver utveckla flexiblare strategier.
       </div>
 
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">💬</div>
-        <h3>Språk</h3>
-        <p>Matematiken finns, men språk eller begrepp hindrar eleven.</p>
+        <strong>Språkstöd</strong>
+        När det matematiska språket behöver synliggöras.
       </div>
 
-      <div class="card">
-        <div class="icon">🌳</div>
-        <h3>Självständig</h3>
-        <p>Kan arbeta vidare med tillämpning och variation.</p>
+      <div class="overview-card">
+        <div class="icon">✏️</div>
+        <strong>Självständigt</strong>
+        När eleven kan arbeta vidare med begränsat lärarstöd.
       </div>
 
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">⭐</div>
-        <h3>Utmaning</h3>
-        <p>Behöver större djup, resonemang och öppna problem.</p>
+        <strong>Utmaning</strong>
+        När eleven behöver större matematiskt djup.
       </div>
 
     </div>
+
+
+    <div class="privacy-note">
+
+      <strong>🔒 Viktigt om elevnamn och lokal lagring:</strong><br>
+
+      Gruppindelningen sparas endast lokalt i den webbläsare
+      och på den enhet där sidan används. Informationen skickas
+      inte automatiskt till någon extern tjänst.
+
+      <br><br>
+
+      På en delad dator kan andra användare av samma webbläsarprofil
+      däremot se det som har sparats. Använd därför helst
+      <strong>förnamn, initialer eller elevkod</strong> och undvik
+      känsliga uppgifter.
+
+      <br><br>
+
+      Skriv inte diagnoser, medicinsk information, sekretessuppgifter
+      eller andra känsliga personuppgifter i gruppnamn eller anteckningar.
+      Rensa sparade grupper när de inte längre behövs.
+
+    </div>
+
   </section>
 
 
-  <section class="box" id="skapa">
 
-    <h2>➕ Lägg till elev</h2>
+  <!-- VERKTYG -->
 
-    <div class="student-form">
+  <section class="planner" id="verktyg">
+
+
+    <div class="planner-top">
 
       <div>
-        <label for="studentName">Elev</label>
-        <input type="text" id="studentName" placeholder="Namn eller initialer">
+        <label for="date">Datum / period</label>
+        <input
+          id="date"
+          type="text"
+          placeholder="t.ex. v. 38"
+        >
       </div>
 
       <div>
-        <label for="groupSelect">Aktuellt behov</label>
+        <label for="area">Matematikområde</label>
+        <input
+          id="area"
+          type="text"
+          placeholder="t.ex. Subtraktion"
+        >
+      </div>
 
-        <select id="groupSelect">
-          <option value="grund">Behöver grund</option>
-          <option value="strategi">Behöver strategi</option>
-          <option value="sprak">Behöver språkstöd</option>
-          <option value="sjalv">Arbetar självständigt</option>
-          <option value="utmaning">Behöver utmaning</option>
+      <div>
+        <label for="lessonGoal">Gemensamt lektionsmål</label>
+        <input
+          id="lessonGoal"
+          type="text"
+          placeholder="t.ex. använda tallinje"
+        >
+      </div>
+
+    </div>
+
+
+
+    <div class="student-form screen-only">
+
+      <div>
+
+        <label for="studentName">
+          Elev / initialer
+        </label>
+
+        <input
+          id="studentName"
+          type="text"
+          placeholder="t.ex. Anna eller AB"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label for="studentGroup">
+          Aktuellt behov
+        </label>
+
+        <select id="studentGroup">
+
+          <option value="grund">
+            🌱 Grund
+          </option>
+
+          <option value="strategi">
+            🧠 Strategi
+          </option>
+
+          <option value="sprak">
+            💬 Språkstöd
+          </option>
+
+          <option value="själv">
+            ✏️ Självständigt
+          </option>
+
+          <option value="utmaning">
+            ⭐ Utmaning
+          </option>
+
         </select>
+
+      </div>
+
+
+      <div>
+        <button onclick="addStudent()">
+          + Lägg till
+        </button>
       </div>
 
     </div>
 
-    <div class="button-row">
-      <button onclick="addStudent()">➕ Lägg till elev</button>
-      <button class="secondary" onclick="saveGroups()">💾 Spara lokalt</button>
-      <button class="secondary" onclick="window.print()">🖨️ Skriv ut</button>
-      <button class="danger" onclick="clearAll()">🗑️ Rensa alla</button>
+
+
+    <div class="group-area">
+
+
+      <!-- GRUND -->
+
+      <section class="group-column">
+
+        <div class="group-head">
+          <h3>🌱 Grund</h3>
+          <p>Konkretisering och säkrare grundförståelse.</p>
+        </div>
+
+        <ul
+          class="student-list"
+          id="grundList"
+        ></ul>
+
+      </section>
+
+
+
+      <!-- STRATEGI -->
+
+      <section class="group-column">
+
+        <div class="group-head">
+          <h3>🧠 Strategi</h3>
+          <p>Utveckla och jämföra matematiska strategier.</p>
+        </div>
+
+        <ul
+          class="student-list"
+          id="strategiList"
+        ></ul>
+
+      </section>
+
+
+
+      <!-- SPRÅK -->
+
+      <section class="group-column">
+
+        <div class="group-head">
+          <h3>💬 Språkstöd</h3>
+          <p>Begrepp, meningsstarter och samtalsstöd.</p>
+        </div>
+
+        <ul
+          class="student-list"
+          id="sprakList"
+        ></ul>
+
+      </section>
+
+
+
+      <!-- SJÄLV -->
+
+      <section class="group-column">
+
+        <div class="group-head">
+          <h3>✏️ Självständigt</h3>
+          <p>Arbeta vidare med begränsat lärarstöd.</p>
+        </div>
+
+        <ul
+          class="student-list"
+          id="självList"
+        ></ul>
+
+      </section>
+
+
+
+      <!-- UTMANING -->
+
+      <section class="group-column">
+
+        <div class="group-head">
+          <h3>⭐ Utmaning</h3>
+          <p>Fördjupning, generalisering och öppna problem.</p>
+        </div>
+
+        <ul
+          class="student-list"
+          id="utmaningList"
+        ></ul>
+
+      </section>
+
+
+    </div>
+
+
+
+    <div class="button-row screen-only">
+
+      <button onclick="saveGroups()">
+        💾 Spara grupper
+      </button>
+
+      <button
+        class="secondary"
+        onclick="window.print()"
+      >
+        🖨️ Skriv ut A4
+      </button>
+
+      <button
+        class="danger"
+        onclick="clearGroups()"
+      >
+        🗑️ Rensa grupper
+      </button>
+
+    </div>
+
+
+    <div
+      class="save-status screen-only"
+      id="saveStatus"
+    ></div>
+
+
+  </section>
+
+
+
+  <!-- PRINCIPER -->
+
+  <section
+    class="box print-followup"
+    id="principer"
+  >
+
+    <h2>🧭 Vad grupperna betyder</h2>
+
+
+    <div class="group-guide">
+
+
+      <div class="guide-card">
+
+        <h3>🌱 Grund</h3>
+
+        <p>
+          För elever som just nu behöver mer konkret och
+          tydligt stöd för den aktuella matematiska idén.
+        </p>
+
+        <ul>
+          <li>konkret material</li>
+          <li>mindre talområde</li>
+          <li>bild och tallinje</li>
+          <li>ett steg i taget</li>
+          <li>många muntliga frågor</li>
+        </ul>
+
+      </div>
+
+
+      <div class="guide-card">
+
+        <h3>🧠 Strategi</h3>
+
+        <p>
+          För elever som ofta kan beräkna men behöver
+          utveckla flexiblare och mer medvetna strategier.
+        </p>
+
+        <ul>
+          <li>jämföra två strategier</li>
+          <li>välja metod utifrån talen</li>
+          <li>förklara varför</li>
+          <li>rimlighetskontroll</li>
+        </ul>
+
+      </div>
+
+
+      <div class="guide-card">
+
+        <h3>💬 Språkstöd</h3>
+
+        <p>
+          För elever som behöver extra stöd för att förstå,
+          använda eller uttrycka matematiken språkligt.
+        </p>
+
+        <ul>
+          <li>förförstå begrepp</li>
+          <li>bildstöd</li>
+          <li>meningsstarter</li>
+          <li>parprat</li>
+          <li>återberätta problem</li>
+        </ul>
+
+      </div>
+
+
+      <div class="guide-card">
+
+        <h3>✏️ Självständigt</h3>
+
+        <p>
+          För elever som just nu kan fortsätta med uppgifterna
+          med begränsat direkt lärarstöd.
+        </p>
+
+        <ul>
+          <li>tydlig uppgift</li>
+          <li>självkontroll</li>
+          <li>parjämförelse vid behov</li>
+          <li>kort läraravstämning</li>
+        </ul>
+
+      </div>
+
+
+      <div class="guide-card">
+
+        <h3>⭐ Utmaning</h3>
+
+        <p>
+          För elever som behöver mer matematiskt djup,
+          inte bara fler likadana uppgifter.
+        </p>
+
+        <ul>
+          <li>flera lösningar</li>
+          <li>hitta alla möjligheter</li>
+          <li>generalisera</li>
+          <li>motivera</li>
+          <li>skapa egna problem</li>
+        </ul>
+
+      </div>
+
+
+      <div class="guide-card">
+
+        <h3>🔄 Byt grupp när behovet ändras</h3>
+
+        <p>
+          En elevs grupplacering ska inte ses som en beskrivning
+          av elevens generella matematiska förmåga.
+        </p>
+
+        <p>
+          Gruppen beskriver endast vilket stöd eller vilken
+          utmaning som verkar relevant i den aktuella undervisningen.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="important">
+
+      <strong>Viktig princip:</strong>
+      grupperna ska vara flexibla. En elev kan exempelvis vara i
+      gruppen Grund under arbete med bråk men i Utmaning under
+      arbete med geometri.
+
+    </div>
+
+
+    <div class="warning">
+
+      <strong>Undvik fasta nivågrupper:</strong>
+      skriv inte etiketter som ”svag”, ”låg”, ”duktig” eller ”hög”.
+      Gruppnamnen ska beskriva vilket undervisningsstöd som behövs
+      just nu.
+
     </div>
 
   </section>
 
 
-  <section class="box" id="grupper">
 
-    <h2>👥 Undervisningsgrupper</h2>
+  <!-- UPPFÖLJNING -->
 
-    <div class="groups-grid">
+  <section
+    class="box print-followup"
+    id="uppfoljning"
+  >
+
+    <h2>🔎 Följ upp efter lektionen</h2>
+
+    <div class="reflection-grid">
 
 
-      <div class="group-card">
+      <div class="reflection-card">
 
-        <div class="group-title">
-          <span>🌱</span>
-          <h3>Behöver grund</h3>
-        </div>
+        <label for="worked">
+          Vad fungerade bra i grupperna?
+        </label>
 
-        <div class="student-list" id="grundList">
-          Inga elever ännu.
-        </div>
-
-        <div class="focus-box">
-          <strong>🎯 Fokus:</strong>
-          Begreppsförståelse, konkreta representationer, del–helhet,
-          platsvärde eller räknesättets innebörd.
-        </div>
-
-        <div class="activity-box">
-          <strong>🧱 Aktivitet:</strong>
-          Arbeta med konkret material → bild → symbol.
-          Få uppgifter men mycket samtal och återkoppling.
-        </div>
-
-        <div class="teacher-box">
-          <strong>👩‍🏫 Lärarroll:</strong>
-          Den här gruppen är ofta lämplig för lärarledd station.
-        </div>
+        <textarea
+          id="worked"
+          placeholder="Vilket stöd eller vilken organisation gav effekt?"
+        ></textarea>
 
       </div>
 
 
-      <div class="group-card">
+      <div class="reflection-card">
 
-        <div class="group-title">
-          <span>🧠</span>
-          <h3>Behöver strategi</h3>
-        </div>
+        <label for="change">
+          Vilka elever behöver byta fokus?
+        </label>
 
-        <div class="student-list" id="strategiList">
-          Inga elever ännu.
-        </div>
-
-        <div class="focus-box">
-          <strong>🎯 Fokus:</strong>
-          Flexibla huvudräkningsstrategier, samband mellan räknesätt
-          och att välja metod efter talen.
-        </div>
-
-        <div class="activity-box">
-          <strong>🧠 Aktivitet:</strong>
-          Jämför två lösningar, använd tallinje och träna
-          ”Hur skulle du räkna?” istället för långa uppgiftsserier.
-        </div>
-
-        <div class="teacher-box">
-          <strong>👩‍🏫 Lärarroll:</strong>
-          Modellera ett fåtal strategier och be eleven förklara varför de fungerar.
-        </div>
+        <textarea
+          id="change"
+          placeholder="Använd gärna initialer eller elevkod."
+        ></textarea>
 
       </div>
 
 
-      <div class="group-card">
+      <div class="reflection-card">
 
-        <div class="group-title">
-          <span>💬</span>
-          <h3>Behöver språkstöd</h3>
-        </div>
+        <label for="nextSupport">
+          Vilket stöd behövs nästa gång?
+        </label>
 
-        <div class="student-list" id="sprakList">
-          Inga elever ännu.
-        </div>
-
-        <div class="focus-box">
-          <strong>🎯 Fokus:</strong>
-          Matematiska begrepp, instruktioner, textproblem och att uttrycka matematiskt tänkande.
-        </div>
-
-        <div class="activity-box">
-          <strong>💬 Aktivitet:</strong>
-          Bildstöd, begreppskort, parprat, problemlösning med återberättande
-          och meningsstarter.
-        </div>
-
-        <div class="teacher-box">
-          <strong>👩‍🏫 Lärarroll:</strong>
-          Stöd språket utan att automatiskt förenkla matematiken.
-        </div>
+        <textarea
+          id="nextSupport"
+        ></textarea>
 
       </div>
 
 
-      <div class="group-card">
+      <div class="reflection-card">
 
-        <div class="group-title">
-          <span>🌳</span>
-          <h3>Arbetar självständigt</h3>
-        </div>
+        <label for="nextChallenge">
+          Vilken utmaning behövs nästa gång?
+        </label>
 
-        <div class="student-list" id="sjalvList">
-          Inga elever ännu.
-        </div>
-
-        <div class="focus-box">
-          <strong>🎯 Fokus:</strong>
-          Befästa förståelsen och använda matematiken i varierade situationer.
-        </div>
-
-        <div class="activity-box">
-          <strong>✏️ Aktivitet:</strong>
-          Övningsbank, problemlösning, pararbete och uppgifter där eleven behöver förklara.
-        </div>
-
-        <div class="teacher-box">
-          <strong>👩‍🏫 Lärarroll:</strong>
-          Följ upp strategier och resonemang – inte bara antal rätt.
-        </div>
+        <textarea
+          id="nextChallenge"
+        ></textarea>
 
       </div>
 
-
-      <div class="group-card">
-
-        <div class="group-title">
-          <span>⭐</span>
-          <h3>Behöver utmaning</h3>
-        </div>
-
-        <div class="student-list" id="utmaningList">
-          Inga elever ännu.
-        </div>
-
-        <div class="focus-box">
-          <strong>🎯 Fokus:</strong>
-          Djupare resonemang, generalisering, öppna problem och flera lösningar.
-        </div>
-
-        <div class="activity-box">
-          <strong>⭐ Aktivitet:</strong>
-          Skapa problem, hitta alla lösningar, argumentera,
-          undersök mönster och jämför strategier.
-        </div>
-
-        <div class="teacher-box">
-          <strong>👩‍🏫 Lärarroll:</strong>
-          Ge mer komplexitet och djup – inte bara större tal eller fler uppgifter.
-        </div>
-
-      </div>
 
     </div>
 
   </section>
 
 
-  <section class="box" id="planering">
 
-    <h2>📋 Exempel på 60-minuterslektion</h2>
+  <!-- DIGITALA LÄNKAR -->
 
-    <div class="table-wrap">
+  <section class="box screen-only">
 
-      <table>
+    <h2>🔗 Arbeta vidare</h2>
 
-        <tr>
-          <th>Tid</th>
-          <th>Organisation</th>
-          <th>Innehåll</th>
-        </tr>
+    <div class="links">
 
-        <tr>
-          <td>0–8 min</td>
-          <td>Helklass</td>
-          <td>Lektionsstart och gemensam matematisk fråga.</td>
-        </tr>
-
-        <tr>
-          <td>8–18 min</td>
-          <td>Helklass</td>
-          <td>Kort modellering av dagens huvudidé.</td>
-        </tr>
-
-        <tr>
-          <td>18–35 min</td>
-          <td>Flexibla grupper</td>
-          <td>
-            Läraren arbetar med Grund-gruppen.
-            Övriga arbetar med anpassad aktivitet.
-          </td>
-        </tr>
-
-        <tr>
-          <td>35–48 min</td>
-          <td>Flexibla grupper</td>
-          <td>
-            Läraren kan byta till Strategi- eller Språkgruppen.
-          </td>
-        </tr>
-
-        <tr>
-          <td>48–55 min</td>
-          <td>Helklass</td>
-          <td>Matteprat – jämför två lösningar.</td>
-        </tr>
-
-        <tr>
-          <td>55–60 min</td>
-          <td>Enskilt</td>
-          <td>Exit ticket.</td>
-        </tr>
-
-      </table>
-
-    </div>
-
-  </section>
-
-
-  <section class="box">
-
-    <h2>🔄 Grupperna ska kunna förändras</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>Efter exit ticket</h3>
-        <p>Flytta elever om dagens svar visar ett annat behov.</p>
-      </div>
-
-      <div class="card">
-        <h3>Efter minilektion</h3>
-        <p>En elev kan snabbt bli redo för mer självständigt arbete.</p>
-      </div>
-
-      <div class="card">
-        <h3>Nytt område</h3>
-        <p>Skapa nya grupper när matematikinnehållet förändras.</p>
-      </div>
-
-      <div class="card">
-        <h3>Olika styrkor</h3>
-        <p>Samma elev kan tillhöra olika grupper inom tal, geometri och problemlösning.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="box">
-
-    <h2>🔗 Verktyg för grupperna</h2>
-
-    <div class="link-grid">
-
-      <a class="link-card" href="kartlaggning.html">
+      <a href="kartlaggning.html">
         🧭 Kartläggning
       </a>
 
-      <a class="link-card" href="interventioner.html">
+      <a href="anpassningar.html">
+        🌱 Anpassningar
+      </a>
+
+      <a href="interventioner.html">
         🎯 Interventioner
       </a>
 
-      <a class="link-card" href="intensivtraning.html">
-        ⚡ Intensivträning
+      <a href="lektionsgenerator.html">
+        ✨ Lektionsgenerator
       </a>
 
-      <a class="link-card" href="sprakstod.html">
-        💬 Språkstöd
-      </a>
-
-      <a class="link-card" href="uppgiftsbank.html">
-        🗂️ Uppgiftsbank
-      </a>
-
-      <a class="link-card" href="utmaningar.html">
-        ⭐ Utmaningar
-      </a>
-
-      <a class="link-card" href="stationsarbete.html">
+      <a href="stationsarbete.html">
         🔄 Stationsarbete
       </a>
 
-      <a class="link-card" href="mattepass.html">
-        🧮 Mattepass
+      <a href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a href="sprakstod.html">
+        💬 Språkstöd
+      </a>
+
+      <a href="strategier.html">
+        🧠 Strategier
       </a>
 
     </div>
 
   </section>
+
 
 </main>
 
 
 <footer>
-  <p><strong>Matematik åk 3 – Flexibel gruppindelning</strong></p>
-  <p>Kartlägg • Gruppera • Undervisa • Följ upp • Förändra</p>
+
+  <p>
+    <strong>Matematik åk 3 – Flexibel gruppindelning</strong>
+  </p>
+
+  <p>
+    Kartlägg • Gruppera • Undervisa • Följ upp • Förändra
+  </p>
+
 </footer>
 
 
 <script>
 
-  const groups = {
-    grund: [],
-    strategi: [],
-    sprak: [],
-    sjalv: [],
-    utmaning: []
+const STORAGE_KEY =
+  "matematikAk3FlexiblaGrupper";
+
+
+let students = [];
+
+
+function addStudent() {
+
+  const input =
+    document.getElementById("studentName");
+
+  const group =
+    document.getElementById("studentGroup").value;
+
+  const name =
+    input.value.trim();
+
+
+  if (!name) {
+
+    alert(
+      "Skriv elevens förnamn, initialer eller elevkod."
+    );
+
+    input.focus();
+
+    return;
+  }
+
+
+  students.push({
+    id: Date.now() + Math.random(),
+    name: name,
+    group: group
+  });
+
+
+  input.value = "";
+
+  renderStudents();
+
+  input.focus();
+
+}
+
+
+function removeStudent(id) {
+
+  students =
+    students.filter(
+      student => student.id !== id
+    );
+
+  renderStudents();
+
+}
+
+
+function renderStudents() {
+
+  const lists = {
+    grund:
+      document.getElementById("grundList"),
+
+    strategi:
+      document.getElementById("strategiList"),
+
+    sprak:
+      document.getElementById("sprakList"),
+
+    själv:
+      document.getElementById("självList"),
+
+    utmaning:
+      document.getElementById("utmaningList")
   };
 
 
-  function addStudent() {
+  Object.values(lists).forEach(list => {
+    list.innerHTML = "";
+  });
 
-    const input = document.getElementById("studentName");
-    const group = document.getElementById("groupSelect").value;
 
-    const name = input.value.trim();
+  students.forEach(student => {
 
-    if (!name) {
-      alert("Skriv elevens namn eller initialer.");
-      return;
+    const list =
+      lists[student.group];
+
+    if (!list) return;
+
+
+    const li =
+      document.createElement("li");
+
+    li.className =
+      "student-item";
+
+
+    const name =
+      document.createElement("span");
+
+    name.className =
+      "student-name";
+
+    name.textContent =
+      student.name;
+
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "remove-btn";
+
+    button.type =
+      "button";
+
+    button.setAttribute(
+      "aria-label",
+      "Ta bort " + student.name
+    );
+
+    button.textContent =
+      "×";
+
+    button.onclick =
+      function() {
+        removeStudent(student.id);
+      };
+
+
+    li.appendChild(name);
+    li.appendChild(button);
+
+    list.appendChild(li);
+
+  });
+
+}
+
+
+function saveGroups() {
+
+  const data = {
+
+    students: students,
+
+    date:
+      document.getElementById("date").value,
+
+    area:
+      document.getElementById("area").value,
+
+    lessonGoal:
+      document.getElementById("lessonGoal").value,
+
+    worked:
+      document.getElementById("worked").value,
+
+    change:
+      document.getElementById("change").value,
+
+    nextSupport:
+      document.getElementById("nextSupport").value,
+
+    nextChallenge:
+      document.getElementById("nextChallenge").value
+
+  };
+
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+
+  const status =
+    document.getElementById("saveStatus");
+
+  status.textContent =
+    "✓ Gruppindelningen är sparad lokalt på den här enheten.";
+
+
+  setTimeout(() => {
+
+    status.textContent = "";
+
+  }, 4000);
+
+}
+
+
+function loadGroups() {
+
+  const saved =
+    localStorage.getItem(
+      STORAGE_KEY
+    );
+
+  if (!saved) return;
+
+
+  try {
+
+    const data =
+      JSON.parse(saved);
+
+
+    if (Array.isArray(data.students)) {
+      students = data.students;
     }
 
-    groups[group].push(name);
 
-    input.value = "";
+    document.getElementById("date").value =
+      data.date || "";
 
-    renderGroups();
-    saveGroups();
+    document.getElementById("area").value =
+      data.area || "";
+
+    document.getElementById("lessonGoal").value =
+      data.lessonGoal || "";
+
+    document.getElementById("worked").value =
+      data.worked || "";
+
+    document.getElementById("change").value =
+      data.change || "";
+
+    document.getElementById("nextSupport").value =
+      data.nextSupport || "";
+
+    document.getElementById("nextChallenge").value =
+      data.nextChallenge || "";
+
+
+    renderStudents();
+
+  } catch (error) {
+
+    console.log(
+      "Kunde inte läsa sparad gruppindelning."
+    );
+
   }
 
-
-  function removeStudent(group, index) {
-
-    groups[group].splice(index, 1);
-
-    renderGroups();
-    saveGroups();
-  }
+}
 
 
-  function renderGroups() {
+function clearGroups() {
 
-    const mappings = {
-      grund: "grundList",
-      strategi: "strategiList",
-      sprak: "sprakList",
-      sjalv: "sjalvList",
-      utmaning: "utmaningList"
-    };
+  const ok =
+    confirm(
+      "Vill du rensa alla grupper och anteckningar från den här webbläsaren?"
+    );
 
-    Object.entries(mappings).forEach(([group, elementId]) => {
+  if (!ok) return;
 
-      const container = document.getElementById(elementId);
-      const students = groups[group];
 
-      container.innerHTML = "";
+  students = [];
 
-      if (students.length === 0) {
-        container.textContent = "Inga elever ännu.";
-        return;
+  renderStudents();
+
+
+  document.getElementById("date").value =
+    "";
+
+  document.getElementById("area").value =
+    "";
+
+  document.getElementById("lessonGoal").value =
+    "";
+
+  document.getElementById("worked").value =
+    "";
+
+  document.getElementById("change").value =
+    "";
+
+  document.getElementById("nextSupport").value =
+    "";
+
+  document.getElementById("nextChallenge").value =
+    "";
+
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+
+  document.getElementById(
+    "saveStatus"
+  ).textContent =
+    "Gruppindelningen är rensad.";
+
+}
+
+
+function expandTextareasForPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.dataset.oldHeight =
+        textarea.style.height;
+
+      textarea.style.height =
+        "auto";
+
+      textarea.style.height =
+        Math.max(
+          textarea.scrollHeight,
+          60
+        ) + "px";
+
+    });
+
+}
+
+
+function restoreTextareasAfterPrint() {
+
+  document
+    .querySelectorAll("textarea")
+    .forEach(textarea => {
+
+      textarea.style.height =
+        textarea.dataset.oldHeight || "";
+
+    });
+
+}
+
+
+document
+  .getElementById("studentName")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        addStudent();
+
       }
 
-      students.forEach((student, index) => {
-
-        const item = document.createElement("div");
-        item.className = "student-item";
-
-        const name = document.createElement("span");
-        name.textContent = student;
-
-        const remove = document.createElement("button");
-        remove.textContent = "Ta bort";
-
-        remove.addEventListener("click", () => {
-          removeStudent(group, index);
-        });
-
-        item.appendChild(name);
-        item.appendChild(remove);
-
-        container.appendChild(item);
-      });
-
-    });
-  }
-
-
-  function saveGroups() {
-
-    localStorage.setItem(
-      "matematikAk3FlexiblaGrupper",
-      JSON.stringify(groups)
-    );
-  }
-
-
-  function loadGroups() {
-
-    const saved = localStorage.getItem(
-      "matematikAk3FlexiblaGrupper"
-    );
-
-    if (!saved) return;
-
-    try {
-
-      const data = JSON.parse(saved);
-
-      Object.keys(groups).forEach(key => {
-
-        if (Array.isArray(data[key])) {
-          groups[key] = data[key];
-        }
-
-      });
-
-      renderGroups();
-
-    } catch(error) {
-
-      console.error(
-        "Kunde inte läsa sparad gruppindelning.",
-        error
-      );
     }
-  }
-
-
-  function clearAll() {
-
-    const ok = confirm(
-      "Vill du rensa alla grupper?"
-    );
-
-    if (!ok) return;
-
-    Object.keys(groups).forEach(key => {
-      groups[key] = [];
-    });
-
-    localStorage.removeItem(
-      "matematikAk3FlexiblaGrupper"
-    );
-
-    renderGroups();
-  }
-
-
-  document.addEventListener(
-    "DOMContentLoaded",
-    loadGroups
   );
+
+
+window.addEventListener(
+  "beforeprint",
+  expandTextareasForPrint
+);
+
+
+window.addEventListener(
+  "afterprint",
+  restoreTextareasAfterPrint
+);
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  loadGroups
+);
 
 </script>
 
