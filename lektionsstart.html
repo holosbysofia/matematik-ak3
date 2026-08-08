@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lektionsstarter – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .starter-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .starter-card h3 {
+      margin-top: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.86rem;
+      font-weight: bold;
+    }
+
+    .task-box {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .talk-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .teacher-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .challenge-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .answer-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: 1px solid #cdbfae;
+      background: #fffaf2;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige);
+    }
+
+    button.right {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 26px;
+    }
+
+    .number-display {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--brun);
+      background: #f3eadf;
+      padding: 18px;
+      border-radius: 14px;
+      margin: 15px 0;
+    }
+
+    .random-btn {
+      background: #d6c3a6;
+      border: none;
+      font-weight: bold;
+    }
+
+    .random-btn:hover {
+      background: var(--beige2);
+    }
+
+    .expression {
+      font-size: 1.5rem;
+      text-align: center;
+      background: #f3eadf;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 720px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .starter-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>☀️ Lektionsstarter</h1>
+
+  <p>
+    Korta matematikstarter på 5–10 minuter för att aktivera förkunskaper,
+    skapa samtal och få eleverna att börja tänka matematik direkt.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#rakna">➕ Räkna</a>
+  <a href="#sant">✅ Sant/falskt</a>
+  <a href="#fel">🕵️ Hitta felet</a>
+  <a href="#prat">💬 Matteprat</a>
+  <a href="#problem">🧠 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 En bra lektionsstart</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">⏱️</div>
+        <h3>Kort</h3>
+        <p>5–10 minuter räcker.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Tänkande</h3>
+        <p>Frågan ska väcka en matematisk tanke.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Samtal</h3>
+        <p>Eleverna behöver förklara hur de tänker.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔁</div>
+        <h3>Återblick</h3>
+        <p>Gamla kunskaper återkommer regelbundet.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="starter-card">
+      <h3>Start 1 – Dagens tal</h3>
+
+      <div class="meta">
+        <span class="tag">5–10 min</span>
+        <span class="tag">Helklass</span>
+      </div>
+
+      <div class="number-display" id="dailyNumber">364</div>
+
+      <button class="random-btn" onclick="newNumber()">🎲 Nytt tal</button>
+
+      <div class="task-box">
+        Fråga eleverna:
+
+        <ul>
+          <li>Hur många hundratal, tiotal och ental?</li>
+          <li>Vad är 10 mer?</li>
+          <li>Vad är 10 mindre?</li>
+          <li>Vad är 100 mer?</li>
+          <li>Vad är 100 mindre?</li>
+          <li>Vilket tal kommer precis före?</li>
+          <li>Vilket tal kommer precis efter?</li>
+        </ul>
+      </div>
+
+      <div class="talk-box">
+        💬 Kan du beskriva talet på ett annat sätt?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 2 – Mellan vilka hundratal?</h3>
+
+      <div class="task-box">
+        Mellan vilka hundratal ligger:
+
+        <ul>
+          <li>248</li>
+          <li>517</li>
+          <li>699</li>
+          <li>803</li>
+        </ul>
+      </div>
+
+      <div class="challenge-box">
+        ⭐ Vilket hundratal ligger talet närmast?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 3 – Vilket hör inte ihop?</h3>
+
+      <div class="expression">
+        24 &nbsp;&nbsp; 42 &nbsp;&nbsp; 28 &nbsp;&nbsp; 64
+      </div>
+
+      <div class="talk-box">
+        Vilket tal hör inte ihop med de andra?
+        <br><br>
+        Det kan finnas flera möjliga svar – du måste förklara.
+      </div>
+
+      <div class="teacher-box">
+        Exempel på resonemang:
+        42 är det enda udda tiotalet?
+        Nej – undersök noga.
+        Eleverna kan hitta olika egenskaper och argumentera.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="rakna">
+    <h2>➕➖✖️➗ Snabbtänka</h2>
+
+    <div class="starter-card">
+      <h3>Start 4 – Hur skulle du räkna?</h3>
+
+      <div class="expression">
+        49 + 26
+      </div>
+
+      <div class="talk-box">
+        Räkna inte direkt.
+        <br><br>
+        Vilken strategi skulle du välja – och varför?
+      </div>
+
+      <div class="teacher-box">
+        Samla flera förslag:
+        <br>
+        49 + 1 + 25
+        <br>
+        50 + 26 − 1
+        <br>
+        49 + 20 + 6
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 5 – Nästan samma uppgift</h3>
+
+      <div class="task-box">
+        Om du vet att:
+        <br><br>
+        <strong>6 + 6 = 12</strong>
+        <br><br>
+        vad vet du då om:
+
+        <ul>
+          <li>6 + 7</li>
+          <li>7 + 6</li>
+          <li>16 + 6</li>
+          <li>60 + 60</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 6 – Använd en känd multiplikation</h3>
+
+      <div class="expression">
+        5 × 6 = 30
+      </div>
+
+      <div class="task-box">
+        Hur kan detta hjälpa dig att räkna:
+
+        <ul>
+          <li>6 × 6</li>
+          <li>4 × 6</li>
+          <li>10 × 6</li>
+          <li>30 ÷ 5</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="sant">
+    <h2>✅ Sant eller falskt?</h2>
+
+    <div class="starter-card">
+      <h3>Start 7 – Tal</h3>
+
+      <div class="expression">
+        398 är större än 403.
+      </div>
+
+      <div class="answer-area" id="tf1"></div>
+      <div class="feedback" id="tfFeedback1"></div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 8 – Likhet</h3>
+
+      <div class="expression">
+        7 + 5 = 6 + 6
+      </div>
+
+      <div class="answer-area" id="tf2"></div>
+      <div class="feedback" id="tfFeedback2"></div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 9 – Bråk</h3>
+
+      <div class="expression">
+        1/4 är större än 1/2.
+      </div>
+
+      <div class="answer-area" id="tf3"></div>
+      <div class="feedback" id="tfFeedback3"></div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 10 – Multiplikation</h3>
+
+      <div class="expression">
+        4 × 6 och 6 × 4 har samma produkt.
+      </div>
+
+      <div class="answer-area" id="tf4"></div>
+      <div class="feedback" id="tfFeedback4"></div>
+    </div>
+  </section>
+
+
+  <section class="box" id="fel">
+    <h2>🕵️ Hitta felet</h2>
+
+    <div class="starter-card">
+      <h3>Start 11 – Addition</h3>
+
+      <div class="expression">
+        38 + 27 = 515
+      </div>
+
+      <div class="talk-box">
+        Vad tror du eleven har gjort?
+        <br>
+        Hur skulle du förklara felet?
+      </div>
+
+      <div class="teacher-box">
+        Låt eleverna först försöka förstå tanken bakom felet
+        innan ni rättar lösningen.
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 12 – Subtraktion</h3>
+
+      <div class="expression">
+        72 − 38 = 46
+      </div>
+
+      <div class="task-box">
+        En elev säger:
+        <br><br>
+        ”Jag tog 8 − 2 och 7 − 3.”
+      </div>
+
+      <div class="talk-box">
+        Var ändrar lösningen riktning?
+        <br>
+        Kan du visa problemet med tiotal och ental?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 13 – Division</h3>
+
+      <div class="expression">
+        24 ÷ 6 = 6
+      </div>
+
+      <div class="talk-box">
+        Hur kan du snabbt visa att detta inte stämmer?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔎 Uppskatta först</h2>
+
+    <div class="starter-card">
+      <h3>Start 14 – Ungefär vilket svar?</h3>
+
+      <div class="task-box">
+        Uppskatta innan du räknar exakt:
+
+        <ul>
+          <li>48 + 31</li>
+          <li>203 + 97</li>
+          <li>79 − 38</li>
+          <li>6 × 9</li>
+        </ul>
+      </div>
+
+      <div class="talk-box">
+        Vilka tal rundade du till?
+        <br>
+        Varför?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 15 – Rimligt eller inte?</h3>
+
+      <div class="task-box">
+        En elev får följande svar:
+
+        <ul>
+          <li>48 + 32 = 80</li>
+          <li>72 − 31 = 103</li>
+          <li>5 × 8 = 40</li>
+          <li>20 ÷ 5 = 100</li>
+        </ul>
+      </div>
+
+      <div class="talk-box">
+        Vilka svar kan vi direkt säga är orimliga utan att räkna noggrant?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="prat">
+    <h2>💬 Matteprat</h2>
+
+    <div class="starter-card">
+      <h3>Start 16 – Två lösningar</h3>
+
+      <div class="task-box">
+        Uppgift:
+        <strong>47 + 28</strong>
+
+        <p>
+          Lösning A:
+          <br>
+          47 + 20 + 8
+        </p>
+
+        <p>
+          Lösning B:
+          <br>
+          47 + 3 + 25
+        </p>
+      </div>
+
+      <div class="talk-box">
+        Vad är lika?
+        <br>
+        Vad är olika?
+        <br>
+        Vilken strategi föredrar du?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 17 – Håller du med?</h3>
+
+      <div class="expression">
+        ”Om man delar en pizza i fler lika stora delar blir varje del större.”
+      </div>
+
+      <div class="talk-box">
+        Jag håller med / håller inte med eftersom...
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 18 – Alltid, ibland eller aldrig?</h3>
+
+      <div class="task-box">
+        Två udda tal får en jämn summa.
+      </div>
+
+      <div class="talk-box">
+        Är det alltid sant, ibland sant eller aldrig sant?
+        <br><br>
+        Visa med exempel.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📐 Geometri och mätning</h2>
+
+    <div class="starter-card">
+      <h3>Start 19 – Beskriv utan att säga namnet</h3>
+
+      <div class="task-box">
+        Beskriv en kvadrat utan att säga ordet ”kvadrat”.
+      </div>
+
+      <div class="talk-box">
+        Använd matematiska egenskaper:
+        sidor, hörn och sidornas längd.
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 20 – Välj enhet</h3>
+
+      <div class="task-box">
+        Vilken enhet passar bäst?
+
+        <ul>
+          <li>längden på en penna</li>
+          <li>längden på ett klassrum</li>
+          <li>vikten på ett äpple</li>
+          <li>vikten på ett barn</li>
+          <li>vatten i en mjölkförpackning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösningsstarter</h2>
+
+    <div class="starter-card">
+      <h3>Start 21 – Vad vet vi?</h3>
+
+      <div class="task-box">
+        Nora har 24 pärlor.
+        Hon får 17 nya.
+        Sedan använder hon 9 till ett armband.
+        Hur många har hon kvar?
+      </div>
+
+      <div class="talk-box">
+        Räkna inte ännu.
+        <br><br>
+        Vad vet vi?
+        <br>
+        Vad ska vi ta reda på?
+        <br>
+        Hur många steg finns?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 22 – Skapa frågan</h3>
+
+      <div class="task-box">
+        Information:
+        <br><br>
+        Det finns 6 lådor.
+        <br>
+        I varje låda finns 4 bollar.
+      </div>
+
+      <div class="talk-box">
+        Vilken matematisk fråga skulle kunna passa till informationen?
+      </div>
+    </div>
+
+
+    <div class="starter-card">
+      <h3>Start 23 – Flera svar möjliga</h3>
+
+      <div class="task-box">
+        Jag tänker på två tal.
+        <br><br>
+        Summan är 30.
+      </div>
+
+      <div class="talk-box">
+        Vilka två tal kan det vara?
+        <br>
+        Hur många lösningar kan du hitta?
+      </div>
+
+      <div class="challenge-box">
+        ⭐ Kan du hitta dem systematiskt så att du vet att inget svar saknas?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🎲 Slumpad lektionsstart</h2>
+
+    <p>
+      Tryck på knappen när du vill ha en snabb startfråga.
+    </p>
+
+    <button class="random-btn" onclick="randomStarter()">🎲 Ge mig en start</button>
+
+    <div class="task-box" id="randomStarterBox">
+      Tryck på knappen ovan.
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📅 Exempel på en vecka</h2>
+
+    <div class="table-wrap">
+
+      <table>
+        <tr>
+          <th>Dag</th>
+          <th>Lektionsstart</th>
+          <th>Fokus</th>
+        </tr>
+
+        <tr>
+          <td>Måndag</td>
+          <td>Dagens tal</td>
+          <td>Taluppfattning</td>
+        </tr>
+
+        <tr>
+          <td>Tisdag</td>
+          <td>Hur skulle du räkna?</td>
+          <td>Strategier</td>
+        </tr>
+
+        <tr>
+          <td>Onsdag</td>
+          <td>Hitta felet</td>
+          <td>Resonemang</td>
+        </tr>
+
+        <tr>
+          <td>Torsdag</td>
+          <td>Sant eller falskt?</td>
+          <td>Begrepp</td>
+        </tr>
+
+        <tr>
+          <td>Fredag</td>
+          <td>Öppet problem</td>
+          <td>Problemlösning</td>
+        </tr>
+      </table>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Fler resurser</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="dagensmatte.html">
+        ☀️ Dagens matte
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="felanalys.html">
+        🕵️ Felanalys
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧩 Problemlösning
+      </a>
+
+      <a class="link-card" href="lektionsbank.html">
+        📚 Lektionsbank
+      </a>
+
+      <a class="link-card" href="intensivtraning.html">
+        ⚡ Intensivträning
+      </a>
+
+      <a class="link-card" href="exit-ticket.html">
+        🚪 Exit ticket
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Lektionsstarter</strong></p>
+  <p>Tänk • Prata • Förklara • Upptäck</p>
+</footer>
+
+<script>
+  function shuffle(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+  function newNumber() {
+    const number = Math.floor(Math.random() * 899) + 100;
+    document.getElementById("dailyNumber").textContent = number;
+  }
+
+  function trueFalse(containerId, feedbackId, correct, explanation) {
+    const container = document.getElementById(containerId);
+    const feedback = document.getElementById(feedbackId);
+
+    const alternatives = shuffle(["Sant", "Falskt"]);
+
+    alternatives.forEach(answer => {
+      const button = document.createElement("button");
+      button.textContent = answer;
+
+      button.addEventListener("click", () => {
+        container.querySelectorAll("button").forEach(btn => {
+          btn.disabled = true;
+
+          if (btn.textContent === correct) {
+            btn.classList.add("right");
+          }
+        });
+
+        if (answer === correct) {
+          button.classList.add("right");
+          feedback.textContent = "Rätt. " + explanation;
+        } else {
+          button.classList.add("wrong");
+          feedback.textContent = "Inte riktigt. " + explanation;
+        }
+      });
+
+      container.appendChild(button);
+    });
+  }
+
+  const starters = [
+    "Vilket tal är 10 mer än 368? Förklara vad som förändras.",
+    "Hitta två olika sätt att räkna 48 + 27.",
+    "Sant eller falskt: 1/4 är större än 1/2. Motivera.",
+    "Hur kan 5 × 6 hjälpa dig att räkna 6 × 6?",
+    "Vilket tal hör inte ihop: 12, 18, 21, 24? Förklara.",
+    "Vad är skillnaden mellan 63 och 58? Visa på två sätt.",
+    "Hitta felet: 38 + 24 = 512.",
+    "Skapa ett problem där svaret är 24.",
+    "Vilket är störst: 398 eller 403? Förklara utan att bara säga svaret.",
+    "Om 4 × 6 = 24, vilka divisionsuttryck hör ihop med det?",
+    "Beskriv en rektangel utan att säga ordet rektangel.",
+    "Uppskatta 198 + 103 innan du räknar exakt.",
+    "Två tal har summan 20. Hur många olika par kan du hitta?",
+    "Vad är dubbelt av 35? Hur tänkte du?",
+    "Vad är hälften av 18? Visa med en bild eller modell."
+  ];
+
+  function randomStarter() {
+    const starter = starters[Math.floor(Math.random() * starters.length)];
+
+    document.getElementById("randomStarterBox").innerHTML =
+      "<strong>Dagens start:</strong><br><br>" + starter;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    trueFalse(
+      "tf1",
+      "tfFeedback1",
+      "Falskt",
+      "403 har fyra hundratal medan 398 har tre hundratal."
+    );
+
+    trueFalse(
+      "tf2",
+      "tfFeedback2",
+      "Sant",
+      "Båda sidor är värda 12."
+    );
+
+    trueFalse(
+      "tf3",
+      "tfFeedback3",
+      "Falskt",
+      "När samma helhet delas i fyra lika delar blir varje del mindre än när den delas i två."
+    );
+
+    trueFalse(
+      "tf4",
+      "tfFeedback4",
+      "Sant",
+      "Båda uttrycken har produkten 24."
+    );
+
+  });
+</script>
+
+</body>
+</html>
