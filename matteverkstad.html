@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Matteverkstad – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .overview-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 5px;
+    }
+
+    .activity-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin: 18px 0;
+    }
+
+    .activity-card h3 {
+      margin-top: 0;
+    }
+
+    .tag-row {
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin: 2px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .info-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .info-card strong {
+      color: var(--brun);
+    }
+
+    .steps {
+      counter-reset: step;
+      padding: 0;
+      list-style: none;
+    }
+
+    .steps li {
+      counter-increment: step;
+      background: #f3eadf;
+      padding: 13px 14px 13px 52px;
+      margin: 10px 0;
+      border-radius: 11px;
+      position: relative;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 14px;
+      top: 11px;
+      width: 28px;
+      height: 28px;
+      background: #cdbb9f;
+      color: #443a31;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .language-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 14px;
+    }
+
+    .challenge-box {
+      background: #e8eadf;
+      border-left: 5px solid #a9ae91;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 14px;
+    }
+
+    .teacher-note {
+      background: #e7dfd1;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .activity-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧱 Matteverkstad</h1>
+
+  <p>
+    Laborativa matematikaktiviteter där eleverna får bygga,
+    undersöka, prata, prova och förklara.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#raknesatt">➕ Räknesätt</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#geometri">📐 Geometri</a>
+  <a href="#matning">📏 Mätning</a>
+  <a href="#statistik">📊 Statistik</a>
+  <a href="#problem">🧠 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Vad är en matteverkstad?</h2>
+
+    <p>
+      I matteverkstaden arbetar eleverna aktivt med matematiska idéer.
+      De använder konkret material, bilder, samtal och symboler för att förstå
+      vad matematiken betyder.
+    </p>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        <div class="icon">🧱</div>
+        <strong>Bygga</strong>
+        <p>Visa matematiken med konkret material.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🔎</div>
+        <strong>Undersöka</strong>
+        <p>Upptäck mönster och samband.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">💬</div>
+        <strong>Prata</strong>
+        <p>Använd matematiska ord och förklara.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🧠</div>
+        <strong>Resonera</strong>
+        <p>Jämför strategier och motivera.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="activity-card">
+
+      <h3>Aktivitet 1 – Bygg talet</h3>
+
+      <div class="tag-row">
+        <span class="tag">Positionssystem</span>
+        <span class="tag">Konkret</span>
+        <span class="tag">Par</span>
+      </div>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Basmaterial, multilink, talkort eller ritade hundratal/tiotal/ental.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Förstå hundratal, tiotal och ental.
+        </div>
+
+      </div>
+
+      <ol class="steps">
+        <li>Dra eller välj ett tresiffrigt tal.</li>
+        <li>Bygg talet med material.</li>
+        <li>Skriv talet med siffror.</li>
+        <li>Skriv talet i utvecklad form.</li>
+        <li>Byt en tiostav mot tio ental och förklara vad som händer.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Talet ___ består av ___ hundratal, ___ tiotal och ___ ental.
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Bygg samma tal på två olika sätt.
+      </div>
+
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 2 – Levande tallinje</h3>
+
+      <div class="tag-row">
+        <span class="tag">Tallinje</span>
+        <span class="tag">Rörelse</span>
+        <span class="tag">Helklass</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Talkort och tejp eller rep.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Jämföra, ordna och uppskatta tal.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Gör en lång tallinje på golvet.</li>
+        <li>Markera till exempel 0 och 100.</li>
+        <li>En elev får talet 45 och placerar sig där talet ungefär finns.</li>
+        <li>Gruppen diskuterar placeringen.</li>
+        <li>Fortsätt med fler tal.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Jag placerar talet här eftersom...
+        <br>
+        Talet ligger närmare ___ än ___.
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Markera bara 0 och 1000 och placera tresiffriga tal.
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="raknesatt">
+    <h2>➕➖✖️➗ De fyra räknesätten</h2>
+
+    <div class="activity-card">
+      <h3>Aktivitet 3 – Strategilaboratorium</h3>
+
+      <div class="tag-row">
+        <span class="tag">Addition</span>
+        <span class="tag">Strategier</span>
+        <span class="tag">Resonemang</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Miniwhiteboard, tallinje, material för tiotal och ental.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Utveckla flexibla additionsstrategier.
+        </div>
+      </div>
+
+      <div class="language-box">
+        <strong>Uppgift:</strong>
+        <br>
+        48 + 27
+      </div>
+
+      <ol class="steps">
+        <li>Lös uppgiften på ett sätt.</li>
+        <li>Visa lösningen med material eller bild.</li>
+        <li>Försök hitta en annan strategi.</li>
+        <li>Jämför lösningarna med en kamrat.</li>
+        <li>Bestäm vilken strategi ni tycker är smidigast.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Först...
+        <br>
+        Sedan...
+        <br>
+        Jag valde strategin eftersom...
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Hitta tre olika strategier för 199 + 48.
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 4 – Multiplikationsbyggen</h3>
+
+      <div class="tag-row">
+        <span class="tag">Multiplikation</span>
+        <span class="tag">Grupper</span>
+        <span class="tag">Konkret</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Knappar, kapsyler, multilink eller räknemarkörer.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Förstå multiplikation som lika stora grupper.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Bygg 4 grupper med 3 i varje.</li>
+        <li>Räkna hur många det blir totalt.</li>
+        <li>Skriv som addition.</li>
+        <li>Skriv som multiplikation.</li>
+        <li>Byt plats på faktorerna och bygg igen.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Jag har ___ grupper med ___ i varje.
+        <br>
+        Totalt blir det ___.
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Bygg 24 på så många olika multiplikativa sätt som möjligt.
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 5 – Division: dela eller gruppera?</h3>
+
+      <div class="tag-row">
+        <span class="tag">Division</span>
+        <span class="tag">Begrepp</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          24 räknemarkörer och små skålar.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Förstå två olika divisionssituationer.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Dela 24 markörer lika mellan 4 skålar.</li>
+        <li>Hur många hamnar i varje?</li>
+        <li>Ta tillbaka alla 24.</li>
+        <li>Gör grupper med 4 i varje.</li>
+        <li>Hur många grupper blir det?</li>
+        <li>Jämför de två uppgifterna.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Jag vet hur många grupper...
+        <br>
+        Jag ska ta reda på hur många i varje grupp...
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="brak">
+    <h2>🍕 Bråk</h2>
+
+    <div class="activity-card">
+      <h3>Aktivitet 6 – Bråkpizzor</h3>
+
+      <div class="tag-row">
+        <span class="tag">Bråk</span>
+        <span class="tag">Del–helhet</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Papperstallrikar eller papperscirklar, sax och pennor.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Förstå lika stora delar.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Ta två lika stora papperscirklar.</li>
+        <li>Dela den ena i två lika stora delar.</li>
+        <li>Dela den andra i fyra lika stora delar.</li>
+        <li>Jämför en halv med en fjärdedel.</li>
+        <li>Förklara varför delarna blir olika stora.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Helheten är delad i ___ lika stora delar.
+        <br>
+        En del är därför ___.
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Visa två olika sätt att färga 2/4. Vad upptäcker du?
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 7 – Bråk av antal</h3>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          24 räknemarkörer.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Hitta en del av en mängd.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Lägg fram 12 markörer.</li>
+        <li>Hitta hälften.</li>
+        <li>Hitta en tredjedel.</li>
+        <li>Använd sedan 16 markörer och hitta en fjärdedel.</li>
+        <li>Förklara hur grupperingen hjälper.</li>
+      </ol>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="geometri">
+    <h2>📐 Geometri</h2>
+
+    <div class="activity-card">
+      <h3>Aktivitet 8 – Bygg geometriska figurer</h3>
+
+      <div class="tag-row">
+        <span class="tag">Geometri</span>
+        <span class="tag">Egenskaper</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Glasspinnar, sugrör, tandpetare eller snören.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Beskriva figurer utifrån deras egenskaper.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Bygg en triangel.</li>
+        <li>Bygg en fyrhörning.</li>
+        <li>Bygg en rektangel.</li>
+        <li>Bygg en kvadrat.</li>
+        <li>Jämför figurerna.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Figuren har ___ sidor och ___ hörn.
+        <br>
+        Den skiljer sig från ___ eftersom...
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Hur många olika fyrhörningar kan ni bygga?
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 9 – Symmetrilaboratorium</h3>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Speglar, papper och byggklossar.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Upptäcka och skapa symmetri.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Bygg ett mönster på ena sidan om en linje.</li>
+        <li>En kamrat bygger spegelbilden.</li>
+        <li>Kontrollera med spegel.</li>
+        <li>Byt roller.</li>
+      </ol>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="matning">
+    <h2>📏 Mätning</h2>
+
+    <div class="activity-card">
+      <h3>Aktivitet 10 – Uppskatta och mät</h3>
+
+      <div class="tag-row">
+        <span class="tag">Längd</span>
+        <span class="tag">Uppskattning</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Linjal, måttband och föremål i klassrummet.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Uppskatta, mäta och välja lämplig enhet.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Välj ett föremål.</li>
+        <li>Bestäm om cm eller m passar bäst.</li>
+        <li>Uppskatta längden.</li>
+        <li>Mät.</li>
+        <li>Beräkna skillnaden mellan uppskattning och mätning.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Jag uppskattade ___.
+        <br>
+        När jag mätte blev det ___.
+        <br>
+        Skillnaden är ___.
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 11 – Kapacitetslaboratorium</h3>
+
+      <div class="tag-row">
+        <span class="tag">Volym</span>
+        <span class="tag">dl och l</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Behållare, decilitermått och vatten.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Jämföra och mäta volym.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Välj två behållare.</li>
+        <li>Gissa vilken som rymmer mest.</li>
+        <li>Uppskatta hur många deciliter varje behållare rymmer.</li>
+        <li>Mät.</li>
+        <li>Jämför resultatet.</li>
+      </ol>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="statistik">
+    <h2>📊 Statistik och sannolikhet</h2>
+
+    <div class="activity-card">
+      <h3>Aktivitet 12 – Klassens undersökning</h3>
+
+      <div class="tag-row">
+        <span class="tag">Statistik</span>
+        <span class="tag">Diagram</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          Papper, pennor och linjal.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Samla, sortera och presentera data.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Formulera en fråga till klassen.</li>
+        <li>Samla svar.</li>
+        <li>Gör en tabell.</li>
+        <li>Skapa ett stapeldiagram.</li>
+        <li>Skriv tre frågor som kan besvaras med diagrammet.</li>
+      </ol>
+
+      <div class="language-box">
+        <strong>💬 Språkstöd</strong>
+        <br>
+        Flest elever valde...
+        <br>
+        Minst antal valde...
+        <br>
+        Skillnaden mellan ___ och ___ är...
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 13 – Vad händer med tärningen?</h3>
+
+      <div class="tag-row">
+        <span class="tag">Sannolikhet</span>
+        <span class="tag">Slumpförsök</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <strong>Material</strong>
+          <br>
+          En vanlig tärning.
+        </div>
+
+        <div class="info-card">
+          <strong>Matematikmål</strong>
+          <br>
+          Undersöka slump och jämföra resultat.
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>Gissa vilket tal som kommer flest gånger.</li>
+        <li>Kasta tärningen 30 gånger.</li>
+        <li>Gör en tabell.</li>
+        <li>Jämför resultatet med gissningen.</li>
+        <li>Diskutera vad som skulle kunna hända vid 300 kast.</li>
+      </ol>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösningsverkstad</h2>
+
+    <div class="activity-card">
+      <h3>Aktivitet 14 – Alla sätt att göra 30</h3>
+
+      <div class="tag-row">
+        <span class="tag">Öppet problem</span>
+        <span class="tag">Systematik</span>
+      </div>
+
+      <p>
+        Eleverna ska hitta så många olika matematiska uttryck som möjligt som får svaret 30.
+      </p>
+
+      <div class="language-box">
+        Exempel:
+        <br>
+        20 + 10
+        <br>
+        35 − 5
+        <br>
+        5 × 6
+      </div>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Kan ni använda exakt tre tal i varje uttryck?
+      </div>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 15 – Hur många lösningar?</h3>
+
+      <p>
+        Du har 20 kronor.
+      </p>
+
+      <p>
+        En penna kostar 4 kronor och ett sudd kostar 2 kronor.
+      </p>
+
+      <p>
+        På hur många olika sätt kan du handla för exakt 20 kronor?
+      </p>
+
+      <ol class="steps">
+        <li>Prova med konkret material eller rita.</li>
+        <li>Skriv varje lösning.</li>
+        <li>Arbeta systematiskt så att ingen lösning glöms.</li>
+        <li>Förklara hur du vet att du hittat alla.</li>
+      </ol>
+    </div>
+
+
+    <div class="activity-card">
+      <h3>Aktivitet 16 – Skapa ett eget matematikproblem</h3>
+
+      <p>
+        Börja med ett svar istället för en fråga.
+      </p>
+
+      <div class="language-box">
+        <strong>Svaret ska vara 24.</strong>
+      </div>
+
+      <p>
+        Eleverna skapar en egen berättelse där svaret blir 24.
+      </p>
+
+      <div class="challenge-box">
+        <strong>⭐ Utmaning</strong>
+        <br>
+        Skapa ett problem som kräver två räknesätt.
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>💬 Meningsstarter i matteverkstaden</h2>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        Jag upptäckte att...
+      </div>
+
+      <div class="overview-card">
+        Först trodde jag...
+      </div>
+
+      <div class="overview-card">
+        Jag ändrade min tanke eftersom...
+      </div>
+
+      <div class="overview-card">
+        Mitt material visar att...
+      </div>
+
+      <div class="overview-card">
+        Jag håller med eftersom...
+      </div>
+
+      <div class="overview-card">
+        Jag håller inte med eftersom...
+      </div>
+
+      <div class="overview-card">
+        Ett annat sätt är...
+      </div>
+
+      <div class="overview-card">
+        Jag vet att svaret är rimligt eftersom...
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box teacher-note">
+    <h2>👩‍🏫 Lärarens roll</h2>
+
+    <p>
+      I en matteverkstad är materialet ett stöd för tänkandet – inte själva målet.
+    </p>
+
+    <p>
+      Försök därför alltid gå vidare från:
+    </p>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        🧱 Material
+      </div>
+
+      <div class="overview-card">
+        🖼️ Bild
+      </div>
+
+      <div class="overview-card">
+        🔢 Symbol
+      </div>
+
+      <div class="overview-card">
+        💬 Förklaring
+      </div>
+
+    </div>
+
+    <p>
+      Be eleverna sätta ord på vad materialet visar och hur det kopplas till
+      de matematiska symbolerna.
+    </p>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Fler resurser</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="materialbank.html">
+        🗂️ Materialbank
+      </a>
+
+      <a class="link-card" href="stationsarbete.html">
+        🔄 Stationsarbete
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Representationer
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧠 Problemlösning
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+      <a class="link-card" href="lararverktyg.html">
+        🧰 Lärarverktyg
+      </a>
+
+      <a class="link-card" href="veckoplan.html">
+        📅 Veckoplan
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Matteverkstad</strong></p>
+  <p>Bygg • Undersök • Samtala • Förklara • Upptäck</p>
+</footer>
+
+</body>
+</html>
