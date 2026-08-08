@@ -8,500 +8,600 @@
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80,65,50,0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
-      box-sizing: border-box;
+      box-sizing:border-box;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.6;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 45px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2rem,5vw,3.6rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 820px;
-      margin: 12px auto 0;
-      font-size: 1.1rem;
+      max-width:850px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      margin: 4px 7px;
-      padding: 8px 11px;
-      border-radius: 10px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px 70px;
+      max-width:1050px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 15px var(--skugga);
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     .intro {
-      background: #eee4d6;
+      background:#eee4d6;
     }
 
     h2,
     h3 {
-      color: var(--brun);
+      color:var(--brun);
     }
 
-    .daily-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 18px;
+    h2 {
+      margin-top:0;
     }
 
-    .daily-card {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 4px 12px var(--skugga);
+    .top-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-top:17px;
     }
 
-    .daily-card h2 {
-      margin-top: 0;
+    .top-card {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:13px;
+      padding:16px;
     }
 
-    .icon {
-      font-size: 2.6rem;
-      margin-bottom: 5px;
+    .top-card .icon {
+      font-size:2rem;
+      margin-bottom:5px;
     }
 
-    .task {
-      background: #f3eadf;
-      border-radius: 14px;
-      padding: 20px;
-      min-height: 150px;
-      font-size: 1.15rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .top-card strong {
+      display:block;
+      color:var(--brun);
+      margin-bottom:4px;
     }
 
-    .big-number {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--brun);
-      text-align: center;
-      margin-bottom: 10px;
+    .controls {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    label {
+      display:block;
+      color:var(--brun);
+      font-weight:bold;
+      margin-bottom:5px;
+    }
+
+    select {
+      width:100%;
+      padding:10px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      background:white;
+      color:var(--text);
+      font:inherit;
     }
 
     button {
-      border: none;
-      background: var(--beige);
-      color: var(--text);
-      padding: 12px 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
     button:hover {
-      background: var(--beige2);
+      background:var(--beige2);
     }
 
-    .new-btn {
-      width: 100%;
-      margin-top: 12px;
-      background: #d8c6aa;
+    .secondary {
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
     }
 
-    .input-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
+    .button-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:17px;
     }
 
-    input {
-      flex: 1;
-      min-width: 120px;
-      padding: 11px;
-      border: 1px solid #cdbda7;
-      border-radius: 9px;
-      font-size: 1rem;
+    .today {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 4px 12px var(--skugga);
+    }
+
+    .today-head {
+      background:#eee4d6;
+      border-radius:13px;
+      padding:16px;
+      margin-bottom:18px;
+    }
+
+    .today-head h2 {
+      margin:0 0 5px;
+    }
+
+    .task-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .task {
+      background:#f3eadf;
+      border:1px solid #d8cab7;
+      border-radius:13px;
+      padding:17px;
+    }
+
+    .task h3 {
+      margin-top:0;
+    }
+
+    .task-text {
+      font-size:1.22rem;
+      font-weight:bold;
+      margin:10px 0;
+    }
+
+    .task input {
+      width:100%;
+      padding:10px;
+      border:1px solid #cdbfae;
+      border-radius:8px;
+      background:white;
+      font:inherit;
+      color:var(--text);
     }
 
     .feedback {
-      min-height: 26px;
-      margin-top: 10px;
-      font-weight: bold;
+      margin-top:9px;
+      min-height:42px;
+      border-radius:9px;
+      padding:9px;
+      display:none;
     }
 
-    .sentence {
-      background: #eee4d6;
-      border-radius: 11px;
-      padding: 12px;
-      margin: 8px 0;
+    .feedback.correct {
+      display:block;
+      background:var(--ratt);
+      border:1px solid #bcc9ae;
     }
 
-    .teacher-box {
-      background: #e7dfd1;
+    .feedback.wrong {
+      display:block;
+      background:var(--fel);
+      border:1px solid #d1b5af;
     }
 
-    .check-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-      gap: 12px;
-      margin-top: 18px;
+    .full {
+      grid-column:1 / -1;
     }
 
-    .check-card {
-      background: var(--beige);
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
+    .problem {
+      background:#fffaf2;
+    }
+
+    .reflection {
+      margin-top:18px;
+      background:#e7eadf;
+      border-left:5px solid #a7ad91;
+      border-radius:10px;
+      padding:14px;
+    }
+
+    .score-box {
+      display:none;
+      margin-top:18px;
+      background:#eee2d2;
+      border:1px solid #cdbfae;
+      border-radius:13px;
+      padding:16px;
+      text-align:center;
+    }
+
+    .score-box.show {
+      display:block;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 27px;
+      background:#d8c8b2;
+      text-align:center;
+      color:#4d443c;
+      padding:27px 20px;
     }
 
-    @media(max-width:650px) {
+    @media(max-width:750px) {
+
+      nav a {
+        display:block;
+      }
+
       main {
-        padding: 22px 12px 55px;
+        padding:20px 10px 50px;
       }
 
-      .input-row {
-        flex-direction: column;
+      .box,
+      .today {
+        padding:17px;
       }
 
-      input,
-      .input-row button {
-        width: 100%;
+      .controls,
+      .task-grid {
+        grid-template-columns:1fr;
+      }
+
+      .full {
+        grid-column:auto;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
+
   <h1>☀️ Dagens matte</h1>
 
   <p>
-    Fem korta matematikaktiviteter för att starta lektionen,
-    träna tillsammans eller arbeta självständigt.
+    Ett kort matematikpass för att starta dagen,
+    repetera tidigare kunskaper och få igång matematiskt tänkande.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="ovningsbank.html">📚 Övningsbank</a>
-  <a href="strategier.html">🧠 Strategier</a>
-  <a href="matteprat.html">💬 Matteprat</a>
+  <a href="#installningar">⚙️ Inställningar</a>
+  <a href="#dagenspass">☀️ Dagens pass</a>
 </nav>
+
 
 <main>
 
   <section class="box intro">
-    <h2>🌿 Så kan sidan användas</h2>
+
+    <h2>🌱 Fem korta matematikutmaningar</h2>
 
     <p>
-      Gör alla fem aktiviteter eller välj en av dem.
-      Tryck på <strong>Ny uppgift</strong> för att skapa en ny.
-    </p>
-  </section>
-
-
-  <section class="daily-grid">
-
-    <!-- DAGENS TAL -->
-
-    <div class="daily-card">
-
-      <div class="icon">🔢</div>
-
-      <h2>Dagens tal</h2>
-
-      <div class="task">
-
-        <div class="big-number" id="dailyNumber"></div>
-
-        <div id="numberTasks"></div>
-
-      </div>
-
-      <button class="new-btn" onclick="newDailyNumber()">
-        🔄 Nytt tal
-      </button>
-
-    </div>
-
-
-    <!-- DAGENS RÄKNING -->
-
-    <div class="daily-card">
-
-      <div class="icon">➕</div>
-
-      <h2>Dagens räkning</h2>
-
-      <div class="task">
-
-        <div class="big-number" id="calculation"></div>
-
-        <p>
-          Försök först räkna i huvudet.
-        </p>
-
-        <div class="input-row">
-
-          <input
-            type="number"
-            id="calculationInput"
-            placeholder="Svar"
-          >
-
-          <button onclick="checkCalculation()">
-            Kontrollera
-          </button>
-
-        </div>
-
-        <div class="feedback" id="calculationFeedback"></div>
-
-      </div>
-
-      <button class="new-btn" onclick="newCalculation()">
-        🔄 Ny uträkning
-      </button>
-
-    </div>
-
-
-    <!-- DAGENS PROBLEM -->
-
-    <div class="daily-card">
-
-      <div class="icon">🧠</div>
-
-      <h2>Dagens problem</h2>
-
-      <div class="task">
-
-        <div id="problemText"></div>
-
-        <div class="input-row">
-
-          <input
-            type="number"
-            id="problemInput"
-            placeholder="Svar"
-          >
-
-          <button onclick="checkProblem()">
-            Kontrollera
-          </button>
-
-        </div>
-
-        <div class="feedback" id="problemFeedback"></div>
-
-      </div>
-
-      <button class="new-btn" onclick="newProblem()">
-        🔄 Nytt problem
-      </button>
-
-    </div>
-
-
-    <!-- DAGENS BEGREPP -->
-
-    <div class="daily-card">
-
-      <div class="icon">💬</div>
-
-      <h2>Dagens begrepp</h2>
-
-      <div class="task">
-
-        <div class="big-number" id="conceptWord"></div>
-
-        <p id="conceptQuestion"></p>
-
-        <div id="conceptAnswer" style="display:none;"></div>
-
-      </div>
-
-      <button class="new-btn" onclick="showConceptAnswer()">
-        Visa förklaring
-      </button>
-
-      <button class="new-btn" onclick="newConcept()">
-        🔄 Nytt begrepp
-      </button>
-
-    </div>
-
-
-    <!-- DAGENS RESONEMANG -->
-
-    <div class="daily-card">
-
-      <div class="icon">🗣️</div>
-
-      <h2>Dagens resonemang</h2>
-
-      <div class="task">
-
-        <div id="reasoningText"></div>
-
-      </div>
-
-      <button class="new-btn" onclick="newReasoning()">
-        🔄 Ny fråga
-      </button>
-
-    </div>
-
-
-    <!-- DAGENS KLURING -->
-
-    <div class="daily-card">
-
-      <div class="icon">🕵️</div>
-
-      <h2>Dagens kluring</h2>
-
-      <div class="task">
-
-        <div id="puzzleText"></div>
-
-        <div class="input-row">
-
-          <input
-            type="number"
-            id="puzzleInput"
-            placeholder="Svar"
-          >
-
-          <button onclick="checkPuzzle()">
-            Kontrollera
-          </button>
-
-        </div>
-
-        <div class="feedback" id="puzzleFeedback"></div>
-
-      </div>
-
-      <button class="new-btn" onclick="newPuzzle()">
-        🔄 Ny kluring
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <section class="box">
-
-    <h2>💬 När du förklarar</h2>
-
-    <div class="sentence">
-      Jag började med att...
-    </div>
-
-    <div class="sentence">
-      Jag såg att...
-    </div>
-
-    <div class="sentence">
-      Jag valde den här strategin eftersom...
-    </div>
-
-    <div class="sentence">
-      Jag vet att svaret är rimligt eftersom...
-    </div>
-
-  </section>
-
-
-  <section class="box teacher-box">
-
-    <h2>👩‍🏫 Förslag till läraren</h2>
-
-    <p>
-      Dagens matte kan användas som en kort startaktivitet på cirka
-      5–15 minuter.
+      Dagens matte innehåller en blandning av tal,
+      räknesätt, problemlösning och resonemang.
+      Varje gång du skapar ett nytt pass får du nya uppgifter.
     </p>
 
-    <div class="check-grid">
+    <div class="top-grid">
 
-      <div class="check-card">
-        👤 Tänk själv
+      <div class="top-card">
+        <div class="icon">🔢</div>
+        <strong>Tal</strong>
+        Platsvärde, jämförelser och talrelationer.
       </div>
 
-      <div class="check-card">
-        👥 Prata i par
+      <div class="top-card">
+        <div class="icon">➕➖</div>
+        <strong>Räknesätt</strong>
+        Addition och subtraktion.
       </div>
 
-      <div class="check-card">
-        🗣️ Lyft olika strategier
+      <div class="top-card">
+        <div class="icon">✖️➗</div>
+        <strong>Multiplikation och division</strong>
+        Tabeller och samband.
       </div>
 
-      <div class="check-card">
-        ✍️ Sammanfatta
+      <div class="top-card">
+        <div class="icon">🧩</div>
+        <strong>Problem</strong>
+        Läs, förstå och välj strategi.
       </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="box" id="installningar">
+
+    <h2>⚙️ Välj nivå</h2>
+
+    <div class="controls">
+
+      <div>
+        <label for="level">Nivå</label>
+
+        <select id="level">
+          <option value="grund">🌱 Grund</option>
+          <option value="blandad" selected>🧠 Blandad</option>
+          <option value="utmaning">⭐ Utmaning</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="focus">Fokus</label>
+
+        <select id="focus">
+          <option value="blandat">Blandat</option>
+          <option value="raknesatt">Räknesätt</option>
+          <option value="tal">Taluppfattning</option>
+          <option value="problem">Problemlösning</option>
+        </select>
+      </div>
+
+    </div>
+
+
+    <div class="button-row">
+
+      <button onclick="generateToday()">
+        🎲 Skapa dagens matte
+      </button>
+
+      <button class="secondary" onclick="resetAnswers()">
+        ↺ Rensa svar
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="today" id="dagenspass">
+
+    <div class="today-head">
+
+      <h2>☀️ Dagens matematikpass</h2>
+
+      <p id="passInfo">
+        Tryck på <strong>Skapa dagens matte</strong> för att börja.
+      </p>
+
+    </div>
+
+
+    <div class="task-grid">
+
+
+      <div class="task">
+
+        <h3>1. 🔢 Tal</h3>
+
+        <div class="task-text" id="task1Text">
+          –
+        </div>
+
+        <input
+          type="number"
+          id="task1Answer"
+          placeholder="Skriv svar"
+        >
+
+        <div class="button-row">
+          <button onclick="checkTask(1)">
+            Kontrollera
+          </button>
+        </div>
+
+        <div
+          class="feedback"
+          id="task1Feedback"
+        ></div>
+
+      </div>
+
+
+
+      <div class="task">
+
+        <h3>2. ➕ Addition</h3>
+
+        <div class="task-text" id="task2Text">
+          –
+        </div>
+
+        <input
+          type="number"
+          id="task2Answer"
+          placeholder="Skriv svar"
+        >
+
+        <div class="button-row">
+          <button onclick="checkTask(2)">
+            Kontrollera
+          </button>
+        </div>
+
+        <div
+          class="feedback"
+          id="task2Feedback"
+        ></div>
+
+      </div>
+
+
+
+      <div class="task">
+
+        <h3>3. ➖ Subtraktion</h3>
+
+        <div class="task-text" id="task3Text">
+          –
+        </div>
+
+        <input
+          type="number"
+          id="task3Answer"
+          placeholder="Skriv svar"
+        >
+
+        <div class="button-row">
+          <button onclick="checkTask(3)">
+            Kontrollera
+          </button>
+        </div>
+
+        <div
+          class="feedback"
+          id="task3Feedback"
+        ></div>
+
+      </div>
+
+
+
+      <div class="task">
+
+        <h3>4. ✖️➗ Samband</h3>
+
+        <div class="task-text" id="task4Text">
+          –
+        </div>
+
+        <input
+          type="number"
+          id="task4Answer"
+          placeholder="Skriv svar"
+        >
+
+        <div class="button-row">
+          <button onclick="checkTask(4)">
+            Kontrollera
+          </button>
+        </div>
+
+        <div
+          class="feedback"
+          id="task4Feedback"
+        ></div>
+
+      </div>
+
+
+
+      <div class="task full problem">
+
+        <h3>5. 🧩 Problemlösning</h3>
+
+        <div class="task-text" id="task5Text">
+          –
+        </div>
+
+        <input
+          type="number"
+          id="task5Answer"
+          placeholder="Skriv svar"
+        >
+
+        <div class="button-row">
+          <button onclick="checkTask(5)">
+            Kontrollera
+          </button>
+        </div>
+
+        <div
+          class="feedback"
+          id="task5Feedback"
+        ></div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="reflection">
+
+      <strong>💬 Matematikprat</strong>
+
+      <p id="reflectionQuestion">
+        Hur tänkte du i den uppgift som var svårast?
+      </p>
+
+    </div>
+
+
+    <div class="score-box" id="scoreBox">
+
+      <h2>🔎 Dagens översikt</h2>
+
+      <p id="scoreText"></p>
 
     </div>
 
@@ -509,721 +609,684 @@
 
 </main>
 
+
 <footer>
-  <p><strong>Matematik åk 3</strong></p>
-  <p>Dagens tal • Problem • Begrepp • Resonemang</p>
+  <p><strong>Matematik åk 3 – Dagens matte</strong></p>
+  <p>Tänk • Lös • Förklara • Kontrollera</p>
 </footer>
 
 
 <script>
 
-  function random(min, max) {
-    return Math.floor(
-      Math.random() *
-      (max - min + 1)
-    ) + min;
+let tasks = {};
+let checked = new Set();
+let correct = new Set();
+
+
+function randomInt(min, max) {
+
+  return Math.floor(
+    Math.random() * (max - min + 1)
+  ) + min;
+
+}
+
+
+function pick(array) {
+
+  return array[
+    Math.floor(Math.random() * array.length)
+  ];
+
+}
+
+
+function generateToday() {
+
+  checked.clear();
+  correct.clear();
+
+  document
+    .getElementById("scoreBox")
+    .classList.remove("show");
+
+
+  const level =
+    document.getElementById("level").value;
+
+  const focus =
+    document.getElementById("focus").value;
+
+
+  let maxNumber = 100;
+  let multMax = 10;
+
+
+  if (level === "grund") {
+    maxNumber = 60;
+    multMax = 5;
+  }
+
+  if (level === "utmaning") {
+    maxNumber = 300;
+    multMax = 12;
   }
 
 
-  /* =========================
-     DAGENS TAL
-  ========================= */
+  createNumberTask(maxNumber);
+  createAdditionTask(maxNumber);
+  createSubtractionTask(maxNumber);
+  createRelationTask(multMax);
+  createProblemTask(level);
 
-  function newDailyNumber() {
 
-    const number =
-      random(100, 999);
+  applyFocus(focus);
+
+
+  document.getElementById("passInfo").textContent =
+    "Passet är klart. Lös en uppgift i taget och kontrollera ditt svar.";
+
+
+  resetAnswers(false);
+
+}
+
+
+function createNumberTask(maxNumber) {
+
+  const type =
+    randomInt(1,3);
+
+
+  if (type === 1) {
+
+    const a =
+      randomInt(10,maxNumber);
+
+    const b =
+      randomInt(10,maxNumber);
+
+    const greater =
+      Math.max(a,b);
+
+
+    tasks[1] = {
+      text:
+        "Vilket tal är störst: " +
+        a +
+        " eller " +
+        b +
+        "?",
+      answer:greater,
+      explanation:
+        "Jämför platsvärdena från vänster."
+    };
+
+  } else if (type === 2) {
 
     const hundreds =
-      Math.floor(number / 100);
+      randomInt(1,9);
 
     const tens =
-      Math.floor(
-        (number % 100) / 10
-      );
+      randomInt(0,9);
 
     const ones =
-      number % 10;
+      randomInt(0,9);
+
+    const number =
+      hundreds * 100 +
+      tens * 10 +
+      ones;
 
 
-    document.getElementById(
-      "dailyNumber"
-    ).textContent =
-      number;
+    tasks[1] = {
+      text:
+        "Vad är tiotalssiffran värd i talet " +
+        number +
+        "?",
+      answer:tens * 10,
+      explanation:
+        "Siffran på tiotalsplatsen visar antal tiotal."
+    };
+
+  } else {
+
+    const start =
+      randomInt(10,maxNumber - 10);
+
+    const step =
+      pick([2,5,10]);
+
+    const next =
+      start + step;
 
 
-    document.getElementById(
-      "numberTasks"
-    ).innerHTML = `
+    tasks[1] = {
+      text:
+        "Vilket tal kommer efter " +
+        start +
+        " om vi räknar vidare med " +
+        step +
+        " i taget?",
+      answer:next,
+      explanation:
+        "Lägg till stegets storlek en gång."
+    };
 
-      <p>
-        • Hur många hundratal finns?
-      </p>
-
-      <p>
-        • Hur många tiotal finns?
-      </p>
-
-      <p>
-        • Hur många ental finns?
-      </p>
-
-      <p>
-        • Vad är 10 mer?
-      </p>
-
-      <p>
-        • Vad är 10 mindre?
-      </p>
-
-      <p>
-        • Vad är 100 mer?
-      </p>
-
-      <p>
-        • Skriv talet utvecklat:
-        ${hundreds * 100} +
-        ${tens * 10} +
-        ${ones}
-      </p>
-
-    `;
   }
 
 
-  /* =========================
-     DAGENS RÄKNING
-  ========================= */
+  document.getElementById("task1Text").textContent =
+    tasks[1].text;
 
-  let calculationAnswer = 0;
-
-  function newCalculation() {
-
-    const type =
-      random(1, 4);
-
-    let a;
-    let b;
-    let text;
+}
 
 
-    if (type === 1) {
+function createAdditionTask(maxNumber) {
 
-      a = random(20, 90);
-      b = random(10, 50);
+  let a =
+    randomInt(10,Math.max(20,maxNumber - 20));
 
-      calculationAnswer =
-        a + b;
-
-      text =
-        `${a} + ${b}`;
-
-    }
+  let b =
+    randomInt(5,Math.max(10,Math.floor(maxNumber / 2)));
 
 
-    if (type === 2) {
-
-      a = random(40, 100);
-      b = random(10, a);
-
-      calculationAnswer =
-        a - b;
-
-      text =
-        `${a} − ${b}`;
-
-    }
-
-
-    if (type === 3) {
-
-      a = random(2, 10);
-      b = [2,3,4,5,10][
-        random(0,4)
-      ];
-
-      calculationAnswer =
-        a * b;
-
-      text =
-        `${a} × ${b}`;
-
-    }
-
-
-    if (type === 4) {
-
-      const divisor =
-        [2,3,4,5,10][
-          random(0,4)
-        ];
-
-      const answer =
-        random(2, 8);
-
-      const dividend =
-        divisor * answer;
-
-      calculationAnswer =
-        answer;
-
-      text =
-        `${dividend} ÷ ${divisor}`;
-    }
-
-
-    document.getElementById(
-      "calculation"
-    ).textContent =
-      text;
-
-
-    document.getElementById(
-      "calculationInput"
-    ).value =
-      "";
-
-
-    document.getElementById(
-      "calculationFeedback"
-    ).textContent =
-      "";
+  if (a + b > maxNumber) {
+    b = Math.max(1,maxNumber - a);
   }
 
 
-  function checkCalculation() {
+  tasks[2] = {
+    text:a + " + " + b,
+    answer:a + b,
+    explanation:
+      "Du kan dela upp ett av talen eller gå via ett helt tiotal."
+  };
 
-    const value =
-      Number(
-        document.getElementById(
-          "calculationInput"
-        ).value
+
+  document.getElementById("task2Text").textContent =
+    tasks[2].text;
+
+}
+
+
+function createSubtractionTask(maxNumber) {
+
+  const a =
+    randomInt(
+      Math.max(20,Math.floor(maxNumber / 2)),
+      maxNumber
+    );
+
+  /*
+    Viktig QA-fix:
+    b får vara lika med a.
+    Då kan rätt svar ibland bli 0.
+
+    Därför måste checkTask()
+    först kontrollera om inputfältet
+    faktiskt är tomt innan Number()
+    används.
+  */
+
+  const b =
+    randomInt(1,a);
+
+
+  tasks[3] = {
+    text:a + " − " + b,
+    answer:a - b,
+    explanation:
+      "Kontrollera gärna subtraktionen med addition."
+  };
+
+
+  document.getElementById("task3Text").textContent =
+    tasks[3].text;
+
+}
+
+
+function createRelationTask(multMax) {
+
+  const a =
+    randomInt(2,multMax);
+
+  const b =
+    randomInt(2,multMax);
+
+  const product =
+    a * b;
+
+
+  if (Math.random() < .5) {
+
+    tasks[4] = {
+      text:a + " × " + b,
+      answer:product,
+      explanation:
+        a +
+        " grupper med " +
+        b +
+        " i varje ger " +
+        product +
+        "."
+    };
+
+  } else {
+
+    tasks[4] = {
+      text:product + " ÷ " + a,
+      answer:b,
+      explanation:
+        "Använd sambandet " +
+        a +
+        " × " +
+        b +
+        " = " +
+        product +
+        "."
+    };
+
+  }
+
+
+  document.getElementById("task4Text").textContent =
+    tasks[4].text;
+
+}
+
+
+function createProblemTask(level) {
+
+  const problemTypes = [
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division"
+  ];
+
+
+  const type =
+    pick(problemTypes);
+
+
+  if (type === "addition") {
+
+    const a =
+      level === "grund"
+        ? randomInt(12,35)
+        : level === "utmaning"
+        ? randomInt(60,180)
+        : randomInt(25,80);
+
+    const b =
+      level === "grund"
+        ? randomInt(5,20)
+        : level === "utmaning"
+        ? randomInt(20,90)
+        : randomInt(10,45);
+
+
+    tasks[5] = {
+      text:
+        "Mira har " +
+        a +
+        " pärlor och får " +
+        b +
+        " nya. Hur många pärlor har hon då?",
+      answer:a + b,
+      explanation:
+        "Här ökar antalet, därför passar addition."
+    };
+
+  }
+
+
+  if (type === "subtraction") {
+
+    const a =
+      level === "grund"
+        ? randomInt(25,60)
+        : level === "utmaning"
+        ? randomInt(120,300)
+        : randomInt(50,120);
+
+    const b =
+      randomInt(1,a);
+
+
+    tasks[5] = {
+      text:
+        "Det finns " +
+        a +
+        " böcker på en hylla. " +
+        b +
+        " tas bort. Hur många böcker finns kvar?",
+      answer:a - b,
+      explanation:
+        "Här minskar antalet, därför passar subtraktion."
+    };
+
+  }
+
+
+  if (type === "multiplication") {
+
+    const groups =
+      level === "grund"
+        ? randomInt(2,5)
+        : level === "utmaning"
+        ? randomInt(5,12)
+        : randomInt(3,8);
+
+    const each =
+      level === "grund"
+        ? randomInt(2,5)
+        : level === "utmaning"
+        ? randomInt(4,12)
+        : randomInt(3,8);
+
+
+    tasks[5] = {
+      text:
+        "Det finns " +
+        groups +
+        " lådor med " +
+        each +
+        " pennor i varje. Hur många pennor finns sammanlagt?",
+      answer:groups * each,
+      explanation:
+        "Lika stora grupper kan beskrivas med multiplikation."
+    };
+
+  }
+
+
+  if (type === "division") {
+
+    const divisor =
+      level === "grund"
+        ? randomInt(2,5)
+        : level === "utmaning"
+        ? randomInt(4,12)
+        : randomInt(3,8);
+
+    const quotient =
+      level === "grund"
+        ? randomInt(2,6)
+        : level === "utmaning"
+        ? randomInt(5,12)
+        : randomInt(3,9);
+
+    const total =
+      divisor * quotient;
+
+
+    tasks[5] = {
+      text:
+        total +
+        " kulor delas lika mellan " +
+        divisor +
+        " barn. Hur många får varje barn?",
+      answer:quotient,
+      explanation:
+        "När något delas lika passar division."
+    };
+
+  }
+
+
+  document.getElementById("task5Text").textContent =
+    tasks[5].text;
+
+}
+
+
+function applyFocus(focus) {
+
+  if (focus === "blandat") {
+
+    document.getElementById("reflectionQuestion").textContent =
+      "Vilken uppgift krävde mest tänkande? Hur löste du den?";
+
+  }
+
+  if (focus === "raknesatt") {
+
+    document.getElementById("reflectionQuestion").textContent =
+      "Vilken strategi använde du i additionen eller subtraktionen? Kunde du ha valt en annan?";
+
+  }
+
+  if (focus === "tal") {
+
+    document.getElementById("reflectionQuestion").textContent =
+      "Vilken kunskap om tal och platsvärde hjälpte dig mest idag?";
+
+  }
+
+  if (focus === "problem") {
+
+    document.getElementById("reflectionQuestion").textContent =
+      "Hur visste du vilket räknesätt som passade i problemet?";
+
+  }
+
+}
+
+
+function checkTask(number) {
+
+  if (!tasks[number]) {
+
+    alert(
+      "Skapa dagens matte först."
+    );
+
+    return;
+  }
+
+
+  const input =
+    document.getElementById(
+      "task" +
+      number +
+      "Answer"
+    );
+
+  const feedback =
+    document.getElementById(
+      "task" +
+      number +
+      "Feedback"
+    );
+
+
+  /*
+    QA-FIX:
+
+    Number("") blir 0 i JavaScript.
+
+    Därför får vi INTE göra:
+      const answer = Number(input.value)
+
+    innan vi kontrollerat om
+    fältet faktiskt innehåller något.
+  */
+
+  const raw =
+    input.value.trim();
+
+
+  if (raw === "") {
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.innerHTML =
+      "<strong>Skriv ett svar först.</strong>";
+
+    return;
+  }
+
+
+  const answer =
+    Number(raw);
+
+
+  if (!Number.isFinite(answer)) {
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.innerHTML =
+      "<strong>Skriv ett giltigt tal.</strong>";
+
+    return;
+  }
+
+
+  const isCorrect =
+    answer === tasks[number].answer;
+
+
+  checked.add(number);
+
+
+  if (isCorrect) {
+
+    correct.add(number);
+
+    feedback.className =
+      "feedback correct";
+
+    feedback.innerHTML =
+      "<strong>✓ Rätt!</strong><br>" +
+      tasks[number].explanation;
+
+  } else {
+
+    correct.delete(number);
+
+    feedback.className =
+      "feedback wrong";
+
+    feedback.innerHTML =
+      "<strong>Inte riktigt.</strong><br>" +
+      tasks[number].explanation +
+      "<br>Rätt svar är <strong>" +
+      tasks[number].answer +
+      "</strong>.";
+
+  }
+
+
+  updateScore();
+
+}
+
+
+function updateScore() {
+
+  if (checked.size < 5) {
+    return;
+  }
+
+
+  const scoreBox =
+    document.getElementById("scoreBox");
+
+  const scoreText =
+    document.getElementById("scoreText");
+
+  const score =
+    correct.size;
+
+
+  let message = "";
+
+
+  if (score === 5) {
+
+    message =
+      "Du löste alla fem uppgifter rätt. Försök gärna förklara minst två av lösningarna på olika sätt.";
+
+  } else if (score >= 3) {
+
+    message =
+      "Du löste " +
+      score +
+      " av 5 uppgifter rätt. Titta på återkopplingen och fundera på vilka strategier du kan använda nästa gång.";
+
+  } else {
+
+    message =
+      "Du löste " +
+      score +
+      " av 5 uppgifter rätt. Välj några uppgifter att arbeta vidare med och använd bild, material, tallinje eller en genomgång när det hjälper.";
+
+  }
+
+
+  scoreText.textContent =
+    message;
+
+  scoreBox.classList.add("show");
+
+}
+
+
+function resetAnswers(clearTasks = false) {
+
+  checked.clear();
+  correct.clear();
+
+
+  for (let i = 1; i <= 5; i++) {
+
+    const input =
+      document.getElementById(
+        "task" + i + "Answer"
       );
 
     const feedback =
       document.getElementById(
-        "calculationFeedback"
+        "task" + i + "Feedback"
       );
 
 
-    if (value === calculationAnswer) {
+    input.value = "";
 
-      feedback.textContent =
-        "✅ Rätt! Kan du också förklara vilken strategi du använde?";
+    feedback.className =
+      "feedback";
 
-    } else {
-
-      feedback.textContent =
-        "Inte riktigt. Prova en annan strategi.";
-    }
-  }
-
-
-  /* =========================
-     DAGENS PROBLEM
-  ========================= */
-
-  let problemAnswer = 0;
-
-  const problemGenerators = [
-
-    function() {
-
-      const a = random(20, 50);
-      const b = random(5, 20);
-
-      problemAnswer = a + b;
-
-      return `
-        Lina har ${a} pärlor.
-        Hon får ${b} nya.
-        <br><br>
-        <strong>Hur många pärlor har hon nu?</strong>
-      `;
-    },
-
-
-    function() {
-
-      const a = random(30, 70);
-      const b = random(5, 25);
-
-      problemAnswer = a - b;
-
-      return `
-        Det finns ${a} böcker på en hylla.
-        ${b} böcker lånas ut.
-        <br><br>
-        <strong>Hur många finns kvar?</strong>
-      `;
-    },
-
-
-    function() {
-
-      const groups = random(3, 7);
-      const each = random(2, 6);
-
-      problemAnswer =
-        groups * each;
-
-      return `
-        Det finns ${groups} lådor.
-        I varje låda finns ${each} bollar.
-        <br><br>
-        <strong>Hur många bollar finns sammanlagt?</strong>
-      `;
-    },
-
-
-    function() {
-
-      const children =
-        random(2, 6);
-
-      const each =
-        random(2, 7);
-
-      const total =
-        children * each;
-
-      problemAnswer =
-        each;
-
-      return `
-        ${total} kakor delas lika mellan
-        ${children} barn.
-        <br><br>
-        <strong>Hur många kakor får varje barn?</strong>
-      `;
-    }
-
-  ];
-
-
-  function newProblem() {
-
-    const generator =
-      problemGenerators[
-        random(
-          0,
-          problemGenerators.length - 1
-        )
-      ];
-
-    document.getElementById(
-      "problemText"
-    ).innerHTML =
-      generator();
-
-
-    document.getElementById(
-      "problemInput"
-    ).value =
+    feedback.innerHTML =
       "";
 
 
-    document.getElementById(
-      "problemFeedback"
-    ).textContent =
-      "";
-  }
-
-
-  function checkProblem() {
-
-    const value =
-      Number(
-        document.getElementById(
-          "problemInput"
-        ).value
-      );
-
-    const feedback =
-      document.getElementById(
-        "problemFeedback"
-      );
-
-
-    if (value === problemAnswer) {
-
-      feedback.textContent =
-        "✅ Rätt! Vilket räknesätt använde du och varför?";
-
-    } else {
-
-      feedback.textContent =
-        "Inte riktigt. Läs frågan igen och fundera på vad du ska ta reda på.";
-    }
-  }
-
-
-  /* =========================
-     DAGENS BEGREPP
-  ========================= */
-
-  const concepts = [
-
-    {
-      word: "Summa",
-      question:
-        "Vad betyder ordet summa?",
-      answer:
-        "Summan är svaret i en addition. Exempel: 7 + 5 = 12. Summan är 12."
-    },
-
-    {
-      word: "Differens",
-      question:
-        "Vad betyder ordet differens?",
-      answer:
-        "Differensen är svaret i en subtraktion. Exempel: 15 − 6 = 9."
-    },
-
-    {
-      word: "Produkt",
-      question:
-        "Vad betyder ordet produkt?",
-      answer:
-        "Produkten är svaret i en multiplikation. Exempel: 4 × 5 = 20."
-    },
-
-    {
-      word: "Kvot",
-      question:
-        "Vad betyder ordet kvot?",
-      answer:
-        "Kvoten är svaret i en division. Exempel: 20 ÷ 5 = 4."
-    },
-
-    {
-      word: "Symmetri",
-      question:
-        "Hur skulle du förklara symmetri?",
-      answer:
-        "Symmetri betyder att delar av en figur kan vara spegelbilder av varandra."
-    },
-
-    {
-      word: "Uppskatta",
-      question:
-        "Vad betyder att uppskatta?",
-      answer:
-        "Att uppskatta betyder att göra en rimlig gissning innan man räknar eller mäter exakt."
-    },
-
-    {
-      word: "Hälften",
-      question:
-        "Vad betyder hälften?",
-      answer:
-        "Hälften är en av två lika stora delar."
-    },
-
-    {
-      word: "Rimligt",
-      question:
-        "Vad betyder att ett svar är rimligt?",
-      answer:
-        "Att svaret verkar möjligt och passar med det vi ungefär förväntar oss."
-    }
-
-  ];
-
-
-  let currentConcept = null;
-
-  function newConcept() {
-
-    currentConcept =
-      concepts[
-        random(
-          0,
-          concepts.length - 1
-        )
-      ];
-
-
-    document.getElementById(
-      "conceptWord"
-    ).textContent =
-      currentConcept.word;
-
-
-    document.getElementById(
-      "conceptQuestion"
-    ).textContent =
-      currentConcept.question;
-
-
-    document.getElementById(
-      "conceptAnswer"
-    ).style.display =
-      "none";
-
-
-    document.getElementById(
-      "conceptAnswer"
-    ).textContent =
-      currentConcept.answer;
-  }
-
-
-  function showConceptAnswer() {
-
-    document.getElementById(
-      "conceptAnswer"
-    ).style.display =
-      "block";
-  }
-
-
-  /* =========================
-     DAGENS RESONEMANG
-  ========================= */
-
-  const reasoningQuestions = [
-
-    "Vilket är störst: 398 eller 403? Förklara utan att bara säga svaret.",
-
-    "Är 198 + 204 närmare 40 eller 400? Hur vet du?",
-
-    "Vilket sätt tycker du är smartast för 49 + 28? Förklara.",
-
-    "Om 5 × 6 = 30, hur kan det hjälpa dig att räkna 6 × 6?",
-
-    "En elev säger att 1/4 är större än 1/2 eftersom 4 är större än 2. Vad skulle du svara?",
-
-    "Finns det flera sätt att dela 20 i två tal? Ge minst fem exempel.",
-
-    "Vilket är smartast att använda för 36 ÷ 4: upprepad subtraktion eller multiplikation? Varför?",
-
-    "Hur kan du kontrollera att 72 − 38 = 34?",
-
-    "Kan två olika uträkningar ha samma svar? Ge exempel.",
-
-    "Vad är skillnaden mellan att veta svaret och att kunna förklara lösningen?"
-
-  ];
-
-
-  function newReasoning() {
-
-    document.getElementById(
-      "reasoningText"
-    ).textContent =
-      reasoningQuestions[
-        random(
-          0,
-          reasoningQuestions.length - 1
-        )
-      ];
-  }
-
-
-  /* =========================
-     DAGENS KLURING
-  ========================= */
-
-  let puzzleAnswer = 0;
-
-  function newPuzzle() {
-
-    const type =
-      random(1, 4);
-
-
-    if (type === 1) {
-
-      const tens =
-        random(3, 8);
-
-      const ones =
-        10 - tens;
-
-      puzzleAnswer =
-        tens * 10 + ones;
+    if (clearTasks) {
 
       document.getElementById(
-        "puzzleText"
-      ).innerHTML = `
-        Jag är ett tvåsiffrigt tal.
-        <br>
-        Min tiotalssiffra är ${tens}.
-        <br>
-        Mina siffror har summan 10.
-        <br><br>
-        <strong>Vilket tal är jag?</strong>
-      `;
+        "task" + i + "Text"
+      ).textContent = "–";
+
     }
 
-
-    if (type === 2) {
-
-      const start =
-        random(2, 10);
-
-      puzzleAnswer =
-        start * 8;
-
-      document.getElementById(
-        "puzzleText"
-      ).innerHTML = `
-        Fortsätt mönstret:
-        <br><br>
-        ${start},
-        ${start*2},
-        ${start*4},
-        ...
-        <br><br>
-        <strong>Vilket tal kommer sedan?</strong>
-      `;
-    }
-
-
-    if (type === 3) {
-
-      const answer =
-        random(10, 30);
-
-      const add =
-        random(4, 10);
-
-      const total =
-        answer + add;
-
-      puzzleAnswer =
-        answer;
-
-      document.getElementById(
-        "puzzleText"
-      ).innerHTML = `
-        Jag tänker på ett tal.
-        <br>
-        När jag lägger till ${add}
-        får jag ${total}.
-        <br><br>
-        <strong>Vilket tal tänker jag på?</strong>
-      `;
-    }
-
-
-    if (type === 4) {
-
-      const answer =
-        random(3, 8);
-
-      const total =
-        answer * 4;
-
-      puzzleAnswer =
-        answer;
-
-      document.getElementById(
-        "puzzleText"
-      ).innerHTML = `
-        ${total} bollar delas i grupper
-        med 4 bollar i varje.
-        <br><br>
-        <strong>Hur många grupper blir det?</strong>
-      `;
-    }
-
-
-    document.getElementById(
-      "puzzleInput"
-    ).value =
-      "";
-
-
-    document.getElementById(
-      "puzzleFeedback"
-    ).textContent =
-      "";
   }
 
 
-  function checkPuzzle() {
+  document
+    .getElementById("scoreBox")
+    .classList.remove("show");
 
-    const value =
-      Number(
-        document.getElementById(
-          "puzzleInput"
-        ).value
-      );
+}
 
 
-    const feedback =
-      document.getElementById(
-        "puzzleFeedback"
-      );
-
-
-    if (value === puzzleAnswer) {
-
-      feedback.textContent =
-        "✅ Rätt! Kan du förklara hur du hittade svaret?";
-
-    } else {
-
-      feedback.textContent =
-        "Inte riktigt. Läs ledtrådarna en gång till.";
-    }
-  }
-
-
-  /* =========================
-     STARTA
-  ========================= */
-
-  newDailyNumber();
-  newCalculation();
-  newProblem();
-  newConcept();
-  newReasoning();
-  newPuzzle();
-
-
-  document.getElementById(
-    "calculationInput"
-  ).addEventListener(
-    "keydown",
-    function(event) {
-
-      if (event.key === "Enter") {
-        checkCalculation();
-      }
-
-    }
-  );
-
-
-  document.getElementById(
-    "problemInput"
-  ).addEventListener(
-    "keydown",
-    function(event) {
-
-      if (event.key === "Enter") {
-        checkProblem();
-      }
-
-    }
-  );
-
-
-  document.getElementById(
-    "puzzleInput"
-  ).addEventListener(
-    "keydown",
-    function(event) {
-
-      if (event.key === "Enter") {
-        checkPuzzle();
-      }
-
-    }
-  );
+document.addEventListener(
+  "DOMContentLoaded",
+  generateToday
+);
 
 </script>
 
