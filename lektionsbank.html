@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lektionsbank – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .overview-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .lesson-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .lesson-header {
+      background: var(--beige);
+      border-radius: 13px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .lesson-header h3 {
+      margin: 0 0 5px;
+    }
+
+    .tags {
+      margin-top: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fffaf2;
+      border: 1px solid #cfbea5;
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 4px 10px;
+      margin: 2px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .lesson-part {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .lesson-part h4 {
+      margin: 0 0 8px;
+      color: var(--brun);
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .step-list {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      background: #fffdf8;
+      border: 1px solid #ddd1c0;
+      padding: 12px 12px 12px 48px;
+      margin: 9px 0;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #cdbb9f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .language-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .support-box {
+      background: #e8eadf;
+      border-left: 5px solid #a9ae91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .challenge-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .exit-box {
+      background: #f3eadf;
+      border: 2px dashed #c7b69c;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .teacher-note {
+      background: #e7dfd1;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:750px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wide {
+        grid-column: auto;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .lesson-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📚 Lektionsbank</h1>
+
+  <p>
+    Färdiga matematiklektioner för åk 3 – från tydligt lektionsmål
+    och lärarmodellering till elevaktivitet, språkstöd och exit ticket.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#addition">➕ Addition</a>
+  <a href="#subtraktion">➖ Subtraktion</a>
+  <a href="#multiplikation">✖️ Multiplikation</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#problem">🧠 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Gemensam lektionsstruktur</h2>
+
+    <div class="overview-grid">
+
+      <div class="overview-card">
+        <div class="icon">🎯</div>
+        <strong>Mål</strong>
+        <p>Vad ska eleven förstå eller kunna?</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">☀️</div>
+        <strong>Start</strong>
+        <p>Aktivera förkunskaper.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">👩‍🏫</div>
+        <strong>Modellering</strong>
+        <p>Läraren visar och tänker högt.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🧠</div>
+        <strong>Elevaktivitet</strong>
+        <p>Eleverna undersöker och tränar.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">💬</div>
+        <strong>Matteprat</strong>
+        <p>Förklara och jämför.</p>
+      </div>
+
+      <div class="overview-card">
+        <div class="icon">🚪</div>
+        <strong>Exit ticket</strong>
+        <p>Synliggör vad eleverna förstått.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="tal">
+    <h2>🔢 Taluppfattning</h2>
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 1 – Vad betyder siffrans plats?</h3>
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Positionssystem</span>
+          <span class="tag">Konkret material</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska kunna förklara skillnaden mellan hundratal, tiotal och ental.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Basmaterial, talkort, miniwhiteboards och platsvärdestabell.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start – 5 min</h4>
+          Skriv talet <strong>364</strong> på tavlan.
+          <br><br>
+          Fråga:
+          <strong>Vad betyder siffran 6?</strong>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering – 10 min</h4>
+
+          <ol class="step-list">
+            <li>Bygg 364 med 3 hundratal, 6 tiotal och 4 ental.</li>
+            <li>Skriv 364 = 300 + 60 + 4.</li>
+            <li>Flytta siffran 6 till entalsplatsen i talet 346.</li>
+            <li>Jämför värdet 60 med värdet 6.</li>
+          </ol>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet – 25 min</h4>
+
+          Eleverna arbetar i par med talkort.
+
+          <ol class="step-list">
+            <li>Dra ett tresiffrigt tal.</li>
+            <li>Bygg talet.</li>
+            <li>Skriv talet i utvecklad form.</li>
+            <li>Förklara för din kamrat vad varje siffra är värd.</li>
+          </ol>
+
+          <div class="language-box">
+            <strong>💬 Språkstöd:</strong>
+            Talet ___ består av ___ hundratal, ___ tiotal och ___ ental.
+          </div>
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Arbeta med tvåsiffriga tal först och använd tydlig platsvärdestabell.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          Hur många olika tresiffriga tal kan du skapa med siffrorna 2, 5 och 8?
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket – 5 min</h4>
+
+          <div class="exit-box">
+            I talet 572:
+            <br><br>
+            1. Vad är siffran 7 värd?
+            <br>
+            2. Skriv talet i utvecklad form.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="addition">
+    <h2>➕ Addition</h2>
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 2 – Flera sätt att räkna 48 + 27</h3>
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Strategier</span>
+          <span class="tag">Resonemang</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska kunna använda och jämföra minst två additionsstrategier.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Tallinje, miniwhiteboards och eventuellt tiobasmaterial.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start – 5 min</h4>
+
+          Skriv:
+          <strong>29 + 11</strong>
+
+          <p>
+            Be eleverna visa olika sätt att tänka.
+          </p>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering – 15 min</h4>
+
+          Visa tre strategier för <strong>48 + 27</strong>:
+
+          <ol class="step-list">
+            <li>48 + 20 + 7</li>
+            <li>48 + 2 + 25</li>
+            <li>48 + 30 − 3</li>
+          </ol>
+
+          <p>
+            Diskutera vad som är lika och olika mellan strategierna.
+          </p>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet – 25 min</h4>
+
+          Eleverna löser:
+
+          <ul>
+            <li>39 + 24</li>
+            <li>56 + 28</li>
+            <li>47 + 36</li>
+          </ul>
+
+          Krav:
+          <strong>Minst två olika strategier på en av uppgifterna.</strong>
+
+          <div class="language-box">
+            <strong>💬 Meningsstarter:</strong>
+            <br>
+            Jag började med...
+            <br>
+            Sedan...
+            <br>
+            Den här strategin är bra eftersom...
+          </div>
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Använd mindre tal och en öppen tallinje.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          Hitta tre olika sätt att räkna 198 + 47.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket</h4>
+
+          <div class="exit-box">
+            Räkna 49 + 26.
+            <br><br>
+            Visa hur du tänkte med ord eller bild.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="subtraktion">
+    <h2>➖ Subtraktion</h2>
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 3 – Ta bort eller hitta skillnaden?</h3>
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Subtraktion</span>
+          <span class="tag">Begrepp</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska förstå att subtraktion kan beskriva flera olika situationer.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Tallinje, räknemarkörer och miniwhiteboards.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start</h4>
+
+          Berätta två situationer:
+
+          <p>
+            A: Du har 15 äpplen och äter 6.
+          </p>
+
+          <p>
+            B: Ali har 15 kulor och Mira har 9.
+            Hur många fler har Ali?
+          </p>
+
+          Fråga:
+          <strong>Kan båda lösas med subtraktion?</strong>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering</h4>
+
+          Visa <strong>72 − 38</strong> som:
+
+          <ol class="step-list">
+            <li>ta bort i delar</li>
+            <li>räkna upp från 38 till 72</li>
+            <li>kontrollera med addition</li>
+          </ol>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet</h4>
+
+          Eleverna sorterar textproblem i två grupper:
+
+          <ul>
+            <li><strong>ta bort</strong></li>
+            <li><strong>jämföra / hitta skillnaden</strong></li>
+          </ul>
+
+          Därefter löser de problemen.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Rita situationen och använd mindre tal.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          Skapa två olika textproblem som båda kan lösas med 63 − 28.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket</h4>
+
+          <div class="exit-box">
+            Vad är skillnaden mellan 64 och 39?
+            <br><br>
+            Förklara hur du tog reda på det.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="multiplikation">
+    <h2>✖️ Multiplikation och division</h2>
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 4 – Multiplikation är lika stora grupper</h3>
+
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Multiplikation</span>
+          <span class="tag">Representationer</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska kunna visa multiplikation med grupper, addition och symboler.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Räknemarkörer, papper och pennor.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start</h4>
+
+          Visa tre grupper med fyra föremål i varje.
+
+          <p>
+            Fråga:
+            <strong>Hur många finns totalt?</strong>
+          </p>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering</h4>
+
+          Koppla samman:
+
+          <div class="language-box">
+            4 + 4 + 4 = 12
+            <br><br>
+            3 × 4 = 12
+            <br><br>
+            Tre grupper med fyra i varje.
+          </div>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet</h4>
+
+          Eleverna får uttryck:
+
+          <ul>
+            <li>4 × 3</li>
+            <li>5 × 2</li>
+            <li>3 × 6</li>
+            <li>4 × 5</li>
+          </ul>
+
+          Varje uttryck ska visas på tre sätt:
+          <strong>material, bild och symboler.</strong>
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Börja med 2:ans och 5:ans tabell.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          Hur många olika rektangulära grupper kan du göra med 24 markörer?
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket</h4>
+
+          <div class="exit-box">
+            Rita en bild som visar 4 × 5.
+            <br><br>
+            Skriv sedan samma sak som addition.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 5 – Sambandet mellan multiplikation och division</h3>
+
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Division</span>
+          <span class="tag">Samband</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska kunna använda en känd multiplikation för att lösa division.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Räknemarkörer och små skålar.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start</h4>
+
+          Skriv:
+          <strong>5 × 6 = 30</strong>
+
+          <p>
+            Fråga vilka divisionsuttryck som hör ihop med detta.
+          </p>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering</h4>
+
+          Visa sambandsfamiljen:
+
+          <div class="language-box">
+            5 × 6 = 30
+            <br>
+            6 × 5 = 30
+            <br>
+            30 ÷ 5 = 6
+            <br>
+            30 ÷ 6 = 5
+          </div>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet</h4>
+
+          Ge eleverna multiplikationer och låt dem skapa hela sambandsfamiljen:
+
+          <ul>
+            <li>4 × 6 = 24</li>
+            <li>3 × 8 = 24</li>
+            <li>5 × 7 = 35</li>
+          </ul>
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Bygg sambandet med konkreta grupper.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          Skapa en egen sambandsfamilj med svaret 42.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket</h4>
+
+          <div class="exit-box">
+            Om 4 × 7 = 28:
+            <br><br>
+            skriv två divisionsuttryck som hör ihop med detta.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="brak">
+    <h2>🍕 Bråk</h2>
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 6 – Varför är 1/2 större än 1/4?</h3>
+
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Bråk</span>
+          <span class="tag">Laborativt</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska förstå att samma helhet kan delas i olika många lika stora delar.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Lika stora papper, sax och färgpennor.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start</h4>
+
+          Fråga:
+          <strong>Vad vill du helst ha – en halv pizza eller en fjärdedels pizza?</strong>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering</h4>
+
+          Vik två lika stora papper:
+
+          <ol class="step-list">
+            <li>Det första i två lika delar.</li>
+            <li>Det andra i fyra lika delar.</li>
+            <li>Jämför en del från varje papper.</li>
+          </ol>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet</h4>
+
+          Eleverna skapar egna bråkmodeller för:
+
+          <ul>
+            <li>1/2</li>
+            <li>1/3</li>
+            <li>1/4</li>
+          </ul>
+
+          De jämför delarnas storlek.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Arbeta först endast med 1/2 och 1/4.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          Visa varför 2/4 och 1/2 kan beskriva lika stor del av samma helhet.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket</h4>
+
+          <div class="exit-box">
+            Vilket är störst: 1/2 eller 1/4?
+            <br><br>
+            Förklara med en bild eller med ord.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="lesson-card">
+
+      <div class="lesson-header">
+        <h3>Lektion 7 – Ett problem, flera strategier</h3>
+
+        <div class="tags">
+          <span class="tag">60 minuter</span>
+          <span class="tag">Problemlösning</span>
+          <span class="tag">Matteprat</span>
+        </div>
+      </div>
+
+      <div class="lesson-grid">
+
+        <div class="lesson-part">
+          <h4>🎯 Lektionsmål</h4>
+          Eleven ska kunna välja en strategi och förklara sin lösning.
+        </div>
+
+        <div class="lesson-part">
+          <h4>🧱 Material</h4>
+          Papper, miniwhiteboard och konkret material vid behov.
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>☀️ Start</h4>
+
+          Visa problemet:
+
+          <div class="language-box">
+            Det finns 32 elever.
+            De ska arbeta i grupper med 4 elever i varje grupp.
+            Hur många grupper blir det?
+          </div>
+
+          <p>
+            Be eleverna tänka tyst först.
+          </p>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>👩‍🏫 Modellering</h4>
+
+          Modellera problemlösningsgången:
+
+          <ol class="step-list">
+            <li>Vad vet jag?</li>
+            <li>Vad ska jag ta reda på?</li>
+            <li>Vilken strategi kan passa?</li>
+            <li>Hur kan jag kontrollera svaret?</li>
+          </ol>
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🧠 Elevaktivitet</h4>
+
+          Eleverna löser problemet på minst två sätt, till exempel:
+
+          <ul>
+            <li>rita grupper</li>
+            <li>upprepad subtraktion</li>
+            <li>division</li>
+            <li>tänk multiplikation</li>
+          </ul>
+
+          Därefter jämför de sina lösningar i par.
+        </div>
+
+        <div class="language-box">
+          <strong>💬 Meningsstarter</strong>
+          <br>
+          Jag valde att...
+          <br>
+          Min lösning visar...
+          <br>
+          Jag vet att svaret stämmer eftersom...
+        </div>
+
+        <div class="lesson-part">
+          <h4>🌱 Stöd</h4>
+          Använd 20 elever i grupper om 4 först.
+        </div>
+
+        <div class="lesson-part">
+          <h4>⭐ Utmaning</h4>
+          På vilka olika sätt kan 36 elever delas i lika stora grupper?
+        </div>
+
+        <div class="lesson-part wide">
+          <h4>🚪 Exit ticket</h4>
+
+          <div class="exit-box">
+            24 kakor delas lika mellan 6 barn.
+            <br><br>
+            Hur många får varje barn?
+            <br>
+            Visa hur du vet.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="box teacher-note">
+    <h2>👩‍🏫 Lärarens observationsfokus</h2>
+
+    <p>
+      Under lektionerna kan du särskilt observera:
+    </p>
+
+    <ul>
+      <li>om eleven förstår den matematiska idén,</li>
+      <li>vilken strategi eleven väljer,</li>
+      <li>om eleven kan byta representation,</li>
+      <li>hur eleven använder matematiska begrepp,</li>
+      <li>om eleven kan motivera sin lösning,</li>
+      <li>om eleven kontrollerar rimligheten.</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Resurser till lektionerna</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="dagensmatte.html">
+        ☀️ Dagens matte
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Representationer
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="stationsarbete.html">
+        🔄 Stationsarbete
+      </a>
+
+      <a class="link-card" href="exit-ticket.html">
+        🚪 Exit ticket
+      </a>
+
+      <a class="link-card" href="lararverktyg.html">
+        🧰 Lärarverktyg
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Lektionsbank</strong></p>
+  <p>Mål • Modellera • Undersöka • Samtala • Följa upp</p>
+</footer>
+
+</body>
+</html>
