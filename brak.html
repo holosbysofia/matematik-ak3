@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bråk – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 750px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .fraction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .fraction-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .fraction-symbol {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 10px;
+    }
+
+    .shape {
+      width: 140px;
+      height: 70px;
+      display: flex;
+      margin: 15px auto;
+      border: 2px solid #8c7a66;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .part {
+      flex: 1;
+      border-right: 1px solid #8c7a66;
+      background: #fffaf2;
+    }
+
+    .part:last-child {
+      border-right: none;
+    }
+
+    .filled {
+      background: #d8c6aa;
+    }
+
+    .numberline {
+      position: relative;
+      margin: 30px 10px;
+      height: 80px;
+    }
+
+    .line {
+      position: absolute;
+      top: 30px;
+      left: 5%;
+      right: 5%;
+      height: 4px;
+      background: #867764;
+    }
+
+    .tick {
+      position: absolute;
+      top: 20px;
+      width: 3px;
+      height: 24px;
+      background: #867764;
+    }
+
+    .tick span {
+      position: absolute;
+      top: 28px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍕 Bråk</h1>
+  <p>
+    Här lär du dig om helhet, delar, hälften, tredjedelar, fjärdedelar och enkla bråk.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="division.html">➗ Division</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#tallinje">📍 Tallinje</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>förstå att ett bråk beskriver en del av en helhet</li>
+      <li>känna igen hälften, tredjedelar och fjärdedelar</li>
+      <li>förstå täljare och nämnare på enkel nivå</li>
+      <li>jämföra enkla bråk</li>
+      <li>hitta bråk på en tallinje</li>
+      <li>beräkna enkla delar av antal</li>
+      <li>lösa vardagsproblem med bråk</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Vad är ett bråk?</h2>
+
+    <p>
+      Ett bråk visar hur många delar av en helhet vi har.
+      Delarna måste vara <strong>lika stora</strong>.
+    </p>
+
+    <div class="example">
+      Om en pizza delas i två lika stora delar är varje del
+      <strong>en halv</strong>.
+      <br><br>
+      Vi skriver det som <strong>1/2</strong>.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧩 Hälften, tredjedelar och fjärdedelar</h2>
+
+    <div class="fraction-grid">
+
+      <div class="fraction-card">
+        <div class="fraction-symbol">1/2</div>
+        <h3>En halv</h3>
+
+        <div class="shape">
+          <div class="part filled"></div>
+          <div class="part"></div>
+        </div>
+
+        <p>Helheten är delad i 2 lika stora delar.</p>
+      </div>
+
+      <div class="fraction-card">
+        <div class="fraction-symbol">1/3</div>
+        <h3>En tredjedel</h3>
+
+        <div class="shape">
+          <div class="part filled"></div>
+          <div class="part"></div>
+          <div class="part"></div>
+        </div>
+
+        <p>Helheten är delad i 3 lika stora delar.</p>
+      </div>
+
+      <div class="fraction-card">
+        <div class="fraction-symbol">1/4</div>
+        <h3>En fjärdedel</h3>
+
+        <div class="shape">
+          <div class="part filled"></div>
+          <div class="part"></div>
+          <div class="part"></div>
+          <div class="part"></div>
+        </div>
+
+        <p>Helheten är delad i 4 lika stora delar.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔎 Täljare och nämnare</h2>
+
+    <div class="example">
+      Titta på bråket:
+      <br><br>
+      <strong style="font-size:2rem;">3/4</strong>
+    </div>
+
+    <p>
+      <strong>4</strong> berättar hur många lika stora delar helheten är delad i.
+      Det kallas <strong>nämnare</strong>.
+    </p>
+
+    <p>
+      <strong>3</strong> berättar hur många av delarna vi menar.
+      Det kallas <strong>täljare</strong>.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🍫 Flera delar</h2>
+
+    <p>
+      Om en chokladkaka delas i fyra lika stora delar och vi tar tre delar,
+      har vi tagit <strong>3/4</strong>.
+    </p>
+
+    <div class="shape">
+      <div class="part filled"></div>
+      <div class="part filled"></div>
+      <div class="part filled"></div>
+      <div class="part"></div>
+    </div>
+
+    <div class="example">
+      Tre av fyra delar är markerade.
+      <br>
+      Därför är bråket <strong>3/4</strong>.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>⚖️ Jämföra enkla bråk</h2>
+
+    <p>
+      Om helheterna är lika stora kan vi jämföra bråken.
+    </p>
+
+    <div class="example">
+      <strong>1/2 är större än 1/4.</strong>
+    </div>
+
+    <p>
+      Det kan kännas konstigt eftersom 4 är större än 2.
+      Men när något delas i fler delar blir varje del mindre.
+    </p>
+
+    <div class="fraction-grid">
+
+      <div class="fraction-card">
+        <h3>1/2</h3>
+        <div class="shape">
+          <div class="part filled"></div>
+          <div class="part"></div>
+        </div>
+      </div>
+
+      <div class="fraction-card">
+        <h3>1/4</h3>
+        <div class="shape">
+          <div class="part filled"></div>
+          <div class="part"></div>
+          <div class="part"></div>
+          <div class="part"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box" id="tallinje">
+    <h2>📍 Bråk på tallinjen</h2>
+
+    <p>
+      Bråk kan också visas på en tallinje.
+    </p>
+
+    <div class="numberline">
+      <div class="line"></div>
+
+      <div class="tick" style="left:5%;">
+        <span>0</span>
+      </div>
+
+      <div class="tick" style="left:27.5%;">
+        <span>1/4</span>
+      </div>
+
+      <div class="tick" style="left:50%;">
+        <span>1/2</span>
+      </div>
+
+      <div class="tick" style="left:72.5%;">
+        <span>3/4</span>
+      </div>
+
+      <div class="tick" style="left:95%;">
+        <span>1</span>
+      </div>
+    </div>
+
+    <p>
+      Talet 1/2 ligger precis mitt emellan 0 och 1.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🔢 Del av antal</h2>
+
+    <p>
+      Bråk kan också beskriva en del av ett antal.
+    </p>
+
+    <div class="example">
+      Vad är hälften av 10?
+      <br><br>
+      10 delas i 2 lika stora grupper.
+      <br>
+      10 ÷ 2 = 5
+      <br><br>
+      <strong>Hälften av 10 är 5.</strong>
+    </div>
+
+    <div class="example">
+      Vad är en fjärdedel av 12?
+      <br><br>
+      12 ÷ 4 = 3
+      <br><br>
+      <strong>En fjärdedel av 12 är 3.</strong>
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vilket bråk betyder en av två lika stora delar?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">1/2</button>
+        <button onclick="answer(this,false)">1/3</button>
+        <button onclick="answer(this,false)">1/4</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vilket är störst?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">1/2</button>
+        <button onclick="answer(this,false)">1/4</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vad är hälften av 16?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">6</button>
+        <button onclick="answer(this,true)">8</button>
+        <button onclick="answer(this,false)">10</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vad är en fjärdedel av 20?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">5</button>
+        <button onclick="answer(this,false)">4</button>
+        <button onclick="answer(this,false)">10</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vilket bråk ligger mitt emellan 0 och 1?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">1/4</button>
+        <button onclick="answer(this,true)">1/2</button>
+        <button onclick="answer(this,false)">1/3</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Vad är hälften av <strong>18</strong>?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Pizzan</h3>
+
+      <p>
+        En pizza delas i 8 lika stora bitar.
+        Fyra bitar blir uppätna.
+      </p>
+
+      <p>
+        <strong>Hur stor del av pizzan blev uppäten?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="text" id="problemAnswer" placeholder="t.ex. 1/2">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Mira har 24 pärlor.
+      </p>
+
+      <p>
+        Hon ger <strong>en tredjedel</strong> av pärlorna till sin vän.
+      </p>
+
+      <p>
+        <strong>Hur många pärlor ger hon bort?</strong>
+      </p>
+
+      <p>
+        Hur många pärlor har hon kvar?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Bråkdetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        Ett barn säger:
+      </p>
+
+      <p>
+        <strong>“En fjärdedel är större än en halv eftersom 4 är större än 2.”</strong>
+      </p>
+
+      <p>
+        Har barnet rätt?
+      </p>
+
+      <p>
+        Förklara gärna med en bild eller genom att rita en pizza.
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>bråk</strong> – beskriver en eller flera delar av en helhet</p>
+
+    <p><strong>helhet</strong> – allt tillsammans</p>
+
+    <p><strong>hälften</strong> – en av två lika stora delar</p>
+
+    <p><strong>tredjedel</strong> – en av tre lika stora delar</p>
+
+    <p><strong>fjärdedel</strong> – en av fyra lika stora delar</p>
+
+    <p><strong>täljare</strong> – visar hur många delar vi menar</p>
+
+    <p><strong>nämnare</strong> – visar hur många lika stora delar helheten är delad i</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Bråk • Helhet • Delar • Tallinje • Problemlösning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen och tänk på hur helheten delas.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 9) {
+      feedback.textContent = "✅ Rätt! Hälften av 18 är 9.";
+    } else {
+      feedback.textContent = "Försök igen. Dela 18 i två lika stora grupper.";
+    }
+  }
+
+  function checkProblem() {
+    const value = document
+      .getElementById("problemAnswer")
+      .value
+      .replace(/\s/g, "");
+
+    const feedback = document.getElementById("problemFeedback");
+
+    if (
+      value === "4/8" ||
+      value === "1/2" ||
+      value.toLowerCase() === "hälften"
+    ) {
+      feedback.textContent =
+        "✅ Rätt! 4 av 8 bitar är 4/8, vilket är samma som 1/2.";
+    } else {
+      feedback.textContent =
+        "Försök igen. Fyra av åtta lika stora bitar blev uppätna.";
+    }
+  }
+</script>
+
+</body>
+</html>
