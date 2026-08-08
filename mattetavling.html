@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mattetävling – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2.2rem,6vw,4rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1120px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.3rem;
+      margin-bottom: 6px;
+    }
+
+    .setup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: var(--brun);
+      margin-bottom: 5px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cdbfae;
+      border-radius: 10px;
+      background: #fffdf8;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .game-area {
+      display: none;
+    }
+
+    .game-area.show {
+      display: block;
+    }
+
+    .scoreboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .player-card {
+      background: #f3eadf;
+      border: 2px solid transparent;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: 0.2s ease;
+    }
+
+    .player-card.active {
+      background: #eee4d6;
+      border-color: #b7a17c;
+      transform: translateY(-2px);
+    }
+
+    .player-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .score {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 5px 0;
+    }
+
+    .turn-label {
+      min-height: 24px;
+      font-weight: bold;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .status-card {
+      background: #f3eadf;
+      border-radius: 11px;
+      padding: 13px;
+      text-align: center;
+    }
+
+    .status-card strong {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--brun);
+    }
+
+    .progress-wrap {
+      height: 22px;
+      background: #eee4d6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 24px;
+    }
+
+    .category {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 18px;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .question-number {
+      font-size: 0.9rem;
+      color: var(--brun);
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    .question-text {
+      font-size: 1.35rem;
+      font-weight: bold;
+      margin: 10px 0 18px;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 10px;
+    }
+
+    .answer-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+      min-height: 56px;
+    }
+
+    .answer-btn.right {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-btn.wrong {
+      background: var(--fel);
+      border-color: #caa9a2;
+    }
+
+    .feedback {
+      min-height: 32px;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    .explanation {
+      display: none;
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .next-btn.show {
+      display: inline-block;
+    }
+
+    .result-box {
+      display: none;
+      text-align: center;
+      background: #e7eadf;
+      border: 3px solid #a7ad91;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-box h2 {
+      font-size: clamp(2rem,5vw,3.5rem);
+      margin-bottom: 8px;
+    }
+
+    .winner {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 10px 0;
+    }
+
+    .final-scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .final-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 17px;
+    }
+
+    .final-card strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--brun);
+    }
+
+    .teacher-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .question-card {
+        padding: 18px;
+      }
+
+      .scoreboard,
+      .final-scores {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏁 Mattetävling</h1>
+
+  <p>
+    Två spelare eller två lag möts i matematik.
+    Turas om, samla poäng och försök vinna matchen.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#start">⚙️ Start</a>
+  <a href="#spel">🏁 Tävling</a>
+  <a href="#mer">🎮 Fler spel</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🎯 Så går tävlingen till</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">1️⃣</div>
+        <h3>Två lag</h3>
+        <p>Skriv namn på spelarna eller lagen.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">2️⃣</div>
+        <h3>Turas om</h3>
+        <p>En fråga visas för laget som har turen.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">3️⃣</div>
+        <h3>Samla poäng</h3>
+        <p>Rätt svar ger en poäng.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Vinn matchen</h3>
+        <p>När alla frågor är spelade vinner laget med flest poäng.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="start">
+
+    <h2>⚙️ Ställ in tävlingen</h2>
+
+    <div class="setup-grid">
+
+      <div>
+        <label for="player1">Spelare / lag 1</label>
+        <input id="player1" type="text" value="Lag 1">
+      </div>
+
+      <div>
+        <label for="player2">Spelare / lag 2</label>
+        <input id="player2" type="text" value="Lag 2">
+      </div>
+
+      <div>
+        <label for="level">Nivå</label>
+
+        <select id="level">
+          <option value="grund">🌱 Grund</option>
+          <option value="blandad" selected>🌿 Blandad</option>
+          <option value="utmaning">⭐ Utmaning</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rounds">Antal frågor</label>
+
+        <select id="rounds">
+          <option value="10">10 frågor</option>
+          <option value="14" selected>14 frågor</option>
+          <option value="20">20 frågor</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="button-row">
+      <button onclick="startGame()">🏁 Starta tävlingen</button>
+    </div>
+
+    <div class="teacher-box">
+      <strong>💬 Extra regel:</strong>
+      Låt laget motivera sitt svar innan de trycker. På så sätt tränas både beräkning och matematiskt språk.
+    </div>
+
+  </section>
+
+
+  <section class="box game-area" id="spel">
+
+    <div class="scoreboard">
+
+      <div class="player-card" id="playerCard0">
+        <div class="player-name" id="name0">Lag 1</div>
+        <div class="score" id="score0">0</div>
+        <div class="turn-label" id="turn0"></div>
+      </div>
+
+      <div class="player-card" id="playerCard1">
+        <div class="player-name" id="name1">Lag 2</div>
+        <div class="score" id="score1">0</div>
+        <div class="turn-label" id="turn1"></div>
+      </div>
+
+    </div>
+
+
+    <div class="status-grid">
+
+      <div class="status-card">
+        Fråga
+        <strong id="questionStatus">1 / 14</strong>
+      </div>
+
+      <div class="status-card">
+        Tur
+        <strong id="turnStatus">Lag 1</strong>
+      </div>
+
+      <div class="status-card">
+        Rätt totalt
+        <strong id="correctTotal">0</strong>
+      </div>
+
+    </div>
+
+
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+
+    <div class="question-card">
+
+      <span class="category" id="categoryLabel"></span>
+
+      <div class="question-number" id="questionNumber"></div>
+
+      <div class="question-text" id="questionText"></div>
+
+      <div class="answer-grid" id="answerGrid"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div class="explanation" id="explanation"></div>
+
+      <button class="next-btn" id="nextButton" onclick="nextQuestion()">
+        Nästa tur ➡️
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="box result-box" id="resultBox">
+
+    <h2>🏆 Matchen är klar!</h2>
+
+    <div class="winner" id="winnerText"></div>
+
+    <div class="final-scores">
+
+      <div class="final-card">
+        <span id="finalName0">Lag 1</span>
+        <strong id="finalScore0">0</strong>
+      </div>
+
+      <div class="final-card">
+        <span id="finalName1">Lag 2</span>
+        <strong id="finalScore1">0</strong>
+      </div>
+
+    </div>
+
+    <p id="resultMessage"></p>
+
+    <div class="button-row" style="justify-content:center;">
+      <button onclick="startGame()">🔄 Spela igen</button>
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>⭐ Tävla med mer matematiskt tänkande</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>💬 Förklara</h3>
+        <p>Lagets svar räknas först när någon kan säga hur laget tänkte.</p>
+      </div>
+
+      <div class="card">
+        <h3>🔄 Annan strategi</h3>
+        <p>Bonusfråga: kan motståndarlaget visa ett annat sätt?</p>
+      </div>
+
+      <div class="card">
+        <h3>✅ Kontrollera</h3>
+        <p>Hur kan laget kontrollera att svaret är rimligt?</p>
+      </div>
+
+      <div class="card">
+        <h3>⭐ Skapa</h3>
+        <p>Efter matchen får lagen skapa en egen fråga åt varandra.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mer">
+
+    <h2>🎮 Fler matematikspel</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="mattequiz.html">
+        🏆 Mattequiz
+      </a>
+
+      <a class="link-card" href="matteescape.html">
+        🔐 Matte Escape
+      </a>
+
+      <a class="link-card" href="mattedetektiven.html">
+        🕵️ Mattedetektiven
+      </a>
+
+      <a class="link-card" href="mattesafari.html">
+        🧭 Mattesafari
+      </a>
+
+      <a class="link-card" href="mattebingo.html">
+        🎯 Mattebingo
+      </a>
+
+      <a class="link-card" href="spel.html">
+        🎮 Mattespel
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  <p><strong>Matematik åk 3 – Mattetävling</strong></p>
+  <p>Turas om • Tänk • Förklara • Samla poäng</p>
+</footer>
+
+
+<script>
+
+const questionBank = [
+
+  /* GRUND */
+
+  {
+    level: "grund",
+    category: "🔢 Tal",
+    q: "Vad är 10 mer än 47?",
+    correct: "57",
+    wrong: ["48","37","67"],
+    explanation: "47 + 10 = 57."
+  },
+
+  {
+    level: "grund",
+    category: "🔢 Tal",
+    q: "Vad är siffran 4 värd i 243?",
+    correct: "40",
+    wrong: ["4","400","43"],
+    explanation: "4:an står på tiotalsplatsen."
+  },
+
+  {
+    level: "grund",
+    category: "➕ Addition",
+    q: "8 + 6 = ?",
+    correct: "14",
+    wrong: ["12","13","15"],
+    explanation: "8 + 6 = 14."
+  },
+
+  {
+    level: "grund",
+    category: "➖ Subtraktion",
+    q: "16 − 7 = ?",
+    correct: "9",
+    wrong: ["8","10","23"],
+    explanation: "16 − 7 = 9."
+  },
+
+  {
+    level: "grund",
+    category: "✖️ Multiplikation",
+    q: "5 × 3 = ?",
+    correct: "15",
+    wrong: ["8","10","20"],
+    explanation: "Tre grupper med fem ger 15."
+  },
+
+  {
+    level: "grund",
+    category: "➗ Division",
+    q: "20 ÷ 5 = ?",
+    correct: "4",
+    wrong: ["5","10","15"],
+    explanation: "20 delat i fem lika grupper ger 4."
+  },
+
+  {
+    level: "grund",
+    category: "🍕 Bråk",
+    q: "Vad är hälften av 12?",
+    correct: "6",
+    wrong: ["4","5","8"],
+    explanation: "12 ÷ 2 = 6."
+  },
+
+  {
+    level: "grund",
+    category: "⚖️ Algebra",
+    q: "5 + ___ = 12",
+    correct: "7",
+    wrong: ["6","8","17"],
+    explanation: "5 + 7 = 12."
+  },
+
+  {
+    level: "grund",
+    category: "📐 Geometri",
+    q: "Hur många sidor har en triangel?",
+    correct: "3",
+    wrong: ["2","4","5"],
+    explanation: "En triangel har tre sidor."
+  },
+
+  {
+    level: "grund",
+    category: "📏 Mätning",
+    q: "Hur många centimeter är 1 meter?",
+    correct: "100",
+    wrong: ["10","50","1000"],
+    explanation: "1 meter = 100 centimeter."
+  },
+
+  {
+    level: "grund",
+    category: "🧠 Problem",
+    q: "18 kulor och 5 nya kulor. Hur många totalt?",
+    correct: "23",
+    wrong: ["13","22","24"],
+    explanation: "18 + 5 = 23."
+  },
+
+  {
+    level: "grund",
+    category: "🧠 Problem",
+    q: "12 kakor delas mellan 3 barn. Hur många får varje?",
+    correct: "4",
+    wrong: ["3","5","9"],
+    explanation: "12 ÷ 3 = 4."
+  },
+
+
+  /* BLANDAD */
+
+  {
+    level: "blandad",
+    category: "🔢 Tal",
+    q: "Vad är siffran 7 värd i 472?",
+    correct: "70",
+    wrong: ["7","700","72"],
+    explanation: "7:an står på tiotalsplatsen."
+  },
+
+  {
+    level: "blandad",
+    category: "🔢 Tal",
+    q: "Vilket är störst?",
+    correct: "403",
+    wrong: ["398","393","340"],
+    explanation: "403 har fyra hundratal."
+  },
+
+  {
+    level: "blandad",
+    category: "🔢 Tal",
+    q: "Vad är 100 mindre än 638?",
+    correct: "538",
+    wrong: ["628","438","738"],
+    explanation: "638 − 100 = 538."
+  },
+
+  {
+    level: "blandad",
+    category: "➕ Addition",
+    q: "48 + 27 = ?",
+    correct: "75",
+    wrong: ["65","74","85"],
+    explanation: "48 + 20 + 7 = 75."
+  },
+
+  {
+    level: "blandad",
+    category: "➕ Addition",
+    q: "59 + 24 = ?",
+    correct: "83",
+    wrong: ["73","82","93"],
+    explanation: "59 + 20 = 79 och 79 + 4 = 83."
+  },
+
+  {
+    level: "blandad",
+    category: "➖ Subtraktion",
+    q: "72 − 38 = ?",
+    correct: "34",
+    wrong: ["44","46","36"],
+    explanation: "Skillnaden mellan 38 och 72 är 34."
+  },
+
+  {
+    level: "blandad",
+    category: "➖ Subtraktion",
+    q: "63 − 28 = ?",
+    correct: "35",
+    wrong: ["31","41","45"],
+    explanation: "63 − 28 = 35."
+  },
+
+  {
+    level: "blandad",
+    category: "✖️ Multiplikation",
+    q: "4 × 7 = ?",
+    correct: "28",
+    wrong: ["11","24","32"],
+    explanation: "Fyra grupper med sju ger 28."
+  },
+
+  {
+    level: "blandad",
+    category: "✖️ Multiplikation",
+    q: "5 × 8 = ?",
+    correct: "40",
+    wrong: ["13","35","45"],
+    explanation: "5 × 8 = 40."
+  },
+
+  {
+    level: "blandad",
+    category: "➗ Division",
+    q: "24 ÷ 6 = ?",
+    correct: "4",
+    wrong: ["3","5","6"],
+    explanation: "6 × 4 = 24."
+  },
+
+  {
+    level: "blandad",
+    category: "➗ Division",
+    q: "35 ÷ 5 = ?",
+    correct: "7",
+    wrong: ["5","6","8"],
+    explanation: "5 × 7 = 35."
+  },
+
+  {
+    level: "blandad",
+    category: "🍕 Bråk",
+    q: "Vad är 1/4 av 20?",
+    correct: "5",
+    wrong: ["4","10","15"],
+    explanation: "20 ÷ 4 = 5."
+  },
+
+  {
+    level: "blandad",
+    category: "🍕 Bråk",
+    q: "Vilket är störst när helheten är lika stor?",
+    correct: "1/2",
+    wrong: ["1/4","1/8","De är lika"],
+    explanation: "En halv är större än en fjärdedel och en åttondel."
+  },
+
+  {
+    level: "blandad",
+    category: "⚖️ Algebra",
+    q: "8 + ___ = 13",
+    correct: "5",
+    wrong: ["4","6","21"],
+    explanation: "8 + 5 = 13."
+  },
+
+  {
+    level: "blandad",
+    category: "🔁 Mönster",
+    q: "Vilket tal kommer sedan? 5, 10, 15, 20, ...",
+    correct: "25",
+    wrong: ["22","24","30"],
+    explanation: "Mönstret ökar med 5."
+  },
+
+  {
+    level: "blandad",
+    category: "📐 Geometri",
+    q: "Hur många hörn har en rektangel?",
+    correct: "4",
+    wrong: ["2","3","5"],
+    explanation: "En rektangel har fyra hörn."
+  },
+
+  {
+    level: "blandad",
+    category: "⚖️ Mätning",
+    q: "Vilket är tyngst?",
+    correct: "1 kg",
+    wrong: ["900 g","750 g","500 g"],
+    explanation: "1 kg = 1000 g."
+  },
+
+  {
+    level: "blandad",
+    category: "🧠 Problem",
+    q: "32 elever delas i grupper om 4. Hur många grupper?",
+    correct: "8",
+    wrong: ["6","7","28"],
+    explanation: "32 ÷ 4 = 8."
+  },
+
+  {
+    level: "blandad",
+    category: "🧠 Problem",
+    q: "Mira har 28 pärlor, får 15 och använder 9. Hur många kvar?",
+    correct: "34",
+    wrong: ["24","43","52"],
+    explanation: "28 + 15 − 9 = 34."
+  },
+
+  {
+    level: "blandad",
+    category: "⏰ Tid",
+    q: "Hur många minuter är en kvart?",
+    correct: "15",
+    wrong: ["10","20","30"],
+    explanation: "En kvart är 15 minuter."
+  },
+
+
+  /* UTMANING */
+
+  {
+    level: "utmaning",
+    category: "🔢 Tal",
+    q: "Vilket tal ligger närmast 500?",
+    correct: "487",
+    wrong: ["516","470","530"],
+    explanation: "487 ligger 13 från 500 och 516 ligger 16 från 500."
+  },
+
+  {
+    level: "utmaning",
+    category: "🔢 Tal",
+    q: "Största talet med siffrorna 2, 5 och 8?",
+    correct: "852",
+    wrong: ["825","582","528"],
+    explanation: "Placera största siffran först: 852."
+  },
+
+  {
+    level: "utmaning",
+    category: "➕ Addition",
+    q: "198 + 24 = ?",
+    correct: "222",
+    wrong: ["212","221","232"],
+    explanation: "198 + 2 = 200 och sedan +22 = 222."
+  },
+
+  {
+    level: "utmaning",
+    category: "➖ Subtraktion",
+    q: "150 − 76 = ?",
+    correct: "74",
+    wrong: ["64","76","84"],
+    explanation: "150 − 70 − 6 = 74."
+  },
+
+  {
+    level: "utmaning",
+    category: "✖️ Multiplikation",
+    q: "Om 5 × 7 = 35, vad blir 6 × 7?",
+    correct: "42",
+    wrong: ["36","40","48"],
+    explanation: "35 + 7 = 42."
+  },
+
+  {
+    level: "utmaning",
+    category: "➗ Division",
+    q: "Vilket tal saknas? ___ ÷ 4 = 7",
+    correct: "28",
+    wrong: ["11","21","32"],
+    explanation: "4 × 7 = 28."
+  },
+
+  {
+    level: "utmaning",
+    category: "🍕 Bråk",
+    q: "Vad är 1/3 av 18?",
+    correct: "6",
+    wrong: ["3","9","12"],
+    explanation: "18 ÷ 3 = 6."
+  },
+
+  {
+    level: "utmaning",
+    category: "🍕 Bråk",
+    q: "Vilket är störst när helheten är lika stor?",
+    correct: "1/3",
+    wrong: ["1/4","1/6","1/8"],
+    explanation: "En tredjedel är störst av dessa enhetsbråk."
+  },
+
+  {
+    level: "utmaning",
+    category: "⚖️ Algebra",
+    q: "4 × ___ = 36",
+    correct: "9",
+    wrong: ["8","10","32"],
+    explanation: "4 × 9 = 36."
+  },
+
+  {
+    level: "utmaning",
+    category: "🔁 Mönster",
+    q: "Vilket tal kommer sedan? 7, 14, 21, 28, ...",
+    correct: "35",
+    wrong: ["32","34","42"],
+    explanation: "Mönstret ökar med 7."
+  },
+
+  {
+    level: "utmaning",
+    category: "🥛 Mätning",
+    q: "Hur många deciliter är 2 liter?",
+    correct: "20 dl",
+    wrong: ["2 dl","10 dl","200 dl"],
+    explanation: "2 × 10 dl = 20 dl."
+  },
+
+  {
+    level: "utmaning",
+    category: "🧠 Problem",
+    q: "Leo har 35 kr, får 12 kr och använder 8 kr. Hur mycket kvar?",
+    correct: "39",
+    wrong: ["31","47","55"],
+    explanation: "35 + 12 = 47 och 47 − 8 = 39."
+  },
+
+  {
+    level: "utmaning",
+    category: "🧠 Rimlighet",
+    q: "Vilket svar är rimligast för 203 + 97?",
+    correct: "300",
+    wrong: ["100","200","500"],
+    explanation: "203 är ungefär 200 och 97 ungefär 100."
+  },
+
+  {
+    level: "utmaning",
+    category: "⏰ Tid",
+    q: "En film börjar 14:20 och slutar 15:00. Hur lång är den?",
+    correct: "40 min",
+    wrong: ["20 min","30 min","60 min"],
+    explanation: "Från 14:20 till 15:00 är det 40 minuter."
+  }
+
+];
+
+
+let questions = [];
+let currentQuestion = 0;
+
+let players = [
+  { name: "Lag 1", score: 0 },
+  { name: "Lag 2", score: 0 }
+];
+
+let currentPlayer = 0;
+let totalCorrect = 0;
+let answered = false;
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
+
+    [copy[i], copy[j]] =
+      [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+
+function startGame() {
+
+  let name1 =
+    document.getElementById("player1").value.trim();
+
+  let name2 =
+    document.getElementById("player2").value.trim();
+
+
+  if (!name1) name1 = "Lag 1";
+  if (!name2) name2 = "Lag 2";
+
+
+  players = [
+    { name: name1, score: 0 },
+    { name: name2, score: 0 }
+  ];
+
+
+  const level =
+    document.getElementById("level").value;
+
+  const numberOfQuestions =
+    Number(
+      document.getElementById("rounds").value
+    );
+
+
+  let pool =
+    questionBank.filter(
+      item => item.level === level
+    );
+
+
+  /*
+    Om användaren väljer fler frågor än
+    det finns unika på nivån skapas en ny
+    slumpad kopia. På så sätt kraschar
+    inte spelet.
+  */
+
+  while (pool.length < numberOfQuestions) {
+    pool = [...pool, ...pool];
+  }
+
+
+  questions =
+    shuffle(pool).slice(
+      0,
+      numberOfQuestions
+    );
+
+
+  currentQuestion = 0;
+  currentPlayer =
+    Math.random() < 0.5 ? 0 : 1;
+
+  totalCorrect = 0;
+  answered = false;
+
+
+  document.getElementById("name0").textContent =
+    players[0].name;
+
+  document.getElementById("name1").textContent =
+    players[1].name;
+
+  document.getElementById("score0").textContent =
+    "0";
+
+  document.getElementById("score1").textContent =
+    "0";
+
+  document.getElementById("correctTotal").textContent =
+    "0";
+
+
+  document.getElementById("resultBox")
+    .classList.remove("show");
+
+  document.getElementById("spel")
+    .classList.add("show");
+
+
+  showQuestion();
+
+
+  document.getElementById("spel")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+}
+
+
+function showQuestion() {
+
+  answered = false;
+
+  const item =
+    questions[currentQuestion];
+
+
+  updateScoreboard();
+
+
+  document.getElementById(
+    "questionStatus"
+  ).textContent =
+    (currentQuestion + 1) +
+    " / " +
+    questions.length;
+
+
+  document.getElementById(
+    "questionNumber"
+  ).textContent =
+    "Fråga " +
+    (currentQuestion + 1);
+
+
+  document.getElementById(
+    "categoryLabel"
+  ).textContent =
+    item.category;
+
+
+  document.getElementById(
+    "questionText"
+  ).textContent =
+    item.q;
+
+
+  document.getElementById(
+    "feedback"
+  ).textContent = "";
+
+
+  const explanation =
+    document.getElementById(
+      "explanation"
+    );
+
+  explanation.classList.remove(
+    "show"
+  );
+
+  explanation.textContent = "";
+
+
+  document.getElementById(
+    "nextButton"
+  ).classList.remove("show");
+
+
+  const grid =
+    document.getElementById(
+      "answerGrid"
+    );
+
+  grid.innerHTML = "";
+
+
+  const alternatives =
+    shuffle([
+      item.correct,
+      ...item.wrong
+    ]);
+
+
+  alternatives.forEach(answer => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "answer-btn";
+
+    button.textContent =
+      answer;
+
+
+    button.addEventListener(
+      "click",
+      () => {
+        answerQuestion(
+          answer,
+          button
+        );
+      }
+    );
+
+
+    grid.appendChild(button);
+  });
+
+
+  const percent =
+    currentQuestion /
+    questions.length *
+    100;
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    percent + "%";
+}
+
+
+function updateScoreboard() {
+
+  for (let i = 0; i < 2; i++) {
+
+    document.getElementById(
+      "score" + i
+    ).textContent =
+      players[i].score;
+
+
+    const card =
+      document.getElementById(
+        "playerCard" + i
+      );
+
+
+    const turn =
+      document.getElementById(
+        "turn" + i
+      );
+
+
+    if (i === currentPlayer) {
+
+      card.classList.add("active");
+      turn.textContent = "🎯 Er tur";
+
+    } else {
+
+      card.classList.remove("active");
+      turn.textContent = "";
+    }
+  }
+
+
+  document.getElementById(
+    "turnStatus"
+  ).textContent =
+    players[currentPlayer].name;
+}
+
+
+function answerQuestion(
+  answer,
+  button
+) {
+
+  if (answered) return;
+
+  answered = true;
+
+
+  const item =
+    questions[currentQuestion];
+
+
+  const buttons =
+    document.querySelectorAll(
+      "#answerGrid button"
+    );
+
+
+  buttons.forEach(btn => {
+
+    btn.disabled = true;
+
+    if (
+      btn.textContent ===
+      item.correct
+    ) {
+      btn.classList.add("right");
+    }
+  });
+
+
+  if (answer === item.correct) {
+
+    players[currentPlayer].score++;
+    totalCorrect++;
+
+    button.classList.add("right");
+
+    document.getElementById(
+      "feedback"
+    ).textContent =
+      "✅ Rätt! " +
+      players[currentPlayer].name +
+      " får 1 poäng.";
+
+  } else {
+
+    button.classList.add("wrong");
+
+    document.getElementById(
+      "feedback"
+    ).textContent =
+      "Inte riktigt. Rätt svar är " +
+      item.correct +
+      ".";
+  }
+
+
+  document.getElementById(
+    "correctTotal"
+  ).textContent =
+    totalCorrect;
+
+
+  updateScoreboard();
+
+
+  const explanation =
+    document.getElementById(
+      "explanation"
+    );
+
+  explanation.innerHTML =
+    "<strong>Så kan ni tänka:</strong><br>" +
+    item.explanation;
+
+  explanation.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "nextButton"
+  ).classList.add("show");
+}
+
+
+function nextQuestion() {
+
+  currentQuestion++;
+
+
+  if (
+    currentQuestion >=
+    questions.length
+  ) {
+
+    finishGame();
+    return;
+  }
+
+
+  currentPlayer =
+    currentPlayer === 0 ? 1 : 0;
+
+
+  showQuestion();
+}
+
+
+function finishGame() {
+
+  document.getElementById("spel")
+    .classList.remove("show");
+
+
+  const result =
+    document.getElementById(
+      "resultBox"
+    );
+
+
+  result.classList.add("show");
+
+
+  document.getElementById(
+    "finalName0"
+  ).textContent =
+    players[0].name;
+
+
+  document.getElementById(
+    "finalName1"
+  ).textContent =
+    players[1].name;
+
+
+  document.getElementById(
+    "finalScore0"
+  ).textContent =
+    players[0].score +
+    " poäng";
+
+
+  document.getElementById(
+    "finalScore1"
+  ).textContent =
+    players[1].score +
+    " poäng";
+
+
+  let winnerText = "";
+  let message = "";
+
+
+  if (
+    players[0].score >
+    players[1].score
+  ) {
+
+    winnerText =
+      "🏆 " +
+      players[0].name +
+      " vinner!";
+
+    message =
+      "Bra spelat av båda lagen. Byt gärna nivå eller spela en returmatch.";
+
+  } else if (
+    players[1].score >
+    players[0].score
+  ) {
+
+    winnerText =
+      "🏆 " +
+      players[1].name +
+      " vinner!";
+
+    message =
+      "Bra spelat av båda lagen. Byt gärna nivå eller spela en returmatch.";
+
+  } else {
+
+    winnerText =
+      "🤝 Oavgjort!";
+
+    message =
+      "Lagen fick lika många poäng. Spela igen eller använd en utslagsfråga.";
+  }
+
+
+  document.getElementById(
+    "winnerText"
+  ).textContent =
+    winnerText;
+
+
+  document.getElementById(
+    "resultMessage"
+  ).textContent =
+    message;
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    "100%";
+
+
+  result.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
