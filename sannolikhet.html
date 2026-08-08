@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sannolikhet – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .chance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .chance-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .chance-icon {
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+
+    .bag {
+      background: #eee4d6;
+      border: 3px solid #a58f74;
+      border-radius: 20px 20px 35px 35px;
+      padding: 25px;
+      max-width: 350px;
+      margin: 20px auto;
+      text-align: center;
+      font-size: 2rem;
+      letter-spacing: 7px;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .experiment {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .big-symbol {
+      font-size: 4rem;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .experiment button {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .result-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .result-box {
+      background: #fffaf2;
+      border: 1px solid #d9cbb8;
+      border-radius: 12px;
+      padding: 12px 18px;
+      min-width: 130px;
+      font-weight: bold;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎲 Sannolikhet</h1>
+  <p>
+    Här tränar du på säkert, möjligt och omöjligt och undersöker vad som kan hända i slumpförsök.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="statistik.html">📊 Statistik</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#mynt">🪙 Mynt</a>
+  <a href="#tarning">🎲 Tärning</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+
+    <ul>
+      <li>förstå vad slump betyder</li>
+      <li>använda orden säkert, möjligt och omöjligt</li>
+      <li>jämföra vad som är mer eller mindre sannolikt</li>
+      <li>göra enkla slumpförsök</li>
+      <li>undersöka resultat från mynt och tärning</li>
+      <li>förklara varför något är mer sannolikt än något annat</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Vad är sannolikhet?</h2>
+
+    <p>
+      Sannolikhet handlar om hur troligt det är att något ska hända.
+    </p>
+
+    <div class="chance-grid">
+
+      <div class="chance-card">
+        <div class="chance-icon">✅</div>
+        <h3>Säkert</h3>
+        <p>
+          Något som kommer att hända.
+        </p>
+      </div>
+
+      <div class="chance-card">
+        <div class="chance-icon">🤔</div>
+        <h3>Möjligt</h3>
+        <p>
+          Något som kan hända men inte måste hända.
+        </p>
+      </div>
+
+      <div class="chance-card">
+        <div class="chance-icon">❌</div>
+        <h3>Omöjligt</h3>
+        <p>
+          Något som inte kan hända.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>☀️ Säkert, möjligt eller omöjligt?</h2>
+
+    <div class="example">
+      Om du kastar en vanlig tärning är det
+      <strong>omöjligt</strong> att få talet 8.
+    </div>
+
+    <div class="example">
+      Om du kastar en vanlig tärning är det
+      <strong>möjligt</strong> att få talet 4.
+    </div>
+
+    <div class="example">
+      Om en påse bara innehåller röda kulor är det
+      <strong>säkert</strong> att du drar en röd kula.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔴🔵 Vad är mest sannolikt?</h2>
+
+    <p>
+      Titta på påsen.
+    </p>
+
+    <div class="bag">
+      🔴 🔴 🔴 🔴 🔵
+    </div>
+
+    <p>
+      Det finns 4 röda kulor och 1 blå kula.
+    </p>
+
+    <div class="example">
+      Det är <strong>mer sannolikt</strong> att dra en röd kula,
+      eftersom det finns fler röda kulor.
+    </div>
+
+    <p>
+      Det betyder inte att det är omöjligt att få den blå kulan.
+      Den är bara mindre sannolik.
+    </p>
+  </section>
+
+  <section class="box" id="mynt">
+    <h2>🪙 Kasta ett mynt</h2>
+
+    <p>
+      Ett vanligt mynt har två sidor.
+    </p>
+
+    <div class="example">
+      Krona eller klave.
+    </div>
+
+    <p>
+      Vi kan inte veta säkert vilken sida som kommer upp vid ett enskilt kast.
+      Det är ett slumpförsök.
+    </p>
+
+    <div class="experiment">
+      <h3>Prova själv</h3>
+
+      <div class="big-symbol" id="coinResult">🪙</div>
+
+      <button onclick="flipCoin()">Kasta myntet</button>
+
+      <div class="result-row">
+        <div class="result-box">
+          Krona: <span id="heads">0</span>
+        </div>
+
+        <div class="result-box">
+          Klave: <span id="tails">0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="box" id="tarning">
+    <h2>🎲 Kasta en tärning</h2>
+
+    <p>
+      En vanlig tärning har sex sidor:
+    </p>
+
+    <div class="example">
+      1, 2, 3, 4, 5 och 6.
+    </div>
+
+    <p>
+      Alla sex talen är möjliga.
+    </p>
+
+    <div class="experiment">
+      <h3>Prova själv</h3>
+
+      <div class="big-symbol" id="diceResult">🎲</div>
+
+      <button onclick="rollDice()">Kasta tärningen</button>
+
+      <div class="feedback" id="diceText"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔎 Undersök många försök</h2>
+
+    <p>
+      Om vi gör ett slumpförsök många gånger kan resultaten bli olika.
+    </p>
+
+    <div class="example">
+      Om du kastar ett mynt 10 gånger behöver det inte bli exakt
+      5 kronor och 5 klavar.
+    </div>
+
+    <p>
+      Slump betyder att vi inte kan veta exakt vad som händer i nästa försök.
+    </p>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Du kastar en vanlig tärning. Kan du få talet 3?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Det är omöjligt</button>
+        <button onclick="answer(this,true)">Det är möjligt</button>
+        <button onclick="answer(this,false)">Det är säkert</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Du kastar en vanlig tärning. Kan du få talet 9?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">Det är omöjligt</button>
+        <button onclick="answer(this,false)">Det är möjligt</button>
+        <button onclick="answer(this,false)">Det är säkert</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. En påse innehåller bara gula kulor. Vilken färg får du om du drar en kula?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Blå</button>
+        <button onclick="answer(this,false)">Röd</button>
+        <button onclick="answer(this,true)">Gul</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. En påse innehåller 8 röda och 2 blå kulor. Vilken färg är mest sannolik?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Blå</button>
+        <button onclick="answer(this,true)">Röd</button>
+        <button onclick="answer(this,false)">De är lika sannolika</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vilket ord passar bäst när vi inte vet exakt vad nästa resultat blir?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Mätning</button>
+        <button onclick="answer(this,true)">Slump</button>
+        <button onclick="answer(this,false)">Likhet</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>🧩 Tänk efter</h2>
+
+    <div class="question">
+      <p>
+        En påse innehåller 3 gröna kulor och 3 röda kulor.
+        Vilken färg är mest sannolik?
+      </p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Grön</button>
+        <button onclick="answer(this,false)">Röd</button>
+        <button onclick="answer(this,true)">De är lika sannolika</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Kulpåsen</h3>
+
+      <p>
+        I en påse finns:
+      </p>
+
+      <ul>
+        <li>5 gröna kulor</li>
+        <li>2 röda kulor</li>
+        <li>1 blå kula</li>
+      </ul>
+
+      <p>
+        <strong>Vilken färg är mest sannolik att dra?</strong>
+      </p>
+
+      <p>
+        <strong>Vilken färg är minst sannolik?</strong>
+      </p>
+
+      <p>
+        Är någon färg omöjlig att få?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Du ska göra en påse där det är:
+      </p>
+
+      <ul>
+        <li>mycket sannolikt att få en blå kula</li>
+        <li>möjligt men mindre sannolikt att få en gul kula</li>
+        <li>omöjligt att få en röd kula</li>
+      </ul>
+
+      <p>
+        Hur många kulor av varje färg skulle du lägga i påsen?
+      </p>
+
+      <p>
+        Förklara varför.
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Sannolikhetsdetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        Noah säger:
+      </p>
+
+      <p>
+        <strong>
+          ”Jag kastade en tärning och fick 6. Därför kommer jag få 6 nästa gång också.”
+        </strong>
+      </p>
+
+      <p>
+        Har Noah rätt?
+      </p>
+
+      <p>
+        Förklara vad slump betyder.
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p>
+      <strong>sannolikhet</strong> – hur troligt det är att något ska hända
+    </p>
+
+    <p>
+      <strong>säkert</strong> – något som kommer att hända
+    </p>
+
+    <p>
+      <strong>möjligt</strong> – något som kan hända
+    </p>
+
+    <p>
+      <strong>omöjligt</strong> – något som inte kan hända
+    </p>
+
+    <p>
+      <strong>slump</strong> – när vi inte kan veta exakt vilket resultat som kommer
+    </p>
+
+    <p>
+      <strong>slumpförsök</strong> – ett försök där resultatet inte är bestämt i förväg
+    </p>
+
+    <p>
+      <strong>mer sannolikt</strong> – större chans att något händer
+    </p>
+
+    <p>
+      <strong>mindre sannolikt</strong> – mindre chans att något händer
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Sannolikhet • Slump • Mynt • Tärning • Undersöka</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Fundera på vilka resultat som faktiskt kan inträffa.";
+    }
+  }
+
+  let heads = 0;
+  let tails = 0;
+
+  function flipCoin() {
+    const result = Math.random() < 0.5 ? "Krona" : "Klave";
+
+    if (result === "Krona") {
+      heads++;
+      document.getElementById("coinResult").textContent = "👑";
+    } else {
+      tails++;
+      document.getElementById("coinResult").textContent = "🪙";
+    }
+
+    document.getElementById("heads").textContent = heads;
+    document.getElementById("tails").textContent = tails;
+  }
+
+  function rollDice() {
+    const number = Math.floor(Math.random() * 6) + 1;
+
+    const dice = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+
+    document.getElementById("diceResult").textContent = dice[number - 1];
+    document.getElementById("diceText").textContent =
+      "Du fick " + number + ".";
+  }
+</script>
+
+</body>
+</html>
