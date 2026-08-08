@@ -3,769 +3,1253 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matematiska begrepp – Matematik åk 3</title>
+
+  <title>Begreppsbank – Matematik åk 3</title>
 
   <style>
     :root {
-      --bakgrund: #f7f2e8;
-      --kort: #fffaf2;
-      --beige: #e8dcc8;
-      --beige2: #ded0ba;
-      --brun: #6f6255;
-      --text: #3f3a35;
-      --kant: #e2d5c3;
-      --ratt: #dfe8d8;
-      --fel: #eedbd7;
-      --skugga: rgba(80, 65, 50, 0.12);
+      --bakgrund:#f7f2e8;
+      --kort:#fffaf2;
+      --beige:#e8dcc8;
+      --beige2:#ded0ba;
+      --brun:#6f6255;
+      --text:#3f3a35;
+      --kant:#e2d5c3;
+      --ratt:#dfe8d8;
+      --fel:#eedbd7;
+      --skugga:rgba(80,65,50,.12);
     }
 
     * {
-      box-sizing: border-box;
+      box-sizing:border-box;
+    }
+
+    html {
+      scroll-behavior:smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.6;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      margin: 10px auto 0;
-      max-width: 760px;
-      font-size: 1.1rem;
+      max-width:900px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
+      position:sticky;
+      top:0;
+      z-index:20;
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      margin: 4px 8px;
-      padding: 8px 12px;
-      border-radius: 10px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px 60px;
+      max-width:1180px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 15px var(--skugga);
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     .intro {
-      background: #eee4d6;
+      background:#eee4d6;
     }
 
-    h2, h3 {
-      color: var(--brun);
+    h2,
+    h3 {
+      color:var(--brun);
     }
 
     h2 {
-      margin-top: 0;
+      margin-top:0;
     }
 
-    .concept-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
+    .search-row {
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      margin-top:15px;
     }
 
-    .concept-card {
-      background: #f3eadf;
-      border: 1px solid #d9cbb8;
-      border-radius: 15px;
-      padding: 20px;
-    }
-
-    .concept-card h3 {
-      margin-top: 0;
-      font-size: 1.25rem;
-    }
-
-    .example {
-      margin-top: 10px;
-      background: #fffaf2;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border-left: 4px solid #bca98d;
-    }
-
-    .category-title {
-      margin-top: 35px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #d8c6aa;
-    }
-
-    .question {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 14px;
-      padding: 18px;
-      margin: 18px 0;
-    }
-
-    .question p {
-      font-weight: bold;
-      margin-top: 0;
-    }
-
-    .answers {
-      display: grid;
-      gap: 8px;
+    .search-row input {
+      width:100%;
+      padding:11px;
+      border:1px solid #cdbfae;
+      border-radius:9px;
+      background:white;
+      color:var(--text);
+      font:inherit;
     }
 
     button {
-      border: none;
-      background: var(--beige);
-      color: var(--text);
-      padding: 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      text-align: left;
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
     button:hover {
-      background: var(--beige2);
+      background:var(--beige2);
     }
 
-    button.correct {
-      background: var(--ratt);
+    .filter-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:14px;
     }
 
-    button.wrong {
-      background: var(--fel);
+    .filter-btn {
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
     }
 
-    .feedback {
-      margin-top: 10px;
-      font-weight: bold;
-      min-height: 24px;
+    .filter-btn.active {
+      background:#d6c3a6;
     }
 
-    .search-box {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 15px;
+    .concept-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+      gap:15px;
     }
 
-    input {
-      flex: 1;
-      min-width: 220px;
-      padding: 12px;
-      border: 1px solid #cdbda7;
-      border-radius: 10px;
-      font-size: 1rem;
-      background: #fffdf8;
+    .concept-card {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:15px;
+      padding:17px;
+      box-shadow:0 3px 9px var(--skugga);
     }
 
-    .search-btn {
-      background: #d8c6aa;
-      font-weight: bold;
-      text-align: center;
+    .concept-card h3 {
+      margin:0 0 5px;
+      font-size:1.18rem;
     }
 
-    .hidden {
-      display: none;
+    .tag {
+      display:inline-block;
+      background:#e8dcc8;
+      color:var(--brun);
+      font-size:.8rem;
+      font-weight:bold;
+      border-radius:999px;
+      padding:4px 8px;
+      margin-bottom:8px;
     }
 
-    .self-check {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
+    .definition {
+      margin:8px 0;
     }
 
-    .self-card {
-      background: var(--beige);
-      padding: 16px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
+    .example {
+      background:#f3eadf;
+      border-left:4px solid #c4b197;
+      border-radius:8px;
+      padding:10px;
+      margin-top:9px;
+    }
+
+    .say {
+      background:#e7eadf;
+      border-left:4px solid #a7ad91;
+      border-radius:8px;
+      padding:10px;
+      margin-top:9px;
+    }
+
+    .important {
+      background:#eee2d2;
+      border-left:5px solid #b7a17c;
+      border-radius:10px;
+      padding:14px;
+      margin-top:15px;
+    }
+
+    .empty {
+      display:none;
+      background:#f3eadf;
+      border:1px solid var(--kant);
+      border-radius:12px;
+      padding:16px;
+      text-align:center;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 25px;
+      background:#d8c8b2;
+      color:#4d443c;
+      text-align:center;
+      padding:27px 20px;
     }
 
-    @media (max-width: 600px) {
+    @media(max-width:700px) {
+
       nav {
-        position: static;
+        position:static;
       }
 
       nav a {
-        display: block;
+        display:block;
+      }
+
+      main {
+        padding:20px 10px 50px;
+      }
+
+      .box {
+        padding:17px;
+      }
+
+      .search-row {
+        grid-template-columns:1fr;
       }
     }
   </style>
 </head>
 
+
 <body>
 
 <header>
-  <h1>💬 Matematiska begrepp</h1>
+
+  <h1>📚 Begreppsbank</h1>
+
   <p>
-    Här tränar du viktiga matematikord och lär dig vad de betyder.
+    Matematiska ord för årskurs 3 med korta förklaringar,
+    exempel och formuleringar som hjälper elever att prata matematik.
   </p>
+
 </header>
+
 
 <nav>
   <a href="index.html">🏠 Hem</a>
-  <a href="#tal">🔢 Tal</a>
-  <a href="#raknesatt">➕ Räknesätt</a>
-  <a href="#geometri">📐 Geometri</a>
-  <a href="#matning">📏 Mätning</a>
-  <a href="#statistik">📊 Statistik</a>
-  <a href="#trana">✏️ Träna</a>
+  <a href="#sok">🔎 Sök</a>
+  <a href="#begrepp">📚 Begrepp</a>
 </nav>
+
 
 <main>
 
   <section class="box intro">
-    <h2>🎯 Varför är matematikord viktiga?</h2>
+
+    <h2>💬 Matematiska ord hjälper oss att tänka</h2>
 
     <p>
-      När du förstår matematikorden blir det lättare att förstå uppgifter,
-      förklara hur du tänker och prata matematik med andra.
+      Begreppsbanken kan användas före, under och efter en lektion.
+      Eleverna kan läsa förklaringen, titta på exemplet och sedan använda
+      ordet i en egen matematisk mening.
     </p>
 
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Sök efter ett matematikord...">
-      <button class="search-btn" onclick="searchConcepts()">Sök</button>
+    <div class="important">
+
+      <strong>Språkstöd:</strong>
+      låt eleverna möta både vardagliga ord och mer precisa matematiska begrepp.
+      Ett ord blir inte förstått bara för att eleven kan läsa det – begreppet behöver
+      kopplas till exempel, bilder, handlingar och samtal.
+
     </div>
+
   </section>
 
-  <section class="box" id="tal">
-    <h2 class="category-title">🔢 Tal och taluppfattning</h2>
 
-    <div class="concept-grid">
 
-      <div class="concept-card">
+  <section class="box" id="sok">
+
+    <h2>🔎 Sök begrepp</h2>
+
+    <div class="search-row">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Skriv till exempel bråk, omkrets, summa eller massa"
+        oninput="filterConcepts()"
+      >
+
+      <button onclick="clearSearch()">
+        Rensa
+      </button>
+
+    </div>
+
+
+    <div class="filter-row">
+
+      <button class="filter-btn active" onclick="setCategory('alla',this)">
+        Alla
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('tal',this)">
+        Tal
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('raknesatt',this)">
+        Räknesätt
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('brak',this)">
+        Bråk
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('algebra',this)">
+        Algebra
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('geometri',this)">
+        Geometri
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('matning',this)">
+        Mätning
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('statistik',this)">
+        Statistik
+      </button>
+
+      <button class="filter-btn" onclick="setCategory('problem',this)">
+        Problemlösning
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="box" id="begrepp">
+
+    <h2>📚 Matematiska begrepp</h2>
+
+    <div class="concept-grid" id="conceptGrid">
+
+
+      <article class="concept-card" data-category="tal" data-search="tal siffra">
+
+        <div class="tag">Taluppfattning</div>
+
+        <h3>Tal</h3>
+
+        <div class="definition">
+          Ett tal beskriver antal, ordning eller storlek.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          347 är ett tal.
+        </div>
+
+        <div class="say">
+          <strong>Säg:</strong>
+          ”Talet 347 består av 3 hundratal, 4 tiotal och 7 ental.”
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="tal" data-search="siffra tal">
+
+        <div class="tag">Taluppfattning</div>
+
+        <h3>Siffra</h3>
+
+        <div class="definition">
+          En symbol som används när vi skriver tal.
+          Vi använder siffrorna 0 till 9.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          Talet 582 skrivs med siffrorna 5, 8 och 2.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="tal" data-search="platsvärde position">
+
+        <div class="tag">Taluppfattning</div>
+
+        <h3>Platsvärde</h3>
+
+        <div class="definition">
+          Värdet en siffra har beroende på vilken plats den står på i talet.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 472 är siffran 7 värd 70.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="tal" data-search="ental">
+
+        <div class="tag">Taluppfattning</div>
+
         <h3>Ental</h3>
-        <p>Den första platsen från höger i ett heltal.</p>
-        <div class="example">I 347 är 7 ental.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Enheter som räknas en och en.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 346 finns 6 ental.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="tal" data-search="tiotal">
+
+        <div class="tag">Taluppfattning</div>
+
         <h3>Tiotal</h3>
-        <p>Grupper av tio.</p>
-        <div class="example">I 347 är 4 tiotal = 40.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Grupper med tio.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 346 finns 4 tiotal, alltså 40.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="tal" data-search="hundratal">
+
+        <div class="tag">Taluppfattning</div>
+
         <h3>Hundratal</h3>
-        <p>Grupper av hundra.</p>
-        <div class="example">I 347 är 3 hundratal = 300.</div>
-      </div>
 
-      <div class="concept-card">
-        <h3>Tallinje</h3>
-        <p>En linje där tal placeras i storleksordning.</p>
-        <div class="example">0 – 10 – 20 – 30 – 40</div>
-      </div>
+        <div class="definition">
+          Grupper med hundra.
+        </div>
 
-      <div class="concept-card">
-        <h3>Jämnt tal</h3>
-        <p>Ett tal som går att dela i två lika stora grupper.</p>
-        <div class="example">2, 4, 6, 8, 10</div>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 346 finns 3 hundratal, alltså 300.
+        </div>
 
-      <div class="concept-card">
-        <h3>Udda tal</h3>
-        <p>Ett tal som inte går att dela jämnt i två lika stora grupper.</p>
-        <div class="example">1, 3, 5, 7, 9</div>
-      </div>
+      </article>
 
-      <div class="concept-card">
-        <h3>Dubbelt</h3>
-        <p>Två gånger så mycket.</p>
-        <div class="example">Dubbelt 6 = 12.</div>
-      </div>
 
-      <div class="concept-card">
-        <h3>Hälften</h3>
-        <p>En av två lika stora delar.</p>
-        <div class="example">Hälften av 10 = 5.</div>
-      </div>
 
-    </div>
-  </section>
+      <article class="concept-card" data-category="raknesatt" data-search="addition plus">
 
-  <section class="box" id="raknesatt">
-    <h2 class="category-title">➕➖✖️➗ De fyra räknesätten</h2>
+        <div class="tag">Räknesätt</div>
 
-    <div class="concept-grid">
-
-      <div class="concept-card">
         <h3>Addition</h3>
-        <p>Att lägga ihop tal.</p>
-        <div class="example">7 + 5 = 12</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett räknesätt där mängder eller tal läggs samman.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          24 + 13 = 37.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="term addition">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Term</h3>
-        <p>Ett tal som ingår i en addition eller subtraktion.</p>
-        <div class="example">I 7 + 5 är 7 och 5 termer.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett tal som adderas eller subtraheras.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 24 + 13 är 24 och 13 termer.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="summa addition">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Summa</h3>
-        <p>Svaret i en addition.</p>
-        <div class="example">7 + 5 = 12. Summan är 12.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Resultatet av en addition.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 24 + 13 = 37 är 37 summan.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="subtraktion minus">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Subtraktion</h3>
-        <p>Att ta bort eller jämföra.</p>
-        <div class="example">15 − 6 = 9</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett räknesätt som kan beskriva att ta bort eller jämföra skillnaden mellan tal.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          52 − 18 = 34.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="differens skillnad">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Differens</h3>
-        <p>Svaret i en subtraktion.</p>
-        <div class="example">15 − 6 = 9. Differensen är 9.</div>
-      </div>
 
-      <div class="concept-card">
-        <h3>Skillnad</h3>
-        <p>Hur mycket som skiljer mellan två tal.</p>
-        <div class="example">Skillnaden mellan 10 och 6 är 4.</div>
-      </div>
+        <div class="definition">
+          Resultatet av en subtraktion.
+        </div>
 
-      <div class="concept-card">
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 52 − 18 = 34 är 34 differensen.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="multiplikation gånger">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Multiplikation</h3>
-        <p>Att räkna med lika stora grupper.</p>
-        <div class="example">4 × 3 = 12</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett räknesätt som bland annat kan beskriva lika stora grupper.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          4 grupper med 6 i varje kan skrivas 4 × 6 = 24.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="faktor multiplikation">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Faktor</h3>
-        <p>Talen som multipliceras.</p>
-        <div class="example">I 4 × 3 är 4 och 3 faktorer.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett tal som multipliceras med ett annat tal.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 4 × 6 är 4 och 6 faktorer.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="produkt multiplikation">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Produkt</h3>
-        <p>Svaret i en multiplikation.</p>
-        <div class="example">4 × 3 = 12. Produkten är 12.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Resultatet av en multiplikation.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 4 × 6 = 24 är 24 produkten.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="division dela">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Division</h3>
-        <p>Att dela lika eller göra lika stora grupper.</p>
-        <div class="example">12 ÷ 3 = 4</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett räknesätt som kan beskriva att dela lika eller bilda lika stora grupper.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          24 ÷ 6 = 4.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="raknesatt" data-search="kvot division">
+
+        <div class="tag">Räknesätt</div>
+
         <h3>Kvot</h3>
-        <p>Svaret i en division.</p>
-        <div class="example">12 ÷ 3 = 4. Kvoten är 4.</div>
-      </div>
 
-    </div>
-  </section>
+        <div class="definition">
+          Resultatet av en division.
+        </div>
 
-  <section class="box">
-    <h2 class="category-title">🍕 Bråk och algebra</h2>
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 24 ÷ 6 = 4 är 4 kvoten.
+        </div>
 
-    <div class="concept-grid">
+      </article>
 
-      <div class="concept-card">
+
+
+      <article class="concept-card" data-category="brak" data-search="bråk">
+
+        <div class="tag">Bråk</div>
+
         <h3>Bråk</h3>
-        <p>Visar en eller flera delar av en helhet.</p>
-        <div class="example">1/2 är en halv.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett sätt att beskriva delar av en helhet eller delar av en mängd.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          1/2 betyder en av två lika stora delar.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="brak" data-search="helhet bråk">
+
+        <div class="tag">Bråk</div>
+
+        <h3>Helhet</h3>
+
+        <div class="definition">
+          Det som delas upp i delar.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          En hel pizza kan delas i fyra lika stora delar.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="brak" data-search="täljare">
+
+        <div class="tag">Bråk</div>
+
         <h3>Täljare</h3>
-        <p>Visar hur många delar vi menar.</p>
-        <div class="example">I 3/4 är 3 täljaren.</div>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Talet ovanför bråkstrecket. Det visar hur många delar som avses.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 3/4 är 3 täljaren.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="brak" data-search="nämnare">
+
+        <div class="tag">Bråk</div>
+
         <h3>Nämnare</h3>
-        <p>Visar hur många lika stora delar helheten är delad i.</p>
-        <div class="example">I 3/4 är 4 nämnaren.</div>
-      </div>
 
-      <div class="concept-card">
-        <h3>Likhetstecken</h3>
-        <p>Visar att båda sidor har samma värde.</p>
-        <div class="example">4 + 3 = 5 + 2</div>
-      </div>
+        <div class="definition">
+          Talet under bråkstrecket. Det visar hur många lika stora delar helheten är indelad i.
+        </div>
 
-      <div class="concept-card">
-        <h3>Obekant tal</h3>
-        <p>Ett tal som vi ännu inte känner till.</p>
-        <div class="example">□ + 5 = 12</div>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          I 3/4 är 4 nämnaren.
+        </div>
 
-      <div class="concept-card">
+      </article>
+
+
+
+      <article class="concept-card" data-category="algebra" data-search="likhet likhetstecken">
+
+        <div class="tag">Algebra</div>
+
+        <h3>Likhet</h3>
+
+        <div class="definition">
+          Att två uttryck har samma värde.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          7 + 5 = 6 + 6.
+        </div>
+
+        <div class="say">
+          <strong>Säg:</strong>
+          ”Båda sidor om likhetstecknet är värda 12.”
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="algebra" data-search="mönster regel">
+
+        <div class="tag">Algebra</div>
+
         <h3>Mönster</h3>
-        <p>Något som följer en regel.</p>
-        <div class="example">2, 4, 6, 8, ...</div>
-      </div>
 
-    </div>
-  </section>
+        <div class="definition">
+          Något som upprepas eller förändras enligt en regel.
+        </div>
 
-  <section class="box" id="geometri">
-    <h2 class="category-title">📐 Geometri</h2>
+        <div class="example">
+          <strong>Exempel:</strong>
+          4, 8, 12, 16 ... ökar med 4 varje gång.
+        </div>
 
-    <div class="concept-grid">
+      </article>
 
-      <div class="concept-card">
-        <h3>Cirkel</h3>
-        <p>En rund form utan hörn.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Triangel</h3>
-        <p>En figur med tre sidor och tre hörn.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Kvadrat</h3>
-        <p>En figur med fyra lika långa sidor.</p>
-      </div>
+      <article class="concept-card" data-category="geometri" data-search="sida geometri">
 
-      <div class="concept-card">
-        <h3>Rektangel</h3>
-        <p>En fyrhörning med fyra räta vinklar.</p>
-      </div>
+        <div class="tag">Geometri</div>
 
-      <div class="concept-card">
+        <h3>Sida</h3>
+
+        <div class="definition">
+          En rak kant på en polygon.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          En kvadrat har fyra sidor.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="geometri" data-search="hörn geometri">
+
+        <div class="tag">Geometri</div>
+
         <h3>Hörn</h3>
-        <p>Platsen där två sidor möts.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Symmetri</h3>
-        <p>När två delar är spegelbilder av varandra.</p>
-      </div>
+        <div class="definition">
+          En punkt där två sidor möts i en polygon.
+        </div>
 
-      <div class="concept-card">
-        <h3>Symmetrilinje</h3>
-        <p>Linjen som delar en symmetrisk figur.</p>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          En triangel har tre hörn.
+        </div>
 
-      <div class="concept-card">
-        <h3>Skala</h3>
-        <p>Visar hur stor en bild är jämfört med verkligheten.</p>
-      </div>
+      </article>
 
-    </div>
-  </section>
 
-  <section class="box" id="matning">
-    <h2 class="category-title">📏 Mätning och tid</h2>
 
-    <div class="concept-grid">
+      <article class="concept-card" data-category="geometri" data-search="kvadrat">
 
-      <div class="concept-card">
+        <div class="tag">Geometri</div>
+
+        <h3>Kvadrat</h3>
+
+        <div class="definition">
+          En fyrhörning med fyra lika långa sidor och fyra räta vinklar.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          En kvadrat är fortfarande en kvadrat även om den vrids.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="geometri" data-search="rektangel">
+
+        <div class="tag">Geometri</div>
+
+        <h3>Rektangel</h3>
+
+        <div class="definition">
+          En fyrhörning med fyra räta vinklar.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          En kvadrat är ett särskilt slags rektangel.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="geometri" data-search="triangel">
+
+        <div class="tag">Geometri</div>
+
+        <h3>Triangel</h3>
+
+        <div class="definition">
+          En polygon med tre sidor och tre hörn.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="geometri" data-search="omkrets">
+
+        <div class="tag">Geometri</div>
+
+        <h3>Omkrets</h3>
+
+        <div class="definition">
+          Längden runt en figur.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          Om en kvadrat har sidan 4 cm är omkretsen 4 + 4 + 4 + 4 = 16 cm.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="matning" data-search="längd mäta">
+
+        <div class="tag">Mätning</div>
+
         <h3>Längd</h3>
-        <p>Hur långt, högt eller brett något är.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Centimeter</h3>
-        <p>Enhet för längd.</p>
-        <div class="example">Förkortas cm.</div>
-      </div>
+        <div class="definition">
+          Ett mått på hur långt något är.
+        </div>
 
-      <div class="concept-card">
-        <h3>Meter</h3>
-        <p>Enhet för längd.</p>
-        <div class="example">100 cm = 1 m.</div>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          En penna kan vara 15 cm lång.
+        </div>
 
-      <div class="concept-card">
+      </article>
+
+
+
+      <article class="concept-card" data-category="matning" data-search="massa gram kilogram kg g">
+
+        <div class="tag">Mätning</div>
+
         <h3>Massa</h3>
-        <p>Hur mycket något väger.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Kilogram</h3>
-        <p>Enhet för massa.</p>
-        <div class="example">1000 g = 1 kg.</div>
-      </div>
+        <div class="definition">
+          Massa beskriver hur mycket materia ett föremål innehåller.
+          Massa mäts till exempel i gram och kilogram.
+        </div>
 
-      <div class="concept-card">
+        <div class="example">
+          <strong>Exempel:</strong>
+          Ett äpple kan ha massan 150 gram.
+        </div>
+
+        <div class="say">
+          <strong>Bra att veta:</strong>
+          I vardagligt språk säger vi ofta att något ”väger 150 gram”.
+          I matematiken och naturvetenskapen är det mer precist att säga
+          att föremålet har massan 150 gram.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="matning" data-search="vikt tyngd">
+
+        <div class="tag">Mätning</div>
+
+        <h3>Tyngd</h3>
+
+        <div class="definition">
+          Tyngd är kraften som drar ett föremål mot jorden.
+          I vardagen används ordet vikt ofta när man egentligen menar massa.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          En våg hemma visar vanligtvis massan i kilogram.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="matning" data-search="volym liter deciliter">
+
+        <div class="tag">Mätning</div>
+
         <h3>Volym</h3>
-        <p>Hur mycket något rymmer.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Liter</h3>
-        <p>Enhet för volym.</p>
-        <div class="example">10 dl = 1 l.</div>
-      </div>
+        <div class="definition">
+          Hur mycket utrymme något tar eller hur mycket en behållare rymmer.
+        </div>
 
-      <div class="concept-card">
-        <h3>Tidsintervall</h3>
-        <p>Tiden mellan två tidpunkter.</p>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          En mjölkförpackning kan rymma 1 liter.
+        </div>
 
-      <div class="concept-card">
+      </article>
+
+
+
+      <article class="concept-card" data-category="matning" data-search="uppskatta uppskattning">
+
+        <div class="tag">Mätning</div>
+
         <h3>Uppskatta</h3>
-        <p>Att göra en rimlig gissning innan man räknar eller mäter.</p>
-      </div>
 
-    </div>
-  </section>
+        <div class="definition">
+          Att göra en rimlig bedömning utan att först ta reda på det exakta värdet.
+        </div>
 
-  <section class="box" id="statistik">
-    <h2 class="category-title">📊 Statistik och sannolikhet</h2>
+        <div class="example">
+          <strong>Exempel:</strong>
+          ”Jag tror att bordet är ungefär 1 meter långt.”
+        </div>
 
-    <div class="concept-grid">
+      </article>
 
-      <div class="concept-card">
-        <h3>Statistik</h3>
-        <p>Information som samlas in och undersöks.</p>
-      </div>
 
-      <div class="concept-card">
+
+      <article class="concept-card" data-category="statistik" data-search="tabell statistik">
+
+        <div class="tag">Statistik</div>
+
         <h3>Tabell</h3>
-        <p>Information ordnad i rader och kolumner.</p>
-      </div>
 
-      <div class="concept-card">
+        <div class="definition">
+          Ett sätt att ordna information i rader och kolumner.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="statistik" data-search="diagram stapeldiagram">
+
+        <div class="tag">Statistik</div>
+
         <h3>Diagram</h3>
-        <p>Ett sätt att visa information med till exempel staplar eller bilder.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Sannolikhet</h3>
-        <p>Hur troligt det är att något händer.</p>
-      </div>
+        <div class="definition">
+          Ett sätt att visa information så att den blir lättare att jämföra.
+        </div>
 
-      <div class="concept-card">
-        <h3>Slump</h3>
-        <p>När vi inte vet exakt vilket resultat som kommer.</p>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          Ett stapeldiagram kan visa klassens favoritfrukter.
+        </div>
 
-      <div class="concept-card">
-        <h3>Säkert</h3>
-        <p>Något som kommer att hända.</p>
-      </div>
+      </article>
 
-      <div class="concept-card">
-        <h3>Möjligt</h3>
-        <p>Något som kan hända.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Omöjligt</h3>
-        <p>Något som inte kan hända.</p>
-      </div>
 
-    </div>
-  </section>
+      <article class="concept-card" data-category="statistik" data-search="data information">
 
-  <section class="box">
-    <h2 class="category-title">🧠 Problemlösning</h2>
+        <div class="tag">Statistik</div>
 
-    <div class="concept-grid">
+        <h3>Data</h3>
 
-      <div class="concept-card">
-        <h3>Problem</h3>
-        <p>En uppgift där du behöver fundera på hur den ska lösas.</p>
-      </div>
+        <div class="definition">
+          Information som samlats in för att undersökas och jämföras.
+        </div>
 
-      <div class="concept-card">
+      </article>
+
+
+
+      <article class="concept-card" data-category="problem" data-search="strategi problemlösning">
+
+        <div class="tag">Problemlösning</div>
+
         <h3>Strategi</h3>
-        <p>Ett sätt att försöka lösa en uppgift.</p>
-      </div>
 
-      <div class="concept-card">
-        <h3>Systematiskt</h3>
-        <p>Att arbeta i en tydlig ordning.</p>
-      </div>
+        <div class="definition">
+          Ett sätt eller en plan för att lösa en matematisk uppgift.
+        </div>
 
-      <div class="concept-card">
-        <h3>Rimligt</h3>
-        <p>Att ett svar verkar möjligt och logiskt.</p>
-      </div>
+        <div class="example">
+          <strong>Exempel:</strong>
+          Rita en bild, använda tallinje eller dela upp ett tal.
+        </div>
 
-      <div class="concept-card">
-        <h3>Förklara</h3>
-        <p>Att beskriva hur du tänkte.</p>
-      </div>
+      </article>
 
-      <div class="concept-card">
-        <h3>Samband</h3>
-        <p>Hur olika matematiska idéer hör ihop.</p>
-      </div>
+
+
+      <article class="concept-card" data-category="problem" data-search="rimlig rimlighet">
+
+        <div class="tag">Problemlösning</div>
+
+        <h3>Rimlighet</h3>
+
+        <div class="definition">
+          Att bedöma om ett svar verkar möjligt och passar situationen.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          48 + 51 kan inte rimligen bli 990 eftersom båda talen är ungefär 50.
+        </div>
+
+      </article>
+
+
+
+      <article class="concept-card" data-category="problem" data-search="representation bild modell">
+
+        <div class="tag">Problemlösning</div>
+
+        <h3>Representation</h3>
+
+        <div class="definition">
+          Ett sätt att visa en matematisk idé, till exempel med material, bild, tabell, tallinje eller symboler.
+        </div>
+
+        <div class="example">
+          <strong>Exempel:</strong>
+          4 × 6 kan visas med lika stora grupper, rutnät eller ett multiplikationsuttryck.
+        </div>
+
+      </article>
+
 
     </div>
-  </section>
 
-  <section class="box" id="trana">
-    <h2>✏️ Träna på matematikorden</h2>
 
-    <div class="question">
-      <p>1. Vad kallas svaret i en addition?</p>
-
-      <div class="answers">
-        <button onclick="answer(this,true)">Summa</button>
-        <button onclick="answer(this,false)">Kvot</button>
-        <button onclick="answer(this,false)">Produkt</button>
-      </div>
-
-      <div class="feedback"></div>
+    <div class="empty" id="emptyMessage">
+      Inga begrepp matchar din sökning.
     </div>
 
-    <div class="question">
-      <p>2. Vad kallas svaret i en multiplikation?</p>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">Differens</button>
-        <button onclick="answer(this,true)">Produkt</button>
-        <button onclick="answer(this,false)">Summa</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question">
-      <p>3. Vad betyder dubbelt?</p>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">Tre gånger så mycket</button>
-        <button onclick="answer(this,true)">Två gånger så mycket</button>
-        <button onclick="answer(this,false)">Hälften så mycket</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question">
-      <p>4. Vad betyder symmetri?</p>
-
-      <div class="answers">
-        <button onclick="answer(this,false)">Att en figur är större</button>
-        <button onclick="answer(this,true)">Att delar är spegelbilder av varandra</button>
-        <button onclick="answer(this,false)">Att en figur har tre sidor</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question">
-      <p>5. Vad betyder rimligt?</p>
-
-      <div class="answers">
-        <button onclick="answer(this,true)">Att ett svar verkar möjligt</button>
-        <button onclick="answer(this,false)">Att ett svar alltid är exakt 10</button>
-        <button onclick="answer(this,false)">Att man inte behöver kontrollera</button>
-      </div>
-
-      <div class="feedback"></div>
-    </div>
-
-  </section>
-
-  <section class="box">
-    <h2>✅ Jag kan</h2>
-
-    <div class="self-check">
-      <div class="self-card">🌱 Jag känner igen några ord</div>
-      <div class="self-card">🌿 Jag förstår många ord</div>
-      <div class="self-card">🌳 Jag använder orden själv</div>
-      <div class="self-card">⭐ Jag kan förklara orden</div>
-    </div>
   </section>
 
 </main>
 
+
 <footer>
-  <p><strong>Matematik åk 3</strong></p>
-  <p>Begrepp • Förstå • Använda • Förklara</p>
+  <p><strong>Matematik åk 3 – Begreppsbank</strong></p>
+  <p>Läs • Visa • Använd • Förklara</p>
 </footer>
 
+
 <script>
-  function answer(button, correct) {
-    const question = button.closest(".question");
-    const buttons = question.querySelectorAll("button");
-    const feedback = question.querySelector(".feedback");
 
-    buttons.forEach(btn => {
-      btn.classList.remove("correct", "wrong");
-    });
+let selectedCategory = "alla";
 
-    if (correct) {
-      button.classList.add("correct");
-      feedback.textContent = "✅ Rätt! Bra jobbat.";
-    } else {
-      button.classList.add("wrong");
-      feedback.textContent = "Inte riktigt. Läs förklaringen igen och försök en gång till.";
+
+function normalizeText(text) {
+
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"");
+
+}
+
+
+function setCategory(category,button) {
+
+  selectedCategory =
+    category;
+
+
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+
+  button.classList.add("active");
+
+  filterConcepts();
+
+}
+
+
+function filterConcepts() {
+
+  const search =
+    normalizeText(
+      document
+        .getElementById("searchInput")
+        .value
+        .trim()
+    );
+
+
+  const cards =
+    document.querySelectorAll(
+      ".concept-card"
+    );
+
+
+  let visible =
+    0;
+
+
+  cards.forEach(card => {
+
+    const category =
+      card.dataset.category;
+
+    const searchable =
+      normalizeText(
+        card.textContent +
+        " " +
+        (card.dataset.search || "")
+      );
+
+
+    const categoryMatch =
+      selectedCategory === "alla" ||
+      category === selectedCategory;
+
+
+    const searchMatch =
+      search === "" ||
+      searchable.includes(search);
+
+
+    const show =
+      categoryMatch &&
+      searchMatch;
+
+
+    card.style.display =
+      show ? "" : "none";
+
+
+    if (show) {
+      visible++;
     }
-  }
 
-  function searchConcepts() {
-    const searchValue =
-      document.getElementById("searchInput").value.trim().toLowerCase();
-
-    const cards = document.querySelectorAll(".concept-card");
-
-    cards.forEach(card => {
-      const text = card.textContent.toLowerCase();
-
-      if (searchValue === "" || text.includes(searchValue)) {
-        card.classList.remove("hidden");
-      } else {
-        card.classList.add("hidden");
-      }
-    });
-  }
-
-  document.getElementById("searchInput").addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      searchConcepts();
-    }
   });
+
+
+  document.getElementById(
+    "emptyMessage"
+  ).style.display =
+    visible === 0
+      ? "block"
+      : "none";
+
+}
+
+
+function clearSearch() {
+
+  document.getElementById(
+    "searchInput"
+  ).value = "";
+
+  filterConcepts();
+
+}
+
 </script>
 
 </body>
