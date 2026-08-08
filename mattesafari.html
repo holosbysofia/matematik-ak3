@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mattesafari – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2.2rem,6vw,4rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .map {
+      display: grid;
+      grid-template-columns: repeat(6,1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .map-stop {
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      min-height: 115px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .map-stop .emoji {
+      font-size: 2rem;
+    }
+
+    .map-stop.locked {
+      opacity: 0.5;
+    }
+
+    .map-stop.done {
+      background: var(--ratt);
+    }
+
+    .progress-wrap {
+      height: 24px;
+      background: #eee4d6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      margin-top: 8px;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .station {
+      display: none;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+
+    .station.active {
+      display: block;
+    }
+
+    .station-header {
+      background: #eee4d6;
+      border-radius: 13px;
+      padding: 16px;
+      margin-bottom: 15px;
+    }
+
+    .station-header h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .story {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 16px;
+    }
+
+    .question {
+      background: #fffaf2;
+      border: 1px solid #d9cbb8;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 13px 0;
+    }
+
+    .question strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .answer-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+    }
+
+    .answer-btn.right {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-btn.wrong {
+      background: var(--fel);
+      border-color: #caa9a2;
+    }
+
+    .feedback {
+      min-height: 26px;
+      margin-top: 9px;
+      font-weight: bold;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .next-btn.show {
+      display: inline-block;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--beige);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--brun);
+    }
+
+    .final-box {
+      display: none;
+      background: #e7eadf;
+      border: 3px solid #a7ad91;
+      border-radius: 18px;
+      padding: 28px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .final-box.show {
+      display: block;
+    }
+
+    .final-box h2 {
+      font-size: clamp(2rem,6vw,3.8rem);
+      margin-bottom: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--brun);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:900px) {
+      .map {
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .station {
+        padding: 18px;
+      }
+
+      .map {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧭 Mattesafari</h1>
+
+  <p>
+    Res genom Talbyn, Räknebron, Bråkgrottan,
+    Geometriskogen och Problemtornet.
+    Klarar du hela vägen till målet?
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#safari">🧭 Safari</a>
+  <a href="#karta">🗺️ Karta</a>
+  <a href="#mer">🎮 Fler spel</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🌿 Ditt uppdrag</h2>
+
+    <p>
+      För att komma vidare måste du klara tre frågor på varje station.
+      Svarsalternativen byter plats varje gång spelet startar.
+    </p>
+
+    <div class="map" id="karta">
+
+      <div class="map-stop" id="map0">
+        <span class="emoji">🏘️</span>
+        <strong>Talbyn</strong>
+        <span>Start</span>
+      </div>
+
+      <div class="map-stop locked" id="map1">
+        <span class="emoji">🌉</span>
+        <strong>Räknebron</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="map-stop locked" id="map2">
+        <span class="emoji">🍕</span>
+        <strong>Bråkgrottan</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="map-stop locked" id="map3">
+        <span class="emoji">🌲</span>
+        <strong>Geometriskogen</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="map-stop locked" id="map4">
+        <span class="emoji">🏰</span>
+        <strong>Problemtornet</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="map-stop locked" id="map5">
+        <span class="emoji">🏆</span>
+        <strong>Målet</strong>
+        <span>🔒</span>
+      </div>
+
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="progress-text" id="progressText">
+      Station 1 av 5
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        Rätt svar
+        <strong id="correctCount">0</strong>
+      </div>
+
+      <div class="stat">
+        Försök
+        <strong id="attemptCount">0</strong>
+      </div>
+
+      <div class="stat">
+        Stationer klara
+        <strong id="stationCount">0</strong>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button onclick="startGame()">🎲 Starta nytt äventyr</button>
+      <button class="secondary" onclick="resetGame()">🔄 Börja om</button>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="safari">
+
+    <h2>🧭 Safari</h2>
+
+    <div id="stationContainer"></div>
+
+    <div class="final-box" id="finalBox">
+
+      <h2>🏆 MÅL!</h2>
+
+      <p>
+        Du klarade hela Mattesafarin!
+      </p>
+
+      <p>
+        Du har tränat taluppfattning, räknesätt,
+        bråk, geometri och problemlösning.
+      </p>
+
+      <button onclick="startGame()">🎲 Ny safari</button>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>💬 Safariutmaning</h2>
+
+    <p>
+      När du svarat rätt på en fråga, försök också tänka:
+    </p>
+
+    <div class="story">
+      <strong>Hur vet jag?</strong><br>
+      <strong>Kan jag visa det på ett annat sätt?</strong><br>
+      <strong>Hur kan jag kontrollera svaret?</strong>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mer">
+
+    <h2>🎮 Fler matteaktiviteter</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="mattebingo.html">
+        🎯 Mattebingo
+      </a>
+
+      <a class="link-card" href="spel.html">
+        🎮 Mattespel
+      </a>
+
+      <a class="link-card" href="veckouppdrag.html">
+        📅 Veckouppdrag
+      </a>
+
+      <a class="link-card" href="dagensmatte.html">
+        ☀️ Dagens matte
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Mattesafari</strong></p>
+  <p>Upptäck • Lös • Förklara • Ta dig vidare</p>
+</footer>
+
+
+<script>
+
+const stations = [
+
+  {
+    name: "🏘️ Talbyn",
+    badge: "🔢 Taluppfattning",
+    story:
+      "Du har kommit till Talbyn. Porten öppnas bara om du visar att du förstår hur tal är uppbyggda.",
+
+    questions: [
+
+      {
+        q: "Vad är siffran 7 värd i talet 472?",
+        correct: "70",
+        wrong: ["7","700","72"]
+      },
+
+      {
+        q: "Vilket tal är störst?",
+        correct: "403",
+        wrong: ["398","393","340"]
+      },
+
+      {
+        q: "Vad är 100 mindre än 638?",
+        correct: "538",
+        wrong: ["628","438","738"]
+      },
+
+      {
+        q: "Vilket tal består av 5 hundratal, 0 tiotal och 8 ental?",
+        correct: "508",
+        wrong: ["58","580","5008"]
+      },
+
+      {
+        q: "Vad är 10 mer än 286?",
+        correct: "296",
+        wrong: ["287","386","276"]
+      }
+
+    ]
+  },
+
+
+  {
+    name: "🌉 Räknebron",
+    badge: "➕➖✖️➗ Räknesätt",
+    story:
+      "Bron är gammal och varje planka har ett räkneproblem. Tre rätta svar tar dig säkert över.",
+
+    questions: [
+
+      {
+        q: "48 + 27 = ?",
+        correct: "75",
+        wrong: ["65","74","85"]
+      },
+
+      {
+        q: "72 − 38 = ?",
+        correct: "34",
+        wrong: ["44","46","36"]
+      },
+
+      {
+        q: "4 × 6 = ?",
+        correct: "24",
+        wrong: ["10","20","28"]
+      },
+
+      {
+        q: "24 ÷ 6 = ?",
+        correct: "4",
+        wrong: ["3","5","6"]
+      },
+
+      {
+        q: "Om 5 × 7 = 35, vad blir 6 × 7?",
+        correct: "42",
+        wrong: ["36","40","48"]
+      },
+
+      {
+        q: "99 + 26 = ?",
+        correct: "125",
+        wrong: ["115","124","126"]
+      }
+
+    ]
+  },
+
+
+  {
+    name: "🍕 Bråkgrottan",
+    badge: "🍕 Bråk",
+    story:
+      "I grottan finns delar av gamla kartor. För att sätta ihop dem måste du förstå bråk.",
+
+    questions: [
+
+      {
+        q: "Vilket är störst när helheten är lika stor?",
+        correct: "1/2",
+        wrong: ["1/4","1/8","De är lika"]
+      },
+
+      {
+        q: "Vad är 1/4 av 20?",
+        correct: "5",
+        wrong: ["4","10","15"]
+      },
+
+      {
+        q: "Hur många fjärdedelar behövs för en hel?",
+        correct: "4",
+        wrong: ["1","2","3"]
+      },
+
+      {
+        q: "Vad är hälften av 18?",
+        correct: "9",
+        wrong: ["6","8","12"]
+      },
+
+      {
+        q: "Vilket är störst när helheten är lika stor?",
+        correct: "1/3",
+        wrong: ["1/4","1/6","1/8"]
+      }
+
+    ]
+  },
+
+
+  {
+    name: "🌲 Geometriskogen",
+    badge: "📐 Geometri och mätning",
+    story:
+      "Stigen genom Geometriskogen är full av former, mått och symmetri.",
+
+    questions: [
+
+      {
+        q: "Hur många hörn har en rektangel?",
+        correct: "4",
+        wrong: ["2","3","5"]
+      },
+
+      {
+        q: "Hur många centimeter är 1 meter?",
+        correct: "100",
+        wrong: ["10","50","1000"]
+      },
+
+      {
+        q: "Vilket är tyngst?",
+        correct: "1 kg",
+        wrong: ["900 g","700 g","500 g"]
+      },
+
+      {
+        q: "Vilken enhet passar bäst för längden på en penna?",
+        correct: "cm",
+        wrong: ["kg","liter","km"]
+      },
+
+      {
+        q: "Vilken figur har alltid fyra lika långa sidor och fyra räta hörn?",
+        correct: "Kvadrat",
+        wrong: ["Triangel","Cirkel","Valfri rektangel"]
+      },
+
+      {
+        q: "Hur många deciliter är 1 liter?",
+        correct: "10 dl",
+        wrong: ["1 dl","100 dl","5 dl"]
+      }
+
+    ]
+  },
+
+
+  {
+    name: "🏰 Problemtornet",
+    badge: "🧠 Problemlösning",
+    story:
+      "Det sista tornet har fem våningar. Bara den som kan förstå matematiken bakom berättelserna hittar nyckeln.",
+
+    questions: [
+
+      {
+        q: "Mira har 28 pärlor. Hon får 15 nya och använder 9. Hur många har hon kvar?",
+        correct: "34",
+        wrong: ["24","43","52"]
+      },
+
+      {
+        q: "24 kakor delas lika mellan 6 barn. Hur många får varje barn?",
+        correct: "4",
+        wrong: ["3","5","6"]
+      },
+
+      {
+        q: "Det finns 7 lådor med 4 bollar i varje. Hur många bollar finns totalt?",
+        correct: "28",
+        wrong: ["11","24","32"]
+      },
+
+      {
+        q: "32 elever delas i grupper om 4. Hur många grupper blir det?",
+        correct: "8",
+        wrong: ["6","7","28"]
+      },
+
+      {
+        q: "Leo har 35 kr, får 12 kr och använder sedan 8 kr. Hur mycket har han kvar?",
+        correct: "39",
+        wrong: ["31","47","55"]
+      },
+
+      {
+        q: "Vilket svar är rimligast för 203 + 97?",
+        correct: "300",
+        wrong: ["100","200","500"]
+      }
+
+    ]
+  }
+
+];
+
+
+let currentStation = 0;
+let stationQuestions = [];
+let solvedQuestions = [];
+let correctCount = 0;
+let attemptCount = 0;
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+
+function startGame() {
+
+  currentStation = 0;
+  correctCount = 0;
+  attemptCount = 0;
+
+  document.getElementById("correctCount").textContent = "0";
+  document.getElementById("attemptCount").textContent = "0";
+  document.getElementById("stationCount").textContent = "0";
+
+  document.getElementById("finalBox").classList.remove("show");
+
+  for (let i = 0; i < 6; i++) {
+
+    const mapStop = document.getElementById("map" + i);
+
+    mapStop.classList.remove("done");
+
+    if (i === 0) {
+      mapStop.classList.remove("locked");
+      mapStop.lastElementChild.textContent = "Start";
+    } else {
+      mapStop.classList.add("locked");
+      mapStop.lastElementChild.textContent = "🔒";
+    }
+  }
+
+  loadStation();
+  updateProgress();
+}
+
+
+function loadStation() {
+
+  const station = stations[currentStation];
+
+  stationQuestions =
+    shuffle(station.questions).slice(0,3);
+
+  solvedQuestions =
+    new Array(3).fill(false);
+
+  const container =
+    document.getElementById("stationContainer");
+
+  container.innerHTML = "";
+
+
+  const section =
+    document.createElement("div");
+
+  section.className =
+    "station active";
+
+
+  section.innerHTML = `
+    <div class="station-header">
+      <span class="badge">${station.badge}</span>
+      <h3>${station.name}</h3>
+    </div>
+
+    <div class="story">
+      ${station.story}
+    </div>
+
+    <div id="questionList"></div>
+
+    <button
+      class="next-btn"
+      id="nextButton"
+      onclick="nextStation()"
+    >
+      Fortsätt till nästa station ➡️
+    </button>
+  `;
+
+  container.appendChild(section);
+
+  renderQuestions();
+}
+
+
+function renderQuestions() {
+
+  const list =
+    document.getElementById("questionList");
+
+  list.innerHTML = "";
+
+
+  stationQuestions.forEach(
+    (question,index) => {
+
+      const box =
+        document.createElement("div");
+
+      box.className = "question";
+
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "Uppgift " +
+        (index + 1) +
+        ": " +
+        question.q;
+
+
+      const answerGrid =
+        document.createElement("div");
+
+      answerGrid.className =
+        "answer-grid";
+
+
+      const feedback =
+        document.createElement("div");
+
+      feedback.className =
+        "feedback";
+
+
+      if (solvedQuestions[index]) {
+
+        feedback.textContent =
+          "✓ Klar";
+
+        box.style.background =
+          "var(--ratt)";
+
+      } else {
+
+        const alternatives =
+          shuffle([
+            question.correct,
+            ...question.wrong
+          ]);
+
+
+        alternatives.forEach(answer => {
+
+          const button =
+            document.createElement("button");
+
+          button.className =
+            "answer-btn";
+
+          button.textContent =
+            answer;
+
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              checkAnswer(
+                index,
+                button,
+                answer,
+                feedback,
+                answerGrid
+              );
+
+            }
+          );
+
+
+          answerGrid.appendChild(
+            button
+          );
+        });
+      }
+
+
+      box.appendChild(title);
+      box.appendChild(answerGrid);
+      box.appendChild(feedback);
+
+      list.appendChild(box);
+    }
+  );
+
+
+  if (
+    solvedQuestions.every(Boolean)
+  ) {
+
+    document.getElementById(
+      "nextButton"
+    ).classList.add("show");
+  }
+}
+
+
+function checkAnswer(
+  index,
+  button,
+  answer,
+  feedback,
+  answerGrid
+) {
+
+  if (solvedQuestions[index]) return;
+
+  attemptCount++;
+
+  document.getElementById(
+    "attemptCount"
+  ).textContent =
+    attemptCount;
+
+
+  const question =
+    stationQuestions[index];
+
+
+  if (answer === question.correct) {
+
+    correctCount++;
+
+    document.getElementById(
+      "correctCount"
+    ).textContent =
+      correctCount;
+
+    button.classList.add("right");
+
+    feedback.textContent =
+      "Rätt! Bra tänkt.";
+
+    solvedQuestions[index] =
+      true;
+
+
+    answerGrid
+      .querySelectorAll("button")
+      .forEach(btn => {
+        btn.disabled = true;
+      });
+
+
+    setTimeout(() => {
+
+      renderQuestions();
+
+    },350);
+
+  } else {
+
+    button.classList.add("wrong");
+    button.disabled = true;
+
+    feedback.textContent =
+      "Inte riktigt. Prova igen och fundera på vad uppgiften frågar efter.";
+  }
+}
+
+
+function nextStation() {
+
+  document.getElementById(
+    "map" + currentStation
+  ).classList.add("done");
+
+  document.getElementById(
+    "map" + currentStation
+  ).lastElementChild.textContent =
+    "✓";
+
+
+  currentStation++;
+
+
+  document.getElementById(
+    "stationCount"
+  ).textContent =
+    currentStation;
+
+
+  if (
+    currentStation >= stations.length
+  ) {
+
+    finishGame();
+    return;
+  }
+
+
+  const nextMap =
+    document.getElementById(
+      "map" + currentStation
+    );
+
+  nextMap.classList.remove("locked");
+  nextMap.lastElementChild.textContent =
+    "Öppen";
+
+
+  loadStation();
+  updateProgress();
+
+  document.getElementById("safari")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+}
+
+
+function finishGame() {
+
+  document.getElementById(
+    "stationContainer"
+  ).innerHTML = "";
+
+  const goal =
+    document.getElementById("map5");
+
+  goal.classList.remove("locked");
+  goal.classList.add("done");
+  goal.lastElementChild.textContent =
+    "✓";
+
+
+  document.getElementById(
+    "stationCount"
+  ).textContent =
+    stations.length;
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    "100%";
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    "🏆 Hela safarin är klar!";
+
+
+  document.getElementById(
+    "finalBox"
+  ).classList.add("show");
+
+
+  document.getElementById(
+    "finalBox"
+  ).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+function updateProgress() {
+
+  const percent =
+    currentStation /
+    stations.length *
+    100;
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    percent + "%";
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    "Station " +
+    (currentStation + 1) +
+    " av " +
+    stations.length;
+}
+
+
+function resetGame() {
+
+  const ok =
+    confirm(
+      "Vill du börja om från Talbyn?"
+    );
+
+  if (!ok) return;
+
+  startGame();
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  startGame
+);
+
+</script>
+
+</body>
+</html>
