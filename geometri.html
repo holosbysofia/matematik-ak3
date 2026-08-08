@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geometri – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .shape-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .shape-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .shape-icon {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .circle {
+      width: 90px;
+      height: 90px;
+      border: 4px solid #8c7a66;
+      border-radius: 50%;
+      background: #efe3d1;
+    }
+
+    .square {
+      width: 90px;
+      height: 90px;
+      border: 4px solid #8c7a66;
+      background: #efe3d1;
+    }
+
+    .rectangle {
+      width: 120px;
+      height: 75px;
+      border: 4px solid #8c7a66;
+      background: #efe3d1;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 55px solid transparent;
+      border-right: 55px solid transparent;
+      border-bottom: 95px solid #cdb99a;
+      position: relative;
+    }
+
+    .triangle:after {
+      content: "";
+      position: absolute;
+      left: -48px;
+      top: 7px;
+      width: 0;
+      height: 0;
+      border-left: 48px solid transparent;
+      border-right: 48px solid transparent;
+      border-bottom: 83px solid #f3eadf;
+    }
+
+    .solid {
+      font-size: 4rem;
+      margin-bottom: 5px;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📐 Geometri</h1>
+  <p>
+    Här tränar du på former, geometriska kroppar, hörn, sidor och egenskaper.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="programmering.html">🤖 Programmering</a>
+  <a href="#former">🔷 Former</a>
+  <a href="#kroppar">📦 Kroppar</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>känna igen vanliga geometriska former</li>
+      <li>beskriva former med hjälp av sidor och hörn</li>
+      <li>känna igen vanliga geometriska kroppar</li>
+      <li>jämföra geometriska objekt</li>
+      <li>använda geometriska begrepp</li>
+      <li>upptäcka geometri i vardagen</li>
+    </ul>
+  </section>
+
+  <section class="box" id="former">
+    <h2>🔷 Tvådimensionella former</h2>
+
+    <p>
+      Tvådimensionella former är platta. De har längd och bredd.
+    </p>
+
+    <div class="shape-grid">
+
+      <div class="shape-card">
+        <div class="shape-icon">
+          <div class="circle"></div>
+        </div>
+        <h3>Cirkel</h3>
+        <p>Har inga hörn och inga raka sidor.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="shape-icon">
+          <div class="triangle"></div>
+        </div>
+        <h3>Triangel</h3>
+        <p>Har 3 sidor och 3 hörn.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="shape-icon">
+          <div class="square"></div>
+        </div>
+        <h3>Kvadrat</h3>
+        <p>Har 4 lika långa sidor och 4 hörn.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="shape-icon">
+          <div class="rectangle"></div>
+        </div>
+        <h3>Rektangel</h3>
+        <p>Har 4 hörn och motstående sidor är lika långa.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Sidor och hörn</h2>
+
+    <div class="example">
+      En triangel har:
+      <br>
+      <strong>3 sidor och 3 hörn</strong>.
+    </div>
+
+    <div class="example">
+      En kvadrat har:
+      <br>
+      <strong>4 sidor och 4 hörn</strong>.
+    </div>
+
+    <p>
+      Ett hörn är den punkt där två sidor möts.
+    </p>
+  </section>
+
+  <section class="box" id="kroppar">
+    <h2>📦 Tredimensionella kroppar</h2>
+
+    <p>
+      Tredimensionella kroppar har längd, bredd och höjd.
+    </p>
+
+    <div class="shape-grid">
+
+      <div class="shape-card">
+        <div class="solid">⚽</div>
+        <h3>Klot</h3>
+        <p>Runt åt alla håll. En boll är ett exempel.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="solid">🥫</div>
+        <h3>Cylinder</h3>
+        <p>Har två cirkelformade basytor.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="solid">📦</div>
+        <h3>Rätblock</h3>
+        <p>Ser ut som en låda och har rektangulära sidoytor.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="solid">🎲</div>
+        <h3>Kub</h3>
+        <p>Har 6 kvadratiska sidoytor.</p>
+      </div>
+
+      <div class="shape-card">
+        <div class="solid">🍦</div>
+        <h3>Kon</h3>
+        <p>Har en cirkelformad bas och en spets.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🏠 Geometri finns överallt</h2>
+
+    <div class="example">
+      Fönster kan se ut som rektanglar.
+      <br>
+      Tallrikar kan vara cirklar.
+      <br>
+      Paket kan se ut som rätblock.
+      <br>
+      Bollar är ungefär klot.
+    </div>
+
+    <p>
+      Titta runt i rummet. Hur många geometriska former kan du hitta?
+    </p>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Hur många hörn har en triangel?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">2</button>
+        <button onclick="answer(this,true)">3</button>
+        <button onclick="answer(this,false)">4</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vilken form har fyra lika långa sidor?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Rektangel</button>
+        <button onclick="answer(this,true)">Kvadrat</button>
+        <button onclick="answer(this,false)">Cirkel</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vilken geometrisk kropp liknar en boll?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">Klot</button>
+        <button onclick="answer(this,false)">Cylinder</button>
+        <button onclick="answer(this,false)">Kub</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vilken kropp har 6 kvadratiska sidoytor?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Kon</button>
+        <button onclick="answer(this,true)">Kub</button>
+        <button onclick="answer(this,false)">Klot</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vilken form har inga hörn?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">Cirkel</button>
+        <button onclick="answer(this,false)">Triangel</button>
+        <button onclick="answer(this,false)">Kvadrat</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Hur många sidor har en rektangel?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Vilken form är jag?</h3>
+
+      <p>
+        Jag har 4 hörn.
+        <br>
+        Jag har 4 lika långa sidor.
+      </p>
+
+      <p>
+        <strong>Vilken form är jag?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="text" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Rita två olika figurer som båda består av:
+      </p>
+
+      <ul>
+        <li>2 trianglar</li>
+        <li>1 kvadrat</li>
+        <li>1 rektangel</li>
+      </ul>
+
+      <p>
+        Kan du göra figurerna så att de ser helt olika ut?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Geometridetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        Hitta i klassrummet:
+      </p>
+
+      <ul>
+        <li>2 rektanglar</li>
+        <li>1 cirkel</li>
+        <li>1 klot</li>
+        <li>1 cylinder</li>
+        <li>1 rätblock</li>
+      </ul>
+
+      <p>
+        Förklara varför föremålen passar till formerna.
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>geometri</strong> – matematik om former, figurer och kroppar</p>
+
+    <p><strong>sida</strong> – kanten på en geometrisk figur</p>
+
+    <p><strong>hörn</strong> – där två sidor möts</p>
+
+    <p><strong>cirkel</strong> – rund form utan hörn</p>
+
+    <p><strong>triangel</strong> – figur med tre sidor</p>
+
+    <p><strong>kvadrat</strong> – figur med fyra lika långa sidor</p>
+
+    <p><strong>rektangel</strong> – fyrhörning med räta vinklar</p>
+
+    <p><strong>kub</strong> – kropp med sex kvadratiska sidoytor</p>
+
+    <p><strong>klot</strong> – rund geometrisk kropp</p>
+
+    <p><strong>cylinder</strong> – kropp med två cirkelformade basytor</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Geometri • Former • Kroppar • Upptäcka • Förklara</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 4) {
+      feedback.textContent = "✅ Rätt! En rektangel har 4 sidor.";
+    } else {
+      feedback.textContent = "Försök igen. Räkna rektangelns sidor.";
+    }
+  }
+
+  function checkProblem() {
+    const value = document
+      .getElementById("problemAnswer")
+      .value
+      .trim()
+      .toLowerCase();
+
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === "kvadrat" || value === "en kvadrat") {
+      feedback.textContent =
+        "✅ Rätt! En kvadrat har 4 hörn och 4 lika långa sidor.";
+    } else {
+      feedback.textContent =
+        "Försök igen. Vilken fyrhörning har alla fyra sidor lika långa?";
+    }
+  }
+</script>
+
+</body>
+</html>
