@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistik – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .diagram {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      gap: 18px;
+      min-height: 290px;
+      padding: 25px 10px 10px;
+      border-left: 3px solid #8a7965;
+      border-bottom: 3px solid #8a7965;
+      margin-top: 25px;
+    }
+
+    .bar-wrap {
+      flex: 1;
+      max-width: 120px;
+      text-align: center;
+    }
+
+    .bar {
+      background: #d8c6aa;
+      border: 2px solid #9c896e;
+      border-radius: 8px 8px 0 0;
+      margin: auto;
+      width: 65px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 5px;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .bar-label {
+      font-weight: bold;
+      margin-top: 8px;
+      color: var(--brun);
+    }
+
+    .picture-diagram {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .picture-row {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .pictures {
+      font-size: 1.6rem;
+      letter-spacing: 5px;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 140px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .survey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .survey-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      .diagram {
+        gap: 7px;
+      }
+
+      .bar {
+        width: 42px;
+      }
+
+      th,
+      td {
+        padding: 8px 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📊 Statistik</h1>
+  <p>
+    Här tränar du på att samla information, sortera data och läsa tabeller och diagram.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="symmetri-skala.html">🪞 Symmetri</a>
+  <a href="#tabeller">📋 Tabeller</a>
+  <a href="#diagram">📊 Diagram</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#undersok">🔎 Undersök</a>
+  <a href="#problem">🧠 Problemlösning</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+
+    <ul>
+      <li>samla in information</li>
+      <li>sortera information</li>
+      <li>göra enkla tabeller</li>
+      <li>läsa tabeller</li>
+      <li>läsa bilddiagram</li>
+      <li>läsa stapeldiagram</li>
+      <li>jämföra resultat</li>
+      <li>ställa frågor om information</li>
+    </ul>
+  </section>
+
+  <section class="box">
+    <h2>📖 Vad är statistik?</h2>
+
+    <p>
+      Statistik handlar om att samla in, ordna och undersöka information.
+    </p>
+
+    <div class="example">
+      Vi kan till exempel fråga elever i en klass:
+      <br><br>
+      <strong>Vilken frukt tycker du bäst om?</strong>
+    </div>
+
+    <p>
+      Sedan kan vi samla svaren i en tabell eller visa dem i ett diagram.
+    </p>
+  </section>
+
+  <section class="box" id="tabeller">
+    <h2>📋 Tabeller</h2>
+
+    <p>
+      En tabell gör information lättare att läsa och jämföra.
+    </p>
+
+    <table>
+      <tr>
+        <th>Frukt</th>
+        <th>Antal elever</th>
+      </tr>
+
+      <tr>
+        <td>🍎 Äpple</td>
+        <td>6</td>
+      </tr>
+
+      <tr>
+        <td>🍌 Banan</td>
+        <td>4</td>
+      </tr>
+
+      <tr>
+        <td>🍐 Päron</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>🍊 Apelsin</td>
+        <td>5</td>
+      </tr>
+    </table>
+
+    <div class="example">
+      Tabellen visar att flest elever valde <strong>äpple</strong>.
+      <br>
+      Minst antal elever valde <strong>päron</strong>.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🖼️ Bilddiagram</h2>
+
+    <p>
+      I ett bilddiagram används bilder för att visa antal.
+    </p>
+
+    <p>
+      Här betyder varje ⭐ <strong>1 elev</strong>.
+    </p>
+
+    <div class="picture-diagram">
+
+      <div class="picture-row">
+        <strong>Fotboll:</strong>
+        <div class="pictures">⭐ ⭐ ⭐ ⭐ ⭐</div>
+      </div>
+
+      <div class="picture-row">
+        <strong>Simning:</strong>
+        <div class="pictures">⭐ ⭐ ⭐</div>
+      </div>
+
+      <div class="picture-row">
+        <strong>Dans:</strong>
+        <div class="pictures">⭐ ⭐ ⭐ ⭐</div>
+      </div>
+
+    </div>
+
+    <div class="example">
+      5 elever valde fotboll.
+      <br>
+      3 elever valde simning.
+      <br>
+      4 elever valde dans.
+    </div>
+  </section>
+
+  <section class="box" id="diagram">
+    <h2>📊 Stapeldiagram</h2>
+
+    <p>
+      Ett stapeldiagram visar information med staplar.
+      Ju högre stapel, desto större antal.
+    </p>
+
+    <div class="diagram">
+
+      <div class="bar-wrap">
+        <div class="bar" style="height:150px;">6</div>
+        <div class="bar-label">Äpple</div>
+      </div>
+
+      <div class="bar-wrap">
+        <div class="bar" style="height:100px;">4</div>
+        <div class="bar-label">Banan</div>
+      </div>
+
+      <div class="bar-wrap">
+        <div class="bar" style="height:75px;">3</div>
+        <div class="bar-label">Päron</div>
+      </div>
+
+      <div class="bar-wrap">
+        <div class="bar" style="height:125px;">5</div>
+        <div class="bar-label">Apelsin</div>
+      </div>
+
+    </div>
+
+    <div class="example">
+      Vi kan snabbt se att äpple har den högsta stapeln.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔎 Vad kan vi ta reda på?</h2>
+
+    <p>
+      När vi läser statistik kan vi ställa olika frågor.
+    </p>
+
+    <div class="survey-grid">
+
+      <div class="survey-card">
+        <h3>Flest</h3>
+        <p>Vilket alternativ fick flest svar?</p>
+      </div>
+
+      <div class="survey-card">
+        <h3>Minst</h3>
+        <p>Vilket alternativ fick minst antal svar?</p>
+      </div>
+
+      <div class="survey-card">
+        <h3>Skillnad</h3>
+        <p>Hur stor är skillnaden mellan två alternativ?</p>
+      </div>
+
+      <div class="survey-card">
+        <h3>Totalt</h3>
+        <p>Hur många svar finns sammanlagt?</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Jämför information</h2>
+
+    <div class="example">
+      6 elever valde äpple.
+      <br>
+      3 elever valde päron.
+      <br><br>
+      Skillnaden är:
+      <br>
+      <strong>6 − 3 = 3</strong>.
+    </div>
+
+    <div class="example">
+      Sammanlagt valde:
+      <br>
+      6 + 4 + 3 + 5 = <strong>18 elever</strong>.
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Hur många elever valde banan i tabellen?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">3</button>
+        <button onclick="answer(this,true)">4</button>
+        <button onclick="answer(this,false)">6</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vilken frukt valdes av flest elever?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">Äpple</button>
+        <button onclick="answer(this,false)">Päron</button>
+        <button onclick="answer(this,false)">Banan</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Hur stor är skillnaden mellan äpple och päron?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">2</button>
+        <button onclick="answer(this,false)">4</button>
+        <button onclick="answer(this,true)">3</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. I bilddiagrammet valde 5 elever fotboll och 3 simning. Hur många är det tillsammans?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">7</button>
+        <button onclick="answer(this,true)">8</button>
+        <button onclick="answer(this,false)">9</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vilken frukt valdes av minst antal elever?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">Apelsin</button>
+        <button onclick="answer(this,true)">Päron</button>
+        <button onclick="answer(this,false)">Äpple</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Hur många elever finns sammanlagt i frukttabellen?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="undersok">
+    <h2>🔎 Gör en egen undersökning</h2>
+
+    <div class="challenge">
+      <h3>Klassens undersökning</h3>
+
+      <p>
+        Välj en fråga att undersöka.
+      </p>
+
+      <p>Exempel:</p>
+
+      <ul>
+        <li>Vilken årstid tycker klassen bäst om?</li>
+        <li>Hur tar eleverna sig till skolan?</li>
+        <li>Vilket skolämne tycker eleverna bäst om?</li>
+        <li>Vilken frukt är populärast?</li>
+      </ul>
+
+      <p>
+        Fråga eleverna och skriv svaren med streck.
+      </p>
+
+      <div class="example">
+        Exempel:
+        <br><br>
+        Äpple: ||||| |
+        <br>
+        Banan: ||||
+        <br>
+        Päron: |||
+      </div>
+
+      <p>
+        Gör sedan en tabell och ett stapeldiagram.
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Favoritdjur</h3>
+
+      <p>
+        En klass gjorde en undersökning:
+      </p>
+
+      <ul>
+        <li>Hund: 8 elever</li>
+        <li>Katt: 6 elever</li>
+        <li>Häst: 4 elever</li>
+        <li>Kanin: 2 elever</li>
+      </ul>
+
+      <p>
+        <strong>Hur många elever deltog i undersökningen?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        I en undersökning valde:
+      </p>
+
+      <ul>
+        <li>7 elever cykel</li>
+        <li>12 elever gång</li>
+        <li>5 elever bil</li>
+      </ul>
+
+      <p>
+        Svara på tre frågor:
+      </p>
+
+      <ol>
+        <li>Hur många elever deltog sammanlagt?</li>
+        <li>Hur många fler gick än cyklade?</li>
+        <li>Hur många färre åkte bil än gick?</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🕵️ Statistikdetektiven</h2>
+
+    <div class="challenge">
+      <p>
+        Leo säger:
+      </p>
+
+      <p>
+        <strong>
+          ”Banan är populärast eftersom 4 är större än 3.”
+        </strong>
+      </p>
+
+      <p>
+        Men hela tabellen visar:
+      </p>
+
+      <ul>
+        <li>Äpple: 6</li>
+        <li>Banan: 4</li>
+        <li>Päron: 3</li>
+        <li>Apelsin: 5</li>
+      </ul>
+
+      <p>
+        Har Leo rätt?
+      </p>
+
+      <p>
+        Förklara vilket alternativ som egentligen är populärast.
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>📊 Skapa ditt eget diagram</h2>
+
+    <p>
+      Använd uppgifterna:
+    </p>
+
+    <table>
+      <tr>
+        <th>Färg</th>
+        <th>Antal</th>
+      </tr>
+
+      <tr>
+        <td>Röd</td>
+        <td>4</td>
+      </tr>
+
+      <tr>
+        <td>Blå</td>
+        <td>7</td>
+      </tr>
+
+      <tr>
+        <td>Grön</td>
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>Gul</td>
+        <td>6</td>
+      </tr>
+    </table>
+
+    <div class="challenge">
+      <p>
+        Rita ett stapeldiagram på papper.
+      </p>
+
+      <p>
+        Kom ihåg:
+      </p>
+
+      <ul>
+        <li>lika breda staplar</li>
+        <li>lika stort mellanrum</li>
+        <li>tydliga siffror</li>
+        <li>rubrik</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p>
+      <strong>statistik</strong> – information som samlas in och undersöks
+    </p>
+
+    <p>
+      <strong>data</strong> – den information vi har samlat in
+    </p>
+
+    <p>
+      <strong>tabell</strong> – information ordnad i rader och kolumner
+    </p>
+
+    <p>
+      <strong>diagram</strong> – ett sätt att visa information med bilder eller staplar
+    </p>
+
+    <p>
+      <strong>stapeldiagram</strong> – diagram där staplar visar antal
+    </p>
+
+    <p>
+      <strong>bilddiagram</strong> – diagram där bilder eller symboler visar antal
+    </p>
+
+    <p>
+      <strong>undersökning</strong> – när vi samlar information genom frågor eller observationer
+    </p>
+
+    <p>
+      <strong>skillnad</strong> – hur mycket mer eller mindre något är
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Statistik • Tabeller • Diagram • Undersöka • Jämföra</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra läst.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Titta på tabellen eller diagrammet igen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 18) {
+      feedback.textContent =
+        "✅ Rätt! 6 + 4 + 3 + 5 = 18 elever.";
+    } else {
+      feedback.textContent =
+        "Försök igen. Lägg ihop alla fyra talen i tabellen.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 20) {
+      feedback.textContent =
+        "✅ Rätt! 8 + 6 + 4 + 2 = 20 elever.";
+    } else {
+      feedback.textContent =
+        "Försök igen. Lägg ihop alla elever som valde de fyra djuren.";
+    }
+  }
+</script>
+
+</body>
+</html>
