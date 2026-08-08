@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Division – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 750px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .strategy {
+      background: #f1e8da;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid #dfd1be;
+    }
+
+    .groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .group {
+      background: #f3eadf;
+      border: 1px solid #d8c9b6;
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .game-box {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .game-question {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 15px 0;
+    }
+
+    .score {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>➗ Division</h1>
+  <p>
+    Här lär du dig att dela lika, göra grupper och se sambandet mellan division och multiplikation.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="multiplikation.html">✖️ Multiplikation</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#spel">🎮 Snabbträning</a>
+  <a href="#problem">🧠 Problemlösning</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>förstå vad division betyder</li>
+      <li>dela lika</li>
+      <li>göra lika stora grupper</li>
+      <li>använda multiplikation för att lösa division</li>
+      <li>lösa enkla divisionsuppgifter</li>
+      <li>lösa textuppgifter med division</li>
+      <li>förklara hur du tänker</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Vad betyder division?</h2>
+
+    <p>
+      Division använder vi när något ska delas lika eller när vi vill ta reda på hur många grupper vi kan göra.
+    </p>
+
+    <div class="example">
+      <strong>12 ÷ 3 = 4</strong>
+      <br><br>
+      12 saker delas lika mellan 3 grupper.
+      <br>
+      Då blir det 4 saker i varje grupp.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🍎 Dela lika</h2>
+
+    <p>
+      Tänk att vi har 12 äpplen som ska delas lika mellan 3 barn.
+    </p>
+
+    <div class="groups">
+      <div class="group">🍎 🍎 🍎 🍎</div>
+      <div class="group">🍎 🍎 🍎 🍎</div>
+      <div class="group">🍎 🍎 🍎 🍎</div>
+    </div>
+
+    <div class="example">
+      Varje barn får 4 äpplen.
+      <br><br>
+      <strong>12 ÷ 3 = 4</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>📦 Göra grupper</h2>
+
+    <p>
+      Division kan också betyda att vi gör lika stora grupper.
+    </p>
+
+    <div class="example">
+      Vi har 20 kulor.
+      <br>
+      Vi lägger 5 kulor i varje grupp.
+      <br><br>
+      Hur många grupper blir det?
+      <br><br>
+      <strong>20 ÷ 5 = 4</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔗 Multiplikation hjälper dig</h2>
+
+    <p>
+      Multiplikation och division hör ihop.
+    </p>
+
+    <div class="example">
+      4 × 5 = 20
+      <br>
+      20 ÷ 5 = 4
+      <br>
+      20 ÷ 4 = 5
+    </div>
+
+    <p>
+      Om du kan multiplikationstabellerna blir division mycket lättare.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Smarta strategier</h2>
+
+    <div class="strategy-grid">
+
+      <div class="strategy">
+        <h3>Tänk multiplikation</h3>
+        <p>
+          18 ÷ 3 = ?
+        </p>
+        <p>
+          Tänk:
+          <br>
+          3 × ? = 18
+          <br>
+          3 × 6 = 18
+          <br>
+          Svaret är 6.
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>Dela i mindre delar</h3>
+        <p>
+          20 ÷ 4
+        </p>
+        <p>
+          Tänk 4 grupper.
+          <br>
+          Dela först ut 4 i varje grupp = 16.
+          <br>
+          Dela sedan ut 1 till varje grupp.
+          <br>
+          5 i varje grupp.
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>Använd det du kan</h3>
+        <p>
+          30 ÷ 5
+        </p>
+        <p>
+          Om du vet att
+          <br>
+          6 × 5 = 30
+          <br>
+          vet du också att
+          <br>
+          30 ÷ 5 = 6.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔢 Division med 2, 5 och 10</h2>
+
+    <div class="example">
+      <strong>Dela med 2</strong>
+      <br>
+      betyder att hitta hälften.
+      <br><br>
+      18 ÷ 2 = 9
+    </div>
+
+    <div class="example">
+      <strong>Dela med 5</strong>
+      <br>
+      25 ÷ 5 = 5
+    </div>
+
+    <div class="example">
+      <strong>Dela med 10</strong>
+      <br>
+      40 ÷ 10 = 4
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vad är 12 ÷ 3?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">3</button>
+        <button onclick="answer(this,true)">4</button>
+        <button onclick="answer(this,false)">6</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vad är 20 ÷ 5?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">5</button>
+        <button onclick="answer(this,true)">4</button>
+        <button onclick="answer(this,false)">10</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vad är 18 ÷ 2?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">8</button>
+        <button onclick="answer(this,true)">9</button>
+        <button onclick="answer(this,false)">10</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vad är 24 ÷ 4?</p>
+      <div class="answers">
+        <button onclick="answer(this,true)">6</button>
+        <button onclick="answer(this,false)">5</button>
+        <button onclick="answer(this,false)">8</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vad är 30 ÷ 10?</p>
+      <div class="answers">
+        <button onclick="answer(this,false)">2</button>
+        <button onclick="answer(this,true)">3</button>
+        <button onclick="answer(this,false)">10</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Vad är <strong>28 ÷ 4</strong>?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="spel">
+    <h2>🎮 Snabbträning</h2>
+
+    <div class="game-box">
+      <p>Lös divisionsuppgiften.</p>
+
+      <div class="game-question" id="gameQuestion">
+        20 ÷ 5
+      </div>
+
+      <input type="number" id="gameAnswer" placeholder="Svar">
+
+      <button class="check-btn" onclick="checkGame()">
+        Svara
+      </button>
+
+      <div class="feedback" id="gameFeedback"></div>
+
+      <div class="score">
+        Poäng: <span id="score">0</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Pennorna</h3>
+
+      <p>
+        Läraren har 24 pennor.
+        Pennorna ska delas lika mellan 6 elever.
+      </p>
+
+      <p>
+        <strong>Hur många pennor får varje elev?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Det finns 36 kakor.
+        Varje tallrik ska ha 4 kakor.
+      </p>
+
+      <p>
+        <strong>Hur många tallrikar behövs?</strong>
+      </p>
+
+      <p>
+        Kan du också skriva en multiplikation som visar samma samband?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Vilket räknesätt passar?</h2>
+
+    <div class="example">
+      20 barn ska delas i 4 lika stora lag.
+      <br><br>
+      Här passar division eftersom barnen ska delas i lika stora grupper.
+    </div>
+
+    <div class="example">
+      4 lådor har 5 bollar i varje låda.
+      <br><br>
+      Här passar multiplikation eftersom vi har lika stora grupper.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>division</strong> – att dela lika eller göra lika stora grupper</p>
+
+    <p><strong>kvot</strong> – svaret i en division</p>
+
+    <p><strong>dela lika</strong> – att alla grupper får lika många</p>
+
+    <p><strong>gruppera</strong> – att ordna saker i lika stora grupper</p>
+
+    <p><strong>hälften</strong> – en av två lika stora delar</p>
+
+    <p><strong>samband</strong> – hur två matematiska idéer hör ihop</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Division • Dela lika • Grupper • Problemlösning</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen och tänk på multiplikationen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 7) {
+      feedback.textContent = "✅ Rätt! 28 ÷ 4 = 7.";
+    } else {
+      feedback.textContent = "Försök igen. Tänk: 4 × ? = 28.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 4) {
+      feedback.textContent = "✅ Rätt! 24 ÷ 6 = 4 pennor per elev.";
+    } else {
+      feedback.textContent = "Försök igen. Dela 24 pennor lika mellan 6 elever.";
+    }
+  }
+
+  let score = 0;
+
+  const gameQuestions = [
+    { text: "12 ÷ 2", answer: 6 },
+    { text: "15 ÷ 3", answer: 5 },
+    { text: "20 ÷ 4", answer: 5 },
+    { text: "20 ÷ 5", answer: 4 },
+    { text: "30 ÷ 5", answer: 6 },
+    { text: "40 ÷ 10", answer: 4 },
+    { text: "18 ÷ 3", answer: 6 },
+    { text: "24 ÷ 4", answer: 6 },
+    { text: "16 ÷ 2", answer: 8 },
+    { text: "30 ÷ 10", answer: 3 }
+  ];
+
+  let currentQuestion = gameQuestions[0];
+
+  function newGameQuestion() {
+    currentQuestion =
+      gameQuestions[Math.floor(Math.random() * gameQuestions.length)];
+
+    document.getElementById("gameQuestion").textContent =
+      currentQuestion.text;
+
+    document.getElementById("gameAnswer").value = "";
+  }
+
+  function checkGame() {
+    const answerValue =
+      Number(document.getElementById("gameAnswer").value);
+
+    const feedback =
+      document.getElementById("gameFeedback");
+
+    if (answerValue === currentQuestion.answer) {
+      score++;
+      document.getElementById("score").textContent = score;
+      feedback.textContent = "✅ Rätt! Ny uppgift.";
+      newGameQuestion();
+    } else {
+      feedback.textContent = "Försök igen.";
+    }
+  }
+
+  newGameQuestion();
+</script>
+
+</body>
+</html>
