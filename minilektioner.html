@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Minilektioner – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .mini-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 17px;
+      padding: 21px;
+      margin: 18px 0;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.86rem;
+      font-weight: bold;
+    }
+
+    .goal-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .teacher-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .model-box {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .student-box {
+      background: #fffaf2;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .language-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .warning-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .check-box {
+      background: #f3eadf;
+      border: 2px dashed #c6b49a;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      background: #f3eadf;
+      border-radius: 10px;
+      padding: 12px 12px 12px 48px;
+      margin: 9px 0;
+      position: relative;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      width: 26px;
+      height: 26px;
+      background: #cdbb9f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .mini-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎯 Minilektioner</h1>
+
+  <p>
+    Korta lärarledda genomgångar för vanliga matematiska svårigheter.
+    Använd dem i helklass, liten grupp eller som riktat stöd.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#platsvarde">🔢 Platsvärde</a>
+  <a href="#addition">➕ Addition</a>
+  <a href="#subtraktion">➖ Subtraktion</a>
+  <a href="#likhet">⚖️ Likhet</a>
+  <a href="#mult">✖️ Multiplikation</a>
+  <a href="#division">➗ Division</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#problem">🧠 Problem</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Så används minilektionerna</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🎯</div>
+        <h3>En idé</h3>
+        <p>Fokusera på en matematisk idé åt gången.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👩‍🏫</div>
+        <h3>Modellera</h3>
+        <p>Visa och tänk högt.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Fråga</h3>
+        <p>Låt eleverna beskriva vad de ser.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✅</div>
+        <h3>Kontrollera</h3>
+        <p>Avsluta med en mycket kort kontrollfråga.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="platsvarde">
+    <h2>🔢 Platsvärde</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 1 – Siffra och värde är inte samma sak</h3>
+
+      <div class="meta">
+        <span class="tag">8 min</span>
+        <span class="tag">Taluppfattning</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska förstå att samma siffra får olika värde beroende på sin position.
+      </div>
+
+      <div class="teacher-box">
+        <strong>Säg:</strong>
+        <br>
+        ”Här står siffran 6 i tre olika tal:
+        64, 364 och 406.
+        Har 6 samma värde varje gång?”
+      </div>
+
+      <div class="model-box">
+        Visa:
+        <br><br>
+        64 → 60
+        <br>
+        364 → 60
+        <br>
+        406 → 6
+      </div>
+
+      <div class="student-box">
+        Låt eleverna förklara värdet på 5 i:
+        <br><br>
+        52
+        <br>
+        153
+        <br>
+        305
+      </div>
+
+      <div class="language-box">
+        💬 ”Siffran ___ står på ___platsen och är därför värd ___.”
+      </div>
+
+      <div class="check-box">
+        <strong>Snabb kontroll:</strong>
+        Vad är 7:an värd i 472?
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 2 – Nollans viktiga plats</h3>
+
+      <div class="meta">
+        <span class="tag">7 min</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska förstå nollans funktion som platshållare.
+      </div>
+
+      <div class="model-box">
+        Jämför:
+        <br><br>
+        57
+        <br>
+        507
+        <br>
+        570
+      </div>
+
+      <div class="teacher-box">
+        Fråga:
+        <br>
+        ”Vad skulle hända om vi tog bort nollan?”
+      </div>
+
+      <div class="check-box">
+        Skriv talet:
+        <br>
+        4 hundratal, 0 tiotal och 8 ental.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="addition">
+    <h2>➕ Addition</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 3 – Gå via närmaste tiotal</h3>
+
+      <div class="meta">
+        <span class="tag">10 min</span>
+        <span class="tag">Huvudräkning</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska använda talens struktur istället för att räkna ett steg i taget.
+      </div>
+
+      <div class="teacher-box">
+        Modellera:
+        <br><br>
+        8 + 7
+      </div>
+
+      <div class="model-box">
+        8 behöver 2 för att bli 10.
+        <br><br>
+        Dela 7 i 2 + 5.
+        <br><br>
+        8 + 2 + 5 = 15.
+      </div>
+
+      <div class="student-box">
+        Prova:
+        <br><br>
+        9 + 6
+        <br>
+        8 + 5
+        <br>
+        7 + 6
+      </div>
+
+      <div class="language-box">
+        💬 ”Jag tog ___ från det andra talet för att komma till 10.”
+      </div>
+
+      <div class="check-box">
+        Hur skulle du räkna 9 + 7?
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 4 – Kompensation</h3>
+
+      <div class="meta">
+        <span class="tag">10 min</span>
+        <span class="tag">Strategi</span>
+      </div>
+
+      <div class="teacher-box">
+        Visa:
+        <br><br>
+        49 + 26
+      </div>
+
+      <div class="model-box">
+        49 är nästan 50.
+        <br><br>
+        50 + 26 = 76
+        <br>
+        76 − 1 = 75
+      </div>
+
+      <div class="student-box">
+        Prova:
+        <br>
+        39 + 24
+        <br>
+        59 + 18
+        <br>
+        99 + 37
+      </div>
+
+      <div class="check-box">
+        När är kompensation en smart strategi?
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="subtraktion">
+    <h2>➖ Subtraktion</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 5 – Vad betyder skillnad?</h3>
+
+      <div class="meta">
+        <span class="tag">8 min</span>
+        <span class="tag">Begrepp</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska förstå skillnad som avstånd mellan två tal.
+      </div>
+
+      <div class="teacher-box">
+        Visa 8 och 13 på en tallinje.
+        <br><br>
+        Fråga:
+        ”Hur långt är det mellan talen?”
+      </div>
+
+      <div class="model-box">
+        8 → 10 = 2
+        <br>
+        10 → 13 = 3
+        <br><br>
+        Skillnaden är 5.
+      </div>
+
+      <div class="student-box">
+        Hitta skillnaden mellan:
+        <br>
+        17 och 23
+        <br>
+        28 och 35
+      </div>
+
+      <div class="language-box">
+        💬 ”Skillnaden mellan ___ och ___ är ___.”
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 6 – Växla ett tiotal</h3>
+
+      <div class="meta">
+        <span class="tag">12 min</span>
+        <span class="tag">Skriftlig metod</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska förstå vad växling betyder – inte bara följa en regel.
+      </div>
+
+      <div class="teacher-box">
+        Bygg 42 med:
+        <br><br>
+        4 tiotal
+        <br>
+        2 ental
+      </div>
+
+      <div class="model-box">
+        Vi ska räkna:
+        <br><br>
+        42 − 18
+        <br><br>
+        Vi kan inte ta bort 8 ental från 2 ental.
+        <br>
+        Växla ett tiotal till 10 ental.
+        <br><br>
+        Nu har vi 3 tiotal och 12 ental.
+      </div>
+
+      <div class="warning-box">
+        Undvik att bara säga ”låna”.
+        Visa vad som faktiskt händer med talets värde.
+      </div>
+
+      <div class="check-box">
+        Varför är talet fortfarande 42 efter växlingen?
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="likhet">
+    <h2>⚖️ Likhetstecknet</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 7 – = betyder samma värde</h3>
+
+      <div class="meta">
+        <span class="tag">8 min</span>
+        <span class="tag">Algebra</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska förstå likhetstecknet som en relation mellan två lika stora värden.
+      </div>
+
+      <div class="teacher-box">
+        Skriv:
+        <br><br>
+        7 + 5 = 12
+        <br><br>
+        och:
+        <br><br>
+        12 = 7 + 5
+      </div>
+
+      <div class="model-box">
+        Båda betyder att vänster och höger sida har samma värde.
+      </div>
+
+      <div class="student-box">
+        Sant eller falskt:
+        <br><br>
+        6 + 2 = 5 + 3
+        <br>
+        7 + 4 = 12
+        <br>
+        9 = 5 + 4
+      </div>
+
+      <div class="language-box">
+        💬 ”Vänster sida är värd ___ och höger sida är värd ___.”
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 8 – Hitta det saknade talet</h3>
+
+      <div class="teacher-box">
+        Visa:
+        <br><br>
+        8 + ___ = 13
+      </div>
+
+      <div class="model-box">
+        Fråga:
+        <br>
+        ”Vad behöver läggas till 8 för att båda sidor ska få värdet 13?”
+      </div>
+
+      <div class="student-box">
+        Prova:
+        <br><br>
+        6 + ___ = 10
+        <br>
+        ___ + 7 = 15
+        <br>
+        12 = 9 + ___
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mult">
+    <h2>✖️ Multiplikation</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 9 – Vad betyder 4 × 6?</h3>
+
+      <div class="meta">
+        <span class="tag">10 min</span>
+        <span class="tag">Konkret</span>
+      </div>
+
+      <div class="goal-box">
+        <strong>Mål:</strong>
+        Eleven ska se multiplikation som lika stora grupper.
+      </div>
+
+      <div class="teacher-box">
+        Bygg fyra grupper med sex föremål i varje.
+      </div>
+
+      <div class="model-box">
+        6 + 6 + 6 + 6 = 24
+        <br><br>
+        4 × 6 = 24
+      </div>
+
+      <div class="student-box">
+        Visa 3 × 5:
+        <br>
+        • med material
+        <br>
+        • som bild
+        <br>
+        • som addition
+        <br>
+        • som multiplikation
+      </div>
+
+      <div class="check-box">
+        Vad betyder 3:an i 3 × 5?
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 10 – Använd en tabell du redan kan</h3>
+
+      <div class="teacher-box">
+        Om:
+        <br><br>
+        5 × 6 = 30
+        <br><br>
+        hur kan det hjälpa oss med 6 × 6?
+      </div>
+
+      <div class="model-box">
+        Lägg till en grupp med 6:
+        <br><br>
+        30 + 6 = 36
+      </div>
+
+      <div class="student-box">
+        Om 5 × 7 = 35:
+        <br>
+        vad blir 6 × 7?
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="division">
+    <h2>➗ Division</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 11 – Dela lika</h3>
+
+      <div class="meta">
+        <span class="tag">8 min</span>
+      </div>
+
+      <div class="teacher-box">
+        Ta 12 markörer.
+        <br><br>
+        ”Dela dem lika mellan 3 personer.”
+      </div>
+
+      <div class="model-box">
+        Varje person får 4.
+        <br><br>
+        12 ÷ 3 = 4
+      </div>
+
+      <div class="student-box">
+        Dela:
+        <br>
+        20 mellan 5
+        <br>
+        18 mellan 3
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 12 – Hur många grupper?</h3>
+
+      <div class="meta">
+        <span class="tag">10 min</span>
+        <span class="tag">Divisionens två betydelser</span>
+      </div>
+
+      <div class="teacher-box">
+        Ta 12 markörer igen.
+        <br><br>
+        Den här gången:
+        ”Gör grupper med 3 i varje.”
+      </div>
+
+      <div class="model-box">
+        Nu blir frågan:
+        <br>
+        Hur många grupper kan vi göra?
+        <br><br>
+        Svaret är 4 grupper.
+      </div>
+
+      <div class="warning-box">
+        Samma division kan beskrivas med olika frågor:
+        antal i varje grupp eller antal grupper.
+      </div>
+
+      <div class="check-box">
+        20 saker läggs i grupper om 5.
+        Hur många grupper blir det?
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 13 – Tänk multiplikation baklänges</h3>
+
+      <div class="teacher-box">
+        24 ÷ 6 = ?
+      </div>
+
+      <div class="model-box">
+        Fråga:
+        <br>
+        ”Vad gånger 6 blir 24?”
+        <br><br>
+        4 × 6 = 24
+        <br>
+        alltså
+        <br>
+        24 ÷ 6 = 4.
+      </div>
+
+      <div class="student-box">
+        Använd samma tanke:
+        <br>
+        30 ÷ 5
+        <br>
+        21 ÷ 3
+        <br>
+        32 ÷ 4
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="brak">
+    <h2>🍕 Bråk</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 14 – Delarna måste vara lika stora</h3>
+
+      <div class="meta">
+        <span class="tag">8 min</span>
+      </div>
+
+      <div class="teacher-box">
+        Rita två rektanglar.
+        <br><br>
+        Dela båda i fyra delar:
+        <br>
+        • en med lika stora delar
+        <br>
+        • en med olika stora delar
+      </div>
+
+      <div class="model-box">
+        Fråga:
+        <br>
+        ”Är varje del en fjärdedel i båda bilderna?”
+      </div>
+
+      <div class="goal-box">
+        För att delarna ska vara fjärdedelar måste helheten vara delad i fyra lika stora delar.
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 15 – Varför är 1/2 större än 1/4?</h3>
+
+      <div class="teacher-box">
+        Använd två lika stora pappersremsor.
+      </div>
+
+      <div class="model-box">
+        Dela den ena i två lika delar.
+        <br>
+        Dela den andra i fyra lika delar.
+        <br><br>
+        Jämför en del från varje.
+      </div>
+
+      <div class="language-box">
+        💬 ”När samma helhet delas i fler lika stora delar blir varje del...”
+      </div>
+
+      <div class="check-box">
+        Vilket är störst: 1/3 eller 1/4, om helheterna är lika stora?
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="mini-card">
+
+      <h3>Minilektion 16 – Läs problemet utan att leta efter räknesätt</h3>
+
+      <div class="meta">
+        <span class="tag">10 min</span>
+        <span class="tag">Språk</span>
+      </div>
+
+      <div class="teacher-box">
+        Läs:
+        <br><br>
+        ”Mira har 24 pärlor.
+        Hon får 13 nya.
+        Hur många pärlor har hon nu?”
+      </div>
+
+      <div class="model-box">
+        Tänk högt:
+        <ol class="steps">
+          <li>Vad händer?</li>
+          <li>Vad vet vi?</li>
+          <li>Vad ska vi ta reda på?</li>
+          <li>Kan jag visa situationen med bild?</li>
+          <li>Vilket räknesätt passar då?</li>
+        </ol>
+      </div>
+
+      <div class="warning-box">
+        Undvik att lära elever att ett visst ord alltid betyder ett visst räknesätt.
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 17 – Tvåstegsproblem</h3>
+
+      <div class="teacher-box">
+        Problem:
+        <br><br>
+        ”Leo har 35 kronor.
+        Han får 12 kronor.
+        Sedan köper han något för 8 kronor.
+        Hur mycket har han kvar?”
+      </div>
+
+      <div class="model-box">
+        Rita en enkel händelsekedja:
+        <br><br>
+        35 → +12 → −8 → ?
+      </div>
+
+      <div class="student-box">
+        Fråga:
+        <br>
+        Vad händer först?
+        <br>
+        Vad händer sedan?
+      </div>
+
+      <div class="language-box">
+        💬 ”Först... Sedan... Till sist...”
+      </div>
+
+    </div>
+
+
+    <div class="mini-card">
+
+      <h3>Minilektion 18 – Rimlighetskontroll</h3>
+
+      <div class="teacher-box">
+        Visa:
+        <br><br>
+        48 + 27 = 615
+      </div>
+
+      <div class="model-box">
+        Fråga:
+        <br>
+        ”Behöver vi ens räkna exakt för att veta att det är fel?”
+        <br><br>
+        48 är ungefär 50.
+        <br>
+        27 är ungefär 30.
+        <br>
+        Svaret borde ligga ungefär kring 80.
+      </div>
+
+      <div class="student-box">
+        Rimligt eller orimligt?
+        <br><br>
+        62 − 18 = 44
+        <br>
+        5 × 6 = 11
+        <br>
+        20 ÷ 5 = 4
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+    <h2>💬 Frågor som fungerar i nästan alla minilektioner</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        Hur ser du det?
+      </div>
+
+      <div class="card">
+        Kan du visa med en bild?
+      </div>
+
+      <div class="card">
+        Vad betyder talet här?
+      </div>
+
+      <div class="card">
+        Varför fungerar strategin?
+      </div>
+
+      <div class="card">
+        Finns det ett annat sätt?
+      </div>
+
+      <div class="card">
+        Vad skulle hända om...?
+      </div>
+
+      <div class="card">
+        Är svaret rimligt?
+      </div>
+
+      <div class="card">
+        Vad har de två lösningarna gemensamt?
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Arbeta vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="lektionsstart.html">
+        ☀️ Lektionsstarter
+      </a>
+
+      <a class="link-card" href="lektionsavslut.html">
+        🌙 Lektionsavslut
+      </a>
+
+      <a class="link-card" href="missuppfattningar.html">
+        🕵️ Missuppfattningar
+      </a>
+
+      <a class="link-card" href="intensivtraning.html">
+        ⚡ Intensivträning
+      </a>
+
+      <a class="link-card" href="interventioner.html">
+        🎯 Interventioner
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="sprakstod.html">
+        💬 Språkstöd
+      </a>
+
+      <a class="link-card" href="matteverkstad.html">
+        🧱 Matteverkstad
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Minilektioner</strong></p>
+  <p>Fokusera • Modellera • Samtala • Kontrollera</p>
+</footer>
+
+</body>
+</html>
