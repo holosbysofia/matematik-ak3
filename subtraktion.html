@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subtraktion – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 750px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    h2, h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .strategy {
+      background: #f1e8da;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid #dfd1be;
+    }
+
+    .strategy h3 {
+      margin-top: 0;
+    }
+
+    .uppstallning {
+      background: #f8f3eb;
+      border-radius: 14px;
+      padding: 20px;
+      display: inline-block;
+      font-family: "Courier New", monospace;
+      font-size: 1.5rem;
+      line-height: 1.4;
+      margin: 10px 0;
+      border: 1px solid var(--kant);
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 130px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>➖ Subtraktion</h1>
+  <p>
+    Här tränar du på att ta bort, jämföra, hitta skillnaden och använda smarta strategier.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="addition.html">➕ Addition</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>förstå vad subtraktion betyder</li>
+      <li>räkna subtraktion i huvudet</li>
+      <li>använda olika strategier</li>
+      <li>räkna över tiotal</li>
+      <li>hitta skillnaden mellan två tal</li>
+      <li>subtrahera större tal</li>
+      <li>använda uppställning</li>
+      <li>lösa textuppgifter</li>
+      <li>bedöma om svaret är rimligt</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Vad betyder subtraktion?</h2>
+
+    <p>
+      Subtraktion kan betyda att vi tar bort något eller att vi jämför två tal.
+    </p>
+
+    <div class="example">
+      <strong>14 − 6 = 8</strong>
+      <br><br>
+      Vi börjar med 14 och tar bort 6.
+      <br>
+      Då har vi 8 kvar.
+    </div>
+
+    <p>
+      Subtraktion kan också handla om <strong>skillnaden</strong> mellan två tal.
+    </p>
+
+    <div class="example">
+      Skillnaden mellan 15 och 9 är:
+      <br><br>
+      <strong>15 − 9 = 6</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧠 Smarta strategier</h2>
+
+    <div class="strategy-grid">
+
+      <div class="strategy">
+        <h3>1. Dela upp talet</h3>
+        <p><strong>46 − 23</strong></p>
+        <p>
+          46 − 20 = 26
+          <br>
+          26 − 3 = 23
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>2. Gå till tiotalet</h3>
+        <p><strong>32 − 7</strong></p>
+        <p>
+          32 − 2 = 30
+          <br>
+          30 − 5 = 25
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>3. Räkna upp</h3>
+        <p><strong>53 − 48</strong></p>
+        <p>
+          Från 48 till 50 är 2.
+          <br>
+          Från 50 till 53 är 3.
+          <br>
+          2 + 3 = 5
+        </p>
+      </div>
+
+      <div class="strategy">
+        <h3>4. Nära ett helt tiotal</h3>
+        <p><strong>64 − 29</strong></p>
+        <p>
+          Räkna först 64 − 30 = 34.
+          <br>
+          Lägg sedan tillbaka 1.
+          <br>
+          Svaret är 35.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌉 Över tiotal</h2>
+
+    <p>
+      Ibland behöver vi passera ett tiotal när vi subtraherar.
+    </p>
+
+    <div class="example">
+      <strong>42 − 7</strong>
+      <br><br>
+      42 − 2 = 40
+      <br>
+      Vi har 5 kvar att ta bort.
+      <br>
+      40 − 5 = 35
+      <br><br>
+      <strong>42 − 7 = 35</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>⚖️ Hitta skillnaden</h2>
+
+    <p>
+      Ibland är det lättare att räkna upp från det mindre talet till det större.
+    </p>
+
+    <div class="example">
+      Vad är skillnaden mellan 67 och 72?
+      <br><br>
+      67 → 70 = 3
+      <br>
+      70 → 72 = 2
+      <br>
+      3 + 2 = 5
+      <br><br>
+      <strong>Skillnaden är 5.</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>📦 Subtraktion med hundratal</h2>
+
+    <div class="example">
+      <strong>586 − 243</strong>
+      <br><br>
+      586 − 200 = 386
+      <br>
+      386 − 40 = 346
+      <br>
+      346 − 3 = 343
+      <br><br>
+      <strong>586 − 243 = 343</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🧮 Uppställning</h2>
+
+    <p>
+      Vid uppställning ska ental stå under ental, tiotal under tiotal och hundratal under hundratal.
+    </p>
+
+    <div class="uppstallning">
+      &nbsp;&nbsp;568<br>
+      -&nbsp;234<br>
+      ------<br>
+      &nbsp;&nbsp;334
+    </div>
+
+    <div class="example">
+      Ental: 8 − 4 = 4
+      <br>
+      Tiotal: 6 − 3 = 3
+      <br>
+      Hundratal: 5 − 2 = 3
+      <br><br>
+      <strong>568 − 234 = 334</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔄 Växling i uppställning</h2>
+
+    <p>
+      Ibland är entalet längst upp mindre än entalet vi ska ta bort.
+      Då behöver vi växla ett tiotal till tio ental.
+    </p>
+
+    <div class="example">
+      <strong>52 − 28</strong>
+      <br><br>
+      Vi kan inte räkna 2 − 8.
+      <br>
+      Vi växlar ett tiotal.
+      <br>
+      52 blir 4 tiotal och 12 ental.
+      <br>
+      12 − 8 = 4
+      <br>
+      4 tiotal − 2 tiotal = 2 tiotal
+      <br><br>
+      <strong>52 − 28 = 24</strong>
+    </div>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vad är 16 − 7?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">8</button>
+        <button onclick="answer(this,true)">9</button>
+        <button onclick="answer(this,false)">10</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vad är 42 − 8?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,true)">34</button>
+        <button onclick="answer(this,false)">35</button>
+        <button onclick="answer(this,false)">36</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vad är 75 − 30?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">35</button>
+        <button onclick="answer(this,true)">45</button>
+        <button onclick="answer(this,false)">55</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vad är skillnaden mellan 48 och 53?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">4</button>
+        <button onclick="answer(this,true)">5</button>
+        <button onclick="answer(this,false)">6</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vad är 463 − 121?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">332</button>
+        <button onclick="answer(this,true)">342</button>
+        <button onclick="answer(this,false)">352</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>✍️ Skriv svaret själv</h2>
+
+    <p>
+      Vad är <strong>374 − 152</strong>?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Böcker i biblioteket</h3>
+
+      <p>
+        På en hylla står 185 böcker.
+        Eleverna lånar 47 böcker.
+      </p>
+
+      <p>
+        <strong>Hur många böcker finns kvar?</strong>
+      </p>
+
+      <p>
+        Fundera först:
+        Vad vet du?
+        Vad ska du ta reda på?
+        Vilket räknesätt passar?
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Ali har 500 kronor.
+        Efter att han har handlat har han 327 kronor kvar.
+      </p>
+
+      <p>
+        <strong>Hur mycket kostade det han köpte?</strong>
+      </p>
+
+      <p>
+        Kan du lösa uppgiften på två olika sätt?
+      </p>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Rimligt eller orimligt?</h2>
+
+    <div class="example">
+      <strong>402 − 198</strong>
+      <br><br>
+      Vi kan tänka ungefär:
+      <br>
+      400 − 200 = 200
+    </div>
+
+    <p>
+      Därför vet vi att ett svar runt 200 är rimligt.
+      Ett svar som 20 eller 600 kan inte stämma.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🔗 Sambandet mellan addition och subtraktion</h2>
+
+    <p>
+      Addition och subtraktion hör ihop.
+    </p>
+
+    <div class="example">
+      8 + 7 = 15
+      <br>
+      15 − 7 = 8
+      <br>
+      15 − 8 = 7
+    </div>
+
+    <p>
+      Du kan därför använda addition för att kontrollera en subtraktion.
+    </p>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p><strong>subtraktion</strong> – att ta bort eller jämföra</p>
+
+    <p><strong>skillnad</strong> – avståndet mellan två tal</p>
+
+    <p><strong>differens</strong> – svaret i en subtraktion</p>
+
+    <p><strong>växla</strong> – att till exempel göra om ett tiotal till tio ental</p>
+
+    <p><strong>uppställning</strong> – att skriva talen under varandra</p>
+
+    <p><strong>rimligt</strong> – att ett svar verkar möjligt och logiskt</p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Subtraktion • Strategier • Träna • Förklara</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Inte riktigt. Försök igen och använd en strategi.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 222) {
+      feedback.textContent = "✅ Rätt! 374 − 152 = 222.";
+    } else {
+      feedback.textContent = "Försök igen. Dela gärna upp 152 i 100, 50 och 2.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 138) {
+      feedback.textContent = "✅ Rätt! 185 − 47 = 138 böcker.";
+    } else {
+      feedback.textContent = "Försök igen. Börja med 185 och ta bort 47.";
+    }
+  }
+</script>
+
+</body>
+</html>
