@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Övningsbank – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 800px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    .chooser-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .chooser-btn {
+      background: var(--beige);
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .chooser-btn.active {
+      background: #d6c3a6;
+      outline: 3px solid #b49f81;
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .level-btn {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 12px;
+      padding: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .level-btn.active {
+      background: #d8c6aa;
+    }
+
+    .task-box {
+      background: #f3eadf;
+      border-radius: 16px;
+      padding: 26px;
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .task-label {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .task {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 20px 0;
+      min-height: 70px;
+    }
+
+    .answer-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #cdbda7;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      width: 170px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .feedback {
+      min-height: 28px;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .score {
+      margin-top: 18px;
+      background: #fffaf2;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .progress-box {
+      margin-top: 18px;
+    }
+
+    .progress {
+      height: 18px;
+      background: var(--beige);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #9d8d77;
+      transition: width 0.3s ease;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 15px;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      .level-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .task {
+        font-size: 1.5rem;
+      }
+
+      .answer-row {
+        flex-direction: column;
+      }
+
+      input,
+      .answer-row button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📚 Övningsbank</h1>
+  <p>
+    Välj matematikområde och nivå. Du får nya uppgifter varje gång.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="strategier.html">🧠 Strategier</a>
+  <a href="diagnos.html">🔎 Diagnos</a>
+  <a href="spel.html">🎮 Spel</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Välj vad du vill träna</h2>
+    <p>
+      Börja med ett område. Välj sedan nivå 1, 2 eller 3.
+      Uppgifterna blir svårare när nivån ökar.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>1. Välj område</h2>
+
+    <div class="chooser-grid">
+      <button class="chooser-btn" onclick="chooseArea('addition', this)">➕ Addition</button>
+      <button class="chooser-btn" onclick="chooseArea('subtraction', this)">➖ Subtraktion</button>
+      <button class="chooser-btn" onclick="chooseArea('multiplication', this)">✖️ Multiplikation</button>
+      <button class="chooser-btn" onclick="chooseArea('division', this)">➗ Division</button>
+      <button class="chooser-btn" onclick="chooseArea('number', this)">🔢 Taluppfattning</button>
+      <button class="chooser-btn" onclick="chooseArea('fraction', this)">🍕 Bråk</button>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>2. Välj nivå</h2>
+
+    <div class="level-grid">
+      <button class="level-btn" onclick="chooseLevel(1, this)">🌱 Nivå 1</button>
+      <button class="level-btn" onclick="chooseLevel(2, this)">🌿 Nivå 2</button>
+      <button class="level-btn" onclick="chooseLevel(3, this)">🌳 Nivå 3</button>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>3. Träna</h2>
+
+    <div class="task-box">
+
+      <div class="task-label" id="taskLabel">
+        Välj område och nivå
+      </div>
+
+      <div class="task" id="task">
+        När du har valt startar uppgifterna här.
+      </div>
+
+      <div class="answer-row">
+        <input type="text" id="answerInput" placeholder="Skriv ditt svar">
+
+        <button onclick="checkAnswer()">
+          Kontrollera
+        </button>
+
+        <button onclick="newTask()">
+          Ny uppgift
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div class="score">
+        Rätt: <span id="correctScore">0</span>
+        &nbsp; | &nbsp;
+        Försök: <span id="attempts">0</span>
+      </div>
+
+      <div class="progress-box">
+        <div class="progress">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 När du är redo</h2>
+
+    <div class="challenge">
+      Försök få <strong>10 rätt</strong> på samma nivå.
+      Byt sedan till nästa nivå eller välj ett nytt matematikområde.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Välj • Träna • Kontrollera • Utvecklas</p>
+</footer>
+
+<script>
+
+  let currentArea = null;
+  let currentLevel = null;
+  let correctAnswer = null;
+
+  let correctScore = 0;
+  let attempts = 0;
+
+
+  function chooseArea(area, button) {
+
+    currentArea = area;
+
+    document.querySelectorAll(".chooser-btn")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    if (currentLevel) {
+      resetScore();
+      newTask();
+    }
+  }
+
+
+  function chooseLevel(level, button) {
+
+    currentLevel = level;
+
+    document.querySelectorAll(".level-btn")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    if (currentArea) {
+      resetScore();
+      newTask();
+    }
+  }
+
+
+  function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
+  function newTask() {
+
+    if (!currentArea || !currentLevel) {
+      document.getElementById("feedback").textContent =
+        "Välj först både område och nivå.";
+      return;
+    }
+
+    document.getElementById("feedback").textContent = "";
+    document.getElementById("answerInput").value = "";
+
+    let text = "";
+
+
+    /* ADDITION */
+
+    if (currentArea === "addition") {
+
+      let a, b;
+
+      if (currentLevel === 1) {
+        a = random(1, 20);
+        b = random(1, 20);
+      }
+
+      if (currentLevel === 2) {
+        a = random(20, 80);
+        b = random(10, 50);
+      }
+
+      if (currentLevel === 3) {
+        a = random(100, 500);
+        b = random(50, 400);
+      }
+
+      correctAnswer = a + b;
+      text = `${a} + ${b} = ?`;
+    }
+
+
+    /* SUBTRAKTION */
+
+    if (currentArea === "subtraction") {
+
+      let a, b;
+
+      if (currentLevel === 1) {
+        a = random(10, 30);
+        b = random(1, a);
+      }
+
+      if (currentLevel === 2) {
+        a = random(40, 100);
+        b = random(10, a);
+      }
+
+      if (currentLevel === 3) {
+        a = random(200, 800);
+        b = random(50, a);
+      }
+
+      correctAnswer = a - b;
+      text = `${a} − ${b} = ?`;
+    }
+
+
+    /* MULTIPLIKATION */
+
+    if (currentArea === "multiplication") {
+
+      let a, b;
+
+      if (currentLevel === 1) {
+        a = random(1, 10);
+        b = [2,5,10][random(0,2)];
+      }
+
+      if (currentLevel === 2) {
+        a = random(1, 10);
+        b = [3,4,6][random(0,2)];
+      }
+
+      if (currentLevel === 3) {
+        a = random(2, 10);
+        b = random(2, 10);
+      }
+
+      correctAnswer = a * b;
+      text = `${a} × ${b} = ?`;
+    }
+
+
+    /* DIVISION */
+
+    if (currentArea === "division") {
+
+      let divisor;
+      let answer;
+
+      if (currentLevel === 1) {
+        divisor = [2,5,10][random(0,2)];
+        answer = random(2, 8);
+      }
+
+      if (currentLevel === 2) {
+        divisor = [3,4,5][random(0,2)];
+        answer = random(2, 9);
+      }
+
+      if (currentLevel === 3) {
+        divisor = random(2, 10);
+        answer = random(2, 10);
+      }
+
+      const dividend = divisor * answer;
+
+      correctAnswer = answer;
+      text = `${dividend} ÷ ${divisor} = ?`;
+    }
+
+
+    /* TALUPPFATTNING */
+
+    if (currentArea === "number") {
+
+      if (currentLevel === 1) {
+
+        const number = random(100, 999);
+        const hundreds = Math.floor(number / 100);
+
+        correctAnswer = hundreds * 100;
+
+        text =
+          `Vilket värde har siffran ${hundreds} i talet ${number}?`;
+      }
+
+      if (currentLevel === 2) {
+
+        const start = random(10, 50);
+        const step = random(2, 10);
+
+        correctAnswer = start + step * 4;
+
+        text =
+          `Vilket tal kommer sedan? ${start}, ${start+step}, ${start+step*2}, ${start+step*3}, ...`;
+      }
+
+      if (currentLevel === 3) {
+
+        const number = random(200, 900);
+
+        correctAnswer = number + 100;
+
+        text =
+          `Vilket tal är 100 större än ${number}?`;
+      }
+    }
+
+
+    /* BRÅK */
+
+    if (currentArea === "fraction") {
+
+      if (currentLevel === 1) {
+
+        const number = random(2, 10) * 2;
+
+        correctAnswer = number / 2;
+
+        text =
+          `Vad är hälften av ${number}?`;
+      }
+
+      if (currentLevel === 2) {
+
+        const number = random(2, 8) * 4;
+
+        correctAnswer = number / 4;
+
+        text =
+          `Vad är en fjärdedel av ${number}?`;
+      }
+
+      if (currentLevel === 3) {
+
+        const answer = random(2, 8);
+        const number = answer * 3;
+
+        correctAnswer = answer;
+
+        text =
+          `Vad är en tredjedel av ${number}?`;
+      }
+    }
+
+
+    const areaNames = {
+      addition: "Addition",
+      subtraction: "Subtraktion",
+      multiplication: "Multiplikation",
+      division: "Division",
+      number: "Taluppfattning",
+      fraction: "Bråk"
+    };
+
+    document.getElementById("taskLabel").textContent =
+      areaNames[currentArea] + " • Nivå " + currentLevel;
+
+    document.getElementById("task").textContent = text;
+  }
+
+
+  function checkAnswer() {
+
+    if (!currentArea || !currentLevel) {
+      document.getElementById("feedback").textContent =
+        "Välj område och nivå först.";
+      return;
+    }
+
+    const input = document.getElementById("answerInput");
+    const feedback = document.getElementById("feedback");
+
+    if (input.value.trim() === "") {
+      feedback.textContent =
+        "Skriv ett svar först.";
+      return;
+    }
+
+    const answer = Number(
+      input.value.replace(",", ".")
+    );
+
+    attempts++;
+
+    document.getElementById("attempts").textContent =
+      attempts;
+
+    if (answer === Number(correctAnswer)) {
+
+      correctScore++;
+
+      document.getElementById("correctScore").textContent =
+        correctScore;
+
+      feedback.textContent =
+        "✅ Rätt! Bra jobbat.";
+
+      updateProgress();
+
+      setTimeout(newTask, 900);
+
+    } else {
+
+      feedback.textContent =
+        "Inte riktigt. Försök igen och fundera på vilken strategi som kan hjälpa.";
+    }
+  }
+
+
+  function updateProgress() {
+
+    const percent =
+      Math.min(correctScore * 10, 100);
+
+    document.getElementById("progressFill")
+      .style.width =
+      percent + "%";
+  }
+
+
+  function resetScore() {
+
+    correctScore = 0;
+    attempts = 0;
+
+    document.getElementById("correctScore").textContent = "0";
+    document.getElementById("attempts").textContent = "0";
+    document.getElementById("progressFill").style.width = "0%";
+  }
+
+
+  document.getElementById("answerInput")
+    .addEventListener("keydown", function(event) {
+
+      if (event.key === "Enter") {
+        checkAnswer();
+      }
+
+    });
+
+</script>
+
+</body>
+</html>
