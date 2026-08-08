@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mattedetektiven – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2.2rem,6vw,4rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.3rem;
+      margin-bottom: 6px;
+    }
+
+    .case-file {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .case-title {
+      background: #eee4d6;
+      border-radius: 13px;
+      padding: 17px;
+      margin-bottom: 16px;
+    }
+
+    .case-title h2 {
+      margin-bottom: 5px;
+    }
+
+    .suspects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .suspect {
+      background: #f3eadf;
+      border: 1px solid #d8cab7;
+      border-radius: 13px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .suspect .face {
+      font-size: 2.5rem;
+      margin-bottom: 5px;
+    }
+
+    .clue-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 15px;
+      padding: 19px;
+      margin: 15px 0;
+    }
+
+    .clue-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #d8c8b2;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .clue-question {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .answer-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+    }
+
+    .answer-btn.right {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-btn.wrong {
+      background: var(--fel);
+      border-color: #caa9a2;
+    }
+
+    .feedback {
+      min-height: 27px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .unlocked {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .locked {
+      background: #eee4d6;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+      opacity: 0.72;
+    }
+
+    .progress-wrap {
+      height: 23px;
+      background: #eee4d6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      margin-top: 8px;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .accuse-box {
+      display: none;
+      background: #eee4d6;
+      border: 2px solid #cab89d;
+      border-radius: 16px;
+      padding: 21px;
+      margin-top: 20px;
+    }
+
+    .accuse-box.show {
+      display: block;
+    }
+
+    .accuse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .accuse-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+    }
+
+    .result {
+      display: none;
+      border-radius: 18px;
+      padding: 28px;
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result.win {
+      background: #e7eadf;
+      border: 3px solid #a7ad91;
+    }
+
+    .result.lose {
+      background: #eedbd7;
+      border: 3px solid #caa9a2;
+    }
+
+    .result h2 {
+      font-size: clamp(2rem,5vw,3.4rem);
+      margin-bottom: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--brun);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .detective-note {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .case-file,
+      .clue-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🕵️ Mattedetektiven</h1>
+
+  <p>
+    Ett mysterium har inträffat.
+    Lös de matematiska ledtrådarna, samla bevis och avslöja den skyldige.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#fall">📁 Fallet</a>
+  <a href="#ledtradar">🔍 Ledtrådar</a>
+  <a href="#misstankta">👥 Misstänkta</a>
+  <a href="#mer">🎮 Fler spel</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🔍 Så arbetar en mattedetektiv</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">1️⃣</div>
+        <h3>Läs fallet</h3>
+        <p>Ta reda på vad som har hänt och vilka som är misstänkta.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">2️⃣</div>
+        <h3>Lös ledtrådar</h3>
+        <p>Varje matematisk uppgift låser upp ny information.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">3️⃣</div>
+        <h3>Uteslut</h3>
+        <p>Använd ledtrådarna för att ta bort misstänkta.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">4️⃣</div>
+        <h3>Anklaga</h3>
+        <p>När alla ledtrådar är lösta får du välja den skyldige.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="fall">
+
+    <div class="case-file">
+
+      <div class="case-title">
+        <h2 id="caseName">📁 Det mystiska fallet</h2>
+        <p id="caseStory"></p>
+      </div>
+
+      <h3 id="misstankta">👥 Misstänkta</h3>
+
+      <div class="suspects" id="suspectList"></div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="progress-text" id="progressText">
+        0 av 5 ledtrådar lösta
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          Rätt svar
+          <strong id="correctCount">0</strong>
+        </div>
+
+        <div class="stat">
+          Försök
+          <strong id="attemptCount">0</strong>
+        </div>
+
+        <div class="stat">
+          Bevis
+          <strong id="evidenceCount">0</strong>
+        </div>
+
+      </div>
+
+      <div class="button-row">
+        <button onclick="startNewCase()">🎲 Nytt mysterium</button>
+        <button class="secondary" onclick="restartCase()">🔄 Börja om fallet</button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="ledtradar">
+
+    <h2>🔍 Matematiska ledtrådar</h2>
+
+    <div id="clueContainer"></div>
+
+    <div class="accuse-box" id="accuseBox">
+
+      <h2>⚖️ Vem är skyldig?</h2>
+
+      <p>
+        Alla ledtrådar är lösta.
+        Läs bevisen igen och välj den misstänkte som passar in på alla ledtrådar.
+      </p>
+
+      <div class="accuse-grid" id="accuseGrid"></div>
+
+      <div class="feedback" id="accuseFeedback"></div>
+
+    </div>
+
+
+    <div class="result" id="resultBox"></div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>🧠 Detektivens extra frågor</h2>
+
+    <div class="detective-note">
+      När du löser en ledtråd, försök också förklara:
+      <br><br>
+      <strong>Vilken strategi använde jag?</strong>
+      <br>
+      <strong>Hur kontrollerade jag svaret?</strong>
+      <br>
+      <strong>Vilken information kunde jag utesluta?</strong>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mer">
+
+    <h2>🎮 Fler matematikspel</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="mattesafari.html">
+        🧭 Mattesafari
+      </a>
+
+      <a class="link-card" href="mattebingo.html">
+        🎯 Mattebingo
+      </a>
+
+      <a class="link-card" href="spel.html">
+        🎮 Mattespel
+      </a>
+
+      <a class="link-card" href="veckouppdrag.html">
+        📅 Veckouppdrag
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧩 Problemlösning
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Mattedetektiven</strong></p>
+  <p>Undersök • Räkna • Resonera • Avslöja</p>
+</footer>
+
+
+<script>
+
+const cases = [
+
+  {
+    name: "🍪 Fallet med de försvunna kakorna",
+
+    story:
+      "På klassens fikabord stod en låda med 24 kakor. När rasten var slut var alla kakor borta. Fyra personer hade varit i närheten. Lös ledtrådarna och ta reda på vem som tog lådan.",
+
+    suspects: [
+      {
+        name: "Mira",
+        emoji: "👧",
+        detail: "Hade en blå ryggsäck."
+      },
+      {
+        name: "Leo",
+        emoji: "👦",
+        detail: "Bar en röd keps."
+      },
+      {
+        name: "Sam",
+        emoji: "🧒",
+        detail: "Hade en grön jacka."
+      },
+      {
+        name: "Nora",
+        emoji: "👧",
+        detail: "Bar en gul väska."
+      }
+    ],
+
+    culprit: "Sam",
+
+    clues: [
+
+      {
+        q: "24 kakor delas lika i 6 påsar. Hur många kakor blir det i varje påse?",
+        correct: "4",
+        wrong: ["3","5","6"],
+        evidence:
+          "Vittnet såg någon bära exakt 4 kakor i handen. Personen med den röda kepsen hade inga kakor."
+      },
+
+      {
+        q: "48 + 27 = ?",
+        correct: "75",
+        wrong: ["65","74","85"],
+        evidence:
+          "Skåpets kod var 75. Mira kände inte till koden och kan därför uteslutas."
+      },
+
+      {
+        q: "Vad är siffran 6 värd i talet 364?",
+        correct: "60",
+        wrong: ["6","600","64"],
+        evidence:
+          "På golvet hittades en lapp med talet 60 skrivet med grönt bläck."
+      },
+
+      {
+        q: "4 × 6 = ?",
+        correct: "24",
+        wrong: ["10","20","28"],
+        evidence:
+          "Den skyldige hade räknat alla 24 kakorna genom att lägga dem i 4 grupper med 6."
+      },
+
+      {
+        q: "Vilket är störst när helheten är lika stor?",
+        correct: "1/2",
+        wrong: ["1/4","1/8","De är lika"],
+        evidence:
+          "Det sista vittnet såg en person i grön jacka lämna platsen. Alla ledtrådar pekar nu åt samma håll."
+      }
+
+    ]
+  },
+
+
+  {
+    name: "🏆 Fallet med den försvunna pokalen",
+
+    story:
+      "Klassens matte-pokal stod på hyllan på morgonen. Efter lunch var den borta. Fyra personer hade varit i klassrummet. Vem flyttade pokalen?",
+
+    suspects: [
+      {
+        name: "Ella",
+        emoji: "👧",
+        detail: "Hade en lila tröja."
+      },
+      {
+        name: "Omar",
+        emoji: "👦",
+        detail: "Bar en svart ryggsäck."
+      },
+      {
+        name: "Lina",
+        emoji: "🧒",
+        detail: "Hade ett grönt pennfodral."
+      },
+      {
+        name: "Max",
+        emoji: "👦",
+        detail: "Bar en blå mössa."
+      }
+    ],
+
+    culprit: "Omar",
+
+    clues: [
+
+      {
+        q: "72 − 38 = ?",
+        correct: "34",
+        wrong: ["44","46","36"],
+        evidence:
+          "Pokalen hittades senare i skåp nummer 34."
+      },
+
+      {
+        q: "Vad är 100 mindre än 638?",
+        correct: "538",
+        wrong: ["628","438","738"],
+        evidence:
+          "En lapp med talet 538 låg bredvid en svart ryggsäck."
+      },
+
+      {
+        q: "35 ÷ 5 = ?",
+        correct: "7",
+        wrong: ["5","6","8"],
+        evidence:
+          "Sju små tejpbitar hittades där pokalen hade stått. Ella hade inte använt tejp."
+      },
+
+      {
+        q: "Om 5 × 7 = 35, vad blir 6 × 7?",
+        correct: "42",
+        wrong: ["36","40","48"],
+        evidence:
+          "Klockan visade 12:42 när någon gick ut ur klassrummet. Max var då på lunchrasten utomhus."
+      },
+
+      {
+        q: "Vilket tal saknas? 8 + ___ = 13",
+        correct: "5",
+        wrong: ["4","6","21"],
+        evidence:
+          "Fem matematikböcker hade flyttats för att gömma pokalen. Spåren ledde till platsen där den svarta ryggsäcken stod."
+      }
+
+    ]
+  },
+
+
+  {
+    name: "📚 Mysteriet med den hemliga matteboken",
+
+    story:
+      "En särskild mattebok med kluringar försvann från lärarens bord. Ingen ville erkänna att de hade lånat den. Kan du hitta vem som tog boken?",
+
+    suspects: [
+      {
+        name: "Sara",
+        emoji: "👧",
+        detail: "Hade ett rött bokmärke."
+      },
+      {
+        name: "Isak",
+        emoji: "👦",
+        detail: "Bar en grå huvtröja."
+      },
+      {
+        name: "Amina",
+        emoji: "🧒",
+        detail: "Hade ett gult pennfodral."
+      },
+      {
+        name: "Viggo",
+        emoji: "👦",
+        detail: "Bar gröna skor."
+      }
+    ],
+
+    culprit: "Amina",
+
+    clues: [
+
+      {
+        q: "99 + 26 = ?",
+        correct: "125",
+        wrong: ["115","124","126"],
+        evidence:
+          "Boken låg först på sida 125. Sara hade arbetat på sida 40 och hade inte öppnat den delen."
+      },
+
+      {
+        q: "Vad är 1/4 av 20?",
+        correct: "5",
+        wrong: ["4","10","15"],
+        evidence:
+          "Fem små gula pappersbitar hittades under bordet."
+      },
+
+      {
+        q: "Hur många minuter är en halvtimme?",
+        correct: "30",
+        wrong: ["15","20","60"],
+        evidence:
+          "Boken saknades i ungefär 30 minuter. Isak var på biblioteket hela den tiden."
+      },
+
+      {
+        q: "32 ÷ 4 = ?",
+        correct: "8",
+        wrong: ["6","7","9"],
+        evidence:
+          "Åtta kluringar hade lösts med gul penna."
+      },
+
+      {
+        q: "Vilket är störst: 403 eller 398?",
+        correct: "403",
+        wrong: ["398","De är lika","393"],
+        evidence:
+          "På sidan 403 fanns ett fingeravtryck bredvid gult bläck. Alla ledtrådar pekar mot samma misstänkta."
+      }
+
+    ]
+  },
+
+
+  {
+    name: "🎲 Fallet med den försvunna speltärningen",
+
+    story:
+      "Den stora tärningen som klassen använder i mattespel är borta. Fyra elever använde spelhörnan under dagen. Lös uppgifterna och hitta vem som flyttade den.",
+
+    suspects: [
+      {
+        name: "Noah",
+        emoji: "👦",
+        detail: "Hade en orange penna."
+      },
+      {
+        name: "Alva",
+        emoji: "👧",
+        detail: "Bar ett blått armband."
+      },
+      {
+        name: "Hugo",
+        emoji: "🧒",
+        detail: "Hade en brun väska."
+      },
+      {
+        name: "Maja",
+        emoji: "👧",
+        detail: "Bar en grön tröja."
+      }
+    ],
+
+    culprit: "Alva",
+
+    clues: [
+
+      {
+        q: "Vad är 1/3 av 18?",
+        correct: "6",
+        wrong: ["3","9","12"],
+        evidence:
+          "Tärningen hade sex sidor. Ett blått band låg bredvid spelhyllan."
+      },
+
+      {
+        q: "150 − 76 = ?",
+        correct: "74",
+        wrong: ["84","76","64"],
+        evidence:
+          "Spelhörnan ligger vid hylla 74. Hugo hade inte varit vid den hyllan."
+      },
+
+      {
+        q: "Hur många deciliter är 2 liter?",
+        correct: "20 dl",
+        wrong: ["2 dl","10 dl","200 dl"],
+        evidence:
+          "Ett papper märkt 20 låg under ett blått armband."
+      },
+
+      {
+        q: "Vilket tal fortsätter mönstret 5, 10, 15, 20, ...?",
+        correct: "25",
+        wrong: ["22","24","30"],
+        evidence:
+          "Maja arbetade med uppgift 25 på andra sidan klassrummet när tärningen försvann."
+      },
+
+      {
+        q: "Kan man slå en 7:a med en vanlig sexsidig tärning?",
+        correct: "Nej",
+        wrong: ["Ja","Alltid","Varannan gång"],
+        evidence:
+          "Den skyldige hade skrivit '7' på ett papper bredvid tärningen. Handstilen stämde med Alvas arbetsblad."
+      }
+
+    ]
+  }
+
+];
+
+
+let currentCase = null;
+let solved = [];
+let correctCount = 0;
+let attemptCount = 0;
+
+
+function shuffle(array) {
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+
+function startNewCase() {
+
+  currentCase =
+    cases[Math.floor(Math.random() * cases.length)];
+
+  solved =
+    new Array(currentCase.clues.length).fill(false);
+
+  correctCount = 0;
+  attemptCount = 0;
+
+  document.getElementById("correctCount").textContent = "0";
+  document.getElementById("attemptCount").textContent = "0";
+  document.getElementById("evidenceCount").textContent = "0";
+
+  document.getElementById("caseName").textContent =
+    currentCase.name;
+
+  document.getElementById("caseStory").textContent =
+    currentCase.story;
+
+  renderSuspects();
+  renderClues();
+  updateProgress();
+
+  document.getElementById("accuseBox")
+    .classList.remove("show");
+
+  const result = document.getElementById("resultBox");
+  result.className = "result";
+  result.innerHTML = "";
+}
+
+
+function restartCase() {
+
+  if (!currentCase) {
+    startNewCase();
+    return;
+  }
+
+  solved =
+    new Array(currentCase.clues.length).fill(false);
+
+  correctCount = 0;
+  attemptCount = 0;
+
+  document.getElementById("correctCount").textContent = "0";
+  document.getElementById("attemptCount").textContent = "0";
+  document.getElementById("evidenceCount").textContent = "0";
+
+  renderClues();
+  updateProgress();
+
+  document.getElementById("accuseBox")
+    .classList.remove("show");
+
+  const result = document.getElementById("resultBox");
+  result.className = "result";
+  result.innerHTML = "";
+}
+
+
+function renderSuspects() {
+
+  const container =
+    document.getElementById("suspectList");
+
+  container.innerHTML = "";
+
+  currentCase.suspects.forEach(suspect => {
+
+    const card = document.createElement("div");
+
+    card.className = "suspect";
+
+    card.innerHTML = `
+      <div class="face">${suspect.emoji}</div>
+      <strong>${suspect.name}</strong>
+      <br>
+      <span>${suspect.detail}</span>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+
+function renderClues() {
+
+  const container =
+    document.getElementById("clueContainer");
+
+  container.innerHTML = "";
+
+  currentCase.clues.forEach((clue,index) => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "clue-card";
+
+
+    const heading =
+      document.createElement("h3");
+
+    heading.innerHTML =
+      `<span class="clue-number">${index + 1}</span> Ledtråd ${index + 1}`;
+
+
+    const question =
+      document.createElement("div");
+
+    question.className =
+      "clue-question";
+
+    question.textContent =
+      clue.q;
+
+
+    card.appendChild(heading);
+    card.appendChild(question);
+
+
+    if (solved[index]) {
+
+      const evidence =
+        document.createElement("div");
+
+      evidence.className =
+        "unlocked";
+
+      evidence.innerHTML =
+        `<strong>🔓 Bevis upplåst:</strong><br>${clue.evidence}`;
+
+      card.appendChild(evidence);
+
+    } else {
+
+      const answers =
+        document.createElement("div");
+
+      answers.className =
+        "answer-grid";
+
+
+      const alternatives =
+        shuffle([
+          clue.correct,
+          ...clue.wrong
+        ]);
+
+
+      alternatives.forEach(answer => {
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "answer-btn";
+
+        button.textContent =
+          answer;
+
+
+        button.addEventListener(
+          "click",
+          () => {
+            checkAnswer(
+              index,
+              answer,
+              button,
+              answers,
+              feedback
+            );
+          }
+        );
+
+
+        answers.appendChild(button);
+      });
+
+
+      const feedback =
+        document.createElement("div");
+
+      feedback.className =
+        "feedback";
+
+
+      card.appendChild(answers);
+      card.appendChild(feedback);
+
+    }
+
+
+    container.appendChild(card);
+  });
+
+
+  if (solved.every(Boolean)) {
+    showAccusation();
+  }
+}
+
+
+function checkAnswer(
+  index,
+  answer,
+  button,
+  answerContainer,
+  feedback
+) {
+
+  attemptCount++;
+
+  document.getElementById("attemptCount")
+    .textContent =
+    attemptCount;
+
+
+  const clue =
+    currentCase.clues[index];
+
+
+  if (answer === clue.correct) {
+
+    correctCount++;
+
+    document.getElementById("correctCount")
+      .textContent =
+      correctCount;
+
+    solved[index] = true;
+
+    button.classList.add("right");
+
+    feedback.textContent =
+      "Rätt! Du har låst upp ett nytt bevis.";
+
+    answerContainer
+      .querySelectorAll("button")
+      .forEach(btn => {
+        btn.disabled = true;
+      });
+
+    updateProgress();
+
+    setTimeout(() => {
+      renderClues();
+    },450);
+
+  } else {
+
+    button.classList.add("wrong");
+    button.disabled = true;
+
+    feedback.textContent =
+      "Inte riktigt. Prova ett annat svar och fundera på vilken strategi som passar.";
+  }
+}
+
+
+function updateProgress() {
+
+  const count =
+    solved.filter(Boolean).length;
+
+  const percent =
+    count / currentCase.clues.length * 100;
+
+  document.getElementById("progressBar")
+    .style.width =
+    percent + "%";
+
+  document.getElementById("progressText")
+    .textContent =
+    count +
+    " av " +
+    currentCase.clues.length +
+    " ledtrådar lösta";
+
+  document.getElementById("evidenceCount")
+    .textContent =
+    count;
+}
+
+
+function showAccusation() {
+
+  const box =
+    document.getElementById("accuseBox");
+
+  box.classList.add("show");
+
+  const grid =
+    document.getElementById("accuseGrid");
+
+  grid.innerHTML = "";
+
+  const suspects =
+    shuffle(currentCase.suspects);
+
+
+  suspects.forEach(suspect => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "accuse-btn";
+
+    button.textContent =
+      suspect.emoji + " " + suspect.name;
+
+
+    button.addEventListener(
+      "click",
+      () => {
+        accuse(suspect.name);
+      }
+    );
+
+
+    grid.appendChild(button);
+  });
+
+
+  box.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function accuse(name) {
+
+  const feedback =
+    document.getElementById("accuseFeedback");
+
+  const result =
+    document.getElementById("resultBox");
+
+
+  if (name === currentCase.culprit) {
+
+    feedback.textContent =
+      "Rätt! Alla bevis pekar på " + name + ".";
+
+    result.className =
+      "result show win";
+
+    result.innerHTML = `
+      <h2>🎉 FALL LÖST!</h2>
+
+      <p>
+        Du använde matematik och ledtrådar för att avslöja
+        <strong>${name}</strong>.
+      </p>
+
+      <p>
+        Rätt svar: ${correctCount}<br>
+        Försök: ${attemptCount}
+      </p>
+
+      <button onclick="startNewCase()">
+        🕵️ Lös ett nytt mysterium
+      </button>
+    `;
+
+  } else {
+
+    feedback.textContent =
+      name +
+      " passar inte ihop med alla bevis. Läs ledtrådarna igen och försök en gång till.";
+
+    result.className =
+      "result show lose";
+
+    result.innerHTML = `
+      <h2>🔍 Inte ännu!</h2>
+
+      <p>
+        Något av bevisen utesluter ${name}.
+        Läs ledtrådarna noga och gör en ny anklagelse.
+      </p>
+    `;
+  }
+
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  startNewCase
+);
+
+</script>
+
+</body>
+</html>
