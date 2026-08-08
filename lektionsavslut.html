@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lektionsavslut – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .end-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .end-card h3 {
+      margin-top: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.86rem;
+      font-weight: bold;
+    }
+
+    .task-box {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .talk-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .teacher-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .challenge-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .self-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .self-btn {
+      border: 1px solid #d2c2ae;
+      background: #fffaf2;
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .self-btn:hover {
+      background: var(--beige);
+    }
+
+    .self-btn.selected {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: 1px solid #cdbfae;
+      background: #fffaf2;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige);
+    }
+
+    button.right {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    button:disabled {
+      opacity: 1;
+      cursor: default;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      min-height: 25px;
+      font-weight: bold;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      resize: vertical;
+      border: 1px solid #cdbfae;
+      border-radius: 10px;
+      background: #fffdf8;
+      color: var(--text);
+      padding: 12px;
+      font: inherit;
+      margin-top: 8px;
+    }
+
+    .random-btn {
+      background: #d6c3a6;
+      border: none;
+      font-weight: bold;
+    }
+
+    .random-btn:hover {
+      background: var(--beige2);
+    }
+
+    .random-display {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 18px;
+      margin-top: 14px;
+      font-size: 1.15rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:760px) {
+      .self-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .end-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌙 Lektionsavslut</h1>
+
+  <p>
+    Korta avslut som hjälper eleverna att sammanfatta sitt tänkande
+    och läraren att se vad som behöver hända nästa lektion.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#exit">🚪 Exitfrågor</a>
+  <a href="#reflektion">💭 Reflektion</a>
+  <a href="#sjalv">🌱 Självskattning</a>
+  <a href="#kluring">🧠 Sista kluring</a>
+  <a href="#larare">👩‍🏫 Läraranalys</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Avsluta med matematiken – inte bara med tiden</h2>
+
+    <p>
+      De sista minuterna kan användas för att synliggöra vad eleverna förstått,
+      vilka strategier de använt och vad som fortfarande är oklart.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🚪</div>
+        <h3>Kontrollera</h3>
+        <p>En kort fråga som visar förståelse.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Förklara</h3>
+        <p>Sätt ord på dagens matematiska idé.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌱</div>
+        <h3>Självskatta</h3>
+        <p>Vad känns säkert och vad behöver tränas?</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">➡️</div>
+        <h3>Planera vidare</h3>
+        <p>Läraren använder svaren inför nästa lektion.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="exit">
+    <h2>🚪 Exitfrågor</h2>
+
+    <div class="end-card">
+      <h3>Avslut 1 – En fråga räcker</h3>
+
+      <div class="meta">
+        <span class="tag">3 min</span>
+        <span class="tag">Enskilt</span>
+      </div>
+
+      <div class="task-box">
+        I talet <strong>472</strong> – vad är siffran 7 värd?
+        <br><br>
+        Förklara hur du vet.
+      </div>
+
+      <div class="teacher-box">
+        Titta inte bara efter svaret 70.
+        Lyssna efter om eleven kan koppla siffrans värde till dess plats.
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 2 – Visa strategin</h3>
+
+      <div class="task-box">
+        Lös:
+        <br><br>
+        <strong>48 + 27</strong>
+        <br><br>
+        Visa hur du tänkte.
+      </div>
+
+      <div class="talk-box">
+        Meningsstart:
+        <br>
+        ”Jag började med att...”
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 3 – Vad hör ihop?</h3>
+
+      <div class="task-box">
+        Om:
+        <br><br>
+        <strong>4 × 6 = 24</strong>
+        <br><br>
+        skriv ett divisionsuttryck som hör ihop.
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 4 – Förklara ett begrepp</h3>
+
+      <div class="task-box">
+        Förklara ordet:
+        <br><br>
+        <strong>skillnad</strong>
+        <br><br>
+        så att någon som inte varit på lektionen skulle förstå.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="reflektion">
+    <h2>💭 Vad lärde jag mig?</h2>
+
+    <div class="end-card">
+      <h3>Avslut 5 – En mening</h3>
+
+      <div class="task-box">
+        Skriv färdigt:
+        <br><br>
+        <strong>Idag lärde jag mig att...</strong>
+      </div>
+
+      <textarea placeholder="Elevens svar..."></textarea>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 6 – Dagens viktigaste idé</h3>
+
+      <div class="task-box">
+        Vilken matematisk idé från lektionen tycker du var viktigast?
+      </div>
+
+      <div class="talk-box">
+        Förklara också varför.
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 7 – Från svårt till begripligt</h3>
+
+      <div class="task-box">
+        Något som först var svårt men som blev tydligare idag var...
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 8 – Min strategi</h3>
+
+      <div class="task-box">
+        Vilken strategi använde du idag?
+        <br><br>
+        När skulle den vara bra att använda igen?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="sjalv">
+    <h2>🌱 Snabb självskattning</h2>
+
+    <p>
+      Eleverna väljer det alternativ som bäst beskriver hur det känns just nu.
+    </p>
+
+    <div class="self-grid">
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        🌱
+        <br>
+        Jag behöver mer hjälp
+      </button>
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        🌿
+        <br>
+        Jag börjar förstå
+      </button>
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        🌳
+        <br>
+        Jag kan själv
+      </button>
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        ⭐
+        <br>
+        Jag kan förklara
+      </button>
+
+    </div>
+
+    <div class="teacher-box">
+      Självskattning är elevens upplevelse av sin förståelse.
+      Kombinera den med elevlösningar och lärarens observationer.
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Sant eller falskt – avsluta med resonemang</h2>
+
+    <div class="end-card">
+      <h3>Avslut 9</h3>
+
+      <div class="task-box">
+        398 är större än 403.
+      </div>
+
+      <div class="answer-area" id="answer1"></div>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 10</h3>
+
+      <div class="task-box">
+        1/2 är större än 1/4 när helheterna är lika stora.
+      </div>
+
+      <div class="answer-area" id="answer2"></div>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 11</h3>
+
+      <div class="task-box">
+        Om 5 × 6 = 30 så är 30 ÷ 6 = 5.
+      </div>
+
+      <div class="answer-area" id="answer3"></div>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🕵️ Hitta dagens fel</h2>
+
+    <div class="end-card">
+      <h3>Avslut 12 – Felanalys</h3>
+
+      <div class="task-box">
+        En elev skriver:
+        <br><br>
+        <strong>72 − 38 = 46</strong>
+      </div>
+
+      <div class="talk-box">
+        Förklara:
+        <br>
+        1. Vad tror du eleven gjorde?
+        <br>
+        2. Varför fungerar det inte?
+        <br>
+        3. Hur skulle du lösa uppgiften?
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 13 – Är svaret möjligt?</h3>
+
+      <div class="task-box">
+        En elev räknar:
+        <br><br>
+        <strong>39 + 24 = 513</strong>
+      </div>
+
+      <div class="talk-box">
+        Hur kan du redan innan exakt beräkning se att svaret inte är rimligt?
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box" id="kluring">
+    <h2>🧠 En sista kluring</h2>
+
+    <div class="end-card">
+      <h3>Avslut 14 – Flera lösningar</h3>
+
+      <div class="task-box">
+        Två tal har summan 40.
+        <br><br>
+        Vilka tal kan det vara?
+      </div>
+
+      <div class="challenge-box">
+        ⭐ Hitta fem lösningar.
+        <br>
+        ⭐⭐ Hur kan du veta att du arbetar systematiskt?
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 15 – Hemligt tal</h3>
+
+      <div class="task-box">
+        Jag tänker på ett tal.
+        <br><br>
+        • Talet är större än 40.
+        <br>
+        • Talet är mindre än 60.
+        <br>
+        • Talet är jämnt.
+        <br>
+        • Siffrorna har summan 9.
+        <br><br>
+        Vilket tal tänker jag på?
+      </div>
+    </div>
+
+
+    <div class="end-card">
+      <h3>Avslut 16 – Alltid, ibland eller aldrig?</h3>
+
+      <div class="task-box">
+        Summan av två udda tal är jämn.
+      </div>
+
+      <div class="talk-box">
+        Alltid, ibland eller aldrig?
+        <br><br>
+        Ge exempel som stöder ditt svar.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>🎲 Slumpa ett avslut</h2>
+
+    <p>
+      Behöver du ett snabbt avslut? Tryck på knappen.
+    </p>
+
+    <button class="random-btn" onclick="randomEnding()">🎲 Ge mig ett avslut</button>
+
+    <div class="random-display" id="randomDisplay">
+      Tryck på knappen ovan.
+    </div>
+  </section>
+
+
+  <section class="box" id="larare">
+    <h2>👩‍🏫 Lärarens snabbanalys</h2>
+
+    <p>
+      Sortera gärna elevernas svar direkt efter lektionen.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🌱</div>
+        <h3>Behöver återbesök</h3>
+        <p>Grundidén är ännu inte tydlig.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌿</div>
+        <h3>På väg</h3>
+        <p>Eleven visar delar av förståelsen.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌳</div>
+        <h3>Kan själv</h3>
+        <p>Eleven använder kunskapen självständigt.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⭐</div>
+        <h3>Redo för fördjupning</h3>
+        <p>Eleven kan förklara, jämföra eller generalisera.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>➡️ Vad gör jag med svaren?</h2>
+
+    <div class="table-wrap">
+
+      <table>
+        <tr>
+          <th>Jag ser...</th>
+          <th>Nästa lektion</th>
+        </tr>
+
+        <tr>
+          <td>Många visar samma missuppfattning.</td>
+          <td>Starta med gemensam modellering av just den idén.</td>
+        </tr>
+
+        <tr>
+          <td>Några få behöver stöd.</td>
+          <td>Planera liten grupp, station eller kort intensivträning.</td>
+        </tr>
+
+        <tr>
+          <td>Elever kan räkna men inte förklara.</td>
+          <td>Använd matteprat och meningsstarter.</td>
+        </tr>
+
+        <tr>
+          <td>De flesta kan och förklarar.</td>
+          <td>Gå vidare till variation, problemlösning och fördjupning.</td>
+        </tr>
+
+        <tr>
+          <td>Elevernas svar är mycket olika.</td>
+          <td>Använd differentierade uppgifter eller stationsarbete.</td>
+        </tr>
+
+      </table>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>📅 Fem avslut under en vecka</h2>
+
+    <div class="table-wrap">
+
+      <table>
+        <tr>
+          <th>Dag</th>
+          <th>Avslut</th>
+          <th>Vad läraren får syn på</th>
+        </tr>
+
+        <tr>
+          <td>Måndag</td>
+          <td>En beräkning + förklaring</td>
+          <td>Strategi</td>
+        </tr>
+
+        <tr>
+          <td>Tisdag</td>
+          <td>Sant eller falskt</td>
+          <td>Begreppsförståelse</td>
+        </tr>
+
+        <tr>
+          <td>Onsdag</td>
+          <td>Hitta felet</td>
+          <td>Resonemang</td>
+        </tr>
+
+        <tr>
+          <td>Torsdag</td>
+          <td>Självskattning</td>
+          <td>Elevens egen upplevelse</td>
+        </tr>
+
+        <tr>
+          <td>Fredag</td>
+          <td>Öppen kluring</td>
+          <td>Flexibilitet och fördjupning</td>
+        </tr>
+      </table>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Bra avslut innehåller ofta...</h2>
+
+    <ul class="checklist">
+      <li>en tydlig koppling till dagens matematikmål,</li>
+      <li>en fråga som visar tänkandet och inte bara svaret,</li>
+      <li>möjlighet att använda matematiska ord,</li>
+      <li>en snabb väg för läraren att tolka svaren,</li>
+      <li>information som faktiskt kan påverka nästa lektion.</li>
+    </ul>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Fler resurser</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="lektionsstart.html">
+        ☀️ Lektionsstarter
+      </a>
+
+      <a class="link-card" href="exit-ticket.html">
+        🚪 Exit ticket
+      </a>
+
+      <a class="link-card" href="bedomning.html">
+        🔎 Bedömning
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="felanalys.html">
+        🕵️ Felanalys
+      </a>
+
+      <a class="link-card" href="intensivtraning.html">
+        ⚡ Intensivträning
+      </a>
+
+      <a class="link-card" href="veckoplan.html">
+        📅 Veckoplan
+      </a>
+
+      <a class="link-card" href="lektionsbank.html">
+        📚 Lektionsbank
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Lektionsavslut</strong></p>
+  <p>Sammanfatta • Förklara • Kontrollera • Planera vidare</p>
+</footer>
+
+
+<script>
+  function shuffle(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+
+  function selectSelf(button) {
+    document.querySelectorAll(".self-btn").forEach(btn => {
+      btn.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+  }
+
+
+  function trueFalse(containerId, feedbackId, correct, explanation) {
+
+    const container = document.getElementById(containerId);
+    const feedback = document.getElementById(feedbackId);
+
+    const alternatives = shuffle(["Sant","Falskt"]);
+
+    alternatives.forEach(answer => {
+
+      const button = document.createElement("button");
+      button.textContent = answer;
+
+      button.addEventListener("click", () => {
+
+        container.querySelectorAll("button").forEach(btn => {
+          btn.disabled = true;
+
+          if (btn.textContent === correct) {
+            btn.classList.add("right");
+          }
+        });
+
+        if (answer === correct) {
+          button.classList.add("right");
+          feedback.textContent = "Rätt. " + explanation;
+        } else {
+          button.classList.add("wrong");
+          feedback.textContent = "Inte riktigt. " + explanation;
+        }
+
+      });
+
+      container.appendChild(button);
+    });
+  }
+
+
+  const endings = [
+    "Förklara med en mening vad du lärde dig idag.",
+    "Skriv en uppgift där svaret blir 24.",
+    "Visa dagens matematiska idé med en bild.",
+    "Vilken strategi använde du idag och varför?",
+    "Vad var lättast idag? Förklara varför.",
+    "Vad behöver du träna mer på?",
+    "Hitta ett exempel som visar dagens matematik.",
+    "Förklara ett matematikord från lektionen.",
+    "Skriv en fråga du fortfarande har.",
+    "Visa två olika sätt att lösa en uppgift från lektionen.",
+    "Vad skulle du förklara för en elev som varit borta idag?",
+    "Hur kan du kontrollera att ett svar är rimligt?",
+    "Skapa ett sant eller falskt påstående om dagens område.",
+    "Vilket misstag tror du är lätt att göra inom dagens område?",
+    "Skriv dagens viktigaste matematiska idé med högst tio ord."
+  ];
+
+
+  function randomEnding() {
+    const ending = endings[Math.floor(Math.random() * endings.length)];
+
+    document.getElementById("randomDisplay").innerHTML =
+      "<strong>Dagens avslut:</strong><br><br>" + ending;
+  }
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    trueFalse(
+      "answer1",
+      "feedback1",
+      "Falskt",
+      "403 är större eftersom det har fyra hundratal."
+    );
+
+    trueFalse(
+      "answer2",
+      "feedback2",
+      "Sant",
+      "När helheten är lika stor är en halv större än en fjärdedel."
+    );
+
+    trueFalse(
+      "answer3",
+      "feedback3",
+      "Sant",
+      "Multiplikation och division kan användas för att kontrollera varandra."
+    );
+
+  });
+</script>
+
+</body>
+</html>
