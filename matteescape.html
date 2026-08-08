@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Matte Escape – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2.2rem,6vw,4rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .icon {
+      font-size: 2.3rem;
+      margin-bottom: 6px;
+    }
+
+    .story-box {
+      background: #f3eadf;
+      border-left: 5px solid #bca98d;
+      border-radius: 11px;
+      padding: 16px;
+      margin-top: 15px;
+    }
+
+    .locks {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .lock-status {
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .lock-status .emoji {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .lock-status.done {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .lock-status.locked {
+      opacity: 0.55;
+    }
+
+    .progress-wrap {
+      height: 23px;
+      background: #eee4d6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-weight: bold;
+      color: var(--brun);
+      margin-top: 8px;
+    }
+
+    .room {
+      display: none;
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+
+    .room.active {
+      display: block;
+    }
+
+    .room-head {
+      background: #eee4d6;
+      border-radius: 13px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .room-head h3 {
+      margin: 0 0 5px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--beige);
+      border-radius: 18px;
+      padding: 4px 9px;
+      font-weight: bold;
+      color: var(--brun);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .question-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 17px;
+      margin-top: 12px;
+    }
+
+    .question-card strong {
+      display: block;
+      margin-bottom: 9px;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+      gap: 9px;
+      margin-top: 11px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    .answer-btn {
+      background: #fffaf2;
+      border: 1px solid #cdbfae;
+    }
+
+    .answer-btn.right {
+      background: var(--ratt);
+      border-color: #aab69f;
+    }
+
+    .answer-btn.wrong {
+      background: var(--fel);
+      border-color: #caa9a2;
+    }
+
+    .feedback {
+      min-height: 27px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .digit-box {
+      display: none;
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 11px;
+      padding: 16px;
+      margin-top: 15px;
+    }
+
+    .digit-box.show {
+      display: block;
+    }
+
+    .digit {
+      display: inline-flex;
+      width: 55px;
+      height: 55px;
+      align-items: center;
+      justify-content: center;
+      background: #fffdf8;
+      border: 2px solid #a7ad91;
+      border-radius: 12px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--brun);
+      margin: 8px 0;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .next-btn.show {
+      display: inline-block;
+    }
+
+    .code-display {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .code-digit {
+      width: 60px;
+      height: 70px;
+      background: #f3eadf;
+      border: 2px solid #cdbfae;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .final-lock {
+      display: none;
+      background: #eee4d6;
+      border: 2px solid #cab89d;
+      border-radius: 17px;
+      padding: 22px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .final-lock.show {
+      display: block;
+    }
+
+    .code-inputs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .code-inputs input {
+      width: 55px;
+      height: 60px;
+      text-align: center;
+      border: 2px solid #cdbfae;
+      border-radius: 10px;
+      background: #fffdf8;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .final-result {
+      display: none;
+      border-radius: 18px;
+      padding: 28px;
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .final-result.show {
+      display: block;
+    }
+
+    .final-result.win {
+      background: #e7eadf;
+      border: 3px solid #a7ad91;
+    }
+
+    .final-result.lose {
+      background: #eedbd7;
+      border: 3px solid #caa9a2;
+    }
+
+    .final-result h2 {
+      font-size: clamp(2rem,6vw,3.7rem);
+      margin-bottom: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--brun);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .teacher-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:850px) {
+      .locks {
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .room {
+        padding: 18px;
+      }
+
+      .locks {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔐 Matte Escape</h1>
+
+  <p>
+    Fem lås. Fem matematiska rum. Fem siffror.
+    Kan du hitta hela koden och ta dig ut?
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#uppdrag">📜 Uppdraget</a>
+  <a href="#spel">🔐 Låsen</a>
+  <a href="#slutkod">🔢 Slutkod</a>
+  <a href="#mer">🎮 Fler spel</a>
+</nav>
+
+<main>
+
+  <section class="box intro" id="uppdrag">
+
+    <h2>📜 Uppdraget</h2>
+
+    <div class="story-box">
+      Du har kommit in i ett gammalt matematikrum.
+      Dörren bakom dig har låsts.
+      Framför dig finns fem lås.
+      <br><br>
+      Varje lås öppnas med matematik.
+      När du löser ett rum får du en hemlig siffra.
+      Samla alla fem siffror i rätt ordning och slå in slutkoden.
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🔢</div>
+        <h3>Lås 1</h3>
+        <p>Taluppfattning</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">➕</div>
+        <h3>Lås 2</h3>
+        <p>Räknesätt</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔁</div>
+        <h3>Lås 3</h3>
+        <p>Mönster</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📐</div>
+        <h3>Lås 4</h3>
+        <p>Geometri</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Lås 5</h3>
+        <p>Problemlösning</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="spel">
+
+    <h2>🔐 Låsen</h2>
+
+    <div class="locks">
+
+      <div class="lock-status" id="lockStatus0">
+        <span class="emoji">🔢</span>
+        <strong>Lås 1</strong>
+        <span>Öppet</span>
+      </div>
+
+      <div class="lock-status locked" id="lockStatus1">
+        <span class="emoji">➕</span>
+        <strong>Lås 2</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="lock-status locked" id="lockStatus2">
+        <span class="emoji">🔁</span>
+        <strong>Lås 3</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="lock-status locked" id="lockStatus3">
+        <span class="emoji">📐</span>
+        <strong>Lås 4</strong>
+        <span>🔒</span>
+      </div>
+
+      <div class="lock-status locked" id="lockStatus4">
+        <span class="emoji">🧠</span>
+        <strong>Lås 5</strong>
+        <span>🔒</span>
+      </div>
+
+    </div>
+
+
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="progress-text" id="progressText">
+      0 av 5 lås öppnade
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        Rätt svar
+        <strong id="correctCount">0</strong>
+      </div>
+
+      <div class="stat">
+        Försök
+        <strong id="attemptCount">0</strong>
+      </div>
+
+      <div class="stat">
+        Lås öppnade
+        <strong id="openedCount">0</strong>
+      </div>
+
+    </div>
+
+
+    <div class="button-row">
+      <button onclick="startGame()">🎲 Nytt escape room</button>
+      <button class="secondary" onclick="restartGame()">🔄 Börja om</button>
+    </div>
+
+
+    <div id="roomContainer"></div>
+
+  </section>
+
+
+  <section class="box" id="slutkod">
+
+    <h2>🔢 Dina kodsiffror</h2>
+
+    <p>
+      Siffrorna visas när du klarar låsen.
+    </p>
+
+    <div class="code-display">
+
+      <div class="code-digit" id="digit0">?</div>
+      <div class="code-digit" id="digit1">?</div>
+      <div class="code-digit" id="digit2">?</div>
+      <div class="code-digit" id="digit3">?</div>
+      <div class="code-digit" id="digit4">?</div>
+
+    </div>
+
+
+    <div class="final-lock" id="finalLock">
+
+      <h2>🚪 Sista dörren</h2>
+
+      <p>
+        Skriv in dina fem siffror i samma ordning som låsen.
+      </p>
+
+      <div class="code-inputs">
+        <input maxlength="1" inputmode="numeric" id="code0">
+        <input maxlength="1" inputmode="numeric" id="code1">
+        <input maxlength="1" inputmode="numeric" id="code2">
+        <input maxlength="1" inputmode="numeric" id="code3">
+        <input maxlength="1" inputmode="numeric" id="code4">
+      </div>
+
+      <button onclick="checkFinalCode()">🔓 Öppna dörren</button>
+
+      <div class="feedback" id="finalFeedback"></div>
+
+    </div>
+
+
+    <div class="final-result" id="finalResult"></div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>💬 Tänk som en matematiker</h2>
+
+    <div class="teacher-box">
+      Efter varje lås:
+      <br><br>
+      <strong>Vilken strategi använde du?</strong>
+      <br>
+      <strong>Hur visste du att svaret var rimligt?</strong>
+      <br>
+      <strong>Skulle uppgiften kunna lösas på ett annat sätt?</strong>
+    </div>
+
+  </section>
+
+
+  <section class="box" id="mer">
+
+    <h2>🎮 Fler matteäventyr</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="mattedetektiven.html">
+        🕵️ Mattedetektiven
+      </a>
+
+      <a class="link-card" href="mattesafari.html">
+        🧭 Mattesafari
+      </a>
+
+      <a class="link-card" href="mattebingo.html">
+        🎯 Mattebingo
+      </a>
+
+      <a class="link-card" href="spel.html">
+        🎮 Mattespel
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧩 Problemlösning
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  <p><strong>Matematik åk 3 – Matte Escape</strong></p>
+  <p>Lös • Samla koden • Öppna låsen • Ta dig ut</p>
+</footer>
+
+
+<script>
+
+const roomBank = [
+
+  {
+    name: "🔢 Lås 1 – Talrummet",
+    badge: "Taluppfattning",
+
+    questions: [
+      {
+        q: "Vad är siffran 7 värd i talet 472?",
+        correct: "70",
+        wrong: ["7","700","72"],
+        digit: "7"
+      },
+      {
+        q: "Vilket tal är 100 mindre än 638?",
+        correct: "538",
+        wrong: ["628","438","738"],
+        digit: "5"
+      },
+      {
+        q: "Vilket tal är störst?",
+        correct: "403",
+        wrong: ["398","393","340"],
+        digit: "4"
+      },
+      {
+        q: "Vilket tal består av 5 hundratal, 0 tiotal och 8 ental?",
+        correct: "508",
+        wrong: ["58","580","5008"],
+        digit: "8"
+      }
+    ]
+  },
+
+
+  {
+    name: "➕ Lås 2 – Räknerummet",
+    badge: "De fyra räknesätten",
+
+    questions: [
+      {
+        q: "48 + 27 = ?",
+        correct: "75",
+        wrong: ["65","74","85"],
+        digit: "5"
+      },
+      {
+        q: "72 − 38 = ?",
+        correct: "34",
+        wrong: ["44","46","36"],
+        digit: "3"
+      },
+      {
+        q: "4 × 6 = ?",
+        correct: "24",
+        wrong: ["10","20","28"],
+        digit: "4"
+      },
+      {
+        q: "24 ÷ 6 = ?",
+        correct: "4",
+        wrong: ["3","5","6"],
+        digit: "6"
+      }
+    ]
+  },
+
+
+  {
+    name: "🔁 Lås 3 – Mönsterrummet",
+    badge: "Mönster och algebra",
+
+    questions: [
+      {
+        q: "Vilket tal kommer sedan? 5, 10, 15, 20, ...",
+        correct: "25",
+        wrong: ["22","24","30"],
+        digit: "2"
+      },
+      {
+        q: "Vilket tal saknas? 8 + ___ = 13",
+        correct: "5",
+        wrong: ["4","6","21"],
+        digit: "5"
+      },
+      {
+        q: "Vilket tal kommer sedan? 4, 8, 12, 16, ...",
+        correct: "20",
+        wrong: ["18","22","24"],
+        digit: "0"
+      },
+      {
+        q: "Vilket tal saknas? 4 × ___ = 28",
+        correct: "7",
+        wrong: ["6","8","24"],
+        digit: "7"
+      }
+    ]
+  },
+
+
+  {
+    name: "📐 Lås 4 – Geometrirummet",
+    badge: "Geometri och mätning",
+
+    questions: [
+      {
+        q: "Hur många hörn har en rektangel?",
+        correct: "4",
+        wrong: ["2","3","5"],
+        digit: "4"
+      },
+      {
+        q: "Hur många centimeter är 1 meter?",
+        correct: "100",
+        wrong: ["10","50","1000"],
+        digit: "1"
+      },
+      {
+        q: "Hur många deciliter är 1 liter?",
+        correct: "10 dl",
+        wrong: ["1 dl","5 dl","100 dl"],
+        digit: "0"
+      },
+      {
+        q: "Vilken figur har alltid fyra lika långa sidor och fyra räta hörn?",
+        correct: "Kvadrat",
+        wrong: ["Triangel","Cirkel","Valfri rektangel"],
+        digit: "9"
+      }
+    ]
+  },
+
+
+  {
+    name: "🧠 Lås 5 – Problemrummet",
+    badge: "Problemlösning",
+
+    questions: [
+      {
+        q: "Mira har 28 pärlor, får 15 nya och använder 9. Hur många har hon kvar?",
+        correct: "34",
+        wrong: ["24","43","52"],
+        digit: "3"
+      },
+      {
+        q: "32 elever delas i grupper om 4. Hur många grupper blir det?",
+        correct: "8",
+        wrong: ["6","7","28"],
+        digit: "8"
+      },
+      {
+        q: "Leo har 35 kr, får 12 kr och använder 8 kr. Hur mycket har han kvar?",
+        correct: "39",
+        wrong: ["31","47","55"],
+        digit: "9"
+      },
+      {
+        q: "7 lådor innehåller 4 bollar i varje. Hur många bollar finns totalt?",
+        correct: "28",
+        wrong: ["11","24","32"],
+        digit: "2"
+      }
+    ]
+  }
+
+];
+
+
+let currentRoom = 0;
+let selectedRooms = [];
+let codeDigits = [];
+let correctCount = 0;
+let attemptCount = 0;
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+
+    const j = Math.floor(
+      Math.random() * (i + 1)
+    );
+
+    [copy[i], copy[j]] =
+      [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+
+function startGame() {
+
+  currentRoom = 0;
+  codeDigits = [];
+  correctCount = 0;
+  attemptCount = 0;
+
+  selectedRooms =
+    roomBank.map(room => {
+
+      return {
+        ...room,
+        selected:
+          room.questions[
+            Math.floor(
+              Math.random() *
+              room.questions.length
+            )
+          ]
+      };
+
+    });
+
+
+  document.getElementById(
+    "correctCount"
+  ).textContent = "0";
+
+  document.getElementById(
+    "attemptCount"
+  ).textContent = "0";
+
+  document.getElementById(
+    "openedCount"
+  ).textContent = "0";
+
+
+  for (let i = 0; i < 5; i++) {
+
+    const status =
+      document.getElementById(
+        "lockStatus" + i
+      );
+
+    status.classList.remove("done");
+
+    if (i === 0) {
+
+      status.classList.remove("locked");
+      status.lastElementChild.textContent =
+        "Öppet";
+
+    } else {
+
+      status.classList.add("locked");
+      status.lastElementChild.textContent =
+        "🔒";
+
+    }
+
+
+    document.getElementById(
+      "digit" + i
+    ).textContent = "?";
+
+
+    document.getElementById(
+      "code" + i
+    ).value = "";
+  }
+
+
+  document.getElementById(
+    "finalLock"
+  ).classList.remove("show");
+
+
+  const result =
+    document.getElementById(
+      "finalResult"
+    );
+
+  result.className =
+    "final-result";
+
+  result.innerHTML = "";
+
+
+  document.getElementById(
+    "finalFeedback"
+  ).textContent = "";
+
+
+  loadRoom();
+  updateProgress();
+}
+
+
+function loadRoom() {
+
+  const data =
+    selectedRooms[currentRoom];
+
+  const question =
+    data.selected;
+
+
+  const container =
+    document.getElementById(
+      "roomContainer"
+    );
+
+  container.innerHTML = "";
+
+
+  const room =
+    document.createElement("div");
+
+  room.className =
+    "room active";
+
+
+  room.innerHTML = `
+    <div class="room-head">
+      <span class="badge">${data.badge}</span>
+      <h3>${data.name}</h3>
+      <p>
+        Lös uppgiften för att få nästa kodsiffra.
+      </p>
+    </div>
+
+    <div class="question-card">
+      <strong>${question.q}</strong>
+
+      <div class="answer-grid" id="answerGrid"></div>
+
+      <div class="feedback" id="roomFeedback"></div>
+
+      <div class="digit-box" id="digitBox">
+        <strong>🔓 Låset är öppet!</strong>
+        <br>
+        Din kodsiffra är:
+        <br>
+        <span class="digit">${question.digit}</span>
+        <br>
+        Kom ihåg siffran.
+      </div>
+
+      <button
+        class="next-btn"
+        id="nextButton"
+        onclick="nextRoom()"
+      >
+        Nästa lås ➡️
+      </button>
+    </div>
+  `;
+
+
+  container.appendChild(room);
+
+
+  const answerGrid =
+    document.getElementById(
+      "answerGrid"
+    );
+
+
+  const alternatives =
+    shuffle([
+      question.correct,
+      ...question.wrong
+    ]);
+
+
+  alternatives.forEach(answer => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "answer-btn";
+
+    button.textContent =
+      answer;
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        checkRoomAnswer(
+          answer,
+          button
+        );
+
+      }
+    );
+
+
+    answerGrid.appendChild(
+      button
+    );
+  });
+}
+
+
+function checkRoomAnswer(
+  answer,
+  button
+) {
+
+  attemptCount++;
+
+  document.getElementById(
+    "attemptCount"
+  ).textContent =
+    attemptCount;
+
+
+  const question =
+    selectedRooms[currentRoom]
+      .selected;
+
+
+  const feedback =
+    document.getElementById(
+      "roomFeedback"
+    );
+
+
+  if (
+    answer ===
+    question.correct
+  ) {
+
+    correctCount++;
+
+    document.getElementById(
+      "correctCount"
+    ).textContent =
+      correctCount;
+
+
+    button.classList.add(
+      "right"
+    );
+
+
+    feedback.textContent =
+      "Rätt! Låset öppnas.";
+
+
+    document
+      .querySelectorAll(
+        "#answerGrid button"
+      )
+      .forEach(btn => {
+        btn.disabled = true;
+      });
+
+
+    codeDigits[currentRoom] =
+      question.digit;
+
+
+    document.getElementById(
+      "digit" + currentRoom
+    ).textContent =
+      question.digit;
+
+
+    document.getElementById(
+      "digitBox"
+    ).classList.add(
+      "show"
+    );
+
+
+    document.getElementById(
+      "nextButton"
+    ).classList.add(
+      "show"
+    );
+
+
+  } else {
+
+    button.classList.add(
+      "wrong"
+    );
+
+    button.disabled = true;
+
+    feedback.textContent =
+      "Inte riktigt. Prova igen och välj en strategi som hjälper dig.";
+  }
+}
+
+
+function nextRoom() {
+
+  const oldStatus =
+    document.getElementById(
+      "lockStatus" + currentRoom
+    );
+
+  oldStatus.classList.add(
+    "done"
+  );
+
+  oldStatus.lastElementChild.textContent =
+    "✓";
+
+
+  currentRoom++;
+
+
+  document.getElementById(
+    "openedCount"
+  ).textContent =
+    currentRoom;
+
+
+  if (
+    currentRoom >=
+    selectedRooms.length
+  ) {
+
+    finishLocks();
+    return;
+  }
+
+
+  const nextStatus =
+    document.getElementById(
+      "lockStatus" + currentRoom
+    );
+
+  nextStatus.classList.remove(
+    "locked"
+  );
+
+  nextStatus.lastElementChild.textContent =
+    "Öppet";
+
+
+  loadRoom();
+  updateProgress();
+
+
+  document.getElementById(
+    "spel"
+  ).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+function finishLocks() {
+
+  document.getElementById(
+    "roomContainer"
+  ).innerHTML = "";
+
+
+  document.getElementById(
+    "openedCount"
+  ).textContent =
+    "5";
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    "100%";
+
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    "🔓 Alla fem lås är öppnade!";
+
+
+  document.getElementById(
+    "finalLock"
+  ).classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "finalLock"
+  ).scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function updateProgress() {
+
+  const percent =
+    currentRoom / 5 * 100;
+
+
+  document.getElementById(
+    "progressBar"
+  ).style.width =
+    percent + "%";
+
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    currentRoom +
+    " av 5 lås öppnade";
+}
+
+
+function checkFinalCode() {
+
+  const entered = [];
+
+  for (let i = 0; i < 5; i++) {
+
+    entered.push(
+      document.getElementById(
+        "code" + i
+      ).value.trim()
+    );
+  }
+
+
+  const feedback =
+    document.getElementById(
+      "finalFeedback"
+    );
+
+
+  if (
+    entered.some(
+      value => value === ""
+    )
+  ) {
+
+    feedback.textContent =
+      "Fyll i alla fem siffrorna först.";
+
+    return;
+  }
+
+
+  const enteredCode =
+    entered.join("");
+
+  const correctCode =
+    codeDigits.join("");
+
+
+  const result =
+    document.getElementById(
+      "finalResult"
+    );
+
+
+  if (
+    enteredCode ===
+    correctCode
+  ) {
+
+    feedback.textContent =
+      "Koden är rätt!";
+
+    result.className =
+      "final-result show win";
+
+    result.innerHTML = `
+      <h2>🎉 DU ÄR UTE!</h2>
+
+      <p>
+        Dörren öppnas.
+        Du klarade hela Matte Escape!
+      </p>
+
+      <p>
+        Slutkod:
+        <strong>${correctCode}</strong>
+      </p>
+
+      <p>
+        Rätt svar: ${correctCount}<br>
+        Försök: ${attemptCount}
+      </p>
+
+      <button onclick="startGame()">
+        🔐 Nytt escape room
+      </button>
+    `;
+
+  } else {
+
+    feedback.textContent =
+      "Koden stämmer inte. Kontrollera siffrorna du fick från låsen.";
+
+    result.className =
+      "final-result show lose";
+
+    result.innerHTML = `
+      <h2>🔒 Dörren är fortfarande låst</h2>
+
+      <p>
+        Någon siffra står på fel plats.
+        Titta på dina fem kodsiffror och försök igen.
+      </p>
+    `;
+  }
+
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function restartGame() {
+
+  const ok =
+    confirm(
+      "Vill du börja om hela escape room?"
+    );
+
+  if (!ok) return;
+
+  startGame();
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  startGame
+);
+
+</script>
+
+</body>
+</html>
