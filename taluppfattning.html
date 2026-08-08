@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taluppfattning – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80, 65, 50, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #eee3d2, #d9c7aa);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 700px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    h2 {
+      color: var(--brun);
+      margin-top: 0;
+    }
+
+    h3 {
+      color: var(--brun);
+    }
+
+    .mal {
+      background: #eee4d6;
+    }
+
+    .numberline {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 5px;
+      margin-top: 20px;
+      padding: 20px 10px 10px;
+      border-bottom: 4px solid #8f8172;
+    }
+
+    .numberline span {
+      text-align: center;
+      font-weight: bold;
+      min-width: 28px;
+    }
+
+    .place-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .place {
+      background: var(--beige);
+      text-align: center;
+      padding: 20px 8px;
+      border-radius: 14px;
+    }
+
+    .place strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--brun);
+    }
+
+    .example {
+      background: #f1e8da;
+      border-left: 5px solid #bca98d;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .question {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    button.correct {
+      background: var(--ratt);
+    }
+
+    button.wrong {
+      background: var(--fel);
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .challenge {
+      background: #eee4d6;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #cdbda7;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 120px;
+    }
+
+    .check-btn {
+      background: #d8c6aa;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .self-check {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .self-card {
+      background: var(--beige);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .place-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔢 Taluppfattning</h1>
+  <p>
+    Här tränar du på tal, tallinjen, positionssystemet och hur tal kan delas upp.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#lar">📖 Lär dig</a>
+  <a href="#trana">✏️ Träna</a>
+  <a href="#problem">🧠 Problemlösning</a>
+  <a href="#koll">✅ Jag kan</a>
+</nav>
+
+<main>
+
+  <section class="box mal">
+    <h2>🎯 Det här ska du lära dig</h2>
+    <ul>
+      <li>läsa och skriva tal</li>
+      <li>förstå ental, tiotal och hundratal</li>
+      <li>jämföra tal</li>
+      <li>placera tal på en tallinje</li>
+      <li>dela upp tal på olika sätt</li>
+      <li>avgöra om ett tal är udda eller jämnt</li>
+      <li>upptäcka och fortsätta talmönster</li>
+      <li>bedöma om ett svar verkar rimligt</li>
+    </ul>
+  </section>
+
+  <section class="box" id="lar">
+    <h2>📖 Positionssystemet</h2>
+
+    <p>
+      En siffras värde beror på vilken plats den har i talet.
+    </p>
+
+    <div class="example">
+      Titta på talet <strong>347</strong>.
+    </div>
+
+    <div class="place-grid">
+      <div class="place">
+        <strong>3</strong>
+        Hundratal<br>
+        = 300
+      </div>
+
+      <div class="place">
+        <strong>4</strong>
+        Tiotal<br>
+        = 40
+      </div>
+
+      <div class="place">
+        <strong>7</strong>
+        Ental<br>
+        = 7
+      </div>
+    </div>
+
+    <div class="example">
+      Därför kan vi skriva:
+      <br><br>
+      <strong>347 = 300 + 40 + 7</strong>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>📍 Tallinjen</h2>
+
+    <p>
+      På tallinjen blir talen större när vi går åt höger.
+    </p>
+
+    <div class="numberline">
+      <span>0</span>
+      <span>10</span>
+      <span>20</span>
+      <span>30</span>
+      <span>40</span>
+      <span>50</span>
+      <span>60</span>
+      <span>70</span>
+      <span>80</span>
+      <span>90</span>
+      <span>100</span>
+    </div>
+
+    <div class="example">
+      Talet <strong>63</strong> ligger mellan 60 och 70.
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>⚖️ Jämföra tal</h2>
+
+    <p>Vi kan använda tre olika tecken:</p>
+
+    <div class="example">
+      <strong>45 &gt; 32</strong> betyder att 45 är större än 32.
+    </div>
+
+    <div class="example">
+      <strong>18 &lt; 27</strong> betyder att 18 är mindre än 27.
+    </div>
+
+    <div class="example">
+      <strong>56 = 56</strong> betyder att talen är lika stora.
+    </div>
+
+    <p>
+      Börja alltid med att jämföra siffran med störst värde.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🧩 Dela upp tal</h2>
+
+    <p>Ett tal kan delas upp på många olika sätt.</p>
+
+    <div class="example">
+      Talet <strong>68</strong> kan delas upp så här:
+      <br><br>
+      60 + 8
+      <br>
+      50 + 18
+      <br>
+      40 + 28
+      <br>
+      34 + 34
+    </div>
+
+    <p>
+      Att kunna dela upp tal hjälper dig när du räknar i huvudet.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🔄 Udda och jämna tal</h2>
+
+    <p>
+      Ett <strong>jämnt tal</strong> går att dela i två lika stora grupper utan att något blir över.
+    </p>
+
+    <div class="example">
+      Jämna tal slutar på:
+      <strong>0, 2, 4, 6 eller 8</strong>.
+    </div>
+
+    <p>
+      Ett <strong>udda tal</strong> slutar på:
+      <strong>1, 3, 5, 7 eller 9</strong>.
+    </p>
+  </section>
+
+  <section class="box">
+    <h2>🔍 Talmönster</h2>
+
+    <div class="example">
+      5, 10, 15, 20, 25, ...
+    </div>
+
+    <p>
+      Här ökar talen med <strong>5</strong> varje gång.
+    </p>
+
+    <div class="example">
+      100, 90, 80, 70, ...
+    </div>
+
+    <p>
+      Här minskar talen med <strong>10</strong> varje gång.
+    </p>
+  </section>
+
+  <section class="box" id="trana">
+    <h2>✏️ Träna</h2>
+
+    <div class="question">
+      <p>1. Vilket värde har siffran 6 i talet 268?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">6</button>
+        <button onclick="answer(this,true)">60</button>
+        <button onclick="answer(this,false)">600</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>2. Vilket tal är störst?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">389</button>
+        <button onclick="answer(this,true)">398</button>
+        <button onclick="answer(this,false)">388</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Vilket tal ska komma sedan? 15, 20, 25, 30, ...</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">31</button>
+        <button onclick="answer(this,true)">35</button>
+        <button onclick="answer(this,false)">40</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>4. Vilket av talen är jämnt?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">37</button>
+        <button onclick="answer(this,true)">42</button>
+        <button onclick="answer(this,false)">55</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Vilket tal ligger mellan 499 och 501?</p>
+
+      <div class="answers">
+        <button onclick="answer(this,false)">498</button>
+        <button onclick="answer(this,true)">500</button>
+        <button onclick="answer(this,false)">502</button>
+      </div>
+
+      <div class="feedback"></div>
+    </div>
+
+  </section>
+
+  <section class="box">
+    <h2>🧮 Skriv svaret</h2>
+
+    <p>
+      Talet består av 4 hundratal, 7 tiotal och 2 ental.
+      Vilket är talet?
+    </p>
+
+    <div class="input-row">
+      <input type="number" id="answer1" placeholder="Svar">
+      <button class="check-btn" onclick="checkInput()">Kontrollera</button>
+    </div>
+
+    <div class="feedback" id="inputFeedback"></div>
+  </section>
+
+  <section class="box" id="problem">
+    <h2>🧠 Problemlösning</h2>
+
+    <div class="challenge">
+      <h3>Hemliga talet</h3>
+
+      <p>Jag tänker på ett tal.</p>
+
+      <ul>
+        <li>Talet är större än 300.</li>
+        <li>Talet är mindre än 400.</li>
+        <li>Det har 5 tiotal.</li>
+        <li>Det har 8 ental.</li>
+      </ul>
+
+      <p>
+        <strong>Vilket tal tänker jag på?</strong>
+      </p>
+
+      <div class="input-row">
+        <input type="number" id="problemAnswer" placeholder="Svar">
+        <button class="check-btn" onclick="checkProblem()">Kontrollera</button>
+      </div>
+
+      <div class="feedback" id="problemFeedback"></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>🌟 Utmana dig</h2>
+
+    <div class="challenge">
+      <p>
+        Använd siffrorna <strong>2, 5 och 8</strong>.
+      </p>
+
+      <p>
+        Vilket är det största tresiffriga talet du kan skapa?
+      </p>
+
+      <p>
+        Vilket är det minsta?
+      </p>
+
+      <p>
+        Hur stor är skillnaden mellan talen?
+      </p>
+    </div>
+  </section>
+
+  <section class="box" id="koll">
+    <h2>✅ Jag kan</h2>
+
+    <p>Fundera över vad du kan nu.</p>
+
+    <div class="self-check">
+      <div class="self-card">🌱 Jag tränar</div>
+      <div class="self-card">🌿 Jag kan nästan</div>
+      <div class="self-card">🌳 Jag kan själv</div>
+      <div class="self-card">⭐ Jag kan förklara</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💬 Viktiga matematikord</h2>
+
+    <p>
+      <strong>ental</strong> – siffran längst till höger i ett heltal
+    </p>
+
+    <p>
+      <strong>tiotal</strong> – grupper med tio
+    </p>
+
+    <p>
+      <strong>hundratal</strong> – grupper med hundra
+    </p>
+
+    <p>
+      <strong>tallinje</strong> – en linje där tal placeras i storleksordning
+    </p>
+
+    <p>
+      <strong>jämföra</strong> – undersöka vilket tal som är större, mindre eller lika stort
+    </p>
+
+    <p>
+      <strong>udda tal</strong> – tal som inte kan delas jämnt i två lika stora grupper
+    </p>
+
+    <p>
+      <strong>jämnt tal</strong> – tal som kan delas i två lika stora grupper
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3</strong></p>
+  <p>Taluppfattning • Tänka • Träna • Förklara</p>
+</footer>
+
+<script>
+  function answer(button, correct) {
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const feedback = question.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+      btn.classList.remove("correct", "wrong");
+    });
+
+    if (correct) {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Rätt! Bra tänkt.";
+    } else {
+      button.classList.add("wrong");
+      feedback.textContent = "Försök igen. Titta noga på talen.";
+    }
+  }
+
+  function checkInput() {
+    const value = Number(document.getElementById("answer1").value);
+    const feedback = document.getElementById("inputFeedback");
+
+    if (value === 472) {
+      feedback.textContent = "✅ Rätt! 400 + 70 + 2 = 472.";
+    } else {
+      feedback.textContent = "Försök igen. Tänk hundratal, tiotal och ental.";
+    }
+  }
+
+  function checkProblem() {
+    const value = Number(document.getElementById("problemAnswer").value);
+    const feedback = document.getElementById("problemFeedback");
+
+    if (value === 358) {
+      feedback.textContent = "✅ Precis! Talet är 358.";
+    } else {
+      feedback.textContent = "Inte riktigt. Talet har 3 hundratal, 5 tiotal och 8 ental.";
+    }
+  }
+</script>
+
+</body>
+</html>
