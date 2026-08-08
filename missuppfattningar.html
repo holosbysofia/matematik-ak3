@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Matematik åk 3</title>
+  <title>Vanliga missuppfattningar – Matematik åk 3</title>
 
   <style>
     :root {
@@ -33,12 +33,12 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bakgrund);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     header {
       background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 58px 20px 48px;
+      padding: 45px 20px;
       text-align: center;
       border-bottom: 1px solid #cdbb9f;
     }
@@ -46,42 +46,23 @@
     header h1 {
       margin: 0;
       color: var(--brun);
-      font-size: clamp(2.5rem,7vw,5rem);
+      font-size: clamp(2rem,5vw,3.7rem);
     }
 
     header p {
-      max-width: 850px;
-      margin: 15px auto 0;
-      font-size: 1.15rem;
-    }
-
-    .tags {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .tag {
-      background: rgba(255,250,242,0.75);
-      border: 1px solid #cab89d;
-      border-radius: 22px;
-      padding: 7px 13px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: var(--brun);
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
     }
 
     nav {
       background: #fffaf3;
-      padding: 13px 8px;
+      padding: 14px;
       text-align: center;
       border-bottom: 1px solid var(--kant);
       position: sticky;
       top: 0;
-      z-index: 20;
-      box-shadow: 0 3px 8px rgba(80,65,50,0.07);
+      z-index: 10;
     }
 
     nav a {
@@ -89,10 +70,9 @@
       text-decoration: none;
       color: var(--brun);
       font-weight: bold;
-      margin: 3px;
-      padding: 8px 10px;
-      border-radius: 9px;
-      font-size: 0.93rem;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
     }
 
     nav a:hover {
@@ -100,230 +80,225 @@
     }
 
     main {
-      max-width: 1220px;
+      max-width: 1180px;
       margin: auto;
-      padding: 32px 20px 80px;
-    }
-
-    section {
-      scroll-margin-top: 85px;
+      padding: 30px 20px 70px;
     }
 
     .box {
       background: var(--kort);
       border: 1px solid var(--kant);
-      border-radius: 20px;
-      padding: 27px;
-      margin-bottom: 28px;
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
       box-shadow: 0 5px 15px var(--skugga);
     }
 
-    .welcome {
+    .intro {
       background: #eee4d6;
     }
 
     h2,
-    h3 {
+    h3,
+    h4 {
       color: var(--brun);
     }
 
     h2 {
       margin-top: 0;
-      font-size: clamp(1.6rem,4vw,2.2rem);
-    }
-
-    .section-intro {
-      max-width: 850px;
-      margin-bottom: 18px;
-    }
-
-    .journey {
-      display: grid;
-      grid-template-columns: repeat(5,1fr);
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .journey-step {
-      background: #fffaf2;
-      border: 1px solid var(--kant);
-      border-radius: 13px;
-      padding: 14px 8px;
-      text-align: center;
-    }
-
-    .journey-step .emoji {
-      display: block;
-      font-size: 1.8rem;
-      margin-bottom: 6px;
-    }
-
-    .category-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 5px;
-    }
-
-    .category-title span {
-      font-size: 2rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 15px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .misconception {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 21px;
+      margin: 17px 0;
+    }
+
+    .misconception h3 {
+      margin-top: 0;
+    }
+
+    .student-error {
+      background: var(--fel);
+      border-left: 5px solid #c6a39d;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .possible-cause {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .teacher-question {
+      background: #f3eadf;
+      border-left: 5px solid #c4b197;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .activity {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .next-step {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
       gap: 14px;
+      margin-top: 18px;
+    }
+
+    .principle {
+      background: #fffaf2;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+    }
+
+    .principle .icon {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--beige);
+      color: var(--brun);
+    }
+
+    td {
+      background: #fffdf8;
+    }
+
+    .questions {
+      columns: 2;
+      column-gap: 30px;
+    }
+
+    .questions li {
+      margin-bottom: 10px;
+      break-inside: avoid;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
     }
 
     .link-card {
       display: block;
       text-decoration: none;
       color: var(--text);
-      background: #fffdf8;
+      background: #f3eadf;
       border: 1px solid var(--kant);
-      border-radius: 15px;
-      padding: 18px;
-      min-height: 128px;
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .link-card:hover {
-      background: #f3eadf;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px var(--skugga);
-    }
-
-    .link-card .icon {
-      font-size: 2rem;
-      margin-bottom: 7px;
-    }
-
-    .link-card strong {
-      display: block;
-      color: var(--brun);
-      font-size: 1.08rem;
-      margin-bottom: 5px;
-    }
-
-    .link-card p {
-      margin: 0;
-      font-size: 0.91rem;
-    }
-
-    .game-card {
-      min-height: 145px;
-    }
-
-    .game-card .icon {
-      font-size: 2.4rem;
-    }
-
-    .teacher-card {
-      background: #f8f1e7;
-    }
-
-    .student-card {
-      background: #fffdf8;
-    }
-
-    .home-card {
-      background: #f3eee4;
-    }
-
-    .material-card {
-      background: #faf4ea;
-    }
-
-    .featured {
-      border: 2px solid #cab89d;
-      background: #f3eadf;
-    }
-
-    .new-label {
-      display: inline-block;
-      background: #e1e6da;
-      border-radius: 15px;
-      padding: 3px 8px;
-      margin-top: 8px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: #5f6655;
-    }
-
-    .quick {
-      background: #eee4d6;
-    }
-
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-      gap: 12px;
-    }
-
-    .quick a {
-      display: block;
-      text-decoration: none;
-      color: var(--text);
-      background: #fffaf2;
-      border: 1px solid #d5c6b2;
-      padding: 15px;
-      border-radius: 12px;
+      border-radius: 13px;
+      padding: 16px;
       text-align: center;
       font-weight: bold;
     }
 
-    .quick a:hover {
+    .link-card:hover {
       background: var(--beige);
-    }
-
-    .teacher-note {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
-      border-radius: 11px;
-      padding: 15px;
-      margin-top: 18px;
     }
 
     footer {
       background: #d8c8b2;
       color: #4d443c;
       text-align: center;
-      padding: 30px 20px;
+      padding: 27px;
     }
 
-    footer p {
-      margin: 5px;
-    }
-
-    @media(max-width:900px) {
-      .journey {
-        grid-template-columns: repeat(3,1fr);
-      }
-    }
-
-    @media(max-width:650px) {
+    @media(max-width:700px) {
       nav {
         position: static;
       }
 
       nav a {
-        display: inline-block;
-        font-size: 0.87rem;
+        display: block;
       }
 
       main {
         padding: 22px 12px 55px;
       }
 
-      .box {
-        padding: 19px;
+      .box,
+      .misconception {
+        padding: 18px;
       }
 
-      .journey {
-        grid-template-columns: 1fr;
+      .questions {
+        columns: 1;
+      }
+    }
+
+    @media print {
+      nav,
+      footer,
+      .link-grid {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .misconception {
+        box-shadow: none;
+        break-inside: avoid;
       }
     }
   </style>
@@ -332,488 +307,78 @@
 <body>
 
 <header>
-
-  <h1>➕ Matematik åk 3</h1>
+  <h1>🕵️ Vanliga missuppfattningar</h1>
 
   <p>
-    En samlad matematikportal för att förstå, träna,
-    resonera, lösa problem och utvecklas i matematik.
+    Elevens fel kan ge viktig information om hur eleven tänker.
+    Här finns exempel på vanliga missuppfattningar och förslag på
+    hur undervisningen kan hjälpa eleven vidare.
   </p>
-
-  <div class="tags">
-    <span class="tag">🔢 Förstå</span>
-    <span class="tag">🧠 Tänka</span>
-    <span class="tag">💬 Förklara</span>
-    <span class="tag">🧩 Lösa problem</span>
-    <span class="tag">🌱 Utvecklas</span>
-  </div>
-
 </header>
 
 
 <nav>
-  <a href="#omraden">🔢 Matematik</a>
-  <a href="#elevverktyg">🧠 Elevverktyg</a>
-  <a href="#traning">✏️ Träning</a>
-  <a href="#spel">🎮 Spel</a>
-  <a href="#material">📚 Material</a>
-  <a href="#hemma">🏠 Hemma</a>
-  <a href="#larare">👩‍🏫 Lärare</a>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#tal">🔢 Tal</a>
+  <a href="#raknesatt">➕➖ Räknesätt</a>
+  <a href="#multdiv">✖️➗ Mult/Div</a>
+  <a href="#brak">🍕 Bråk</a>
+  <a href="#algebra">⚖️ Algebra</a>
+  <a href="#geometri">📐 Geometri</a>
+  <a href="#problem">🧩 Problem</a>
 </nav>
 
 
 <main>
 
-  <!-- VÄLKOMMEN -->
+  <section class="box intro">
 
-  <section class="box welcome">
-
-    <h2>👋 Välkommen till matematiken</h2>
+    <h2>🌱 Fel är information</h2>
 
     <p>
-      Här finns matematikområden, strategier, begrepp,
-      problemlösning, spel, träning, material och verktyg.
-      Du behöver inte göra allt på en gång.
+      När en elev gör fel behöver frågan inte bara vara:
+      <strong>”Vad är rätt svar?”</strong>
+      utan också:
+      <strong>”Hur tänkte eleven?”</strong>
     </p>
 
     <p>
-      Börja med att förstå matematiken. Visa sedan hur du tänker,
-      välj en strategi, förklara och kontrollera.
+      Samma felaktiga svar kan bero på helt olika saker.
+      Därför behöver läraren försöka förstå elevens tanke innan stödet väljs.
     </p>
 
 
-    <div class="journey">
+    <div class="principles">
 
-      <div class="journey-step">
-        <span class="emoji">1️⃣</span>
-        <strong>Förstå</strong>
+      <div class="principle">
+        <div class="icon">👀</div>
+        <strong>1. Observera</strong>
+        <p>Vad gör eleven faktiskt?</p>
       </div>
 
-      <div class="journey-step">
-        <span class="emoji">2️⃣</span>
-        <strong>Visa</strong>
+      <div class="principle">
+        <div class="icon">💬</div>
+        <strong>2. Fråga</strong>
+        <p>Be eleven berätta eller visa hur hen tänkte.</p>
       </div>
 
-      <div class="journey-step">
-        <span class="emoji">3️⃣</span>
-        <strong>Välj strategi</strong>
-      </div>
-
-      <div class="journey-step">
-        <span class="emoji">4️⃣</span>
-        <strong>Förklara</strong>
-      </div>
-
-      <div class="journey-step">
-        <span class="emoji">5️⃣</span>
-        <strong>Kontrollera</strong>
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- MATEMATIKOMRÅDEN -->
-
-  <section class="box" id="omraden">
-
-    <div class="category-title">
-      <span>🔢</span>
-      <h2>Matematikområden</h2>
-    </div>
-
-    <p class="section-intro">
-      Här kan du arbeta med de olika delarna av matematiken.
-    </p>
-
-
-    <div class="grid">
-
-      <a class="link-card" href="taluppfattning.html">
-        <div class="icon">🔢</div>
-        <strong>Taluppfattning</strong>
-        <p>Platsvärde, jämföra tal, mönster och rimlighet.</p>
-      </a>
-
-      <a class="link-card" href="addition.html">
-        <div class="icon">➕</div>
-        <strong>Addition</strong>
-        <p>Förstå addition och använda olika strategier.</p>
-      </a>
-
-      <a class="link-card" href="subtraktion.html">
-        <div class="icon">➖</div>
-        <strong>Subtraktion</strong>
-        <p>Skillnad, ta bort, jämföra och räkna smart.</p>
-      </a>
-
-      <a class="link-card" href="multiplikation.html">
-        <div class="icon">✖️</div>
-        <strong>Multiplikation</strong>
-        <p>Lika stora grupper, tabeller och samband.</p>
-      </a>
-
-      <a class="link-card" href="division.html">
-        <div class="icon">➗</div>
-        <strong>Division</strong>
-        <p>Dela lika, gruppera och koppla till multiplikation.</p>
-      </a>
-
-      <a class="link-card" href="brak.html">
-        <div class="icon">🍕</div>
-        <strong>Bråk</strong>
-        <p>Helhet, delar, halvor, tredjedelar och fjärdedelar.</p>
-      </a>
-
-      <a class="link-card" href="algebra.html">
-        <div class="icon">⚖️</div>
-        <strong>Algebra</strong>
-        <p>Likhetstecken, saknade tal och matematiska samband.</p>
-      </a>
-
-      <a class="link-card" href="programmering.html">
-        <div class="icon">🤖</div>
-        <strong>Programmering</strong>
-        <p>Algoritmer, instruktioner, upprepning och felsökning.</p>
-      </a>
-
-      <a class="link-card" href="geometri.html">
-        <div class="icon">📐</div>
-        <strong>Geometri</strong>
-        <p>Figurer, former, egenskaper och geometriskt språk.</p>
-      </a>
-
-      <a class="link-card" href="matning.html">
-        <div class="icon">📏</div>
-        <strong>Mätning</strong>
-        <p>Längd, massa, volym, enheter och uppskattning.</p>
-      </a>
-
-      <a class="link-card" href="tid.html">
-        <div class="icon">⏰</div>
-        <strong>Tid</strong>
-        <p>Klockan, minuter, tidsintervall och kalender.</p>
-      </a>
-
-      <a class="link-card" href="symmetri-skala.html">
-        <div class="icon">🪞</div>
-        <strong>Symmetri och skala</strong>
-        <p>Spegling, symmetrilinjer, förstoring och förminskning.</p>
-      </a>
-
-      <a class="link-card" href="statistik.html">
-        <div class="icon">📊</div>
-        <strong>Statistik</strong>
-        <p>Samla data, tabeller, diagram och undersökningar.</p>
-      </a>
-
-      <a class="link-card" href="sannolikhet.html">
-        <div class="icon">🎲</div>
-        <strong>Sannolikhet</strong>
-        <p>Säkert, möjligt, omöjligt och enkla slumpförsök.</p>
-      </a>
-
-      <a class="link-card" href="samband.html">
-        <div class="icon">🔗</div>
-        <strong>Samband</strong>
-        <p>Dubbelt, hälften, tabeller och matematiska relationer.</p>
-      </a>
-
-      <a class="link-card featured" href="problemlosning.html">
-        <div class="icon">🧩</div>
-        <strong>Problemlösning</strong>
-        <p>Förstå, planera, lösa, kontrollera och förklara.</p>
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ELEVVERKTYG -->
-
-  <section class="box" id="elevverktyg">
-
-    <div class="category-title">
-      <span>🧠</span>
-      <h2>Verktyg för att tänka matematik</h2>
-    </div>
-
-    <p class="section-intro">
-      Här tränar du inte bara på svar – utan på hur matematik kan förstås,
-      visas och förklaras.
-    </p>
-
-
-    <div class="grid">
-
-      <a class="link-card student-card" href="strategier.html">
+      <div class="principle">
         <div class="icon">🧠</div>
-        <strong>Strategier</strong>
-        <p>Olika sätt att tänka vid addition, subtraktion, multiplikation och division.</p>
-      </a>
+        <strong>3. Tolka</strong>
+        <p>Vilken matematisk idé verkar saknas eller vara osäker?</p>
+      </div>
 
-      <a class="link-card student-card" href="representationer.html">
+      <div class="principle">
         <div class="icon">🧱</div>
-        <strong>Representationer</strong>
-        <p>Visa matematik med material, bild, tallinje, ord och symboler.</p>
-      </a>
+        <strong>4. Visa</strong>
+        <p>Använd material, bild, språk och symboler.</p>
+      </div>
 
-      <a class="link-card student-card" href="matteprat.html">
-        <div class="icon">💬</div>
-        <strong>Matteprat</strong>
-        <p>Förklara, jämför lösningar och resonera tillsammans.</p>
-      </a>
-
-      <a class="link-card student-card" href="sprakstod.html">
-        <div class="icon">🗨️</div>
-        <strong>Språkstöd</strong>
-        <p>Matematikord, meningsstarter och stöd vid textproblem.</p>
-      </a>
-
-      <a class="link-card student-card" href="felanalys.html">
-        <div class="icon">🕵️</div>
-        <strong>Hitta felet</strong>
-        <p>Läs, upptäck, förklara och rätta matematiska misstag.</p>
-      </a>
-
-      <a class="link-card student-card" href="begrepp.html">
-        <div class="icon">📖</div>
-        <strong>Begreppsbank</strong>
-        <p>Sök och träna viktiga matematiska ord och begrepp.</p>
-      </a>
-
-      <a class="link-card student-card" href="min-utveckling.html">
-        <div class="icon">🌱</div>
-        <strong>Min utveckling</strong>
-        <p>Fundera över vad du kan och vad du vill utveckla.</p>
-      </a>
-
-      <a class="link-card student-card" href="utmaningar.html">
-        <div class="icon">⭐</div>
-        <strong>Utmaningar</strong>
-        <p>Öppna uppgifter, kluringar och matematiska resonemang.</p>
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- TRÄNING -->
-
-  <section class="box" id="traning">
-
-    <div class="category-title">
-      <span>✏️</span>
-      <h2>Träna och följ din utveckling</h2>
-    </div>
-
-
-    <div class="grid">
-
-      <a class="link-card" href="ovningsbank.html">
-        <div class="icon">📚</div>
-        <strong>Övningsbank</strong>
-        <p>Slumpad träning inom flera matematikområden och nivåer.</p>
-      </a>
-
-      <a class="link-card" href="uppgiftsbank.html">
-        <div class="icon">🗂️</div>
-        <strong>Uppgiftsbank</strong>
-        <p>Grund, träna, resonera och utmana.</p>
-      </a>
-
-      <a class="link-card" href="dagensmatte.html">
-        <div class="icon">☀️</div>
-        <strong>Dagens matte</strong>
-        <p>Ett nytt kort matematikpass med flera typer av frågor.</p>
-      </a>
-
-      <a class="link-card featured" href="veckouppdrag.html">
-        <div class="icon">📅</div>
-        <strong>Veckouppdrag</strong>
-        <p>Fem matematikuppdrag – ett för varje skoldag.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card" href="intensivtraning.html">
-        <div class="icon">⚡</div>
-        <strong>Intensivträning</strong>
-        <p>Korta fokuserade träningspass inom centrala områden.</p>
-      </a>
-
-      <a class="link-card" href="kunskapskoll.html">
-        <div class="icon">✅</div>
-        <strong>Kunskapskoll</strong>
-        <p>Blandade frågor för att se vad som känns säkert och vad som behöver tränas.</p>
-      </a>
-
-      <a class="link-card" href="diagnos.html">
-        <div class="icon">🧭</div>
-        <strong>Diagnostisk träning</strong>
-        <p>Frågor inom flera områden med återkoppling.</p>
-      </a>
-
-      <a class="link-card" href="exit-ticket.html">
-        <div class="icon">🚪</div>
-        <strong>Exit ticket</strong>
-        <p>Tre korta frågor efter ett matematikpass.</p>
-      </a>
-
-      <a class="link-card" href="np-traning.html">
-        <div class="icon">📝</div>
-        <strong>Förmågeträning</strong>
-        <p>Träna beräkning, begrepp, problemlösning och resonemang.</p>
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- SPEL -->
-
-  <section class="box" id="spel">
-
-    <div class="category-title">
-      <span>🎮</span>
-      <h2>Matematikspel och äventyr</h2>
-    </div>
-
-    <p class="section-intro">
-      Spela själv, tillsammans med en kompis eller i lag.
-      Spelen tränar olika matematiska färdigheter.
-    </p>
-
-
-    <div class="grid">
-
-      <a class="link-card game-card" href="spel.html">
-        <div class="icon">🎮</div>
-        <strong>Mattespel</strong>
-        <p>Snabbmatte, tabelljakt, talmysterier, bråk och division.</p>
-      </a>
-
-      <a class="link-card game-card featured" href="mattebingo.html">
-        <div class="icon">🎯</div>
-        <strong>Mattebingo</strong>
-        <p>Lös uppgifter och försök få fem matematikrutor i rad.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card game-card featured" href="mattesafari.html">
-        <div class="icon">🧭</div>
-        <strong>Mattesafari</strong>
-        <p>Res genom matematikstationer och lås upp vägen till målet.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card game-card featured" href="mattedetektiven.html">
-        <div class="icon">🕵️</div>
-        <strong>Mattedetektiven</strong>
-        <p>Lös matematiska ledtrådar och avslöja mysteriet.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card game-card featured" href="matteescape.html">
-        <div class="icon">🔐</div>
-        <strong>Matte Escape</strong>
-        <p>Öppna fem matematiska lås och hitta den hemliga slutkoden.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card game-card featured" href="mattequiz.html">
-        <div class="icon">🏆</div>
-        <strong>Mattequiz</strong>
-        <p>Tio slumpade frågor med tre nivåer och direkt återkoppling.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card game-card featured" href="mattetavling.html">
-        <div class="icon">🏁</div>
-        <strong>Mattetävling</strong>
-        <p>Två spelare eller lag turas om och samlar matematikpoäng.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-      <a class="link-card game-card featured" href="mattefyrairad.html">
-        <div class="icon">🔵</div>
-        <strong>Matte Fyra i rad</strong>
-        <p>Lös en uppgift för att få placera din markör. Först till fyra i rad vinner.</p>
-        <span class="new-label">NY</span>
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- MATERIAL -->
-
-  <section class="box" id="material">
-
-    <div class="category-title">
-      <span>📚</span>
-      <h2>Material och aktiviteter</h2>
-    </div>
-
-
-    <div class="grid">
-
-      <a class="link-card material-card" href="materialbank.html">
-        <div class="icon">🗃️</div>
-        <strong>Materialbank</strong>
-        <p>Samlad bank med konkret, muntligt och skriftligt matematikmaterial.</p>
-      </a>
-
-      <a class="link-card material-card" href="elevmaterial.html">
-        <div class="icon">📝</div>
-        <strong>Elevmaterial</strong>
-        <p>Arbetsblad, begreppskort, problemlösning och matematiklogg.</p>
-      </a>
-
-      <a class="link-card material-card" href="matteverkstad.html">
-        <div class="icon">🧱</div>
-        <strong>Matteverkstad</strong>
-        <p>Praktiska och laborativa aktiviteter med matematiskt material.</p>
-      </a>
-
-      <a class="link-card material-card" href="stationsarbete.html">
+      <div class="principle">
         <div class="icon">🔄</div>
-        <strong>Stationsarbete</strong>
-        <p>Organisera matematikundervisningen i olika stationer.</p>
-      </a>
-
-      <a class="link-card material-card" href="lektionsbank.html">
-        <div class="icon">📚</div>
-        <strong>Lektionsbank</strong>
-        <p>Färdiga lektionsupplägg med mål, aktivitet, stöd och avslut.</p>
-      </a>
-
-      <a class="link-card material-card" href="lektionsstart.html">
-        <div class="icon">☀️</div>
-        <strong>Lektionsstarter</strong>
-        <p>Korta matematiska starter för de första 5–10 minuterna.</p>
-      </a>
-
-      <a class="link-card material-card" href="lektionsavslut.html">
-        <div class="icon">🌙</div>
-        <strong>Lektionsavslut</strong>
-        <p>Korta avslut, reflektioner och formativa kontroller.</p>
-      </a>
-
-      <a class="link-card material-card" href="minilektioner.html">
-        <div class="icon">🎯</div>
-        <strong>Minilektioner</strong>
-        <p>Korta lärarledda genomgångar för centrala matematiska idéer.</p>
-      </a>
+        <strong>5. Följ upp</strong>
+        <p>Kontrollera om elevens förståelse faktiskt har förändrats.</p>
+      </div>
 
     </div>
 
@@ -821,29 +386,828 @@
 
 
 
-  <!-- HEMMA -->
+  <!-- TALUPPFATTNING -->
 
-  <section class="box" id="hemma">
+  <section class="box" id="tal">
 
-    <div class="category-title">
-      <span>🏠</span>
-      <h2>Matematik hemma</h2>
+    <h2>🔢 Taluppfattning</h2>
+
+
+    <div class="misconception">
+
+      <h3>1. Siffran och värdet blandas ihop</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        I talet 472 är 7 värd 7.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven känner igen siffran men har inte förstått att dess värde
+        förändras beroende på positionen.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Vad betyder 7:an här? Kan du bygga talet 472?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Bygg tal med hundratals-, tiotals- och entalsmaterial.
+        Jämför 7, 70 och 700.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Låt eleven växla mellan konkret material, positionsschema,
+        utvecklad form och vanligt tal.
+      </div>
+
     </div>
 
+
+    <div class="misconception">
+
+      <h3>2. Eleven jämför bara sista siffran</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        398 är större än 403 eftersom 8 är större än 3.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven jämför enskilda siffror istället för talens platsvärden.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Hur många hundratal finns i varje tal?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Bygg båda talen med positionsmaterial eller placera dem på en tallinje.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Jämför först hundratal, sedan tiotal och sist ental.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>3. Nollans platsvärde missförstås</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        506 skrivs som 56.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven ser noll som ”ingenting” och förstår ännu inte dess funktion
+        som platshållare.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Hur många hundratal, tiotal och ental finns i 506?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Använd positionsschema och jämför 506, 560 och 56.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Träna tal med noll på olika positioner.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ADDITION SUBTRAKTION -->
+
+  <section class="box" id="raknesatt">
+
+    <h2>➕➖ Addition och subtraktion</h2>
+
+
+    <div class="misconception">
+
+      <h3>4. Talen sätts ihop istället för att adderas</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        38 + 27 = 515
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven räknar 3 + 2 = 5 och 8 + 7 = 15 och skriver resultaten efter varandra.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Är 515 rimligt om vi lägger ihop ungefär 40 och 30?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Bygg 38 och 27 med tiotal och ental. Växla tio ental till ett tiotal.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Koppla ihop konkret modell, huvudräkningsstrategi och skriftlig metod.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>5. Eleven räknar alltid den mindre siffran från den större</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        72 − 38 = 46
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven räknar 8 − 2 = 6 och 7 − 3 = 4,
+        istället för att förstå talets struktur.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Om 72 − 38 vore 46, vad skulle 46 + 38 bli?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Använd tallinje och räkna upp från 38 till 72.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Träna både skillnad, ta-bort-situationer och växling med konkret material.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>6. Eleven använder samma strategi till alla tal</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        Eleven använder lång skriftlig metod även för 99 + 6.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven har lärt sig en procedur men har ännu inte utvecklat flexibel taluppfattning.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Finns det något tal nära 99 som är enklare att använda?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Jämför flera strategier för samma uppgift.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Låt eleverna regelbundet motivera varför en strategi passar vissa tal.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- MULTIPLIKATION DIVISION -->
+
+  <section class="box" id="multdiv">
+
+    <h2>✖️➗ Multiplikation och division</h2>
+
+
+    <div class="misconception">
+
+      <h3>7. Multiplikation ses bara som en tabell</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        Eleven kan säga att 4 × 6 = 24 men kan inte visa vad 4 × 6 betyder.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Tabellen har memorerats utan att kopplas till lika stora grupper.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Kan du bygga eller rita 4 × 6?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Bygg fyra grupper med sex föremål i varje.
+        Koppla sedan bilden till 6 + 6 + 6 + 6 och 4 × 6.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Växla mellan grupper, rutnät, upprepad addition och multiplikationsuttryck.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>8. Division betyder alltid ”dela på två”</h3>
+
+      <div class="student-error">
+        <strong>Elevens tanke:</strong><br>
+        ”Division betyder att dela något i hälften.”
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven har främst mött ordet dela i vardagliga situationer.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Hur kan 24 delas lika mellan 6 personer?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Arbeta både med ”dela lika mellan” och ”hur många grupper ryms?”.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Koppla division till motsvarande multiplikationsfakta.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>9. Multiplikation och division ses som helt separata</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        Eleven vet 5 × 6 = 30 men räknar ändå 30 ÷ 6 från början.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Sambandet mellan räknesätten är inte tillräckligt tydligt.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Vad berättar 5 × 6 = 30 om 30 ÷ 6?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Skapa faktamiljer:
+        5 × 6 = 30,
+        6 × 5 = 30,
+        30 ÷ 5 = 6,
+        30 ÷ 6 = 5.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Träna samband snarare än isolerade tabeller.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- BRÅK -->
+
+  <section class="box" id="brak">
+
+    <h2>🍕 Bråk</h2>
+
+
+    <div class="misconception">
+
+      <h3>10. Större nämnare betyder större bråk</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        1/4 är större än 1/2 eftersom 4 är större än 2.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven använder kunskap om hela tal direkt på bråk.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Om två lika stora pizzor delas i två respektive fyra lika delar,
+        vilken bit blir störst?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Vik lika stora pappersremsor i halvor, fjärdedelar och åttondelar.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Betona att helheten måste vara lika stor när bråk jämförs.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>11. Delarna behöver inte vara lika stora</h3>
+
+      <div class="student-error">
+        <strong>Elevens tanke:</strong><br>
+        En figur är delad i fyra delar, alltså är varje del en fjärdedel,
+        även om delarna är olika stora.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven fokuserar på antalet delar men inte på att delarna måste vara lika stora.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Är alla fyra personer garanterade lika mycket om bitarna har olika storlek?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Visa både exempel och icke-exempel på halvor och fjärdedelar.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Låt eleven själv skapa både korrekta och felaktiga exempel på bråkdelar.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ALGEBRA -->
+
+  <section class="box" id="algebra">
+
+    <h2>⚖️ Algebra och likhet</h2>
+
+
+    <div class="misconception">
+
+      <h3>12. Likhetstecknet betyder ”svaret kommer nu”</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        Eleven accepterar 7 + 5 = 12 men blir osäker på 12 = 7 + 5.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Likhetstecknet har främst mötts i uppgifter där svaret skrivs sist.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Har båda sidor samma värde?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Använd balansbilder och uttryck som
+        8 + 4 = 6 + 6.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Variera likheter där det okända talet finns på olika platser.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>13. Saknat tal löses genom att räkna alla synliga tal</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        8 + ___ = 13 → eleven svarar 21.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven tolkar uppgiften som ”räkna ihop talen som syns”.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Vad behöver läggas till 8 för att båda sidor ska bli 13?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Använd kuber eller tallinje för att visa avståndet från 8 till 13.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Träna saknade tal i varierade positioner.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- GEOMETRI OCH MÄTNING -->
+
+  <section class="box" id="geometri">
+
+    <h2>📐 Geometri och mätning</h2>
+
+
+    <div class="misconception">
+
+      <h3>14. Figuren känns igen bara på sitt utseende</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        En roterad kvadrat kallas inte längre kvadrat eftersom den ”står på spetsen”.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven känner igen prototypbilden men använder inte figurens egenskaper.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Har figurens sidor eller hörn förändrats när vi vrider den?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Sortera många varianter av samma geometriska figur.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Beskriv figurer med egenskaper istället för placering och utseende.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>15. Större siffra betyder alltid större mått</h3>
+
+      <div class="student-error">
+        <strong>Elevens svar:</strong><br>
+        900 g är tyngre än 1 kg eftersom 900 är större än 1.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven jämför talen utan att ta hänsyn till enheterna.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Hur många gram är 1 kilogram?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Jämför verkliga föremål och koppla 1 kg till 1000 g.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Träna att alltid läsa både tal och enhet.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>16. Fel enhet väljs</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        En penna är 15 meter lång.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven känner enheternas namn men har svag referens för deras storlek.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Hur lång är ungefär en meter? Är pennan längre eller kortare?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Skapa referenser i klassrummet:
+        ungefär 1 cm, 1 dm och 1 m.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Låt eleven uppskatta före mätning.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- PROBLEMLÖSNING -->
+
+  <section class="box" id="problem">
+
+    <h2>🧩 Problemlösning</h2>
+
+
+    <div class="misconception">
+
+      <h3>17. Eleven letar efter ett nyckelord</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        Eleven ser ordet ”fler” och väljer automatiskt addition.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven har lärt sig koppla vissa ord till ett räknesätt istället för att förstå situationen.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Vad händer i problemet? Vad vet vi och vad försöker vi ta reda på?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Låt eleverna återberätta problemet utan siffror innan de räknar.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Använd bild, modell eller konkret material innan räknesätt väljs.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>18. Alla tal i texten måste användas</h3>
+
+      <div class="student-error">
+        <strong>Elevens tanke:</strong><br>
+        ”Det finns tre tal i uppgiften, så jag måste räkna med alla tre.”
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Fokus ligger på siffrorna snarare än på situationens betydelse.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Vilken information hjälper oss att svara på frågan?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Ge textproblem med överflödig information och låt eleverna markera vad som behövs.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Träna att skilja mellan viktig och oviktig information.
+      </div>
+
+    </div>
+
+
+    <div class="misconception">
+
+      <h3>19. Rimlighetskontroll saknas</h3>
+
+      <div class="student-error">
+        <strong>Exempel:</strong><br>
+        48 + 27 = 705 accepteras utan kontroll.
+      </div>
+
+      <div class="possible-cause">
+        <strong>Möjlig orsak:</strong><br>
+        Eleven ser matematik som en procedur där ett framräknat svar automatiskt antas vara rätt.
+      </div>
+
+      <div class="teacher-question">
+        <strong>Fråga eleven:</strong><br>
+        Ungefär hur stort borde svaret vara?
+      </div>
+
+      <div class="activity">
+        <strong>Prova:</strong><br>
+        Uppskatta före beräkningen:
+        48 är ungefär 50 och 27 ungefär 30.
+        Svaret bör alltså ligga ungefär kring 80.
+      </div>
+
+      <div class="next-step">
+        <strong>Nästa steg:</strong><br>
+        Gör rimlighetskontroll till en naturlig del av varje problemlösning.
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- SNABBÖVERSIKT -->
+
+  <section class="box">
+
+    <h2>📋 Snabböversikt för läraren</h2>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <tr>
+          <th>Elevens svårighet</th>
+          <th>Titta efter</th>
+          <th>Prova först</th>
+        </tr>
+
+        <tr>
+          <td>Platsvärde</td>
+          <td>Kan eleven skilja mellan siffra och värde?</td>
+          <td>Positionsmaterial och positionsschema.</td>
+        </tr>
+
+        <tr>
+          <td>Addition/subtraktion</td>
+          <td>Förstår eleven räknesättet eller följer bara en procedur?</td>
+          <td>Tallinje och konkret material.</td>
+        </tr>
+
+        <tr>
+          <td>Multiplikation</td>
+          <td>Ser eleven lika stora grupper?</td>
+          <td>Bygg grupper och rutnät.</td>
+        </tr>
+
+        <tr>
+          <td>Division</td>
+          <td>Kan eleven skilja mellan dela lika och gruppera?</td>
+          <td>Använd verkliga föremål.</td>
+        </tr>
+
+        <tr>
+          <td>Bråk</td>
+          <td>Förstår eleven lika stora delar och helheten?</td>
+          <td>Pappersvikning och bråkmodeller.</td>
+        </tr>
+
+        <tr>
+          <td>Likhet</td>
+          <td>Förstår eleven att båda sidor ska ha samma värde?</td>
+          <td>Balansmodell och öppna likheter.</td>
+        </tr>
+
+        <tr>
+          <td>Problemlösning</td>
+          <td>Förstår eleven situationen innan beräkning?</td>
+          <td>Återberätta och rita problemet.</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FRÅGOR -->
+
+  <section class="box">
+
+    <h2>💬 Frågor före du rättar eleven</h2>
+
+    <ul class="questions">
+      <li>Hur tänkte du?</li>
+      <li>Kan du visa med en bild?</li>
+      <li>Kan du visa med material?</li>
+      <li>Vad betyder talet?</li>
+      <li>Vad betyder symbolen?</li>
+      <li>Vad händer i problemet?</li>
+      <li>Vad vet du redan?</li>
+      <li>Vad ska du ta reda på?</li>
+      <li>Finns det ett annat sätt?</li>
+      <li>Hur kan du kontrollera?</li>
+      <li>Är svaret rimligt?</li>
+      <li>Vad skulle hända om talen ändrades?</li>
+    </ul>
+
+  </section>
+
+
+
+  <!-- ARBETSGÅNG -->
+
+  <section class="box">
+
+    <h2>🔄 Från fel till undervisning</h2>
 
     <div class="grid">
 
-      <a class="link-card home-card" href="hemtraning.html">
-        <div class="icon">🏠</div>
-        <strong>Hemträning</strong>
-        <p>Korta aktiviteter och vardagsmatematik att göra hemma.</p>
-      </a>
+      <div class="card">
+        <h3>1. Fånga felet</h3>
+        <p>Spara eller notera elevens lösning.</p>
+      </div>
 
-      <a class="link-card home-card" href="foraldraguide.html">
-        <div class="icon">👨‍👩‍👧</div>
-        <strong>Guide för vårdnadshavare</strong>
-        <p>Så kan vuxna stötta barns matematiska tänkande hemma.</p>
-      </a>
+      <div class="card">
+        <h3>2. Lyssna</h3>
+        <p>Be eleven beskriva sin tanke utan att direkt korrigera.</p>
+      </div>
+
+      <div class="card">
+        <h3>3. Identifiera</h3>
+        <p>Vilken matematisk idé behöver utvecklas?</p>
+      </div>
+
+      <div class="card">
+        <h3>4. Undervisa</h3>
+        <p>Använd representationer och tydlig modellering.</p>
+      </div>
+
+      <div class="card">
+        <h3>5. Ny uppgift</h3>
+        <p>Kontrollera förståelsen med en liknande men inte identisk uppgift.</p>
+      </div>
+
+      <div class="card">
+        <h3>6. Följ upp</h3>
+        <p>Se om eleven kan använda förståelsen i ett nytt sammanhang.</p>
+      </div>
 
     </div>
 
@@ -851,177 +1215,52 @@
 
 
 
-  <!-- LÄRARE -->
+  <!-- LÄNKAR -->
 
-  <section class="box" id="larare">
+  <section class="box">
 
-    <div class="category-title">
-      <span>👩‍🏫</span>
-      <h2>Lärarverktyg</h2>
-    </div>
+    <h2>🔗 Arbeta vidare</h2>
 
-    <p class="section-intro">
-      Planering, kartläggning, undervisning, anpassningar,
-      bedömning och riktade insatser.
-    </p>
+    <div class="link-grid">
 
-
-    <div class="grid">
-
-      <a class="link-card teacher-card" href="lararrum.html">
-        <div class="icon">🏫</div>
-        <strong>Lärarrum</strong>
-        <p>Översikt över undervisning, progression och planering.</p>
+      <a class="link-card" href="felanalys.html">
+        🕵️ Elevuppgifter – hitta felet
       </a>
 
-      <a class="link-card teacher-card" href="lararverktyg.html">
-        <div class="icon">🧰</div>
-        <strong>Lärarverktyg</strong>
-        <p>Observation, analys, frågor, stöd och lektionsplanering.</p>
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
       </a>
 
-      <a class="link-card teacher-card" href="arsplan.html">
-        <div class="icon">🗓️</div>
-        <strong>Årsplan</strong>
-        <p>Förslag på hur matematikområden kan organiseras över läsåret.</p>
+      <a class="link-card" href="representationer.html">
+        🧱 Representationer
       </a>
 
-      <a class="link-card teacher-card" href="veckoplan.html">
-        <div class="icon">📅</div>
-        <strong>Veckoplan</strong>
-        <p>Planera mål, begrepp, aktiviteter, stöd och utmaning dag för dag.</p>
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
       </a>
 
-      <a class="link-card teacher-card" href="mattepass.html">
-        <div class="icon">🧮</div>
-        <strong>Skapa mattepass</strong>
-        <p>Bygg ett 40-, 50- eller 60-minuters matematikpass.</p>
+      <a class="link-card" href="sprakstod.html">
+        🗨️ Språkstöd
       </a>
 
-      <a class="link-card teacher-card featured" href="lektionsgenerator.html">
-        <div class="icon">✨</div>
-        <strong>Lektionsgenerator</strong>
-        <p>Välj område, mål, tid, arbetsform och stödbehov.</p>
-        <span class="new-label">NY</span>
+      <a class="link-card" href="kartlaggning.html">
+        🧭 Kartläggning
       </a>
 
-      <a class="link-card teacher-card" href="bedomning.html">
-        <div class="icon">🔎</div>
-        <strong>Bedömning</strong>
-        <p>Formativ observation och analys för nästa undervisningssteg.</p>
+      <a class="link-card" href="anpassningar.html">
+        🌱 Anpassningar
       </a>
 
-      <a class="link-card teacher-card" href="kartlaggning.html">
-        <div class="icon">🧭</div>
-        <strong>Kartläggning</strong>
-        <p>Kartlägg elevens aktuella förståelse inom flera matematikområden.</p>
+      <a class="link-card" href="interventioner.html">
+        🎯 Interventioner
       </a>
 
-      <a class="link-card teacher-card featured" href="gruppindelning.html">
-        <div class="icon">👥</div>
-        <strong>Flexibla grupper</strong>
-        <p>Gruppera utifrån aktuellt undervisningsbehov – inte fasta nivåer.</p>
-        <span class="new-label">NY</span>
+      <a class="link-card" href="bedomning.html">
+        🔎 Bedömning
       </a>
 
-      <a class="link-card teacher-card" href="progression.html">
-        <div class="icon">📈</div>
-        <strong>Progression</strong>
-        <p>Planeringsstöd för utveckling av matematiska idéer över tid.</p>
-      </a>
-
-      <a class="link-card teacher-card" href="missuppfattningar.html">
-        <div class="icon">🕵️</div>
-        <strong>Missuppfattningar</strong>
-        <p>Vanliga elevfel, möjliga orsaker och undervisningsförslag.</p>
-      </a>
-
-      <a class="link-card teacher-card" href="anpassningar.html">
-        <div class="icon">🌱</div>
-        <strong>Anpassningar</strong>
-        <p>Språk, visuellt stöd, material, struktur och fördjupning.</p>
-      </a>
-
-      <a class="link-card teacher-card" href="interventioner.html">
-        <div class="icon">🎯</div>
-        <strong>Matematikinterventioner</strong>
-        <p>Korta fokuserade insatser på 2–4 veckor.</p>
-      </a>
-
-      <a class="link-card teacher-card" href="sprakstod.html">
-        <div class="icon">💬</div>
-        <strong>Språkstöd i matematik</strong>
-        <p>Begrepp, meningsramar, parprat och språkstöd utan att sänka matematiken.</p>
-      </a>
-
-    </div>
-
-
-    <div class="teacher-note">
-      <strong>Viktigt:</strong>
-      kartläggning, quiz och korta kunskapskontroller i plattformen är
-      undervisnings- och träningsverktyg. De ska kombineras med elevarbeten,
-      samtal och lärarens observationer.
-    </div>
-
-  </section>
-
-
-
-  <!-- SNABBLÄNKAR -->
-
-  <section class="box quick">
-
-    <h2>⚡ Jag vill snabbt...</h2>
-
-    <div class="quick-grid">
-
-      <a href="dagensmatte.html">
-        ☀️ Starta dagens matte
-      </a>
-
-      <a href="problemlosning.html">
-        🧩 Lösa problem
-      </a>
-
-      <a href="spel.html">
-        🎮 Spela
-      </a>
-
-      <a href="matteescape.html">
-        🔐 Göra Matte Escape
-      </a>
-
-      <a href="mattefyrairad.html">
-        🔵 Spela Fyra i rad
-      </a>
-
-      <a href="begrepp.html">
-        📖 Slå upp ett begrepp
-      </a>
-
-      <a href="strategier.html">
-        🧠 Hitta en strategi
-      </a>
-
-      <a href="sprakstod.html">
-        💬 Få språkstöd
-      </a>
-
-      <a href="utmaningar.html">
-        ⭐ Få en utmaning
-      </a>
-
-      <a href="lektionsgenerator.html">
-        ✨ Skapa en lektion
-      </a>
-
-      <a href="gruppindelning.html">
-        👥 Planera grupper
-      </a>
-
-      <a href="kartlaggning.html">
-        🧭 Kartlägga
+      <a class="link-card" href="minilektioner.html">
+        🎯 Minilektioner
       </a>
 
     </div>
@@ -1032,15 +1271,8 @@
 
 
 <footer>
-
-  <p>
-    <strong>Matematik åk 3</strong>
-  </p>
-
-  <p>
-    Förstå • Visa • Välj strategi • Förklara • Kontrollera
-  </p>
-
+  <p><strong>Matematik åk 3 – Vanliga missuppfattningar</strong></p>
+  <p>Observera • Fråga • Förstå • Undervisa • Följ upp</p>
 </footer>
 
 </body>
