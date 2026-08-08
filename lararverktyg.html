@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lärarverktyg – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.6rem);
+    }
+
+    header p {
+      max-width: 820px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .tool-card {
+      background: #f3eadf;
+      border: 1px solid #d9cbb8;
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    .tool-card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      font-size: 2.4rem;
+      margin-bottom: 6px;
+    }
+
+    .observation-table,
+    .analysis-table,
+    .support-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    .observation-table th,
+    .observation-table td,
+    .analysis-table th,
+    .analysis-table td,
+    .support-table th,
+    .support-table td {
+      border: 1px solid #d8cab7;
+      padding: 11px;
+      vertical-align: top;
+    }
+
+    .observation-table th,
+    .analysis-table th,
+    .support-table th {
+      background: var(--beige);
+      color: var(--brun);
+      text-align: left;
+    }
+
+    .observation-table td,
+    .analysis-table td,
+    .support-table td {
+      background: #fffdf8;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      background: #f3eadf;
+      margin: 8px 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+    }
+
+    .checklist li::before {
+      content: "✓ ";
+      color: var(--brun);
+      font-weight: bold;
+    }
+
+    .question-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 12px 0;
+    }
+
+    .misconception {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .misconception strong {
+      color: var(--brun);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .quick-card {
+      background: var(--beige);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .plan-card {
+      background: #f3eadf;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .plan-card h3 {
+      margin-top: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      border: 1px solid #cdbda7;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      background: #fffdf8;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cdbda7;
+      border-radius: 9px;
+      font-size: 1rem;
+      background: #fffdf8;
+    }
+
+    button {
+      border: none;
+      background: var(--beige);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .save-btn {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 22px auto 0;
+      background: #d6c3a6;
+    }
+
+    .save-message {
+      text-align: center;
+      font-weight: bold;
+      min-height: 25px;
+      margin-top: 10px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:750px) {
+      .observation-table,
+      .analysis-table,
+      .support-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box {
+        padding: 19px;
+      }
+    }
+
+    @media print {
+      nav,
+      footer,
+      .save-btn,
+      .save-message {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>👩‍🏫 Lärarverktyg</h1>
+
+  <p>
+    Praktiska stöd för observation, analys, återkoppling,
+    anpassning och planering i matematik åk 3.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="lararrum.html">📚 Lärarrum</a>
+  <a href="#observation">👀 Observation</a>
+  <a href="#missuppfattningar">🕵️ Missuppfattningar</a>
+  <a href="#stod">🌱 Stöd</a>
+  <a href="#planering">📝 Planering</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+    <h2>🌿 Syfte</h2>
+
+    <p>
+      Verktygen på den här sidan är tänkta som stöd i den formativa undervisningen.
+      De hjälper läraren att synliggöra elevens strategier, begreppsförståelse,
+      resonemang och eventuella missuppfattningar.
+    </p>
+
+    <div class="tool-grid">
+
+      <div class="tool-card">
+        <div class="icon">👀</div>
+        <h3>Observera</h3>
+        <p>Vad gör eleven när uppgiften blir svår?</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="icon">🧠</div>
+        <h3>Analysera</h3>
+        <p>Vad visar elevens lösning om förståelsen?</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="icon">🌱</div>
+        <h3>Stödja</h3>
+        <p>Vilket nästa steg hjälper eleven vidare?</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="icon">⭐</div>
+        <h3>Utmana</h3>
+        <p>Hur kan eleven fördjupa och generalisera?</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="observation">
+    <h2>👀 Observationsunderlag</h2>
+
+    <p>
+      Använd underlaget under en lektion, vid stationsarbete,
+      problemlösning eller enskilda samtal.
+    </p>
+
+    <table class="observation-table">
+      <tr>
+        <th>Fokus</th>
+        <th>Observera</th>
+        <th>Frågor att ställa</th>
+      </tr>
+
+      <tr>
+        <td><strong>Taluppfattning</strong></td>
+        <td>
+          Positionssystem, storleksordning, talmönster,
+          uppskattning och rimlighet.
+        </td>
+        <td>
+          Hur vet du vilket tal som är störst?
+          <br>
+          Vad betyder siffran här?
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Strategier</strong></td>
+        <td>
+          Räknar eleven ett steg i taget eller använder eleven effektiva samband?
+        </td>
+        <td>
+          Kan du lösa uppgiften på ett annat sätt?
+          <br>
+          Varför valde du den strategin?
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Begrepp</strong></td>
+        <td>
+          Använder eleven relevanta matematikord?
+        </td>
+        <td>
+          Vad betyder summa?
+          <br>
+          Hur skulle du förklara skillnad?
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Representationer</strong></td>
+        <td>
+          Kan eleven växla mellan material, bild, tallinje och symboler?
+        </td>
+        <td>
+          Kan du visa samma sak med en bild?
+          <br>
+          Hur skriver vi det med matematiska symboler?
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Problemlösning</strong></td>
+        <td>
+          Förstår eleven frågan och väljer ett relevant räknesätt?
+        </td>
+        <td>
+          Vad vet du?
+          <br>
+          Vad ska du ta reda på?
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Resonemang</strong></td>
+        <td>
+          Kan eleven förklara, jämföra och motivera?
+        </td>
+        <td>
+          Hur vet du?
+          <br>
+          Håller du med?
+          <br>
+          Varför?
+        </td>
+      </tr>
+    </table>
+  </section>
+
+
+  <section class="box">
+    <h2>🔎 Snabbanalys av en elevlösning</h2>
+
+    <div class="question-box">
+      <strong>1. Vad kan eleven redan?</strong>
+      <br>
+      Leta efter sådant som fungerar, inte bara fel.
+    </div>
+
+    <div class="question-box">
+      <strong>2. Vilken strategi använder eleven?</strong>
+      <br>
+      Är strategin säker, ineffektiv eller bygger den på en missuppfattning?
+    </div>
+
+    <div class="question-box">
+      <strong>3. Var uppstår svårigheten?</strong>
+      <br>
+      Begrepp, språk, taluppfattning, räknesätt eller procedur?
+    </div>
+
+    <div class="question-box">
+      <strong>4. Vad behöver eleven härnäst?</strong>
+      <br>
+      Konkret material, modellering, språkstöd, repetition eller utmaning?
+    </div>
+  </section>
+
+
+  <section class="box" id="missuppfattningar">
+    <h2>🕵️ Vanliga missuppfattningar</h2>
+
+    <div class="misconception">
+      <strong>Positionssystem:</strong>
+      <br><br>
+      Eleven tror att siffran 6 alltid har värdet 6.
+      <br><br>
+      <strong>Exempel:</strong> I 364 har 6 värdet 60.
+    </div>
+
+    <div class="misconception">
+      <strong>Likhetstecknet:</strong>
+      <br><br>
+      Eleven ser = som ett tecken som betyder ”nu kommer svaret”.
+      <br><br>
+      <strong>Undervisa istället:</strong>
+      Båda sidor måste ha samma värde.
+    </div>
+
+    <div class="misconception">
+      <strong>Subtraktion:</strong>
+      <br><br>
+      Eleven tar alltid det mindre talet från det större i varje sifferposition.
+      <br><br>
+      <strong>Synliggör:</strong>
+      talens hela värde och växling mellan tiotal och ental.
+    </div>
+
+    <div class="misconception">
+      <strong>Multiplikation:</strong>
+      <br><br>
+      Eleven ser 4 × 6 som 4 + 6.
+      <br><br>
+      <strong>Synliggör:</strong>
+      fyra lika stora grupper med sex i varje.
+    </div>
+
+    <div class="misconception">
+      <strong>Division:</strong>
+      <br><br>
+      Eleven har svårt att avgöra om frågan handlar om antal grupper
+      eller antal i varje grupp.
+    </div>
+
+    <div class="misconception">
+      <strong>Bråk:</strong>
+      <br><br>
+      Eleven tror att 1/8 är större än 1/4 eftersom 8 är större än 4.
+      <br><br>
+      <strong>Synliggör:</strong>
+      samma helhet delad i olika många lika stora delar.
+    </div>
+
+    <div class="misconception">
+      <strong>Problemlösning:</strong>
+      <br><br>
+      Eleven väljer räknesätt efter ett enskilt ord istället för att förstå situationen.
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>💬 Frågor som synliggör tänkandet</h2>
+
+    <div class="tool-grid">
+
+      <div class="tool-card">
+        <h3>Förstå</h3>
+        <ul class="checklist">
+          <li>Vad handlar uppgiften om?</li>
+          <li>Vad vet du redan?</li>
+          <li>Vad ska du ta reda på?</li>
+        </ul>
+      </div>
+
+      <div class="tool-card">
+        <h3>Strategi</h3>
+        <ul class="checklist">
+          <li>Hur började du?</li>
+          <li>Varför valde du den metoden?</li>
+          <li>Finns det ett annat sätt?</li>
+        </ul>
+      </div>
+
+      <div class="tool-card">
+        <h3>Resonemang</h3>
+        <ul class="checklist">
+          <li>Hur vet du?</li>
+          <li>Kan du bevisa det med en bild?</li>
+          <li>Är det alltid sant?</li>
+        </ul>
+      </div>
+
+      <div class="tool-card">
+        <h3>Kontroll</h3>
+        <ul class="checklist">
+          <li>Är svaret rimligt?</li>
+          <li>Hur kan du kontrollera?</li>
+          <li>Får du samma svar på ett annat sätt?</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="stod">
+    <h2>🌱 Från behov till stöd</h2>
+
+    <table class="support-table">
+      <tr>
+        <th>Om eleven...</th>
+        <th>Prova...</th>
+      </tr>
+
+      <tr>
+        <td>räknar allt från ett</td>
+        <td>
+          tiokompisar, dubbelt, talbilder och del–helhet.
+        </td>
+      </tr>
+
+      <tr>
+        <td>blandar ihop tiotal och ental</td>
+        <td>
+          konkret positionsmaterial och platsvärdestabell.
+        </td>
+      </tr>
+
+      <tr>
+        <td>har svårt att förstå textuppgifter</td>
+        <td>
+          bildstöd, markera viktig information och återberätta situationen muntligt.
+        </td>
+      </tr>
+
+      <tr>
+        <td>kan räkna men inte förklara</td>
+        <td>
+          meningsstarter, parprat och jämförelse av två lösningar.
+        </td>
+      </tr>
+
+      <tr>
+        <td>gör många procedurfel</td>
+        <td>
+          mindre tal, tydlig modellering och fokus på ett steg i taget.
+        </td>
+      </tr>
+
+      <tr>
+        <td>redan behärskar området</td>
+        <td>
+          öppna problem, flera lösningar och krav på generalisering.
+        </td>
+      </tr>
+    </table>
+  </section>
+
+
+  <section class="box">
+    <h2>⭐ Fördjupning för elever som behöver utmanas</h2>
+
+    <div class="quick-grid">
+
+      <div class="quick-card">
+        Hitta flera lösningar
+      </div>
+
+      <div class="quick-card">
+        Förklara varför
+      </div>
+
+      <div class="quick-card">
+        Skapa en egen uppgift
+      </div>
+
+      <div class="quick-card">
+        Hitta en regel
+      </div>
+
+      <div class="quick-card">
+        Avgör om något alltid gäller
+      </div>
+
+      <div class="quick-card">
+        Jämför två strategier
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="box" id="planering">
+    <h2>📝 Snabbplanering</h2>
+
+    <div class="plan-card">
+      <h3>1. Lektionsmål</h3>
+      <input type="text" id="lessonGoal"
+        placeholder="Efter lektionen ska eleverna kunna...">
+    </div>
+
+    <div class="plan-card">
+      <h3>2. Viktiga begrepp</h3>
+      <textarea id="lessonConcepts"
+        placeholder="Vilka ord och begrepp behöver eleverna förstå?"></textarea>
+    </div>
+
+    <div class="plan-card">
+      <h3>3. Startaktivitet</h3>
+      <textarea id="lessonStart"
+        placeholder="Exempel: Dagens matte, talbild, kort problem..."></textarea>
+    </div>
+
+    <div class="plan-card">
+      <h3>4. Modellering</h3>
+      <textarea id="lessonModel"
+        placeholder="Vad ska läraren visa och tänka högt kring?"></textarea>
+    </div>
+
+    <div class="plan-card">
+      <h3>5. Elevaktivitet</h3>
+      <textarea id="lessonActivity"
+        placeholder="Vad ska eleverna göra, prata om eller undersöka?"></textarea>
+    </div>
+
+    <div class="plan-card">
+      <h3>6. Stöd</h3>
+      <textarea id="lessonSupport"
+        placeholder="Vilket konkret material, språkstöd eller anpassning behövs?"></textarea>
+    </div>
+
+    <div class="plan-card">
+      <h3>7. Utmaning</h3>
+      <textarea id="lessonChallenge"
+        placeholder="Hur kan uppgiften fördjupas?"></textarea>
+    </div>
+
+    <div class="plan-card">
+      <h3>8. Avslut och bedömning</h3>
+      <textarea id="lessonEnd"
+        placeholder="Hur synliggörs vad eleverna har förstått?"></textarea>
+    </div>
+
+    <button class="save-btn" onclick="savePlan()">
+      💾 Spara snabbplaneringen
+    </button>
+
+    <div class="save-message" id="saveMessage"></div>
+  </section>
+
+
+  <section class="box">
+    <h2>📊 Efter lektionen</h2>
+
+    <table class="analysis-table">
+      <tr>
+        <th>Fråga</th>
+        <th>Anteckning</th>
+      </tr>
+
+      <tr>
+        <td>Vad förstod de flesta elever?</td>
+        <td>________________________________________</td>
+      </tr>
+
+      <tr>
+        <td>Vad blev svårt?</td>
+        <td>________________________________________</td>
+      </tr>
+
+      <tr>
+        <td>Vilka missuppfattningar såg jag?</td>
+        <td>________________________________________</td>
+      </tr>
+
+      <tr>
+        <td>Vilka behöver mer stöd?</td>
+        <td>________________________________________</td>
+      </tr>
+
+      <tr>
+        <td>Vilka behöver större utmaning?</td>
+        <td>________________________________________</td>
+      </tr>
+
+      <tr>
+        <td>Vad blir nästa steg?</td>
+        <td>________________________________________</td>
+      </tr>
+    </table>
+  </section>
+
+
+  <section class="box">
+    <h2>🔗 Verktyg i plattformen</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="diagnos.html">
+        🔎 Diagnos
+      </a>
+
+      <a class="link-card" href="exit-ticket.html">
+        🚪 Exit ticket
+      </a>
+
+      <a class="link-card" href="stationsarbete.html">
+        🔄 Stationsarbete
+      </a>
+
+      <a class="link-card" href="felanalys.html">
+        🕵️ Felanalys
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="representationer.html">
+        🧩 Representationer
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Räknestrategier
+      </a>
+
+      <a class="link-card" href="min-utveckling.html">
+        🌱 Min utveckling
+      </a>
+
+    </div>
+  </section>
+
+
+  <section class="box">
+    <h2>✅ Snabbcheck inför nästa lektion</h2>
+
+    <ul class="checklist">
+      <li>Vet eleverna vad de ska lära sig?</li>
+      <li>Har jag valt de viktigaste matematikbegreppen?</li>
+      <li>Finns en konkret eller visuell representation?</li>
+      <li>Får eleverna prata matematik?</li>
+      <li>Finns stöd för elever som behöver det?</li>
+      <li>Finns en fördjupning för elever som behöver större utmaning?</li>
+      <li>Hur tar jag reda på vad eleverna har förstått?</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Lärarverktyg</strong></p>
+  <p>Observera • Analysera • Anpassa • Undervisa • Följa upp</p>
+</footer>
+
+<script>
+
+  function savePlan() {
+
+    const plan = {
+      goal: document.getElementById("lessonGoal").value,
+      concepts: document.getElementById("lessonConcepts").value,
+      start: document.getElementById("lessonStart").value,
+      model: document.getElementById("lessonModel").value,
+      activity: document.getElementById("lessonActivity").value,
+      support: document.getElementById("lessonSupport").value,
+      challenge: document.getElementById("lessonChallenge").value,
+      end: document.getElementById("lessonEnd").value
+    };
+
+    localStorage.setItem(
+      "matematikAk3LessonPlan",
+      JSON.stringify(plan)
+    );
+
+    document.getElementById("saveMessage").textContent =
+      "✅ Snabbplaneringen är sparad på den här enheten.";
+  }
+
+
+  function loadPlan() {
+
+    const saved =
+      localStorage.getItem(
+        "matematikAk3LessonPlan"
+      );
+
+    if (!saved) {
+      return;
+    }
+
+    try {
+
+      const plan =
+        JSON.parse(saved);
+
+      document.getElementById("lessonGoal").value =
+        plan.goal || "";
+
+      document.getElementById("lessonConcepts").value =
+        plan.concepts || "";
+
+      document.getElementById("lessonStart").value =
+        plan.start || "";
+
+      document.getElementById("lessonModel").value =
+        plan.model || "";
+
+      document.getElementById("lessonActivity").value =
+        plan.activity || "";
+
+      document.getElementById("lessonSupport").value =
+        plan.support || "";
+
+      document.getElementById("lessonChallenge").value =
+        plan.challenge || "";
+
+      document.getElementById("lessonEnd").value =
+        plan.end || "";
+
+    } catch(error) {
+      console.log("Kunde inte läsa sparad planering.");
+    }
+  }
+
+
+  loadPlan();
+
+</script>
+
+</body>
+</html>
