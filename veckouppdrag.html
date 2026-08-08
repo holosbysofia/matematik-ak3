@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veckouppdrag – Matematik åk 3</title>
+
+  <style>
+    :root {
+      --bakgrund: #f7f2e8;
+      --kort: #fffaf2;
+      --beige: #e8dcc8;
+      --beige2: #ded0ba;
+      --brun: #6f6255;
+      --text: #3f3a35;
+      --kant: #e2d5c3;
+      --ratt: #dfe8d8;
+      --fel: #eedbd7;
+      --skugga: rgba(80,65,50,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bakgrund);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding: 45px 20px;
+      text-align: center;
+      border-bottom: 1px solid #cdbb9f;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--brun);
+      font-size: clamp(2rem,5vw,3.7rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background: #fffaf3;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--kant);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--brun);
+      font-weight: bold;
+      margin: 4px 7px;
+      padding: 8px 11px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background: var(--beige);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 30px 20px 70px;
+    }
+
+    .box {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px var(--skugga);
+    }
+
+    .intro {
+      background: #eee4d6;
+    }
+
+    h2,
+    h3,
+    h4 {
+      color: var(--brun);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .week-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .info-card {
+      background: #f3eadf;
+      border-radius: 13px;
+      padding: 15px;
+    }
+
+    label {
+      display: block;
+      color: var(--brun);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cdbfae;
+      background: #fffdf8;
+      color: var(--text);
+      border-radius: 9px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 16px;
+    }
+
+    .day-card {
+      background: #fffdf8;
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .day-card h3 {
+      margin-top: 0;
+    }
+
+    .day-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #d8c8b2;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--brun);
+      border-radius: 18px;
+      padding: 4px 9px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .task-box {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .think-box {
+      background: #eee4d6;
+      border-left: 5px solid #bca98d;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .language-box {
+      background: #e7eadf;
+      border-left: 5px solid #a7ad91;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .challenge-box {
+      background: #eee2d2;
+      border-left: 5px solid #b7a17c;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .answer-area {
+      margin-top: 14px;
+    }
+
+    .answer-area input {
+      max-width: 180px;
+    }
+
+    button {
+      border: none;
+      background: #d6c3a6;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--beige2);
+    }
+
+    .secondary {
+      background: #ece3d5;
+      border: 1px solid #d1c0aa;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .feedback {
+      margin-top: 8px;
+      min-height: 24px;
+      font-weight: bold;
+    }
+
+    .right {
+      background: var(--ratt);
+      border-color: #aab69f !important;
+    }
+
+    .wrong {
+      background: var(--fel);
+      border-color: #caa9a2 !important;
+    }
+
+    .progress-wrap {
+      background: #eee4d6;
+      border-radius: 20px;
+      height: 24px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #b9bda3;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      margin-top: 8px;
+      font-weight: bold;
+      color: var(--brun);
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .reflection-card {
+      background: #f3eadf;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .self-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .self-btn {
+      background: #fffaf2;
+      border: 1px solid #d3c4b2;
+      padding: 13px;
+      text-align: center;
+    }
+
+    .self-btn.selected {
+      background: var(--ratt);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: #f3eadf;
+      border: 1px solid var(--kant);
+      border-radius: 13px;
+      padding: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .link-card:hover {
+      background: var(--beige);
+    }
+
+    footer {
+      background: #d8c8b2;
+      color: #4d443c;
+      text-align: center;
+      padding: 27px;
+    }
+
+    @media(max-width:760px) {
+      .self-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:650px) {
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: block;
+      }
+
+      main {
+        padding: 22px 12px 55px;
+      }
+
+      .box,
+      .day-card {
+        padding: 18px;
+      }
+    }
+
+    @media print {
+      nav,
+      .button-row,
+      .link-grid,
+      footer {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+      }
+
+      .box,
+      .day-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📅 Veckans matematikuppdrag</h1>
+
+  <p>
+    Fem korta uppdrag – ett för varje dag.
+    Träna tal, strategier, problemlösning, resonemang och matematiska kluringar.
+  </p>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Hem</a>
+  <a href="#mandag">1️⃣ Måndag</a>
+  <a href="#tisdag">2️⃣ Tisdag</a>
+  <a href="#onsdag">3️⃣ Onsdag</a>
+  <a href="#torsdag">4️⃣ Torsdag</a>
+  <a href="#fredag">5️⃣ Fredag</a>
+  <a href="#reflektion">🌱 Reflektion</a>
+</nav>
+
+<main>
+
+  <section class="box intro">
+
+    <h2>🌿 Så fungerar veckouppdraget</h2>
+
+    <p>
+      Gör ett kort uppdrag varje dag. Det viktiga är inte bara att få rätt svar,
+      utan att kunna visa, förklara och kontrollera hur du tänker.
+    </p>
+
+    <div class="week-info">
+
+      <div class="info-card">
+        <label for="studentName">Namn</label>
+        <input type="text" id="studentName" placeholder="Skriv ditt namn">
+      </div>
+
+      <div class="info-card">
+        <label for="weekNumber">Vecka</label>
+        <input type="text" id="weekNumber" placeholder="Exempel: 36">
+      </div>
+
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="progress-text" id="progressText">
+      0 av 5 dagar klara
+    </div>
+
+    <div class="button-row">
+      <button onclick="newWeek()">🎲 Slumpa nytt veckouppdrag</button>
+      <button class="secondary" onclick="window.print()">🖨️ Skriv ut</button>
+      <button class="secondary" onclick="resetWeek()">🔄 Börja om</button>
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <div class="day-grid">
+
+
+      <article class="day-card" id="mandag">
+
+        <div class="day-number">1</div>
+
+        <h3>🔢 Måndag – Tal</h3>
+
+        <span class="tag">Taluppfattning</span>
+
+        <div class="task-box" id="task1"></div>
+
+        <div class="think-box">
+          💭 Förklara gärna hur du vet.
+        </div>
+
+        <div class="answer-area">
+          <label for="answer1">Mitt svar</label>
+          <input type="text" id="answer1">
+          <button onclick="checkDay(1)">Kontrollera</button>
+        </div>
+
+        <div class="feedback" id="feedback1"></div>
+
+      </article>
+
+
+      <article class="day-card" id="tisdag">
+
+        <div class="day-number">2</div>
+
+        <h3>🧠 Tisdag – Strategi</h3>
+
+        <span class="tag">Hur tänker du?</span>
+
+        <div class="task-box" id="task2"></div>
+
+        <div class="language-box">
+          💬 Jag valde strategin ___ eftersom ___.
+        </div>
+
+        <div class="answer-area">
+          <label for="answer2">Mitt svar</label>
+          <input type="text" id="answer2">
+          <button onclick="checkDay(2)">Kontrollera</button>
+        </div>
+
+        <div class="feedback" id="feedback2"></div>
+
+      </article>
+
+
+      <article class="day-card" id="onsdag">
+
+        <div class="day-number">3</div>
+
+        <h3>🧩 Onsdag – Problemlösning</h3>
+
+        <span class="tag">Förstå • Planera • Lösa</span>
+
+        <div class="task-box" id="task3"></div>
+
+        <div class="think-box">
+          Innan du räknar:
+          <br>
+          Vad vet du?
+          <br>
+          Vad ska du ta reda på?
+        </div>
+
+        <div class="answer-area">
+          <label for="answer3">Mitt svar</label>
+          <input type="text" id="answer3">
+          <button onclick="checkDay(3)">Kontrollera</button>
+        </div>
+
+        <div class="feedback" id="feedback3"></div>
+
+      </article>
+
+
+      <article class="day-card" id="torsdag">
+
+        <div class="day-number">4</div>
+
+        <h3>💬 Torsdag – Resonera</h3>
+
+        <span class="tag">Förklara</span>
+
+        <div class="task-box" id="task4"></div>
+
+        <div class="language-box">
+          💬 Jag håller med / håller inte med eftersom...
+        </div>
+
+        <div class="answer-area">
+          <label for="reasoning">Min förklaring</label>
+          <textarea id="reasoning" placeholder="Skriv hur du tänker..."></textarea>
+
+          <button onclick="completeReasoning()">✓ Jag är klar</button>
+        </div>
+
+        <div class="feedback" id="feedback4"></div>
+
+      </article>
+
+
+      <article class="day-card" id="fredag">
+
+        <div class="day-number">5</div>
+
+        <h3>⭐ Fredag – Kluring</h3>
+
+        <span class="tag">Utmana ditt tänkande</span>
+
+        <div class="task-box" id="task5"></div>
+
+        <div class="challenge-box">
+          ⭐ Försök hitta mer än en lösning om det går.
+        </div>
+
+        <div class="answer-area">
+          <label for="challengeAnswer">Min lösning</label>
+          <textarea id="challengeAnswer" placeholder="Visa eller förklara din lösning..."></textarea>
+
+          <button onclick="completeChallenge()">✓ Jag är klar</button>
+        </div>
+
+        <div class="feedback" id="feedback5"></div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="box" id="reflektion">
+
+    <h2>🌱 Veckans reflektion</h2>
+
+    <div class="reflection-grid">
+
+      <div class="reflection-card">
+        <label for="easy">Det här kändes lättast</label>
+        <textarea id="easy"></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label for="hard">Det här behöver jag träna mer på</label>
+        <textarea id="hard"></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label for="strategy">En strategi jag använde</label>
+        <textarea id="strategy"></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <label for="newLearning">Något nytt jag lärde mig</label>
+        <textarea id="newLearning"></textarea>
+      </div>
+
+    </div>
+
+
+    <h3>Hur känns veckans matematik?</h3>
+
+    <div class="self-grid">
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        🌱
+        <br>
+        Jag behöver mer hjälp
+      </button>
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        🌿
+        <br>
+        Jag börjar förstå
+      </button>
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        🌳
+        <br>
+        Jag kan själv
+      </button>
+
+      <button class="self-btn" onclick="selectSelf(this)">
+        ⭐
+        <br>
+        Jag kan förklara
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="box">
+
+    <h2>🔗 Träna vidare</h2>
+
+    <div class="link-grid">
+
+      <a class="link-card" href="dagensmatte.html">
+        ☀️ Dagens matte
+      </a>
+
+      <a class="link-card" href="ovningsbank.html">
+        📚 Övningsbank
+      </a>
+
+      <a class="link-card" href="strategier.html">
+        🧠 Strategier
+      </a>
+
+      <a class="link-card" href="problemlosning.html">
+        🧩 Problemlösning
+      </a>
+
+      <a class="link-card" href="matteprat.html">
+        💬 Matteprat
+      </a>
+
+      <a class="link-card" href="utmaningar.html">
+        ⭐ Utmaningar
+      </a>
+
+      <a class="link-card" href="spel.html">
+        🎮 Mattespel
+      </a>
+
+      <a class="link-card" href="min-utveckling.html">
+        🌱 Min utveckling
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Matematik åk 3 – Veckouppdrag</strong></p>
+  <p>Tänk • Träna • Förklara • Lösa • Utmana</p>
+</footer>
+
+
+<script>
+
+  let completed = [false, false, false, false, false];
+  let currentTasks = [];
+
+
+  const taskBanks = {
+
+    tal: [
+      {
+        text: "Vad är siffran 7 värd i talet 472?",
+        answer: "70",
+        feedback: "Rätt. 7:an står på tiotalsplatsen och är värd 70."
+      },
+      {
+        text: "Vilket tal är 100 mindre än 638?",
+        answer: "538",
+        feedback: "Rätt. 638 − 100 = 538."
+      },
+      {
+        text: "Vilket tal är störst: 398 eller 403?",
+        answer: "403",
+        feedback: "Rätt. 403 har fyra hundratal medan 398 har tre."
+      },
+      {
+        text: "Skriv talet som består av 5 hundratal, 0 tiotal och 8 ental.",
+        answer: "508",
+        feedback: "Rätt. Talet är 508."
+      },
+      {
+        text: "Vad är 10 mer än 286?",
+        answer: "296",
+        feedback: "Rätt. 286 + 10 = 296."
+      }
+    ],
+
+
+    strategi: [
+      {
+        text: "Räkna 49 + 26. Försök använda ett närliggande helt tiotal.",
+        answer: "75",
+        feedback: "Rätt. Ett sätt är 50 + 26 − 1 = 75."
+      },
+      {
+        text: "Räkna 72 − 38.",
+        answer: "34",
+        feedback: "Rätt. Du kan till exempel räkna upp från 38 till 72."
+      },
+      {
+        text: "Räkna 8 + 7 genom att gå via 10.",
+        answer: "15",
+        feedback: "Rätt. 8 + 2 + 5 = 15."
+      },
+      {
+        text: "Om 5 × 6 = 30, vad blir 6 × 6?",
+        answer: "36",
+        feedback: "Rätt. Lägg till ytterligare en grupp med 6."
+      },
+      {
+        text: "Räkna 99 + 24 genom att använda 100.",
+        answer: "123",
+        feedback: "Rätt. 100 + 24 − 1 = 123."
+      }
+    ],
+
+
+    problem: [
+      {
+        text: "Mira har 28 pärlor. Hon får 15 nya och använder sedan 9. Hur många pärlor har hon kvar?",
+        answer: "34",
+        feedback: "Rätt. 28 + 15 = 43 och 43 − 9 = 34."
+      },
+      {
+        text: "24 kakor delas lika mellan 6 barn. Hur många kakor får varje barn?",
+        answer: "4",
+        feedback: "Rätt. 24 ÷ 6 = 4."
+      },
+      {
+        text: "Det finns 7 lådor med 4 bollar i varje. Hur många bollar finns totalt?",
+        answer: "28",
+        feedback: "Rätt. 7 × 4 = 28."
+      },
+      {
+        text: "Leo har 35 kr. Han får 12 kr och köper sedan något för 8 kr. Hur mycket har han kvar?",
+        answer: "39",
+        feedback: "Rätt. 35 + 12 − 8 = 39."
+      },
+      {
+        text: "32 elever ska delas i grupper om 4. Hur många grupper blir det?",
+        answer: "8",
+        feedback: "Rätt. 32 ÷ 4 = 8."
+      }
+    ],
+
+
+    resonera: [
+      "En elev säger: ”1/4 är större än 1/2 eftersom 4 är större än 2.” Håller du med? Förklara.",
+      "En elev säger: ”4 × 6 och 6 × 4 kan inte vara lika eftersom talen står i olika ordning.” Vad skulle du svara?",
+      "Är 398 större än 403? Förklara med hjälp av platsvärde.",
+      "En elev säger att likhetstecknet betyder ”här kommer svaret”. Hur skulle du förklara vad = egentligen betyder?",
+      "En elev får svaret 515 på 38 + 27. Vad tror du eleven har gjort och varför blir det fel?"
+    ],
+
+
+    kluring: [
+      "Två tal har summan 40. Hitta minst fem olika talpar.",
+      "Skapa tre olika additionsuppgifter som alla har svaret 50.",
+      "36 elever ska delas i lika stora grupper. Vilka gruppstorlekar är möjliga om varje grupp ska ha ett helt antal elever?",
+      "Jag tänker på ett jämnt tal större än 40 men mindre än 60. Siffrorna har summan 9. Vilket tal tänker jag på?",
+      "Du har 30 kr. En penna kostar 5 kr och ett sudd kostar 3 kr. Hitta olika sätt att handla för exakt 30 kr."
+    ]
+  };
+
+
+  function randomFrom(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+
+  function newWeek() {
+
+    currentTasks = [
+      randomFrom(taskBanks.tal),
+      randomFrom(taskBanks.strategi),
+      randomFrom(taskBanks.problem),
+      randomFrom(taskBanks.resonera),
+      randomFrom(taskBanks.kluring)
+    ];
+
+    document.getElementById("task1").textContent = currentTasks[0].text;
+    document.getElementById("task2").textContent = currentTasks[1].text;
+    document.getElementById("task3").textContent = currentTasks[2].text;
+    document.getElementById("task4").textContent = currentTasks[3];
+    document.getElementById("task5").textContent = currentTasks[4];
+
+    resetAnswers();
+  }
+
+
+  function normalise(value) {
+    return value
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "");
+  }
+
+
+  function checkDay(day) {
+
+    const index = day - 1;
+    const input = document.getElementById("answer" + day);
+    const feedback = document.getElementById("feedback" + day);
+
+    const userAnswer = normalise(input.value);
+    const correctAnswer = normalise(currentTasks[index].answer);
+
+    input.classList.remove("right", "wrong");
+
+    if (!userAnswer) {
+      feedback.textContent = "Skriv ett svar först.";
+      return;
+    }
+
+    if (userAnswer === correctAnswer) {
+      input.classList.add("right");
+      feedback.textContent = currentTasks[index].feedback;
+      markCompleted(index);
+    } else {
+      input.classList.add("wrong");
+      feedback.textContent = "Inte riktigt ännu. Fundera på vad uppgiften frågar efter och prova igen.";
+    }
+  }
+
+
+  function completeReasoning() {
+
+    const text = document.getElementById("reasoning").value.trim();
+    const feedback = document.getElementById("feedback4");
+
+    if (text.length < 8) {
+      feedback.textContent = "Försök skriva lite mer om hur du tänker.";
+      return;
+    }
+
+    feedback.textContent = "Bra – du har förklarat ditt resonemang.";
+    markCompleted(3);
+  }
+
+
+  function completeChallenge() {
+
+    const text = document.getElementById("challengeAnswer").value.trim();
+    const feedback = document.getElementById("feedback5");
+
+    if (text.length < 3) {
+      feedback.textContent = "Skriv eller beskriv minst en lösning först.";
+      return;
+    }
+
+    feedback.textContent = "Klart! Kan du hitta ytterligare en lösning eller kontrollera den du har?";
+    markCompleted(4);
+  }
+
+
+  function markCompleted(index) {
+
+    completed[index] = true;
+
+    updateProgress();
+    saveWeek();
+  }
+
+
+  function updateProgress() {
+
+    const count = completed.filter(Boolean).length;
+    const percent = count / 5 * 100;
+
+    document.getElementById("progressBar").style.width =
+      percent + "%";
+
+    document.getElementById("progressText").textContent =
+      count + " av 5 dagar klara";
+
+    if (count === 5) {
+      document.getElementById("progressText").textContent =
+        "🎉 Hela veckouppdraget är klart!";
+    }
+  }
+
+
+  function selectSelf(button) {
+
+    document.querySelectorAll(".self-btn").forEach(btn => {
+      btn.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    localStorage.setItem(
+      "matematikAk3VeckoSelf",
+      button.textContent.trim()
+    );
+  }
+
+
+  function resetAnswers() {
+
+    completed = [false, false, false, false, false];
+
+    ["answer1","answer2","answer3"].forEach(id => {
+      const el = document.getElementById(id);
+      el.value = "";
+      el.classList.remove("right","wrong");
+    });
+
+    document.getElementById("reasoning").value = "";
+    document.getElementById("challengeAnswer").value = "";
+
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById("feedback" + i).textContent = "";
+    }
+
+    updateProgress();
+    saveWeek();
+  }
+
+
+  function resetWeek() {
+
+    const ok = confirm(
+      "Vill du börja om med veckouppdraget?"
+    );
+
+    if (!ok) return;
+
+    localStorage.removeItem("matematikAk3Veckouppdrag");
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("weekNumber").value = "";
+    document.getElementById("easy").value = "";
+    document.getElementById("hard").value = "";
+    document.getElementById("strategy").value = "";
+    document.getElementById("newLearning").value = "";
+
+    document.querySelectorAll(".self-btn").forEach(btn => {
+      btn.classList.remove("selected");
+    });
+
+    newWeek();
+  }
+
+
+  function saveWeek() {
+
+    const data = {
+      currentTasks: currentTasks,
+      completed: completed,
+      studentName: document.getElementById("studentName").value,
+      weekNumber: document.getElementById("weekNumber").value,
+      easy: document.getElementById("easy").value,
+      hard: document.getElementById("hard").value,
+      strategy: document.getElementById("strategy").value,
+      newLearning: document.getElementById("newLearning").value
+    };
+
+    localStorage.setItem(
+      "matematikAk3Veckouppdrag",
+      JSON.stringify(data)
+    );
+  }
+
+
+  function loadWeek() {
+
+    const saved = localStorage.getItem(
+      "matematikAk3Veckouppdrag"
+    );
+
+    if (!saved) {
+      newWeek();
+      return;
+    }
+
+    try {
+
+      const data = JSON.parse(saved);
+
+      if (!data.currentTasks || data.currentTasks.length !== 5) {
+        newWeek();
+        return;
+      }
+
+      currentTasks = data.currentTasks;
+      completed = data.completed || [false,false,false,false,false];
+
+      document.getElementById("task1").textContent = currentTasks[0].text;
+      document.getElementById("task2").textContent = currentTasks[1].text;
+      document.getElementById("task3").textContent = currentTasks[2].text;
+      document.getElementById("task4").textContent = currentTasks[3];
+      document.getElementById("task5").textContent = currentTasks[4];
+
+      document.getElementById("studentName").value =
+        data.studentName || "";
+
+      document.getElementById("weekNumber").value =
+        data.weekNumber || "";
+
+      document.getElementById("easy").value =
+        data.easy || "";
+
+      document.getElementById("hard").value =
+        data.hard || "";
+
+      document.getElementById("strategy").value =
+        data.strategy || "";
+
+      document.getElementById("newLearning").value =
+        data.newLearning || "";
+
+      updateProgress();
+
+    } catch(error) {
+      newWeek();
+    }
+  }
+
+
+  [
+    "studentName",
+    "weekNumber",
+    "easy",
+    "hard",
+    "strategy",
+    "newLearning"
+  ].forEach(id => {
+
+    document.addEventListener("input", event => {
+
+      if (event.target.id === id) {
+        saveWeek();
+      }
+
+    });
+
+  });
+
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    loadWeek
+  );
+
+</script>
+
+</body>
+</html>
