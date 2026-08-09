@@ -30,7 +30,7 @@
 
     body {
       margin:0;
-      font-family:Arial, Helvetica, sans-serif;
+      font-family:Arial,Helvetica,sans-serif;
       background:var(--bakgrund);
       color:var(--text);
       line-height:1.55;
@@ -98,8 +98,7 @@
       background:#eee4d6;
     }
 
-    h2,
-    h3 {
+    h2,h3 {
       color:var(--brun);
     }
 
@@ -309,21 +308,12 @@
       font-weight:bold;
     }
 
-    .related-links a:hover {
-      background:var(--beige);
-    }
-
     footer {
       background:#d8c8b2;
       color:#4d443c;
       text-align:center;
       padding:27px 20px;
     }
-
-
-    /* =========================
-       A4-UTSKRIFT – SLUTLIG QA
-       ========================= */
 
     @page {
       size:A4 landscape;
@@ -397,16 +387,6 @@
         overflow:visible !important;
       }
 
-
-      /*
-        VIKTIG QA-RÄTTNING:
-
-        Hela gruppområdet hålls INTE ihop.
-
-        Tidigare kunde webbläsaren försöka
-        pressa in alla fem grupper på samma sida.
-      */
-
       .group-area {
         display:grid !important;
         grid-template-columns:repeat(5,1fr) !important;
@@ -417,14 +397,6 @@
         break-inside:auto !important;
         page-break-inside:auto !important;
       }
-
-
-      /*
-        Ingen fast minsta höjd i utskrift.
-
-        Gruppen får använda den höjd
-        som innehållet faktiskt behöver.
-      */
 
       .group-column {
         min-height:0 !important;
@@ -437,12 +409,6 @@
         break-inside:auto !important;
         page-break-inside:auto !important;
       }
-
-
-      /*
-        Rubriken hålls tillsammans med
-        början av gruppens innehåll.
-      */
 
       .group-head {
         background:#eee !important;
@@ -465,11 +431,6 @@
         font-size:7.7pt !important;
       }
 
-
-      /*
-        Elevlistan får växa naturligt.
-      */
-
       .student-list {
         padding:2mm !important;
         min-height:0 !important;
@@ -486,11 +447,6 @@
         page-break-inside:auto !important;
       }
 
-
-      /*
-        Små fokusdelar försöker vi hålla ihop.
-      */
-
       .focus-box {
         background:white !important;
         border:1px solid #888 !important;
@@ -506,7 +462,6 @@
         min-height:16mm !important;
       }
 
-
       .teacher-note,
       .flex-note {
         background:white !important;
@@ -518,7 +473,6 @@
         break-inside:avoid-page;
         page-break-inside:avoid;
       }
-
 
       .reflection-grid {
         display:grid !important;
@@ -536,7 +490,6 @@
         page-break-inside:auto !important;
       }
 
-
       h1,
       h2,
       h3 {
@@ -552,15 +505,11 @@
       }
     }
 
-
     @media(max-width:1050px) {
-
       .group-area {
         grid-template-columns:repeat(2,1fr);
       }
-
     }
-
 
     @media(max-width:760px) {
 
@@ -589,20 +538,16 @@
   </style>
 </head>
 
-
 <body>
 
 <header>
-
   <h1>👥 Gruppindelning</h1>
 
   <p>
     Skapa flexibla matematikgrupper utifrån vad eleverna
     behöver i den aktuella undervisningen.
   </p>
-
 </header>
-
 
 <nav>
   <a href="index.html">🏠 Hem</a>
@@ -611,625 +556,306 @@
   <a href="#uppfoljning">🔎 Uppföljning</a>
 </nav>
 
-
 <main>
 
-  <section class="box intro">
+<section class="box intro">
 
-    <h2>🌱 Flexibla grupper – inte fasta nivågrupper</h2>
+  <h2>🌱 Flexibla grupper – inte fasta nivågrupper</h2>
 
-    <p>
-      Gruppindelningen är tänkt som ett tillfälligt undervisningsverktyg.
-      Elever kan behöva olika typer av stöd i olika matematikområden och
-      bör därför kunna flytta mellan grupper när undervisningen förändras.
-    </p>
+  <p>
+    Gruppindelningen är tänkt som ett tillfälligt undervisningsverktyg.
+    Elever kan behöva olika typer av stöd i olika matematikområden och
+    bör därför kunna flytta mellan grupper när undervisningen förändras.
+  </p>
 
+  <div class="intro-grid">
 
-    <div class="intro-grid">
-
-      <div class="intro-card">
-
-        <div class="icon">🌱</div>
-
-        <strong>Grund</strong>
-
-        Konkretisering, representationer och säker grundförståelse.
-
-      </div>
-
-
-      <div class="intro-card">
-
-        <div class="icon">🧠</div>
-
-        <strong>Strategi</strong>
-
-        Utveckla flexibla och mer effektiva lösningsstrategier.
-
-      </div>
-
-
-      <div class="intro-card">
-
-        <div class="icon">💬</div>
-
-        <strong>Språkstöd</strong>
-
-        Matematiska begrepp, frågor och meningsstarter.
-
-      </div>
-
-
-      <div class="intro-card">
-
-        <div class="icon">✏️</div>
-
-        <strong>Självständigt</strong>
-
-        Befästa aktuell matematik med mindre lärarstöd.
-
-      </div>
-
-
-      <div class="intro-card">
-
-        <div class="icon">⭐</div>
-
-        <strong>Utmaning</strong>
-
-        Fördjupa, generalisera och resonera vidare.
-
-      </div>
-
+    <div class="intro-card">
+      <div class="icon">🌱</div>
+      <strong>Grund</strong>
+      Konkretisering, representationer och säker grundförståelse.
     </div>
 
-
-    <div class="privacy-note">
-
-      <strong>🔒 Lokal sparning:</strong>
-      uppgifterna på sidan sparas endast i webbläsaren på den enhet
-      som används. På delad dator bör du använda initialer eller elevkod
-      i stället för fullständiga namn. Skriv inte diagnoser, medicinska
-      uppgifter eller andra känsliga personuppgifter här.
-
+    <div class="intro-card">
+      <div class="icon">🧠</div>
+      <strong>Strategi</strong>
+      Utveckla flexibla och mer effektiva lösningsstrategier.
     </div>
 
-  </section>
+    <div class="intro-card">
+      <div class="icon">💬</div>
+      <strong>Språkstöd</strong>
+      Matematiska begrepp, frågor och meningsstarter.
+    </div>
 
+    <div class="intro-card">
+      <div class="icon">✏️</div>
+      <strong>Självständigt</strong>
+      Befästa aktuell matematik med mindre lärarstöd.
+    </div>
 
+    <div class="intro-card">
+      <div class="icon">⭐</div>
+      <strong>Utmaning</strong>
+      Fördjupa, generalisera och resonera vidare.
+    </div>
 
-  <section class="box" id="planering">
+  </div>
 
-    <h2>📋 Grupp-planering</h2>
+  <div class="privacy-note">
+    <strong>🔒 Lokal sparning:</strong>
+    uppgifterna på sidan sparas endast i webbläsaren på den enhet
+    som används. På delad dator bör du använda initialer eller elevkod
+    i stället för fullständiga namn. Skriv inte diagnoser, medicinska
+    uppgifter eller andra känsliga personuppgifter här.
+  </div>
 
-    <div class="top-fields">
+</section>
 
-      <div>
+<section class="box" id="planering">
 
-        <label for="week">
-          Vecka / datum
-        </label>
+  <h2>📋 Grupp-planering</h2>
 
-        <input
-          id="week"
-          type="text"
-          placeholder="t.ex. vecka 38"
-        >
+  <div class="top-fields">
+
+    <div>
+      <label for="week">Vecka / datum</label>
+      <input id="week" type="text" placeholder="t.ex. vecka 38">
+    </div>
+
+    <div>
+      <label for="className">Klass / grupp</label>
+      <input id="className" type="text" placeholder="t.ex. 3A">
+    </div>
+
+    <div>
+      <label for="area">Matematikområde</label>
+      <input id="area" type="text" placeholder="t.ex. subtraktion">
+    </div>
+
+  </div>
+
+  <div class="button-row screen-only">
+    <button onclick="saveGroups(true)">💾 Spara</button>
+    <button class="secondary" onclick="window.print()">🖨️ Skriv ut A4</button>
+    <button class="danger" onclick="clearGroups()">🗑️ Rensa</button>
+  </div>
+
+  <div class="save-status screen-only" id="saveStatus" aria-live="polite"></div>
+
+</section>
+
+<section class="box" id="grupper">
+
+  <h2>👥 Dagens flexibla grupper</h2>
+
+  <div class="group-area">
+
+    <section class="group-column">
+
+      <div class="group-head">
+        <h2>🌱 Grund</h2>
+        <p>Konkret förståelse och tydliga representationer.</p>
+      </div>
+
+      <div class="student-list">
+
+        <label for="group1Students">Elever / elevkoder</label>
+        <textarea id="group1Students" placeholder="Skriv en elev eller elevkod per rad..."></textarea>
+
+        <div class="focus-box">
+          <label for="group1Focus">Fokus för gruppen</label>
+          <textarea id="group1Focus" placeholder="Vad behöver gruppen förstå eller träna?"></textarea>
+        </div>
+
+        <div class="focus-box">
+          <label for="group1Material">Material / representation</label>
+          <textarea id="group1Material" placeholder="t.ex. tiobasmaterial, tallinje, bilder..."></textarea>
+        </div>
 
       </div>
 
+    </section>
 
-      <div>
+    <section class="group-column">
 
-        <label for="className">
-          Klass / grupp
-        </label>
+      <div class="group-head">
+        <h2>🧠 Strategi</h2>
+        <p>Jämföra och utveckla sätt att lösa uppgifter.</p>
+      </div>
 
-        <input
-          id="className"
-          type="text"
-          placeholder="t.ex. 3A"
-        >
+      <div class="student-list">
+
+        <label for="group2Students">Elever / elevkoder</label>
+        <textarea id="group2Students" placeholder="Skriv en elev eller elevkod per rad..."></textarea>
+
+        <div class="focus-box">
+          <label for="group2Focus">Strategifokus</label>
+          <textarea id="group2Focus" placeholder="Vilken strategi eller förståelse ska utvecklas?"></textarea>
+        </div>
+
+        <div class="focus-box">
+          <label for="group2Material">Aktivitet / frågor</label>
+          <textarea id="group2Material" placeholder="Vilka exempel och frågor ska användas?"></textarea>
+        </div>
 
       </div>
 
+    </section>
 
-      <div>
+    <section class="group-column">
 
-        <label for="area">
-          Matematikområde
-        </label>
+      <div class="group-head">
+        <h2>💬 Språkstöd</h2>
+        <p>Matematiska begrepp och muntliga förklaringar.</p>
+      </div>
 
-        <input
-          id="area"
-          type="text"
-          placeholder="t.ex. subtraktion"
-        >
+      <div class="student-list">
+
+        <label for="group3Students">Elever / elevkoder</label>
+        <textarea id="group3Students" placeholder="Skriv en elev eller elevkod per rad..."></textarea>
+
+        <div class="focus-box">
+          <label for="group3Focus">Begrepp och språk</label>
+          <textarea id="group3Focus" placeholder="Vilka ord och uttryck ska gruppen arbeta med?"></textarea>
+        </div>
+
+        <div class="focus-box">
+          <label for="group3Material">Meningsstarter</label>
+          <textarea id="group3Material" placeholder="Jag vet att... Jag började med... Mitt svar är rimligt eftersom..."></textarea>
+        </div>
 
       </div>
 
-    </div>
+    </section>
 
+    <section class="group-column">
 
-    <div class="button-row screen-only">
+      <div class="group-head">
+        <h2>✏️ Självständigt</h2>
+        <p>Befästa aktuell matematik med mindre lärarstöd.</p>
+      </div>
 
-      <button onclick="saveGroups(true)">
-        💾 Spara
-      </button>
+      <div class="student-list">
 
-      <button
-        class="secondary"
-        onclick="window.print()"
-      >
-        🖨️ Skriv ut A4
-      </button>
+        <label for="group4Students">Elever / elevkoder</label>
+        <textarea id="group4Students" placeholder="Skriv en elev eller elevkod per rad..."></textarea>
 
-      <button
-        class="danger"
-        onclick="clearGroups()"
-      >
-        🗑️ Rensa
-      </button>
-
-    </div>
-
-
-    <div
-      class="save-status screen-only"
-      id="saveStatus"
-      aria-live="polite"
-    ></div>
-
-  </section>
-
-
-
-  <section class="box" id="grupper">
-
-    <h2>👥 Dagens flexibla grupper</h2>
-
-
-    <div class="group-area">
-
-
-      <!-- GRUPP 1 -->
-
-      <section class="group-column">
-
-        <div class="group-head">
-
-          <h2>🌱 Grund</h2>
-
-          <p>
-            Konkret förståelse och tydliga representationer.
-          </p>
-
+        <div class="focus-box">
+          <label for="group4Focus">Uppgift / träning</label>
+          <textarea id="group4Focus" placeholder="Vad ska gruppen arbeta med?"></textarea>
         </div>
 
-
-        <div class="student-list">
-
-          <label for="group1Students">
-            Elever / elevkoder
-          </label>
-
-          <textarea
-            id="group1Students"
-            placeholder="Skriv en elev eller elevkod per rad..."
-          ></textarea>
-
-
-          <div class="focus-box">
-
-            <label for="group1Focus">
-              Fokus för gruppen
-            </label>
-
-            <textarea
-              id="group1Focus"
-              placeholder="Vad behöver gruppen förstå eller träna?"
-            ></textarea>
-
-          </div>
-
-
-          <div class="focus-box">
-
-            <label for="group1Material">
-              Material / representation
-            </label>
-
-            <textarea
-              id="group1Material"
-              placeholder="t.ex. tiobasmaterial, tallinje, bilder..."
-            ></textarea>
-
-          </div>
-
+        <div class="focus-box">
+          <label for="group4Material">Självkontroll</label>
+          <textarea id="group4Material" placeholder="Hur kan eleverna kontrollera sina lösningar?"></textarea>
         </div>
-
-      </section>
-
-
-
-      <!-- GRUPP 2 -->
-
-      <section class="group-column">
-
-        <div class="group-head">
-
-          <h2>🧠 Strategi</h2>
-
-          <p>
-            Jämföra och utveckla sätt att lösa uppgifter.
-          </p>
-
-        </div>
-
-
-        <div class="student-list">
-
-          <label for="group2Students">
-            Elever / elevkoder
-          </label>
-
-          <textarea
-            id="group2Students"
-            placeholder="Skriv en elev eller elevkod per rad..."
-          ></textarea>
-
-
-          <div class="focus-box">
-
-            <label for="group2Focus">
-              Strategifokus
-            </label>
-
-            <textarea
-              id="group2Focus"
-              placeholder="Vilken strategi eller förståelse ska utvecklas?"
-            ></textarea>
-
-          </div>
-
-
-          <div class="focus-box">
-
-            <label for="group2Material">
-              Aktivitet / frågor
-            </label>
-
-            <textarea
-              id="group2Material"
-              placeholder="Vilka exempel och frågor ska användas?"
-            ></textarea>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- GRUPP 3 -->
-
-      <section class="group-column">
-
-        <div class="group-head">
-
-          <h2>💬 Språkstöd</h2>
-
-          <p>
-            Matematiska begrepp och muntliga förklaringar.
-          </p>
-
-        </div>
-
-
-        <div class="student-list">
-
-          <label for="group3Students">
-            Elever / elevkoder
-          </label>
-
-          <textarea
-            id="group3Students"
-            placeholder="Skriv en elev eller elevkod per rad..."
-          ></textarea>
-
-
-          <div class="focus-box">
-
-            <label for="group3Focus">
-              Begrepp och språk
-            </label>
-
-            <textarea
-              id="group3Focus"
-              placeholder="Vilka ord och uttryck ska gruppen arbeta med?"
-            ></textarea>
-
-          </div>
-
-
-          <div class="focus-box">
-
-            <label for="group3Material">
-              Meningsstarter
-            </label>
-
-            <textarea
-              id="group3Material"
-              placeholder="Jag vet att... Jag började med... Mitt svar är rimligt eftersom..."
-            ></textarea>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- GRUPP 4 -->
-
-      <section class="group-column">
-
-        <div class="group-head">
-
-          <h2>✏️ Självständigt</h2>
-
-          <p>
-            Befästa aktuell matematik med mindre lärarstöd.
-          </p>
-
-        </div>
-
-
-        <div class="student-list">
-
-          <label for="group4Students">
-            Elever / elevkoder
-          </label>
-
-          <textarea
-            id="group4Students"
-            placeholder="Skriv en elev eller elevkod per rad..."
-          ></textarea>
-
-
-          <div class="focus-box">
-
-            <label for="group4Focus">
-              Uppgift / träning
-            </label>
-
-            <textarea
-              id="group4Focus"
-              placeholder="Vad ska gruppen arbeta med?"
-            ></textarea>
-
-          </div>
-
-
-          <div class="focus-box">
-
-            <label for="group4Material">
-              Självkontroll
-            </label>
-
-            <textarea
-              id="group4Material"
-              placeholder="Hur kan eleverna kontrollera sina lösningar?"
-            ></textarea>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- GRUPP 5 -->
-
-      <section class="group-column">
-
-        <div class="group-head">
-
-          <h2>⭐ Utmaning</h2>
-
-          <p>
-            Fördjupning, generalisering och resonemang.
-          </p>
-
-        </div>
-
-
-        <div class="student-list">
-
-          <label for="group5Students">
-            Elever / elevkoder
-          </label>
-
-          <textarea
-            id="group5Students"
-            placeholder="Skriv en elev eller elevkod per rad..."
-          ></textarea>
-
-
-          <div class="focus-box">
-
-            <label for="group5Focus">
-              Fördjupning
-            </label>
-
-            <textarea
-              id="group5Focus"
-              placeholder="Vad ska eleverna undersöka eller generalisera?"
-            ></textarea>
-
-          </div>
-
-
-          <div class="focus-box">
-
-            <label for="group5Material">
-              Utmanande fråga
-            </label>
-
-            <textarea
-              id="group5Material"
-              placeholder="t.ex. Kan du hitta alla lösningar? Hur vet du det?"
-            ></textarea>
-
-          </div>
-
-        </div>
-
-      </section>
-
-    </div>
-
-
-    <div class="flex-note">
-
-      <strong>🔄 Kom ihåg:</strong>
-      en elev kan behöva gruppen Grund inom ett matematikområde
-      och Utmaning inom ett annat. Gruppindelningen ska därför ändras
-      när ny information om elevernas förståelse blir synlig.
-
-    </div>
-
-  </section>
-
-
-
-  <section class="box" id="uppfoljning">
-
-    <h2>🔎 Uppföljning</h2>
-
-
-    <div class="reflection-grid">
-
-      <div class="reflection-card">
-
-        <label for="worked">
-          Vad fungerade bra i grupperna?
-        </label>
-
-        <textarea id="worked"></textarea>
 
       </div>
 
+    </section>
 
-      <div class="reflection-card">
+    <section class="group-column">
 
-        <label for="moveStudents">
-          Behöver någon elev byta grupp nästa gång?
-        </label>
+      <div class="group-head">
+        <h2>⭐ Utmaning</h2>
+        <p>Fördjupning, generalisering och resonemang.</p>
+      </div>
 
-        <textarea id="moveStudents"></textarea>
+      <div class="student-list">
+
+        <label for="group5Students">Elever / elevkoder</label>
+        <textarea id="group5Students" placeholder="Skriv en elev eller elevkod per rad..."></textarea>
+
+        <div class="focus-box">
+          <label for="group5Focus">Fördjupning</label>
+          <textarea id="group5Focus" placeholder="Vad ska eleverna undersöka eller generalisera?"></textarea>
+        </div>
+
+        <div class="focus-box">
+          <label for="group5Material">Utmanande fråga</label>
+          <textarea id="group5Material" placeholder="t.ex. Kan du hitta alla lösningar? Hur vet du det?"></textarea>
+        </div>
 
       </div>
 
+    </section>
 
-      <div class="reflection-card">
+  </div>
 
-        <label for="nextTeaching">
-          Nästa undervisningssteg
-        </label>
+  <div class="flex-note">
+    <strong>🔄 Kom ihåg:</strong>
+    en elev kan behöva gruppen Grund inom ett matematikområde
+    och Utmaning inom ett annat. Gruppindelningen ska därför ändras
+    när ny information om elevernas förståelse blir synlig.
+  </div>
 
-        <textarea id="nextTeaching"></textarea>
+</section>
 
-      </div>
+<section class="box" id="uppfoljning">
 
+  <h2>🔎 Uppföljning</h2>
 
-      <div class="reflection-card">
+  <div class="reflection-grid">
 
-        <label for="followUp">
-          Vad behöver observeras igen?
-        </label>
-
-        <textarea id="followUp"></textarea>
-
-      </div>
-
+    <div class="reflection-card">
+      <label for="worked">Vad fungerade bra i grupperna?</label>
+      <textarea id="worked"></textarea>
     </div>
 
-
-    <div class="teacher-note">
-
-      <strong>👩‍🏫 Lärarperspektiv:</strong>
-      flytta elever utifrån ny information.
-      Gruppindelningen ska spegla ett aktuellt undervisningsbehov
-      och inte bli en permanent etikett på eleven.
-
+    <div class="reflection-card">
+      <label for="moveStudents">Behöver någon elev byta grupp nästa gång?</label>
+      <textarea id="moveStudents"></textarea>
     </div>
 
-  </section>
-
-
-
-  <section class="box screen-only">
-
-    <h2>🔗 Arbeta vidare</h2>
-
-    <div class="related-links">
-
-      <a href="kartlaggning.html">
-        🧭 Kartläggning
-      </a>
-
-      <a href="interventioner.html">
-        🌱 Interventioner
-      </a>
-
-      <a href="intensivtraning.html">
-        🎯 Intensivträning
-      </a>
-
-      <a href="anpassningar.html">
-        🧩 Anpassningar
-      </a>
-
-      <a href="bedomning.html">
-        🔎 Bedömning
-      </a>
-
-      <a href="veckoplan.html">
-        📅 Veckoplan
-      </a>
-
+    <div class="reflection-card">
+      <label for="nextTeaching">Nästa undervisningssteg</label>
+      <textarea id="nextTeaching"></textarea>
     </div>
 
-  </section>
+    <div class="reflection-card">
+      <label for="followUp">Vad behöver observeras igen?</label>
+      <textarea id="followUp"></textarea>
+    </div>
+
+  </div>
+
+  <div class="teacher-note">
+    <strong>👩‍🏫 Lärarperspektiv:</strong>
+    flytta elever utifrån ny information.
+    Gruppindelningen ska spegla ett aktuellt undervisningsbehov
+    och inte bli en permanent etikett på eleven.
+  </div>
+
+</section>
+
+<section class="box screen-only">
+
+  <h2>🔗 Arbeta vidare</h2>
+
+  <div class="related-links">
+    <a href="kartlaggning.html">🧭 Kartläggning</a>
+    <a href="interventioner.html">🌱 Interventioner</a>
+    <a href="intensivtraning.html">🎯 Intensivträning</a>
+    <a href="anpassningar.html">🧩 Anpassningar</a>
+    <a href="bedomning.html">🔎 Bedömning</a>
+    <a href="veckoplan.html">📅 Veckoplan</a>
+  </div>
+
+</section>
 
 </main>
 
-
 <footer>
-
-  <p>
-    <strong>Matematik åk 3 – Gruppindelning</strong>
-  </p>
-
-  <p>
-    Observera • Gruppera flexibelt • Undervisa • Följ upp
-  </p>
-
+  <p><strong>Matematik åk 3 – Gruppindelning</strong></p>
+  <p>Observera • Gruppera flexibelt • Undervisa • Följ upp</p>
 </footer>
-
 
 <script>
 
-const STORAGE_KEY =
-  "matematikAk3FlexiblaGrupper";
-
+const STORAGE_KEY = "matematikAk3FlexiblaGrupper";
 
 const fieldIds = [
-
   "week",
   "className",
   "area",
@@ -1258,30 +884,19 @@ const fieldIds = [
   "moveStudents",
   "nextTeaching",
   "followUp"
-
 ];
-
 
 function saveGroups(showMessage = false) {
 
   const data = {};
 
-
   fieldIds.forEach(id => {
-
-    const element =
-      document.getElementById(id);
-
+    const element = document.getElementById(id);
 
     if (element) {
-
-      data[id] =
-        element.value;
-
+      data[id] = element.value;
     }
-
   });
-
 
   try {
 
@@ -1290,116 +905,72 @@ function saveGroups(showMessage = false) {
       JSON.stringify(data)
     );
 
-
     if (showMessage) {
 
-      const status =
-        document.getElementById(
-          "saveStatus"
-        );
-
+      const status = document.getElementById("saveStatus");
 
       status.textContent =
         "✓ Gruppindelningen är sparad lokalt på den här enheten.";
 
-
       setTimeout(() => {
-
         status.textContent = "";
-
       },4000);
-
     }
 
   } catch (error) {
 
-    document.getElementById(
-      "saveStatus"
-    ).textContent =
+    document.getElementById("saveStatus").textContent =
       "Det gick inte att spara i webbläsaren.";
 
   }
-
 }
-
 
 function loadGroups() {
 
   let saved = null;
 
-
   try {
-
-    saved =
-      localStorage.getItem(
-        STORAGE_KEY
-      );
-
+    saved = localStorage.getItem(STORAGE_KEY);
   } catch (error) {
-
     return;
-
   }
-
 
   if (!saved) {
     return;
   }
 
-
   try {
 
-    const data =
-      JSON.parse(saved);
-
+    const data = JSON.parse(saved);
 
     fieldIds.forEach(id => {
 
-      const element =
-        document.getElementById(id);
+      const element = document.getElementById(id);
 
-
-      if (
-        element &&
-        data[id] !== undefined
-      ) {
-
-        element.value =
-          data[id];
-
+      if (element && data[id] !== undefined) {
+        element.value = data[id];
       }
 
     });
 
   } catch (error) {
-
-    console.log(
-      "Kunde inte läsa sparad gruppindelning."
-    );
-
+    console.log("Kunde inte läsa sparad gruppindelning.");
   }
-
 }
-
 
 function clearGroups() {
 
-  const ok =
-    confirm(
-      "Vill du rensa gruppindelningen och alla sparade anteckningar?"
-    );
-
+  const ok = confirm(
+    "Vill du rensa gruppindelningen och alla sparade anteckningar?"
+  );
 
   if (!ok) {
     return;
   }
 
-
   fieldIds.forEach(id => {
 
-    const element =
-      document.getElementById(id);
-
+    const element = document.getElementById(id);
 
     if (element) {
       element.value = "";
@@ -1407,42 +978,25 @@ function clearGroups() {
 
   });
 
-
   try {
-
-    localStorage.removeItem(
-      STORAGE_KEY
-    );
-
+    localStorage.removeItem(STORAGE_KEY);
   } catch (error) {
-
-    console.log(
-      "Kunde inte rensa lokal lagring."
-    );
-
+    console.log("Kunde inte rensa lokal lagring.");
   }
 
-
-  document.getElementById(
-    "saveStatus"
-  ).textContent =
+  document.getElementById("saveStatus").textContent =
     "Gruppindelningen är rensad.";
-
 }
-
 
 function activateAutoSave() {
 
   fieldIds.forEach(id => {
 
-    const element =
-      document.getElementById(id);
-
+    const element = document.getElementById(id);
 
     if (!element) {
       return;
     }
-
 
     element.addEventListener(
       "input",
@@ -1450,20 +1004,7 @@ function activateAutoSave() {
     );
 
   });
-
 }
-
-
-/*
-  UTSKRIFTSFIX:
-
-  Alla textområden expanderas innan
-  utskriftsdialogen öppnas.
-
-  Den nya CSS-koden tillåter samtidigt
-  gruppområdet och gruppkolumnerna att
-  fortsätta naturligt över flera A4-sidor.
-*/
 
 function expandTextareasForPrint() {
 
@@ -1474,10 +1015,7 @@ function expandTextareasForPrint() {
       textarea.dataset.oldHeight =
         textarea.style.height;
 
-
-      textarea.style.height =
-        "auto";
-
+      textarea.style.height = "auto";
 
       textarea.style.height =
         Math.max(
@@ -1486,9 +1024,7 @@ function expandTextareasForPrint() {
         ) + "px";
 
     });
-
 }
-
 
 function restoreTextareasAfterPrint() {
 
@@ -1500,29 +1036,23 @@ function restoreTextareasAfterPrint() {
         textarea.dataset.oldHeight || "";
 
     });
-
 }
-
 
 window.addEventListener(
   "beforeprint",
   expandTextareasForPrint
 );
 
-
 window.addEventListener(
   "afterprint",
   restoreTextareasAfterPrint
 );
 
-
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-
     loadGroups();
     activateAutoSave();
-
   }
 );
 
