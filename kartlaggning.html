@@ -21,348 +21,299 @@
     }
 
     * {
-      box-sizing: border-box;
+      box-sizing:border-box;
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior:smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bakgrund);
-      color: var(--text);
-      line-height: 1.55;
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bakgrund);
+      color:var(--text);
+      line-height:1.55;
     }
 
     header {
-      background: linear-gradient(135deg,#eee3d2,#d9c7aa);
-      padding: 46px 20px;
-      text-align: center;
-      border-bottom: 1px solid #cdbb9f;
+      background:linear-gradient(135deg,#eee3d2,#d9c7aa);
+      padding:46px 20px;
+      text-align:center;
+      border-bottom:1px solid #cdbb9f;
     }
 
     header h1 {
-      margin: 0;
-      color: var(--brun);
-      font-size: clamp(2.2rem,6vw,4rem);
+      margin:0;
+      color:var(--brun);
+      font-size:clamp(2.2rem,6vw,4rem);
     }
 
     header p {
-      max-width: 900px;
-      margin: 12px auto 0;
-      font-size: 1.08rem;
+      max-width:900px;
+      margin:12px auto 0;
+      font-size:1.08rem;
     }
 
     nav {
-      background: #fffaf3;
-      padding: 14px 8px;
-      text-align: center;
-      border-bottom: 1px solid var(--kant);
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      background:#fffaf3;
+      padding:14px 8px;
+      text-align:center;
+      border-bottom:1px solid var(--kant);
+      position:sticky;
+      top:0;
+      z-index:20;
     }
 
     nav a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--brun);
-      font-weight: bold;
-      padding: 8px 10px;
-      margin: 3px;
-      border-radius: 9px;
+      display:inline-block;
+      text-decoration:none;
+      color:var(--brun);
+      font-weight:bold;
+      padding:8px 10px;
+      margin:3px;
+      border-radius:9px;
     }
 
     nav a:hover {
-      background: var(--beige);
+      background:var(--beige);
     }
 
     main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 30px 20px 70px;
+      max-width:1120px;
+      margin:auto;
+      padding:30px 18px 70px;
     }
 
     .box {
-      background: var(--kort);
-      border: 1px solid var(--kant);
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 15px var(--skugga);
+      background:var(--kort);
+      border:1px solid var(--kant);
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 5px 15px var(--skugga);
     }
 
     .intro {
-      background: #eee4d6;
+      background:#eee4d6;
     }
 
     h2,
-    h3,
-    h4 {
-      color: var(--brun);
+    h3 {
+      color:var(--brun);
     }
 
     h2 {
-      margin-top: 0;
+      margin-top:0;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 14px;
-      margin-top: 18px;
+    .overview-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:14px;
+      margin-top:18px;
     }
 
-    .card {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 14px;
-      padding: 17px;
+    .overview-card {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:14px;
+      padding:17px;
     }
 
-    .card .icon {
-      font-size: 2rem;
-      margin-bottom: 6px;
+    .overview-card .icon {
+      font-size:2rem;
+      margin-bottom:5px;
     }
 
-    .card strong {
-      display: block;
-      color: var(--brun);
-      margin-bottom: 5px;
-    }
-
-    label {
-      display: block;
-      color: var(--brun);
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #cdbfae;
-      border-radius: 9px;
-      background: #fffdf8;
-      color: var(--text);
-      font: inherit;
-    }
-
-    textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    button {
-      border: none;
-      background: #d6c3a6;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: var(--beige2);
-    }
-
-    .secondary {
-      background: #ece3d5;
-      border: 1px solid #d1c0aa;
-    }
-
-    .danger {
-      background: #ead7d2;
-      border: 1px solid #cfaea7;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
+    .overview-card strong {
+      display:block;
+      color:var(--brun);
+      margin-bottom:5px;
     }
 
     .privacy-note {
-      background: #f3eadf;
-      border: 1px solid #d6c7b4;
-      border-left: 5px solid #b7a17c;
-      border-radius: 11px;
-      padding: 15px;
-      margin-top: 18px;
+      background:#f3eadf;
+      border-left:5px solid #b7a17c;
+      border-radius:10px;
+      padding:14px;
+      margin-top:16px;
     }
 
-    .privacy-note strong {
-      color: var(--brun);
+    .top-fields {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:13px;
     }
 
-    .student-info {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 14px;
-      margin-top: 15px;
+    label {
+      display:block;
+      font-weight:bold;
+      color:var(--brun);
+      margin-bottom:5px;
     }
 
-    .mapping-section {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 17px;
-      padding: 23px;
-      margin-bottom: 24px;
+    input,
+    textarea {
+      width:100%;
+      padding:9px;
+      border:1px solid #cdbfae;
+      border-radius:8px;
+      background:white;
+      color:var(--text);
+      font:inherit;
     }
 
-    .mapping-section h2 {
-      margin-bottom: 7px;
+    textarea {
+      min-height:90px;
+      resize:vertical;
     }
 
-    .assessment-item {
-      background: #f3eadf;
-      border: 1px solid #d8cab7;
-      border-radius: 13px;
-      padding: 16px;
-      margin: 14px 0;
+    button {
+      border:none;
+      background:#d6c3a6;
+      color:var(--text);
+      border-radius:10px;
+      padding:11px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
     }
 
-    .assessment-item h3 {
-      margin: 0 0 8px;
+    button:hover {
+      background:var(--beige2);
     }
 
-    .assessment-item p {
-      margin-top: 4px;
+    .secondary {
+      background:#ece3d5;
+      border:1px solid #d1c0aa;
     }
 
-    .level-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 10px;
-      margin: 12px 0;
+    .danger {
+      background:#ead7d2;
+      border:1px solid #cfaea7;
     }
 
-    .level-option {
-      background: white;
-      border: 1px solid #d0c1ad;
-      border-radius: 9px;
-      padding: 10px;
-    }
-
-    .level-option label {
-      color: var(--text);
-      font-weight: normal;
-      margin: 0;
-      cursor: pointer;
-    }
-
-    .level-option input {
-      width: auto;
-      margin-right: 6px;
-    }
-
-    .note-area {
-      margin-top: 12px;
-    }
-
-    .next-step {
-      background: #e7eadf;
-      border-left: 5px solid #a7ad91;
-      border-radius: 10px;
-      padding: 14px;
-      margin-top: 14px;
-    }
-
-    .support-box {
-      background: #eee2d2;
-      border-left: 5px solid #b7a17c;
-      border-radius: 10px;
-      padding: 14px;
-      margin-top: 14px;
-    }
-
-    .summary-box {
-      background: #fffdf8;
-      border: 1px solid var(--kant);
-      border-radius: 17px;
-      padding: 23px;
-      margin-bottom: 24px;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 14px;
-      margin-top: 15px;
-    }
-
-    .summary-card {
-      background: #f3eadf;
-      border: 1px solid #d8cab7;
-      border-radius: 12px;
-      padding: 15px;
+    .button-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:17px;
     }
 
     .save-status {
-      min-height: 24px;
-      margin-top: 10px;
-      font-weight: bold;
-      color: var(--brun);
+      min-height:24px;
+      margin-top:9px;
+      font-weight:bold;
+      color:var(--brun);
     }
 
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-      gap: 12px;
-      margin-top: 16px;
+    .mapping-section {
+      background:#fffdf8;
+      border:1px solid var(--kant);
+      border-radius:17px;
+      padding:22px;
+      margin-bottom:23px;
+      box-shadow:0 4px 12px var(--skugga);
     }
 
-    .links a {
-      display: block;
-      text-decoration: none;
-      text-align: center;
-      color: var(--text);
-      background: #f3eadf;
-      border: 1px solid var(--kant);
-      border-radius: 12px;
-      padding: 15px;
-      font-weight: bold;
+    .section-head {
+      background:#eee4d6;
+      border-radius:11px;
+      padding:13px 15px;
+      margin-bottom:14px;
     }
 
-    .links a:hover {
-      background: var(--beige);
+    .section-head h2 {
+      margin:0 0 4px;
+    }
+
+    .item-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .item {
+      background:#f3eadf;
+      border:1px solid #d8cab7;
+      border-radius:11px;
+      padding:13px;
+    }
+
+    .item h3 {
+      margin:0 0 7px;
+      font-size:1.03rem;
+    }
+
+    .check-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .check-label {
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:.92rem;
+    }
+
+    .check-label input {
+      width:auto;
+      transform:scale(1.1);
+    }
+
+    .support-box {
+      background:#e7eadf;
+      border-left:5px solid #a7ad91;
+      border-radius:10px;
+      padding:13px;
+      margin-top:13px;
+    }
+
+    .summary-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:13px;
+      margin-top:14px;
+    }
+
+    .summary-card {
+      background:#f3eadf;
+      border:1px solid #d8cab7;
+      border-radius:11px;
+      padding:13px;
     }
 
     footer {
-      background: #d8c8b2;
-      color: #4d443c;
-      text-align: center;
-      padding: 28px 20px;
+      background:#d8c8b2;
+      color:#4d443c;
+      text-align:center;
+      padding:27px 20px;
     }
 
 
-    /* =====================================
-       A4-UTSKRIFT
-       ===================================== */
+    /* =========================
+       A4-UTSKRIFT – QA-RÄTTAD
+       ========================= */
 
     @page {
-      size: A4 portrait;
-      margin: 12mm 13mm 14mm 13mm;
+      size:A4 portrait;
+      margin:12mm 13mm 14mm 13mm;
     }
 
     @media print {
 
       html,
       body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: white !important;
-        color: #000 !important;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 9.4pt;
-        line-height: 1.26;
+        margin:0 !important;
+        padding:0 !important;
+        background:white !important;
+        color:#000 !important;
+        font-size:8.7pt;
+        line-height:1.25;
       }
 
       header,
@@ -370,198 +321,187 @@
       footer,
       .intro,
       .screen-only,
-      .button-row,
       button,
-      .privacy-note,
-      .save-status,
-      .links {
-        display: none !important;
+      .privacy-note {
+        display:none !important;
       }
 
       main {
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        width:auto !important;
+        max-width:none !important;
+        margin:0 !important;
+        padding:0 !important;
       }
 
-      .box,
-      .mapping-section,
-      .summary-box {
-        width: 100% !important;
-        margin: 0 0 5mm 0 !important;
-        padding: 0 !important;
-        background: white !important;
-        border: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
+      .box {
+        background:white !important;
+        border:none !important;
+        border-radius:0 !important;
+        box-shadow:none !important;
+        margin:0 0 4mm !important;
+        padding:0 !important;
       }
 
-      .print-title {
-        display: block !important;
-        margin-bottom: 5mm !important;
-        padding-bottom: 3mm !important;
-        border-bottom: 1.5pt solid #555 !important;
+      .top-fields {
+        display:grid !important;
+        grid-template-columns:repeat(3,1fr) !important;
+        gap:3mm !important;
+        margin-bottom:4mm !important;
       }
 
-      .print-title h1 {
-        font-size: 18pt !important;
-        margin: 0 0 1.5mm !important;
-        color: #000 !important;
-      }
-
-      .print-title p {
-        margin: 0 !important;
-      }
-
-      .student-info {
-        grid-template-columns: 2fr 1fr 1fr !important;
-        gap: 3mm !important;
-        margin: 0 0 5mm !important;
-        break-inside: avoid-page;
-        page-break-inside: avoid;
-      }
-
-      label {
-        color: #000 !important;
-        font-size: 8.4pt !important;
-        margin-bottom: 1mm !important;
+      .top-fields > div {
+        break-inside:avoid-page;
+        page-break-inside:avoid;
       }
 
       input,
-      textarea,
-      select {
-        background: white !important;
-        color: #000 !important;
-        border: 1px solid #777 !important;
-        border-radius: 0 !important;
-        padding: 1.5mm !important;
-        font-size: 8.8pt !important;
-        overflow: visible !important;
+      textarea {
+        border:1px solid #777 !important;
+        border-radius:0 !important;
+        background:white !important;
+        color:#000 !important;
+        padding:1.5mm !important;
+        font-size:8.3pt !important;
+        overflow:visible !important;
       }
 
-      textarea {
-        min-height: 13mm !important;
-        resize: none !important;
-      }
+      /*
+        Varje nytt kartläggningsområde börjar
+        på ny sida.
+
+        MEN hela området tvingas inte längre
+        rymmas på en fysisk A4.
+      */
 
       .mapping-section {
-        break-before: page;
-        page-break-before: always;
+        background:white !important;
+        border:none !important;
+        border-radius:0 !important;
+        box-shadow:none !important;
+        margin:0 !important;
+        padding:0 !important;
+
+        break-before:page;
+        page-break-before:always;
+
+        break-inside:auto !important;
+        page-break-inside:auto !important;
       }
 
-      .mapping-section.first-print-section {
-        break-before: auto;
-        page-break-before: auto;
+      .mapping-section:first-of-type {
+        break-before:auto;
+        page-break-before:auto;
       }
 
-      .mapping-section h2,
-      .summary-box h2 {
-        font-size: 15pt !important;
-        color: #000 !important;
-        margin: 0 0 3mm !important;
-        break-after: avoid-page;
-        page-break-after: avoid;
+      .section-head {
+        background:white !important;
+        border-bottom:1.5pt solid #555 !important;
+        border-radius:0 !important;
+        padding:0 0 2.5mm !important;
+        margin-bottom:3mm !important;
+
+        break-after:avoid-page;
+        page-break-after:avoid;
       }
 
-      .assessment-item {
-        background: white !important;
-        border: 1px solid #777 !important;
-        border-radius: 0 !important;
-        padding: 3mm !important;
-        margin: 0 0 3mm !important;
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+      .section-head h2 {
+        color:#000 !important;
+        font-size:14pt !important;
       }
 
-      .assessment-item h3 {
-        color: #000 !important;
-        font-size: 11pt !important;
-        margin: 0 0 1.5mm !important;
+      .item-grid {
+        display:grid !important;
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:3mm !important;
       }
 
-      .level-grid {
-        display: grid !important;
-        grid-template-columns: repeat(3,1fr) !important;
-        gap: 2mm !important;
-        margin: 2mm 0 !important;
+      /*
+        Små observationspunkter hålls ihop,
+        men inte hela kartläggningsområdet.
+      */
+
+      .item {
+        background:white !important;
+        border:1px solid #777 !important;
+        border-radius:0 !important;
+        padding:2.5mm !important;
+
+        break-inside:avoid-page;
+        page-break-inside:avoid;
       }
 
-      .level-option {
-        background: white !important;
-        border: 1px solid #888 !important;
-        border-radius: 0 !important;
-        padding: 2mm !important;
+      .item h3 {
+        color:#000 !important;
+        break-after:avoid-page;
+        page-break-after:avoid;
       }
 
-      .next-step,
       .support-box {
-        background: white !important;
-        border: 1px solid #888 !important;
-        border-left: 2pt solid #666 !important;
-        border-radius: 0 !important;
-        padding: 3mm !important;
-        margin-top: 3mm !important;
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+        background:white !important;
+        border:1px solid #777 !important;
+        border-left:2pt solid #555 !important;
+        border-radius:0 !important;
+        padding:2.5mm !important;
+
+        break-inside:avoid-page;
+        page-break-inside:avoid;
       }
 
       .summary-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2,1fr) !important;
-        gap: 3mm !important;
+        display:grid !important;
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:3mm !important;
       }
 
       .summary-card {
-        background: white !important;
-        border: 1px solid #777 !important;
-        border-radius: 0 !important;
-        padding: 3mm !important;
-        break-inside: avoid-page;
-        page-break-inside: avoid;
+        background:white !important;
+        border:1px solid #777 !important;
+        border-radius:0 !important;
+        padding:2.5mm !important;
+
+        break-inside:auto;
+        page-break-inside:auto;
       }
 
       h1,
       h2,
-      h3,
-      h4 {
-        color: #000 !important;
-        break-after: avoid-page;
-        page-break-after: avoid;
+      h3 {
+        color:#000 !important;
+        break-after:avoid-page;
+        page-break-after:avoid;
       }
 
       p,
       li {
-        orphans: 3;
-        widows: 3;
+        orphans:3;
+        widows:3;
       }
     }
 
 
-    @media(max-width:750px) {
+    @media(max-width:780px) {
 
       nav {
-        position: static;
+        position:static;
       }
 
       nav a {
-        display: block;
+        display:block;
       }
 
       main {
-        padding: 22px 12px 55px;
+        padding:20px 10px 50px;
       }
 
       .box,
-      .mapping-section,
-      .summary-box {
-        padding: 18px;
+      .mapping-section {
+        padding:17px;
       }
 
-      .student-info,
-      .level-grid,
+      .top-fields,
+      .item-grid,
       .summary-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
     }
   </style>
@@ -575,8 +515,8 @@
   <h1>🧭 Kartläggning</h1>
 
   <p>
-    Ett lärarverktyg för att få syn på elevens aktuella matematiska förståelse,
-    strategier, språk och behov av fortsatt undervisning.
+    Ett formativt kartläggningsstöd för att få syn på
+    elevens matematiska förståelse och planera nästa undervisningssteg.
   </p>
 
 </header>
@@ -595,62 +535,91 @@
 
 <main>
 
-
-  <!-- INTRO -->
-
   <section class="box intro">
 
     <h2>🌱 Kartlägg för att kunna undervisa vidare</h2>
 
     <p>
-      Kartläggningen är inte ett prov där eleven ska få ett slutomdöme.
-      Syftet är att synliggöra vad eleven redan förstår och vilket nästa
-      undervisningssteg kan vara.
+      Kartläggningen är inte ett prov. Den ska hjälpa läraren att upptäcka
+      vad eleven redan förstår, vilka strategier eleven använder och vilket stöd som kan behövas.
     </p>
 
-    <div class="grid">
+    <div class="overview-grid">
 
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">👀</div>
         <strong>Observera</strong>
-        Titta på hur eleven angriper uppgiften.
+        Vad gör eleven?
       </div>
 
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">💬</div>
         <strong>Fråga</strong>
-        Be eleven förklara och visa sitt tänkande.
+        Hur tänkte du?
       </div>
 
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">🧱</div>
-        <strong>Variera</strong>
-        Använd material, bild, tallinje och symboler.
+        <strong>Representera</strong>
+        Kan eleven visa med material eller bild?
       </div>
 
-      <div class="card">
-        <div class="icon">🧠</div>
-        <strong>Tolka</strong>
-        Leta efter förståelse, inte bara rätt svar.
-      </div>
-
-      <div class="card">
+      <div class="overview-card">
         <div class="icon">➡️</div>
-        <strong>Planera</strong>
-        Bestäm vad undervisningen ska ta sikte på härnäst.
+        <strong>Planera vidare</strong>
+        Vad behöver eleven möta härnäst?
       </div>
 
     </div>
 
 
-    <div class="button-row">
+    <div class="privacy-note">
 
-      <button onclick="saveMapping()">
-        💾 Spara lokalt
+      <strong>🔒 Om sparning:</strong>
+      informationen sparas endast lokalt i webbläsaren på den enhet och
+      användarprofil som används. På delad dator bör du använda
+      <strong>elevkod eller initialer</strong> i stället för fullständigt namn.
+      Skriv inte diagnoser, medicinska uppgifter eller andra känsliga personuppgifter här.
+      För över relevanta pedagogiska anteckningar till skolans godkända system och rensa sidan när de inte längre behövs.
+
+    </div>
+
+  </section>
+
+
+
+  <section class="box">
+
+    <h2>📋 Grunduppgifter</h2>
+
+    <div class="top-fields">
+
+      <div>
+        <label for="student">Elev / elevkod</label>
+        <input id="student" type="text">
+      </div>
+
+      <div>
+        <label for="date">Datum</label>
+        <input id="date" type="text">
+      </div>
+
+      <div>
+        <label for="group">Klass / grupp</label>
+        <input id="group" type="text">
+      </div>
+
+    </div>
+
+
+    <div class="button-row screen-only">
+
+      <button onclick="saveMapping(true)">
+        💾 Spara
       </button>
 
       <button class="secondary" onclick="window.print()">
-        🖨️ Skriv ut A4
+        🖨️ Skriv ut
       </button>
 
       <button class="danger" onclick="clearMapping()">
@@ -659,84 +628,7 @@
 
     </div>
 
-
-    <div class="save-status" id="saveStatus"></div>
-
-
-    <div class="privacy-note">
-
-      <strong>🔒 Viktigt om elevuppgifter:</strong><br>
-
-      Den här sidan sparar uppgifter endast i webbläsarens lokala lagring
-      på den enhet som används. Informationen skickas inte automatiskt någonstans,
-      men den kan fortfarande vara synlig för andra som använder samma dator
-      och samma webbläsarprofil.
-
-      <br><br>
-
-      Använd därför helst <strong>elevkod eller initialer</strong> i stället för
-      fullständigt namn. Skriv inte känsliga personuppgifter, diagnoser,
-      medicinsk information eller andra sekretessuppgifter här.
-
-      <br><br>
-
-      På delade datorer bör kartläggningen skrivas ut eller föras över till
-      skolans godkända dokumentationssystem och därefter rensas från sidan.
-
-    </div>
-
-  </section>
-
-
-
-  <!-- UTSKRIFTSRUBRIK -->
-
-  <section class="print-title" style="display:none;">
-
-    <h1>Kartläggning – Matematik åk 3</h1>
-
-    <p>
-      Underlag för observation, analys och nästa undervisningssteg.
-    </p>
-
-  </section>
-
-
-
-  <!-- ELEVINFO -->
-
-  <section class="box">
-
-    <div class="student-info">
-
-      <div>
-        <label for="student">Elevkod / initialer</label>
-        <input
-          id="student"
-          type="text"
-          placeholder="t.ex. AB"
-        >
-      </div>
-
-      <div>
-        <label for="date">Datum</label>
-        <input
-          id="date"
-          type="text"
-          placeholder="ÅÅÅÅ-MM-DD"
-        >
-      </div>
-
-      <div>
-        <label for="group">Klass/grupp</label>
-        <input
-          id="group"
-          type="text"
-          placeholder="t.ex. 3A"
-        >
-      </div>
-
-    </div>
+    <div class="save-status screen-only" id="saveStatus"></div>
 
   </section>
 
@@ -744,146 +636,100 @@
 
   <!-- TALUPPFATTNING -->
 
-  <section class="mapping-section first-print-section" id="tal">
+  <section class="mapping-section" id="tal">
 
-    <h2>🔢 Taluppfattning</h2>
+    <div class="section-head">
 
-    <p>
-      Titta efter platsvärde, talrelationer, jämförelse, tallinje och rimlighet.
-    </p>
-
-
-    <div class="assessment-item">
-
-      <h3>1. Platsvärde</h3>
+      <h2>🔢 Taluppfattning</h2>
 
       <p>
-        Be eleven förklara vad siffrorna betyder i exempelvis
-        <strong>472</strong> och <strong>305</strong>.
+        Undersök hur eleven förstår talens uppbyggnad, platsvärde och talrelationer.
       </p>
 
+    </div>
 
-      <div class="level-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="placeValue" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
+    <div class="item-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="placeValue" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
+      <div class="item">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="placeValue" value="osäkert">
-            Fortfarande osäkert
-          </label>
+        <h3>1. Läsa och skriva tal</h3>
+
+        <p>
+          Be eleven läsa och skriva några tal, exempelvis 47, 205 och 364.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <div class="note-area">
-        <label for="placeValueNote">Observation</label>
-        <textarea id="placeValueNote"></textarea>
+      <div class="item">
+
+        <h3>2. Platsvärde</h3>
+
+        <p>
+          Fråga: Vad är siffran 6 värd i talet 364?
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <h3>3. Jämföra tal</h3>
+
+        <p>
+          Vilket är störst: 398, 403 eller 390? Be eleven förklara.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <h3>4. Tallinje</h3>
+
+        <p>
+          Låt eleven placera exempelvis 25, 50 och 78 på en tallinje 0–100.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
       </div>
 
     </div>
 
 
-    <div class="assessment-item">
+    <div class="support-box">
 
-      <h3>2. Jämföra tal</h3>
+      <label for="talNotes">Anteckningar – taluppfattning</label>
 
-      <p>
-        Låt eleven jämföra exempelvis
-        <strong>398 och 403</strong> och förklara hur hen vet.
-      </p>
+      <textarea
+        id="talNotes"
+        placeholder="Vad visar eleven? Vilka strategier eller missuppfattningar blir synliga?"
+      ></textarea>
 
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="compareNumbers" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="compareNumbers" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="compareNumbers" value="osäkert">
-            Fortfarande osäkert
-          </label>
-        </div>
-
-      </div>
-
-
-      <label for="compareNote">Observation</label>
-      <textarea id="compareNote"></textarea>
-
-    </div>
-
-
-    <div class="assessment-item">
-
-      <h3>3. Tallinje och talrelationer</h3>
-
-      <p>
-        Be eleven placera tal på tallinje och beskriva vad som ligger
-        nära eller långt ifrån ett givet tal.
-      </p>
-
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="numberLine" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="numberLine" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="numberLine" value="osäkert">
-            Fortfarande osäkert
-          </label>
-        </div>
-
-      </div>
-
-
-      <label for="numberLineNote">Observation</label>
-      <textarea id="numberLineNote"></textarea>
-
-    </div>
-
-
-    <div class="next-step">
-      <label for="talNext">➡️ Nästa undervisningssteg inom taluppfattning</label>
-      <textarea id="talNext"></textarea>
     </div>
 
   </section>
@@ -894,102 +740,98 @@
 
   <section class="mapping-section" id="addition">
 
-    <h2>➕ Addition</h2>
+    <div class="section-head">
 
-    <p>
-      Titta efter förståelse av addition, strategival och flexibilitet.
-    </p>
-
-
-    <div class="assessment-item">
-
-      <h3>1. Beräkning</h3>
+      <h2>➕ Addition</h2>
 
       <p>
-        Exempel:
-        <strong>48 + 27</strong>.
-        Be eleven visa hur hen tänker.
+        Fokusera inte bara på svaret utan på hur eleven räknar.
       </p>
 
+    </div>
 
-      <div class="level-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="additionCalc" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
+    <div class="item-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="additionCalc" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
+      <div class="item">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="additionCalc" value="osäkert">
-            Fortfarande osäkert
-          </label>
+        <h3>1. Enkla fakta</h3>
+
+        <p>
+          Exempel: 8 + 7.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="additionNote">Observation</label>
-      <textarea id="additionNote"></textarea>
+      <div class="item">
 
-    </div>
+        <h3>2. Gå via tiotal</h3>
 
+        <p>
+          Exempel: 49 + 8. Fråga hur eleven tänker.
+        </p>
 
-    <div class="assessment-item">
-
-      <h3>2. Strategival</h3>
-
-      <p>
-        Jämför exempelvis
-        <strong>48 + 27</strong> och <strong>99 + 6</strong>.
-        Använder eleven samma metod eller anpassas strategin till talen?
-      </p>
-
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="additionStrategy" value="självständigt">
-            Väljer flexibel strategi
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="additionStrategy" value="stöd">
-            Behöver frågor eller stöd
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="additionStrategy" value="osäkert">
-            Använder strategi mekaniskt
-          </label>
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="additionStrategyNote">Observation</label>
-      <textarea id="additionStrategyNote"></textarea>
+      <div class="item">
+
+        <h3>3. Tvåsiffriga tal</h3>
+
+        <p>
+          Exempel: 38 + 27.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <h3>4. Flexibel strategi</h3>
+
+        <p>
+          Be eleven lösa två uppgifter och jämföra vilka strategier som passar.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
 
     </div>
 
 
-    <div class="next-step">
-      <label for="additionNext">➡️ Nästa undervisningssteg inom addition</label>
-      <textarea id="additionNext"></textarea>
+    <div class="support-box">
+
+      <label for="additionNotes">Anteckningar – addition</label>
+
+      <textarea
+        id="additionNotes"
+        placeholder="Vilka strategier använder eleven? Kan eleven förklara sitt val?"
+      ></textarea>
+
     </div>
 
   </section>
@@ -1000,250 +842,200 @@
 
   <section class="mapping-section" id="subtraktion">
 
-    <h2>➖ Subtraktion</h2>
+    <div class="section-head">
 
-    <p>
-      Titta efter förståelse av ta bort, skillnad och relationen till addition.
-    </p>
-
-
-    <div class="assessment-item">
-
-      <h3>1. Beräkning och strategi</h3>
+      <h2>➖ Subtraktion</h2>
 
       <p>
-        Exempel:
-        <strong>72 − 38</strong>.
-        Be eleven visa med tallinje, huvudräkning eller annan representation.
+        Undersök både att ta bort och att se skillnaden mellan tal.
       </p>
 
+    </div>
 
-      <div class="level-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="subtractionCalc" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
+    <div class="item-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="subtractionCalc" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
+      <div class="item">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="subtractionCalc" value="osäkert">
-            Fortfarande osäkert
-          </label>
+        <h3>1. Enkel subtraktion</h3>
+
+        <p>
+          Exempel: 17 − 9.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="subtractionNote">Observation</label>
-      <textarea id="subtractionNote"></textarea>
+      <div class="item">
 
-    </div>
+        <h3>2. Skillnad</h3>
 
+        <p>
+          Hur stor är skillnaden mellan 47 och 52?
+        </p>
 
-    <div class="assessment-item">
-
-      <h3>2. Samband med addition</h3>
-
-      <p>
-        Fråga:
-        ”Hur kan addition hjälpa dig att kontrollera
-        <strong>72 − 38</strong>?”
-      </p>
-
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="inverseRelation" value="självständigt">
-            Ser sambandet självständigt
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="inverseRelation" value="stöd">
-            Ser sambandet med stöd
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="inverseRelation" value="osäkert">
-            Sambandet är osäkert
-          </label>
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="inverseNote">Observation</label>
-      <textarea id="inverseNote"></textarea>
+      <div class="item">
+
+        <h3>3. Tvåsiffriga tal</h3>
+
+        <p>
+          Exempel: 72 − 38.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <h3>4. Kontrollera svaret</h3>
+
+        <p>
+          Be eleven kontrollera en subtraktion med addition.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
 
     </div>
 
 
-    <div class="next-step">
-      <label for="subtractionNext">➡️ Nästa undervisningssteg inom subtraktion</label>
-      <textarea id="subtractionNext"></textarea>
+    <div class="support-box">
+
+      <label for="subtractionNotes">Anteckningar – subtraktion</label>
+
+      <textarea
+        id="subtractionNotes"
+        placeholder="Ser eleven subtraktion både som ta bort och skillnad?"
+      ></textarea>
+
     </div>
 
   </section>
 
 
 
-  <!-- MULTIPLIKATION DIVISION -->
+  <!-- MULTIPLIKATION / DIVISION -->
 
   <section class="mapping-section" id="multdiv">
 
-    <h2>✖️➗ Multiplikation och division</h2>
+    <div class="section-head">
 
-    <p>
-      Titta efter förståelse av lika stora grupper och samband mellan räknesätten.
-    </p>
-
-
-    <div class="assessment-item">
-
-      <h3>1. Multiplikation som grupper</h3>
+      <h2>✖️➗ Multiplikation och division</h2>
 
       <p>
-        Be eleven visa vad
-        <strong>4 × 6</strong>
-        betyder med material eller bild.
+        Undersök förståelsen för lika stora grupper och sambandet mellan räknesätten.
       </p>
 
+    </div>
 
-      <div class="level-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="multiplication" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
+    <div class="item-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="multiplication" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
+      <div class="item">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="multiplication" value="osäkert">
-            Känner främst tabellsvar
-          </label>
+        <h3>1. Multiplikation som grupper</h3>
+
+        <p>
+          Be eleven rita eller bygga 4 × 6.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="multiplicationNote">Observation</label>
-      <textarea id="multiplicationNote"></textarea>
+      <div class="item">
 
-    </div>
+        <h3>2. Multiplikationsfakta</h3>
 
+        <p>
+          Exempel: 5 × 6. Fråga hur eleven vet.
+        </p>
 
-    <div class="assessment-item">
-
-      <h3>2. Division</h3>
-
-      <p>
-        Ge exempel som:
-        ”24 föremål ska delas lika mellan 6 personer.”
-      </p>
-
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="division" value="självständigt">
-            Visar förståelse självständigt
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="division" value="stöd">
-            Visar förståelse med stöd
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="division" value="osäkert">
-            Fortfarande osäkert
-          </label>
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="divisionNote">Observation</label>
-      <textarea id="divisionNote"></textarea>
+      <div class="item">
 
-    </div>
+        <h3>3. Division som lika fördelning</h3>
 
+        <p>
+          18 kulor delas lika mellan 3 barn. Hur många får varje?
+        </p>
 
-    <div class="assessment-item">
-
-      <h3>3. Sambandet mellan multiplikation och division</h3>
-
-      <p>
-        Utgå från:
-        <strong>5 × 6 = 30</strong>.
-        Fråga vad eleven då vet om division.
-      </p>
-
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="multDivRelation" value="självständigt">
-            Ser sambandet självständigt
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="multDivRelation" value="stöd">
-            Ser sambandet med stöd
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="multDivRelation" value="osäkert">
-            Sambandet är osäkert
-          </label>
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="multDivRelationNote">Observation</label>
-      <textarea id="multDivRelationNote"></textarea>
+      <div class="item">
+
+        <h3>4. Samband</h3>
+
+        <p>
+          Om 7 × 4 = 28, vilka divisioner kan eleven skriva?
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
 
     </div>
 
 
-    <div class="next-step">
-      <label for="multDivNext">➡️ Nästa undervisningssteg inom multiplikation/division</label>
-      <textarea id="multDivNext"></textarea>
+    <div class="support-box">
+
+      <label for="multdivNotes">Anteckningar – multiplikation och division</label>
+
+      <textarea
+        id="multdivNotes"
+        placeholder="Förstår eleven grupperna eller används bara memorerade svar?"
+      ></textarea>
+
     </div>
 
   </section>
@@ -1254,101 +1046,98 @@
 
   <section class="mapping-section" id="problem">
 
-    <h2>🧩 Problemlösning och resonemang</h2>
+    <div class="section-head">
 
-    <p>
-      Titta efter hur eleven förstår situationen, väljer information,
-      använder representationer och kontrollerar sitt svar.
-    </p>
-
-
-    <div class="assessment-item">
-
-      <h3>Problem</h3>
+      <h2>🧩 Problemlösning och resonemang</h2>
 
       <p>
-        ”Mira har 28 pärlor. Hon får 15 nya och använder sedan 9.
-        Hur många pärlor har hon kvar?”
+        Undersök hur eleven förstår situationer, väljer strategi och förklarar lösningar.
       </p>
 
+    </div>
 
-      <div class="level-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="problemSolve" value="självständigt">
-            Löser och förklarar självständigt
-          </label>
-        </div>
+    <div class="item-grid">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="problemSolve" value="stöd">
-            Löser med stöd
-          </label>
-        </div>
+      <div class="item">
 
-        <div class="level-option">
-          <label>
-            <input type="radio" name="problemSolve" value="osäkert">
-            Behöver mer grundläggande stöd
-          </label>
+        <h3>1. Förstå problemet</h3>
+
+        <p>
+          Be eleven återberätta problemet med egna ord innan beräkning.
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="problemNote">Observation</label>
-      <textarea id="problemNote"></textarea>
+      <div class="item">
 
-    </div>
+        <h3>2. Välja strategi</h3>
 
+        <p>
+          Fråga varför eleven väljer ett visst räknesätt eller en viss modell.
+        </p>
 
-    <div class="assessment-item">
-
-      <h3>Matematiskt resonemang</h3>
-
-      <p>
-        Be eleven förklara:
-        ”Hur vet du att ditt svar är rimligt?”
-      </p>
-
-
-      <div class="level-grid">
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="reasoning" value="självständigt">
-            Motiverar självständigt
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="reasoning" value="stöd">
-            Motiverar med stödfrågor
-          </label>
-        </div>
-
-        <div class="level-option">
-          <label>
-            <input type="radio" name="reasoning" value="osäkert">
-            Resonemanget är ännu begränsat
-          </label>
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
         </div>
 
       </div>
 
 
-      <label for="reasoningNote">Observation</label>
-      <textarea id="reasoningNote"></textarea>
+      <div class="item">
+
+        <h3>3. Förklara</h3>
+
+        <p>
+          Kan eleven beskriva lösningen så att någon annan kan följa den?
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <h3>4. Rimlighet</h3>
+
+        <p>
+          Fråga: Hur vet du att svaret verkar rimligt?
+        </p>
+
+        <div class="check-row">
+          <label class="check-label"><input type="checkbox"> Säkert</label>
+          <label class="check-label"><input type="checkbox"> Med stöd</label>
+          <label class="check-label"><input type="checkbox"> Inte ännu</label>
+        </div>
+
+      </div>
 
     </div>
 
 
-    <div class="next-step">
-      <label for="problemNext">➡️ Nästa undervisningssteg inom problemlösning</label>
-      <textarea id="problemNext"></textarea>
+    <div class="support-box">
+
+      <label for="problemNotes">Anteckningar – problemlösning</label>
+
+      <textarea
+        id="problemNotes"
+        placeholder="Hur arbetar eleven när vägen till svaret inte är direkt given?"
+      ></textarea>
+
     </div>
 
   </section>
@@ -1357,97 +1146,85 @@
 
   <!-- SAMMANFATTNING -->
 
-  <section class="summary-box" id="sammanfattning">
+  <section class="mapping-section" id="sammanfattning">
 
-    <h2>🔎 Sammanfattning och nästa steg</h2>
+    <div class="section-head">
+
+      <h2>🔎 Sammanfattning och nästa steg</h2>
+
+      <p>
+        Sammanfatta det som blev synligt och koppla kartläggningen till undervisningen.
+      </p>
+
+    </div>
 
 
     <div class="summary-grid">
 
       <div class="summary-card">
-        <label for="strengths">Det eleven visar förståelse för</label>
+
+        <label for="strengths">
+          Matematiska styrkor
+        </label>
+
         <textarea id="strengths"></textarea>
+
       </div>
 
-      <div class="summary-card">
-        <label for="uncertainty">Osäkerheter / möjliga missuppfattningar</label>
-        <textarea id="uncertainty"></textarea>
-      </div>
 
       <div class="summary-card">
-        <label for="helpfulSupport">Stöd som verkar hjälpa</label>
-        <textarea id="helpfulSupport"></textarea>
+
+        <label for="needs">
+          Områden som behöver utvecklas
+        </label>
+
+        <textarea id="needs"></textarea>
+
       </div>
 
-      <div class="summary-card">
-        <label for="languageNeeds">Språk och begrepp att utveckla</label>
-        <textarea id="languageNeeds"></textarea>
-      </div>
 
       <div class="summary-card">
-        <label for="instructionNext">Nästa undervisningssteg</label>
-        <textarea id="instructionNext"></textarea>
+
+        <label for="support">
+          Stöd eller representationer som hjälper
+        </label>
+
+        <textarea id="support"></textarea>
+
       </div>
 
+
       <div class="summary-card">
-        <label for="followUp">Hur och när ska detta följas upp?</label>
+
+        <label for="languageSupport">
+          Språk och begrepp att arbeta vidare med
+        </label>
+
+        <textarea id="languageSupport"></textarea>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <label for="nextStep">
+          Nästa undervisningssteg
+        </label>
+
+        <textarea id="nextStep"></textarea>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <label for="followUp">
+          När och hur följer jag upp?
+        </label>
+
         <textarea id="followUp"></textarea>
+
       </div>
-
-    </div>
-
-
-    <div class="support-box">
-
-      <strong>Kom ihåg:</strong>
-      kartläggningen visar ett aktuellt läge i vissa valda situationer.
-      Elevens förståelse behöver följas över tid och i flera typer av uppgifter.
-
-    </div>
-
-  </section>
-
-
-
-  <!-- LÄNKAR -->
-
-  <section class="box screen-only">
-
-    <h2>🔗 Arbeta vidare</h2>
-
-    <div class="links">
-
-      <a href="bedomning.html">
-        🔎 Bedömning
-      </a>
-
-      <a href="missuppfattningar.html">
-        🕵️ Missuppfattningar
-      </a>
-
-      <a href="anpassningar.html">
-        🌱 Anpassningar
-      </a>
-
-      <a href="interventioner.html">
-        🎯 Interventioner
-      </a>
-
-      <a href="intensivtraning.html">
-        ⚡ Intensivträning
-      </a>
-
-      <a href="progression.html">
-        📈 Progression
-      </a>
-
-      <a href="sprakstod.html">
-        💬 Språkstöd
-      </a>
-
-      <a href="veckoplan.html">
-        📅 Veckoplan
-      </a>
 
     </div>
 
@@ -1457,8 +1234,11 @@
 
 
 <footer>
+
   <p><strong>Matematik åk 3 – Kartläggning</strong></p>
-  <p>Observera • Förstå • Anpassa • Följ upp</p>
+
+  <p>Observera • Fråga • Förstå • Planera vidare</p>
+
 </footer>
 
 
@@ -1472,59 +1252,36 @@ const textFields = [
   "student",
   "date",
   "group",
-
-  "placeValueNote",
-  "compareNote",
-  "numberLineNote",
-  "talNext",
-
-  "additionNote",
-  "additionStrategyNote",
-  "additionNext",
-
-  "subtractionNote",
-  "inverseNote",
-  "subtractionNext",
-
-  "multiplicationNote",
-  "divisionNote",
-  "multDivRelationNote",
-  "multDivNext",
-
-  "problemNote",
-  "reasoningNote",
-  "problemNext",
-
+  "talNotes",
+  "additionNotes",
+  "subtractionNotes",
+  "multdivNotes",
+  "problemNotes",
   "strengths",
-  "uncertainty",
-  "helpfulSupport",
-  "languageNeeds",
-  "instructionNext",
+  "needs",
+  "support",
+  "languageSupport",
+  "nextStep",
   "followUp"
 ];
 
 
-const radioGroups = [
-  "placeValue",
-  "compareNumbers",
-  "numberLine",
-  "additionCalc",
-  "additionStrategy",
-  "subtractionCalc",
-  "inverseRelation",
-  "multiplication",
-  "division",
-  "multDivRelation",
-  "problemSolve",
-  "reasoning"
-];
+function getCheckboxes() {
+
+  return Array.from(
+    document.querySelectorAll(
+      'input[type="checkbox"]'
+    )
+  );
+
+}
 
 
-function saveMapping() {
+function saveMapping(showMessage = false) {
 
   const data = {
-    fields: {},
-    radios: {}
+    fields:{},
+    checks:[]
   };
 
 
@@ -1534,28 +1291,15 @@ function saveMapping() {
       document.getElementById(id);
 
     if (element) {
-      data.fields[id] =
-        element.value;
+      data.fields[id] = element.value;
     }
 
   });
 
 
-  radioGroups.forEach(name => {
-
-    const checked =
-      document.querySelector(
-        'input[name="' +
-        name +
-        '"]:checked'
-      );
-
-    data.radios[name] =
-      checked
-        ? checked.value
-        : "";
-
-  });
+  data.checks =
+    getCheckboxes()
+      .map(box => box.checked);
 
 
   localStorage.setItem(
@@ -1564,18 +1308,25 @@ function saveMapping() {
   );
 
 
-  const status =
-    document.getElementById(
-      "saveStatus"
+  if (showMessage) {
+
+    const status =
+      document.getElementById(
+        "saveStatus"
+      );
+
+    status.textContent =
+      "✓ Kartläggningen är sparad lokalt på den här enheten.";
+
+
+    setTimeout(
+      () => {
+        status.textContent = "";
+      },
+      4000
     );
 
-  status.textContent =
-    "✓ Kartläggningen är sparad lokalt på den här enheten.";
-
-
-  setTimeout(() => {
-    status.textContent = "";
-  }, 4000);
+  }
 
 }
 
@@ -1587,7 +1338,10 @@ function loadMapping() {
       STORAGE_KEY
     );
 
-  if (!saved) return;
+
+  if (!saved) {
+    return;
+  }
 
 
   try {
@@ -1607,8 +1361,10 @@ function loadMapping() {
           element &&
           data.fields[id] !== undefined
         ) {
+
           element.value =
             data.fields[id];
+
         }
 
       });
@@ -1616,30 +1372,24 @@ function loadMapping() {
     }
 
 
-    if (data.radios) {
+    if (
+      Array.isArray(data.checks)
+    ) {
 
-      radioGroups.forEach(name => {
-
-        const value =
-          data.radios[name];
-
-        if (!value) return;
+      const boxes =
+        getCheckboxes();
 
 
-        const radio =
-          document.querySelector(
-            'input[name="' +
-            name +
-            '"][value="' +
-            value +
-            '"]'
-          );
+      boxes.forEach(
+        (box,index) => {
 
-        if (radio) {
-          radio.checked = true;
+          box.checked =
+            Boolean(
+              data.checks[index]
+            );
+
         }
-
-      });
+      );
 
     }
 
@@ -1658,10 +1408,13 @@ function clearMapping() {
 
   const ok =
     confirm(
-      "Vill du rensa hela kartläggningen från den här webbläsaren? Detta går inte att ångra."
+      "Vill du rensa alla kartläggningsanteckningar och markeringar?"
     );
 
-  if (!ok) return;
+
+  if (!ok) {
+    return;
+  }
 
 
   textFields.forEach(id => {
@@ -1676,17 +1429,10 @@ function clearMapping() {
   });
 
 
-  radioGroups.forEach(name => {
-
-    document
-      .querySelectorAll(
-        'input[name="' + name + '"]'
-      )
-      .forEach(radio => {
-        radio.checked = false;
-      });
-
-  });
+  getCheckboxes()
+    .forEach(box => {
+      box.checked = false;
+    });
 
 
   localStorage.removeItem(
@@ -1697,10 +1443,52 @@ function clearMapping() {
   document.getElementById(
     "saveStatus"
   ).textContent =
-    "Kartläggningen är rensad från den här webbläsaren.";
+    "Kartläggningen är rensad.";
 
 }
 
+
+function activateAutoSave() {
+
+  textFields.forEach(id => {
+
+    const element =
+      document.getElementById(id);
+
+    if (!element) {
+      return;
+    }
+
+
+    element.addEventListener(
+      "input",
+      () => saveMapping(false)
+    );
+
+  });
+
+
+  getCheckboxes()
+    .forEach(box => {
+
+      box.addEventListener(
+        "change",
+        () => saveMapping(false)
+      );
+
+    });
+
+}
+
+
+/*
+  QA-FIX FÖR UTSKRIFT:
+
+  Textområden expanderar före utskrift,
+  men kartläggningssektionen får sedan
+  fortsätta över flera sidor om texten
+  blir lång.
+*/
 
 function expandTextareasForPrint() {
 
@@ -1717,7 +1505,7 @@ function expandTextareasForPrint() {
       textarea.style.height =
         Math.max(
           textarea.scrollHeight,
-          52
+          55
         ) + "px";
 
     });
@@ -1753,7 +1541,12 @@ window.addEventListener(
 
 document.addEventListener(
   "DOMContentLoaded",
-  loadMapping
+  () => {
+
+    loadMapping();
+    activateAutoSave();
+
+  }
 );
 
 </script>
